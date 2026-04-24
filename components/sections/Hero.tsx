@@ -93,27 +93,29 @@ export function Hero() {
       ))}
 
       {/* ── Content ── */}
-      <div className="container relative z-10 pt-36 pb-32">
+      <div className="container relative z-10 pt-48 pb-32 md:pt-56">
         <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
 
           {/* Eyebrow */}
           <motion.div
             {...fadeUp(0)}
-            className="inline-flex items-center gap-3 mb-10 px-5 py-2.5 rounded-full"
+            className="inline-flex items-center gap-3 mb-10 px-6 py-3 rounded-full"
             style={{
-              background: 'rgba(15,23,42,0.03)',
-              border: '1px solid rgba(15,23,42,0.08)',
+              background: 'rgba(255, 0, 0, 0.05)',
+              border: '1px solid rgba(255, 0, 0, 0.15)',
               backdropFilter: 'blur(12px)',
+              boxShadow: '0 4px 20px rgba(255, 0, 0, 0.05)',
             }}
           >
             <span
-              className="w-1.5 h-1.5 rounded-full bg-slate-400"
+              className="w-2 h-2 rounded-full bg-red-600"
               style={{
                 animation: 'pulseRing 2s ease-in-out infinite',
+                boxShadow: '0 0 10px rgba(255, 0, 0, 0.5)',
               }}
             />
             <span
-              className="text-[10px] font-mono font-bold tracking-[0.22em] uppercase text-slate-500"
+              className="text-[11px] font-mono font-black tracking-[0.25em] uppercase text-red-600/80"
             >
               Certified Industrial Excellence — Zambia &amp; Sub-Saharan Africa
             </span>

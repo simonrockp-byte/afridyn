@@ -3,10 +3,10 @@ import { Zap, Shield, Target, Globe } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const pillars = [
-  { icon: Zap,    title: 'Innovation', desc: 'Modern engineering methods and technologies applied to complex industrial challenges.', color: '#475569' },
-  { icon: Shield, title: 'Integrity',  desc: 'Transparent operations backed by full PACRA, TPIN, and ZPPA regulatory compliance.', color: '#334155' },
-  { icon: Target, title: 'Precision',  desc: 'International-standard engineering execution on every project — zero tolerance for mediocrity.', color: '#475569' },
-  { icon: Globe,  title: 'Pan-African',desc: 'Local knowledge, pan-African capability. Headquartered in Lusaka, Zambia.', color: '#334155' },
+  { icon: Zap,    title: 'Innovation', desc: 'Modern engineering methods and technologies applied to complex industrial challenges.', color: '#334155' },
+  { icon: Shield, title: 'Integrity',  desc: 'Transparent operations backed by full PACRA, TPIN, and ZPPA regulatory compliance.', color: '#475569' },
+  { icon: Target, title: 'Precision',  desc: 'International-standard engineering execution on every project — zero tolerance for mediocrity.', color: '#334155' },
+  { icon: Globe,  title: 'Pan-African',desc: 'Local knowledge, pan-African capability. Headquartered in Lusaka, Zambia.', color: '#475569' },
 ]
 
 const credentials = [
@@ -26,7 +26,7 @@ const itemVariants = {
 
 export function About() {
   return (
-    <section id="about" className="section" style={{ background: '#080810' }}>
+    <section id="about" className="section" style={{ background: '#F8FAFC' }}>
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-20 xl:gap-28 items-center">
 
@@ -43,18 +43,18 @@ export function About() {
 
             <motion.h2
               variants={itemVariants}
-              className="font-display font-black text-white mb-8"
+              className="font-display font-black text-slate-900 mb-8"
               style={{ fontSize: 'clamp(2rem, 5vw, 3.8rem)', letterSpacing: '-0.04em', lineHeight: 1.05 }}
             >
               Africa's Trusted<br />
               <span className="text-gradient-fire">Engineering Partner</span>
             </motion.h2>
 
-            <motion.p variants={itemVariants} className="text-base leading-relaxed mb-4 text-white/55">
+            <motion.p variants={itemVariants} className="text-base leading-relaxed mb-4 text-slate-500">
               Afridyn Engineering Limited delivers integrated engineering services spanning
               mechanical, electrical, IT, optical fibre, and logistics across Sub-Saharan Africa.
             </motion.p>
-            <motion.p variants={itemVariants} className="text-base leading-relaxed mb-12 text-white/55">
+            <motion.p variants={itemVariants} className="text-base leading-relaxed mb-12 text-slate-500">
               Founded in Lusaka, Zambia, we are dedicated to building a resilient infrastructure
               foundation for the continent through precision and modern methodology.
             </motion.p>
@@ -66,17 +66,16 @@ export function About() {
                 return (
                   <div
                     key={p.title}
-                    className="rounded-2xl p-6 group transition-all duration-300 hover:border-white/12"
-                    style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.07)' }}
+                    className="rounded-2xl p-6 group transition-all duration-300 bg-white border border-slate-200 shadow-sm hover:shadow-md"
                   >
                     <div
                       className="w-10 h-10 rounded-xl mb-4 flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-                      style={{ background: `${p.color}12`, color: p.color, border: `1px solid ${p.color}22` }}
+                      style={{ background: `${p.color}08`, color: p.color, border: `1px solid ${p.color}15` }}
                     >
                       <Icon size={18} strokeWidth={1.8} />
                     </div>
-                    <h4 className="font-display font-bold text-sm text-white mb-1.5">{p.title}</h4>
-                    <p className="text-[12px] leading-relaxed text-white/40 group-hover:text-white/60 transition-colors">{p.desc}</p>
+                    <h4 className="font-display font-bold text-sm text-slate-900 mb-1.5">{p.title}</h4>
+                    <p className="text-[12px] leading-relaxed text-slate-500 group-hover:text-slate-700 transition-colors">{p.desc}</p>
                   </div>
                 )
               })}
@@ -93,20 +92,20 @@ export function About() {
           >
             {/* Main image */}
             <div
-              className="relative rounded-3xl overflow-hidden aspect-[4/3] group"
-              style={{ border: '1px solid rgba(255,255,255,0.08)' }}
+              className="relative rounded-3xl overflow-hidden aspect-[4/3] group shadow-xl"
+              style={{ border: '1px solid rgba(15,23,42,0.1)' }}
             >
               <img
                 src="/images/services/maintenance.png"
                 alt="Afridyn Technical Capability"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#080810]/80 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6">
                 <span
                   className="text-[10px] font-mono font-bold tracking-[0.18em] uppercase px-4 py-2 rounded-full"
                   style={{
-                    background: 'rgba(51,65,85,0.85)',
+                    background: 'rgba(15, 23, 42, 0.85)',
                     border: '1px solid rgba(255,255,255,0.2)',
                     color: '#fff',
                     backdropFilter: 'blur(12px)',
@@ -125,41 +124,37 @@ export function About() {
               ].map(card => (
                 <div
                   key={card.label}
-                  className="p-6 rounded-2xl"
-                  style={{ border: '1px solid rgba(255,255,255,0.07)', background: 'rgba(255,255,255,0.025)' }}
+                  className="p-6 rounded-2xl bg-white border border-slate-200"
                 >
                   <span
-                    className="text-[10px] font-mono font-bold uppercase tracking-[0.25em] block mb-3"
-                    style={{ color: card.color }}
+                    className="text-[10px] font-mono font-bold uppercase tracking-[0.25em] block mb-3 text-slate-400"
                   >
                     {card.label}
                   </span>
-                  <p className="text-[13px] leading-relaxed text-white/50">{card.text}</p>
+                  <p className="text-[13px] leading-relaxed text-slate-500">{card.text}</p>
                 </div>
               ))}
             </div>
 
             {/* Credentials */}
             <div
-              className="rounded-2xl p-6"
-              style={{ border: '1px solid rgba(255,255,255,0.07)', background: 'rgba(255,255,255,0.025)' }}
+              className="rounded-2xl p-6 bg-white border border-slate-200 shadow-sm"
             >
-              <p className="text-[10px] font-mono font-bold uppercase tracking-[0.25em] text-white/30 mb-5">
+              <p className="text-[10px] font-mono font-bold uppercase tracking-[0.25em] text-slate-400 mb-5">
                 Regulatory Compliance
               </p>
               <div className="space-y-3">
                 {credentials.map(c => (
                   <div
                     key={c.label}
-                    className="flex items-center justify-between py-2.5 border-b border-white/05 last:border-0"
+                    className="flex items-center justify-between py-2.5 border-b border-slate-50 last:border-0"
                   >
                     <div>
-                      <p className="font-display font-bold text-[13px] text-white">{c.label}</p>
-                      <p className="text-[10px] text-white/35 mt-0.5">{c.desc}</p>
+                      <p className="font-display font-bold text-[13px] text-slate-900">{c.label}</p>
+                      <p className="text-[10px] text-slate-400 mt-0.5">{c.desc}</p>
                     </div>
                     <span
-                      className="font-mono text-[11px] font-semibold px-3 py-1.5 rounded-full"
-                      style={{ background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.55)' }}
+                      className="font-mono text-[11px] font-semibold px-3 py-1.5 rounded-full bg-slate-50 text-slate-600"
                     >
                       {c.value}
                     </span>
