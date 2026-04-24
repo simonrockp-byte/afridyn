@@ -33,68 +33,77 @@ export function Navigation() {
     <header
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{
-        background: scrolled ? 'rgba(10, 22, 40, 0.95)' : 'transparent',
+        background: scrolled ? 'rgba(10, 10, 15, 0.95)' : 'transparent',
         backdropFilter: scrolled ? 'blur(20px)' : 'none',
-        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.06)' : 'none',
-        boxShadow: scrolled ? '0 4px 30px rgba(0,0,0,0.3)' : 'none',
+        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.08)' : 'none',
+        boxShadow: scrolled ? '0 10px 40px rgba(0,0,0,0.5)' : 'none',
       }}
     >
       <div className="container">
-        <div className="flex items-center justify-between h-16 lg:h-18">
+        <div className="flex items-center justify-between h-20">
 
           {/* Logo */}
-          <button onClick={() => goto('#home')} className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10 overflow-hidden">
+          <button onClick={() => goto('#home')} className="flex items-center gap-4 group">
+            <div className="relative w-11 h-11 overflow-hidden filter brightness-0 invert">
               <img src="/images/logo.png" alt="Afridyn Logo" className="w-full h-full object-contain" />
             </div>
-            <div className="leading-tight text-left">
-              <span className="block font-display font-black text-white text-base tracking-[.05em]">AFRIDYN</span>
-              <span className="block text-[9px] tracking-[.25em] font-mono" style={{ color: 'rgba(255,255,255,0.4)' }}>ENGINEERING</span>
+            <div className="leading-tight text-left hidden sm:block">
+              <span className="block font-display font-black text-white text-base tracking-[.08em]">AFRIDYN</span>
+              <span className="block text-[10px] tracking-[.3em] font-mono opacity-40 text-white uppercase">Engineering</span>
             </div>
           </button>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-2">
             {navLinks.map(link => (
-              <button key={link.href} onClick={() => goto(link.href)} className="nav-link">
+              <button key={link.href} onClick={() => goto(link.href)} 
+                className="text-sm font-bold text-white/50 hover:text-white px-5 py-2.5 rounded-full transition-all hover:bg-white/5 uppercase tracking-widest">
                 {link.label}
               </button>
             ))}
           </nav>
 
           {/* CTA */}
-          <div className="hidden lg:flex items-center gap-3">
-            <button onClick={() => goto('#contact')} className="btn btn-primary btn-sm">
+          <div className="hidden lg:flex items-center gap-4">
+            <button onClick={() => goto('#contact')} className="btn btn-sm"
+              style={{
+                background: 'linear-gradient(135deg, #FF6B00, #FF007F)',
+                color: '#FFF',
+                borderRadius: '100px',
+                padding: '10px 24px'
+              }}>
               Get a Quote
             </button>
           </div>
 
           {/* Mobile toggle */}
           <button
-            className="lg:hidden p-2 text-white/70 hover:text-white"
+            className="lg:hidden p-3 text-white/60 hover:text-white"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div style={{ background: 'rgba(10,22,40,0.98)', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-          <div className="container py-4 flex flex-col gap-1">
-            {navLinks.map(link => (
-              <button key={link.href} onClick={() => goto(link.href)}
-                className="text-left px-4 py-3 text-sm font-medium text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
-                {link.label}
-              </button>
-            ))}
-            <div className="pt-3 border-t border-white/5 mt-2">
-              <button onClick={() => goto('#contact')} className="btn btn-primary w-full justify-center">
-                Request a Quote
-              </button>
-            </div>
+        <div className="lg:hidden fixed inset-0 z-40 bg-[#0A0A0F]/98 flex flex-col pt-32 px-10 gap-8 animate-in fade-in slide-in-from-top-10 duration-500">
+          {navLinks.map(link => (
+            <button key={link.href} onClick={() => goto(link.href)}
+              className="text-left text-3xl font-black text-white/40 hover:text-white transition-all uppercase tracking-tighter">
+              {link.label}
+            </button>
+          ))}
+          <div className="pt-10 border-t border-white/5">
+            <button onClick={() => goto('#contact')} className="btn btn-lg w-full justify-center"
+              style={{
+                background: 'linear-gradient(135deg, #FF6B00, #FF007F)',
+                color: '#FFF'
+              }}>
+              Request a Quote
+            </button>
           </div>
         </div>
       )}

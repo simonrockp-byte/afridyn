@@ -5,21 +5,19 @@
 
 /* ── Design Tokens ── */
 :root {
-  --navy-900: #0A1628;
-  --navy-800: #0F2040;
-  --navy-700: #182E58;
-  --copper-600: #D4692A;
-  --copper-500: #E67817;
-  --teal-600: #0D7A6F;
-  --teal-500: #1F857A;
-  --text-primary: #0F172A;
-  --text-secondary: #475569;
-  --text-muted: #94A3B8;
-  --surface: #FFFFFF;
-  --surface-2: #F8FAFC;
-  --surface-3: #F1F5F9;
-  --border: #E2E8F0;
-  --border-strong: #CBD5E1;
+  --navy-900: #0A0A0F;
+  --navy-800: #12121A;
+  --navy-700: #1A1A25;
+  --brand-orange: #FF6B00;
+  --brand-pink: #FF007F;
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-muted: rgba(255, 255, 255, 0.4);
+  --surface: #0A0A0F;
+  --surface-2: #12121A;
+  --surface-3: #1A1A25;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.15);
 }
 
 /* ── Base ── */
@@ -84,7 +82,7 @@ h1, h2, h3, h4, h5, h6 {
   background-clip: text;
 }
 .text-gradient-fire {
-  background: linear-gradient(135deg, #FF2D55 0%, #FF6A00 40%, #CC00FF 100%);
+  background: linear-gradient(135deg, var(--brand-pink) 0%, var(--brand-orange) 50%, #FFCC00 100%);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -192,26 +190,21 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 5px 14px;
+  padding: 6px 16px;
   border-radius: 100px;
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-weight: 800;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   font-family: 'JetBrains Mono', monospace;
-  background: rgba(212, 105, 42, 0.08);
-  border: 1px solid rgba(212, 105, 42, 0.2);
-  color: var(--copper-600);
+  background: rgba(255, 107, 0, 0.1);
+  border: 1px solid rgba(255, 107, 0, 0.25);
+  color: var(--brand-orange);
 }
 .label-chip-dark {
-  background: rgba(212, 105, 42, 0.15);
-  border-color: rgba(212, 105, 42, 0.3);
-  color: #F09040;
-}
-.label-chip-teal {
-  background: rgba(31, 133, 122, 0.08);
-  border: 1px solid rgba(31, 133, 122, 0.2);
-  color: var(--teal-600);
+  background: rgba(255, 107, 0, 0.15);
+  border-color: rgba(255, 107, 0, 0.35);
+  color: var(--brand-orange);
 }
 
 /* ── Cards & Glass ── */
@@ -274,14 +267,15 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-2px);
 }
 .btn-ghost-dark {
-  background: rgba(255,255,255,0.08);
-  color: rgba(255,255,255,0.85);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: #FFFFFF;
+  border: 1px solid rgba(255,255,255,0.15);
   backdrop-filter: blur(12px);
 }
 .btn-ghost-dark:hover {
-  background: rgba(255,255,255,0.14);
-  border-color: rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.1);
+  border-color: var(--brand-pink);
+  box-shadow: 0 0 20px rgba(255, 0, 127, 0.2);
   transform: translateY(-2px);
 }
 .btn-lg { padding: 16px 32px; font-size: 16px; border-radius: 12px; }

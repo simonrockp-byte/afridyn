@@ -18,10 +18,10 @@ const services = [
 type FormStatus = 'idle' | 'loading' | 'success' | 'error'
 
 const contactInfo = [
-  { icon: MapPin, title: 'Office Address',  val: '31 Salama Park, Lusaka, Zambia', color: '#FF2D55' },
-  { icon: Phone,  title: 'Phone Numbers',   val: '+260 956 797 916\n+260 969 628 707', color: '#FF6A00' },
-  { icon: Mail,   title: 'Email Address',   val: 'info@afridynengineering.com', color: '#CC00FF' },
-  { icon: Clock,  title: 'Response Time',   val: 'Within 24 hours', color: '#0D7A6F' },
+  { icon: MapPin, title: 'Office Address',  val: '31 Salama Park, Lusaka, Zambia', color: '#FF007F' },
+  { icon: Phone,  title: 'Phone Numbers',   val: '+260 956 797 916\n+260 969 628 707', color: '#FF6B00' },
+  { icon: Mail,   title: 'Email Address',   val: 'info@afridynengineering.com', color: '#FF007F' },
+  { icon: Clock,  title: 'Response Time',   val: 'Within 24 hours', color: '#FF6B00' },
 ]
 
 export function Contact() {
@@ -53,23 +53,16 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="section relative overflow-hidden" style={{ background: '#0A0A1A' }}>
+    <section id="contact" className="section relative overflow-hidden" style={{ background: '#0A0A0F' }}>
 
       {/* Background orbs */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(255,45,85,0.1) 0%, transparent 70%)', filter: 'blur(80px)' }} />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[400px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(204,0,255,0.08) 0%, transparent 70%)', filter: 'blur(80px)' }} />
-
-      {/* Grid */}
-      <div className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(255,45,85,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(204,0,255,0.02) 1px, transparent 1px)',
-          backgroundSize: '64px 64px',
-        }} />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none opacity-20"
+        style={{ background: 'radial-gradient(circle, rgba(255,0,127,0.1) 0%, transparent 70%)', filter: 'blur(100px)' }} />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[400px] rounded-full pointer-events-none opacity-20"
+        style={{ background: 'radial-gradient(circle, rgba(255,107,0,0.08) 0%, transparent 70%)', filter: 'blur(100px)' }} />
 
       <div className="container relative z-10">
-        <div className="grid lg:grid-cols-[1fr_1.4fr] gap-16 items-start">
+        <div className="grid lg:grid-cols-[1fr_1.4fr] gap-20 items-start">
 
           {/* LEFT */}
           <motion.div
@@ -78,19 +71,19 @@ export function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="label-chip label-chip-dark mb-6" style={{ background: 'rgba(255,45,85,0.12)', borderColor: 'rgba(255,45,85,0.25)', color: '#FF6A7A' }}>
-              Get In Touch
+            <div className="label-chip label-chip-dark mb-8" style={{ background: 'rgba(255,107,0,0.1)', borderColor: 'rgba(255,107,0,0.25)', color: '#FF6B00' }}>
+              Connect with Us
             </div>
-            <h2 className="font-display font-black text-4xl md:text-6xl text-white mb-6" style={{ letterSpacing: '-0.04em', lineHeight: 1.05 }}>
+            <h2 className="font-display font-black text-4xl md:text-6xl text-white mb-8" style={{ letterSpacing: '-0.04em', lineHeight: 1.05 }}>
               Let&apos;s Discuss<br />
               <span className="text-gradient-fire">Your Project</span>
             </h2>
-            <p className="text-base leading-relaxed mb-12" style={{ color: 'rgba(255,255,255,0.5)' }}>
+            <p className="text-lg leading-relaxed mb-12 opacity-60" style={{ color: '#FFFFFF' }}>
               Whether you need spare parts, maintenance support, or comprehensive engineering consultation — our team is ready to help.
             </p>
 
             {/* Contact info cards */}
-            <div className="space-y-4 mb-10">
+            <div className="space-y-4 mb-12">
               {contactInfo.map(({ icon: Icon, title, val, color }, i) => (
                 <motion.div
                   key={title}
@@ -98,35 +91,35 @@ export function Contact() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.5 }}
-                  className="flex items-start gap-4 p-4 rounded-2xl"
-                  style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}
+                  className="flex items-start gap-5 p-6 rounded-[28px] group transition-all duration-500"
+                  style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}
                 >
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
-                    style={{ background: `${color}15`, color }}>
-                    <Icon size={18} />
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-110 group-hover:rotate-3"
+                    style={{ background: `${color}15`, color, border: `1px solid ${color}25` }}>
+                    <Icon size={22} />
                   </div>
                   <div>
-                    <p className="text-[11px] font-mono font-bold uppercase tracking-widest mb-1" style={{ color: 'rgba(255,255,255,0.35)' }}>{title}</p>
-                    <p className="text-sm font-medium whitespace-pre-line" style={{ color: 'rgba(255,255,255,0.75)' }}>{val}</p>
+                    <p className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] mb-2 opacity-30" style={{ color: '#FFFFFF' }}>{title}</p>
+                    <p className="text-base font-semibold whitespace-pre-line text-white/90">{val}</p>
                   </div>
                 </motion.div>
               ))}
             </div>
 
             {/* Credentials */}
-            <div className="rounded-2xl p-5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
-              <p className="text-[10px] font-mono font-bold uppercase tracking-widest mb-4" style={{ color: 'rgba(255,255,255,0.25)' }}>
-                Regulatory Credentials
+            <div className="rounded-[28px] p-8" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
+              <p className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] mb-6 opacity-30" style={{ color: '#FFFFFF' }}>
+                Regulatory Compliance
               </p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-3">
                 {[
-                  { l: 'PACRA', v: '120261040695', color: '#FF2D55' },
-                  { l: 'ZPPA',  v: '137269',       color: '#FF6A00' },
-                  { l: 'TPIN',  v: '2004257975',   color: '#CC00FF' },
+                  { l: 'PACRA', v: '120261040695', color: '#FF007F' },
+                  { l: 'ZPPA',  v: '137269',       color: '#FF6B00' },
+                  { l: 'TPIN',  v: '2004257975',   color: '#FFCC00' },
                 ].map(({ l, v, color }) => (
-                  <div key={l} className="px-3 py-2 rounded-xl" style={{ background: `${color}10`, border: `1px solid ${color}20` }}>
-                    <p className="text-[9px] font-mono font-bold uppercase" style={{ color }}>{l}</p>
-                    <p className="text-[9px] font-mono mt-0.5" style={{ color: 'rgba(255,255,255,0.35)' }}>{v}</p>
+                  <div key={l} className="px-5 py-3 rounded-2xl" style={{ background: `${color}08`, border: `1px solid ${color}20` }}>
+                    <p className="text-[10px] font-mono font-bold uppercase" style={{ color }}>{l}</p>
+                    <p className="text-[10px] font-mono mt-1 opacity-40 text-white">{v}</p>
                   </div>
                 ))}
               </div>
@@ -140,84 +133,84 @@ export function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="rounded-3xl p-8 md:p-10"
+            <div className="rounded-[40px] p-10 md:p-14"
               style={{
-                background: 'rgba(255,255,255,0.04)',
+                background: 'rgba(255,255,255,0.03)',
                 border: '1px solid rgba(255,255,255,0.08)',
-                backdropFilter: 'blur(20px)',
-                boxShadow: '0 40px 80px rgba(0,0,0,0.3)',
+                backdropFilter: 'blur(30px)',
+                boxShadow: '0 40px 100px rgba(0,0,0,0.5)',
               }}>
 
               {status === 'success' ? (
                 <div className="flex flex-col items-center text-center py-16">
-                  <div className="w-20 h-20 rounded-full flex items-center justify-center mb-6"
-                    style={{ background: 'linear-gradient(135deg, rgba(255,45,85,0.2), rgba(255,106,0,0.2))' }}>
-                    <CheckCircle size={36} style={{ color: '#FF6A00' }} />
+                  <div className="w-24 h-24 rounded-full flex items-center justify-center mb-8"
+                    style={{ background: 'linear-gradient(135deg, rgba(255,0,127,0.2), rgba(255,107,0,0.2))' }}>
+                    <CheckCircle size={44} style={{ color: '#FF6B00' }} />
                   </div>
-                  <h3 className="font-display font-bold text-2xl text-white mb-3">Message Sent!</h3>
-                  <p className="text-base max-w-xs mx-auto" style={{ color: 'rgba(255,255,255,0.5)' }}>
-                    Thank you for reaching out. Our team will respond within 24 hours.
+                  <h3 className="font-display font-bold text-3xl text-white mb-4">Inquiry Received</h3>
+                  <p className="text-lg opacity-50 max-w-xs mx-auto" style={{ color: '#FFFFFF' }}>
+                    Thank you for reaching out. Our engineering team will respond within 24 hours.
                   </p>
                   <button onClick={() => setStatus('idle')}
-                    className="btn btn-lg mt-8"
-                    style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.8)' }}>
+                    className="btn btn-lg mt-10"
+                    style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)', color: '#FFFFFF' }}>
                     Send Another
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-8">
                   <div>
-                    <h3 className="font-display font-bold text-2xl text-white mb-2">Request a Quote</h3>
-                    <p className="text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>All inquiries handled confidentially within 24 hours.</p>
+                    <h3 className="font-display font-bold text-3xl text-white mb-3">Request a Quote</h3>
+                    <p className="text-sm opacity-40" style={{ color: '#FFFFFF' }}>Technical procurement and project estimates.</p>
                   </div>
 
                   {status === 'error' && (
-                    <div className="flex items-start gap-3 p-4 rounded-xl" style={{ background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.2)' }}>
-                      <AlertCircle size={18} className="shrink-0 mt-0.5" style={{ color: '#FF2D55' }} />
-                      <p className="text-sm" style={{ color: '#FF2D55' }}>{errorMsg}</p>
+                    <div className="flex items-start gap-4 p-5 rounded-2xl" style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)' }}>
+                      <AlertCircle size={20} className="shrink-0 mt-0.5" style={{ color: '#FF007F' }} />
+                      <p className="text-sm font-medium" style={{ color: '#FF007F' }}>{errorMsg}</p>
                     </div>
                   )}
 
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="grid sm:grid-cols-2 gap-6">
                     {[
                       { label: 'Full Name *', key: 'name',    placeholder: 'John Mwale',      required: true,  type: 'text' },
                       { label: 'Company',     key: 'company', placeholder: 'Your Company Ltd', required: false, type: 'text' },
                     ].map(f => (
                       <div key={f.key}>
-                        <label className="block text-[12px] font-semibold mb-2" style={{ color: 'rgba(255,255,255,0.45)' }}>{f.label}</label>
+                        <label className="block text-[11px] font-bold uppercase tracking-widest mb-3 opacity-40" style={{ color: '#FFFFFF' }}>{f.label}</label>
                         <input
                           required={f.required} type={f.type}
                           placeholder={f.placeholder}
                           value={(form as any)[f.key]}
                           onChange={e => setForm({ ...form, [f.key]: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200"
+                          className="w-full px-5 py-4 rounded-2xl text-sm outline-none transition-all duration-300"
                           style={{
-                            background: 'rgba(255,255,255,0.05)',
+                            background: 'rgba(255,255,255,0.04)',
                             border: '1px solid rgba(255,255,255,0.08)',
                             color: '#fff',
                           }}
-                          onFocus={e => { e.currentTarget.style.borderColor = 'rgba(255,45,85,0.4)'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(255,45,85,0.08)' }}
+                          onFocus={e => { e.currentTarget.style.borderColor = 'rgba(255,0,127,0.4)'; e.currentTarget.style.boxShadow = '0 0 0 4px rgba(255,0,127,0.06)' }}
                           onBlur={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.boxShadow = 'none' }}
                         />
                       </div>
                     ))}
                   </div>
 
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="grid sm:grid-cols-2 gap-6">
                     {[
                       { label: 'Email Address *', key: 'email', placeholder: 'you@company.com',  required: true,  type: 'email' },
                       { label: 'Phone Number',    key: 'phone', placeholder: '+260 XXX XXX XXX', required: false, type: 'tel' },
                     ].map(f => (
                       <div key={f.key}>
-                        <label className="block text-[12px] font-semibold mb-2" style={{ color: 'rgba(255,255,255,0.45)' }}>{f.label}</label>
+                        <label className="block text-[11px] font-bold uppercase tracking-widest mb-3 opacity-40" style={{ color: '#FFFFFF' }}>{f.label}</label>
                         <input
                           required={f.required} type={f.type}
                           placeholder={f.placeholder}
                           value={(form as any)[f.key]}
                           onChange={e => setForm({ ...form, [f.key]: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200"
-                          style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', color: '#fff' }}
-                          onFocus={e => { e.currentTarget.style.borderColor = 'rgba(255,106,0,0.4)'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(255,106,0,0.08)' }}
+                          className="w-full px-5 py-4 rounded-2xl text-sm outline-none transition-all duration-300"
+                          style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', color: '#fff' }}
+                          onFocus={e => { e.currentTarget.style.borderColor = 'rgba(255,107,0,0.4)'; e.currentTarget.style.boxShadow = '0 0 0 4px rgba(255,107,0,0.06)' }}
                           onBlur={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.boxShadow = 'none' }}
                         />
                       </div>
@@ -225,31 +218,31 @@ export function Contact() {
                   </div>
 
                   <div>
-                    <label className="block text-[12px] font-semibold mb-2" style={{ color: 'rgba(255,255,255,0.45)' }}>Service Required *</label>
+                    <label className="block text-[11px] font-bold uppercase tracking-widest mb-3 opacity-40" style={{ color: '#FFFFFF' }}>Service Category *</label>
                     <select
                       required
                       value={form.service}
                       onChange={e => setForm({ ...form, service: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200"
-                      style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', color: form.service ? '#fff' : 'rgba(255,255,255,0.3)' }}
+                      className="w-full px-5 py-4 rounded-2xl text-sm outline-none transition-all duration-300 cursor-pointer"
+                      style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', color: form.service ? '#fff' : 'rgba(255,255,255,0.2)' }}
                     >
-                      <option value="" style={{ background: '#0A0A1A', color: 'rgba(255,255,255,0.5)' }}>Select a service…</option>
+                      <option value="" style={{ background: '#0A0A0F', color: 'rgba(255,255,255,0.4)' }}>Select expertise required…</option>
                       {services.map(s => (
-                        <option key={s} value={s} style={{ background: '#0F0F1F', color: '#fff' }}>{s}</option>
+                        <option key={s} value={s} style={{ background: '#12121A', color: '#fff' }}>{s}</option>
                       ))}
                     </select>
                   </div>
 
                   <div>
-                    <label className="block text-[12px] font-semibold mb-2" style={{ color: 'rgba(255,255,255,0.45)' }}>Message / Project Details *</label>
+                    <label className="block text-[11px] font-bold uppercase tracking-widest mb-3 opacity-40" style={{ color: '#FFFFFF' }}>Project Description *</label>
                     <textarea
                       required rows={5}
-                      placeholder="Describe your engineering challenge or requirements…"
+                      placeholder="Detail your engineering requirements…"
                       value={form.message}
                       onChange={e => setForm({ ...form, message: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl text-sm outline-none resize-none transition-all duration-200"
-                      style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', color: '#fff' }}
-                      onFocus={e => { e.currentTarget.style.borderColor = 'rgba(204,0,255,0.4)'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(204,0,255,0.08)' }}
+                      className="w-full px-5 py-4 rounded-2xl text-sm outline-none resize-none transition-all duration-300"
+                      style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', color: '#fff' }}
+                      onFocus={e => { e.currentTarget.style.borderColor = 'rgba(255,107,0,0.4)'; e.currentTarget.style.boxShadow = '0 0 0 4px rgba(255,107,0,0.06)' }}
                       onBlur={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.boxShadow = 'none' }}
                     />
                   </div>
@@ -257,19 +250,19 @@ export function Contact() {
                   <motion.button
                     type="submit"
                     disabled={status === 'loading'}
-                    whileHover={status !== 'loading' ? { scale: 1.02, y: -2 } : {}}
+                    whileHover={status !== 'loading' ? { scale: 1.01, y: -2 } : {}}
                     whileTap={status !== 'loading' ? { scale: 0.98 } : {}}
                     className="btn btn-lg w-full justify-center text-white"
                     style={{
-                      background: status === 'loading' ? 'rgba(255,45,85,0.5)' : 'linear-gradient(135deg, #FF2D55, #FF6A00)',
-                      boxShadow: status === 'loading' ? 'none' : '0 8px 30px rgba(255,45,85,0.35)',
-                      borderRadius: 14,
+                      background: status === 'loading' ? 'rgba(255,107,0,0.5)' : 'linear-gradient(135deg, #FF6B00, #FF007F)',
+                      boxShadow: status === 'loading' ? 'none' : '0 10px 40px rgba(255,107,0,0.35)',
+                      borderRadius: 18,
                     }}
                   >
                     {status === 'loading' ? (
-                      <><Loader2 size={18} className="animate-spin" /> Sending…</>
+                      <><Loader2 size={20} className="animate-spin" /> Transmitting…</>
                     ) : (
-                      <><Send size={18} /> Send Message</>
+                      <><Send size={20} /> Submit Proposal</>
                     )}
                   </motion.button>
                 </form>

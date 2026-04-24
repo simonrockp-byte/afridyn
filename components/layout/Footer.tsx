@@ -20,51 +20,54 @@ const goto = (id: string) => {
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden" style={{ background: '#050510' }}>
+    <footer className="relative overflow-hidden pt-24 pb-12" style={{ background: '#05050A' }}>
       {/* Blueprint Background Overlay */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.03] mix-blend-screen"
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.04] mix-blend-screen"
         style={{
-          backgroundImage: 'url(/images/assets/footer_blueprint.png)',
+          backgroundImage: 'url(/images/assets/footer-blueprint-afridyn.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }} />
 
       {/* Top accent */}
-      <div className="relative z-10 h-[2px] w-full" style={{ background: 'linear-gradient(90deg, transparent 0%, #FF2D55 30%, #CC00FF 70%, transparent 100%)' }} />
+      <div className="absolute top-0 left-0 right-0 h-[1px]" 
+        style={{ background: 'linear-gradient(90deg, transparent 0%, #FF007F 30%, #FF6B00 70%, transparent 100%)' }} />
 
-      <div className="container relative z-10 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="container relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
 
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="relative w-9 h-9 overflow-hidden">
-                <img src="/images/logo.png" alt="Afridyn Logo" className="w-full h-full object-contain" />
+            <div className="flex items-center gap-4 mb-8">
+              <div className="relative w-11 h-11">
+                <img src="/images/logo.png" alt="Afridyn Logo" className="w-full h-full object-contain filter brightness-0 invert" />
               </div>
               <div>
-                <p className="font-display font-black text-white text-sm tracking-widest">AFRIDYN</p>
-                <p className="text-[8px] tracking-[.3em] font-mono" style={{ color: 'rgba(255,255,255,0.3)' }}>ENGINEERING LIMITED</p>
+                <p className="font-display font-black text-white text-base tracking-widest">AFRIDYN</p>
+                <p className="text-[9px] tracking-[.4em] font-mono opacity-40 text-white">ENGINEERING LIMITED</p>
               </div>
             </div>
-            <p className="text-sm leading-relaxed mb-6" style={{ color: 'rgba(255,255,255,0.45)' }}>
-              Professional engineering and technical services for industrial, mining, and infrastructure sectors across Sub-Saharan Africa.
+            <p className="text-sm leading-relaxed mb-8 text-white/50 max-w-xs">
+              Providing world-class engineering solutions, technical procurement, and infrastructure services across Sub-Saharan Africa.
             </p>
-            <div className="flex items-center gap-2">
-              <span className="px-2.5 py-1 rounded text-[10px] font-mono font-bold" style={{ background: 'rgba(255,45,85,0.12)', border: '1px solid rgba(255,45,85,0.25)', color: '#FF6A7A' }}>PACRA</span>
-              <span className="px-2.5 py-1 rounded text-[10px] font-mono font-bold" style={{ background: 'rgba(255,106,0,0.12)', border: '1px solid rgba(255,106,0,0.25)', color: '#FFAD66' }}>ZPPA</span>
-              <span className="px-2.5 py-1 rounded text-[10px] font-mono font-bold" style={{ background: 'rgba(204,0,255,0.12)', border: '1px solid rgba(204,0,255,0.25)', color: '#D666FF' }}>TPIN</span>
+            <div className="flex items-center gap-3">
+              {['PACRA', 'ZPPA', 'TPIN'].map(tag => (
+                <span key={tag} className="px-3 py-1 rounded-full text-[10px] font-mono font-bold border border-white/10 bg-white/5 text-white/40">
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
 
           {/* Services */}
           <div>
-            <h4 className="text-white font-display font-bold text-sm mb-5 tracking-wide uppercase">Our Services</h4>
-            <ul className="space-y-2.5">
-              {services.map(s => (
+            <h4 className="text-white font-display font-bold text-sm mb-8 tracking-[0.2em] uppercase">Expertise</h4>
+            <ul className="space-y-4">
+              {services.slice(0, 5).map(s => (
                 <li key={s}>
-                  <button onClick={() => goto('services')} className="text-sm text-left flex items-start gap-2 group transition-colors" style={{ color: 'rgba(255,255,255,0.4)' }}>
-                    <ArrowRight size={13} className="mt-0.5 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: '#FF2D55' }} />
-                    <span className="group-hover:text-white transition-colors">{s}</span>
+                  <button onClick={() => goto('services')} className="text-sm text-left flex items-start gap-3 group transition-all" style={{ color: 'rgba(255,255,255,0.4)' }}>
+                    <div className="w-1 h-1 rounded-full bg-brand-pink mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span className="group-hover:text-white group-hover:translate-x-1 transition-all">{s}</span>
                   </button>
                 </li>
               ))}
@@ -73,13 +76,13 @@ export function Footer() {
 
           {/* Navigation */}
           <div>
-            <h4 className="text-white font-display font-bold text-sm mb-5 tracking-wide uppercase">Company</h4>
-            <ul className="space-y-2.5">
-              {[['#about', 'About Us'], ['#why-us', 'Why Choose Us'], ['#contact', 'Contact Us'], ['#services', 'Our Services']].map(([href, label]) => (
-                <li key={href}>
-                  <button onClick={() => goto(href.replace('#', ''))} className="text-sm group flex items-start gap-2 transition-colors" style={{ color: 'rgba(255,255,255,0.4)' }}>
-                    <ArrowRight size={13} className="mt-0.5 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: '#FF2D55' }} />
-                    <span className="group-hover:text-white transition-colors">{label}</span>
+            <h4 className="text-white font-display font-bold text-sm mb-8 tracking-[0.2em] uppercase">Company</h4>
+            <ul className="space-y-4">
+              {[['home', 'Home'], ['about', 'About Us'], ['why-us', 'Success Factors'], ['contact', 'Connect']].map(([id, label]) => (
+                <li key={id}>
+                  <button onClick={() => goto(id)} className="text-sm group flex items-start gap-3 transition-all" style={{ color: 'rgba(255,255,255,0.4)' }}>
+                    <div className="w-1 h-1 rounded-full bg-brand-orange mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span className="group-hover:text-white group-hover:translate-x-1 transition-all">{label}</span>
                   </button>
                 </li>
               ))}
@@ -88,17 +91,16 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-white font-display font-bold text-sm mb-5 tracking-wide uppercase">Contact</h4>
-            <div className="space-y-4">
+            <h4 className="text-white font-display font-bold text-sm mb-8 tracking-[0.2em] uppercase">Contact</h4>
+            <div className="space-y-6">
               {[
-                { icon: MapPin, text: '31 Salama Park, Lusaka, Zambia', size: 14 },
-                { icon: Phone, text: '+260 956 797 916', size: 14 },
-                { icon: Phone, text: '+260 969 628 707', size: 14 },
-                { icon: Mail, text: 'info@afridynengineering.com', size: 14 },
+                { icon: MapPin, text: '31 Salama Park, Lusaka, Zambia' },
+                { icon: Phone, text: '+260 956 797 916' },
+                { icon: Mail, text: 'info@afridynengineering.com' },
               ].map(({ icon: Icon, text }) => (
-                <div key={text} className="flex items-start gap-3">
-                  <Icon size={14} className="mt-0.5 shrink-0" style={{ color: '#FF2D55' }} />
-                  <span className="text-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>{text}</span>
+                <div key={text} className="flex items-start gap-4 group">
+                  <Icon size={18} className="mt-0.5 shrink-0 transition-colors group-hover:text-brand-pink" style={{ color: 'rgba(255,255,255,0.2)' }} />
+                  <span className="text-sm leading-relaxed transition-colors group-hover:text-white" style={{ color: 'rgba(255,255,255,0.4)' }}>{text}</span>
                 </div>
               ))}
             </div>
@@ -106,14 +108,13 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-14 pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs" style={{ color: 'rgba(255,255,255,0.25)' }}>
-              © {new Date().getFullYear()} Afridyn Engineering Limited. All rights reserved.
+        <div className="pt-10 border-t border-white/5">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+            <p className="text-[11px] font-medium tracking-wide" style={{ color: 'rgba(255,255,255,0.2)' }}>
+              © {new Date().getFullYear()} Afridyn Engineering Limited. High Precision Infrastructure.
             </p>
-            <div className="flex items-center gap-6 text-xs font-mono" style={{ color: 'rgba(255,255,255,0.2)' }}>
+            <div className="flex items-center gap-8 text-[10px] font-mono tracking-widest" style={{ color: 'rgba(255,255,255,0.15)' }}>
               <span>PACRA: 120261040695</span>
-              <span>TPIN: 2004257975</span>
               <span>ZPPA: 137269</span>
             </div>
           </div>
