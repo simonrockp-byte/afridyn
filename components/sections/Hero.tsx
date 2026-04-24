@@ -83,26 +83,34 @@ export function Hero() {
           <div style={{ animation: 'textReveal 0.8s cubic-bezier(0.16,1,0.3,1) both' }}>
             {/* Label chip */}
             <div className="label-chip label-chip-dark mb-7" style={{
-              background: 'linear-gradient(135deg, rgba(255,45,85,0.18), rgba(204,0,255,0.12))',
-              borderColor: 'rgba(255,45,85,0.35)',
-              color: '#FF6A7A',
-              boxShadow: '0 0 16px rgba(255,45,85,0.15)',
+              background: 'linear-gradient(135deg, rgba(255,45,85,0.25), rgba(204,0,255,0.18))',
+              borderColor: 'rgba(255,45,85,0.45)',
+              color: '#FFCCD0',
+              boxShadow: '0 0 16px rgba(255,45,85,0.2)',
               animation: 'borderGlow 4s ease-in-out infinite',
+              fontWeight: 800,
+              letterSpacing: '0.12em'
             }}>
               Engineering Excellence Across Africa
             </div>
 
             {/* Headline */}
-            <h1 className="font-display font-black text-white leading-[1.0] mb-6"
-              style={{ fontSize: 'clamp(3rem, 7vw, 5.5rem)', letterSpacing: '-0.03em' }}>
+            <h1 className="font-display font-black leading-[1.0] mb-6"
+              style={{ 
+                fontSize: 'clamp(3rem, 7vw, 5.5rem)', 
+                letterSpacing: '-0.03em',
+                color: '#FFFFFF',
+                textShadow: '0 2px 10px rgba(0,0,0,0.3)'
+              }}>
               Engineering
               <br />Excellence
               <br /><span className="text-gradient-fire">Across Africa</span>
             </h1>
 
             <p className="text-lg leading-relaxed mb-8 max-w-xl" style={{
-              color: 'rgba(255,255,255,0.55)',
+              color: 'rgba(255,255,255,0.85)',
               animationDelay: '0.2s',
+              textShadow: '0 1px 4px rgba(0,0,0,0.2)'
             }}>
               Afridyn Engineering delivers mechanical, electrical, IT, and fibre
               optic solutions for mining, manufacturing, and infrastructure
@@ -161,8 +169,8 @@ export function Hero() {
                 <div key={s.label}>
                   <p className="font-display font-black text-white text-3xl leading-none mb-1"
                     style={{ color: s.color, textShadow: `0 0 20px ${s.color}55` }}>{s.value}</p>
-                  <p className="text-xs font-semibold text-white/60 mb-0.5">{s.label}</p>
-                  <p className="text-[10px] font-mono" style={{ color: 'rgba(255,255,255,0.25)' }}>{s.sub}</p>
+                  <p className="text-xs font-semibold text-white/80 mb-0.5">{s.label}</p>
+                  <p className="text-[10px] font-mono" style={{ color: 'rgba(255,255,255,0.5)' }}>{s.sub}</p>
                 </div>
               ))}
             </div>
