@@ -37,20 +37,20 @@ export default function Navbar() {
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{
         padding: scrolled ? "0" : "0",
-        background: scrolled ? "rgba(11,22,40,0.9)" : "transparent",
+        background: scrolled ? "rgba(255,255,255,0.9)" : "transparent",
         backdropFilter: scrolled ? "blur(24px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "none",
+        borderBottom: scrolled ? "1px solid rgba(0,0,0,0.06)" : "none",
       }}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Logo */}
         <button onClick={() => goto("home")} className="flex items-center gap-3 shrink-0">
           <div className="relative w-8 h-8">
-            <Image src="/afridyn_logo.png" alt="Afridyn" fill className="object-contain" style={{ filter: "brightness(0) invert(1)" }} />
+            <Image src="/afridyn_logo.png" alt="Afridyn" fill className="object-contain" />
           </div>
-          <div className="leading-none">
-            <span className="font-display font-bold text-sm text-white tracking-wider">AFRIDYN</span>
-            <span className="block text-[9px] text-white/35 tracking-[0.2em] font-mono-custom">ENGINEERING</span>
+          <div className="leading-none text-left">
+            <span className="font-display font-black text-sm tracking-widest" style={{ color: "var(--navy)" }}>AFRIDYN</span>
+            <span className="block text-[8px] font-bold tracking-[.3em] opacity-30" style={{ color: "var(--navy)" }}>ENGINEERING</span>
           </div>
         </button>
 
@@ -60,8 +60,8 @@ export default function Navbar() {
             id === "services" ? (
               <div key={id} className="relative" onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)}>
                 <button
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-all"
-                  style={{ color: active === id ? "#D4792A" : "rgba(255,255,255,0.65)" }}
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold transition-all"
+                  style={{ color: active === id ? "var(--copper)" : "rgba(15,23,42,0.6)" }}
                 >
                   Services
                   <svg className={`w-3.5 h-3.5 transition-transform ${servicesOpen ? "rotate-180" : ""}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
@@ -105,8 +105,8 @@ export default function Navbar() {
               <button
                 key={id}
                 onClick={() => goto(id)}
-                className="px-4 py-2 rounded-lg text-sm font-medium transition-all capitalize"
-                style={{ color: active === id ? "#D4792A" : "rgba(255,255,255,0.65)" }}
+                className="px-4 py-2 rounded-lg text-sm font-semibold transition-all capitalize"
+                style={{ color: active === id ? "var(--copper)" : "rgba(15,23,42,0.6)" }}
               >
                 {id === "why-us" ? "Why Us" : id.charAt(0).toUpperCase() + id.slice(1)}
               </button>
@@ -124,9 +124,9 @@ export default function Navbar() {
         {/* Hamburger */}
         <button className="lg:hidden p-2 -mr-2" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
           <div className="w-5 flex flex-col gap-1.5">
-            <span className="block h-px bg-white/70 transition-all" style={{ transform: menuOpen ? "rotate(45deg) translate(4px,4px)" : "none" }} />
-            <span className="block h-px bg-white/70 transition-all" style={{ opacity: menuOpen ? 0 : 1 }} />
-            <span className="block h-px bg-white/70 transition-all" style={{ transform: menuOpen ? "rotate(-45deg) translate(4px,-4px)" : "none" }} />
+            <span className="block h-px bg-slate-900 transition-all font-bold" style={{ transform: menuOpen ? "rotate(45deg) translate(4px,4px)" : "none" }} />
+            <span className="block h-px bg-slate-900 transition-all font-bold" style={{ opacity: menuOpen ? 0 : 1 }} />
+            <span className="block h-px bg-slate-900 transition-all font-bold" style={{ transform: menuOpen ? "rotate(-45deg) translate(4px,-4px)" : "none" }} />
           </div>
         </button>
       </div>

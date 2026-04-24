@@ -1,17 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --navy: #0B1628;
-  --navy-2: #111F38;
-  --navy-3: #162440;
+  --navy: #0F172A;
+  --navy-2: #1E293B;
   --copper: #D4792A;
   --copper-light: #F09040;
-  --teal: #1A7A70;
-  --teal-light: #22A090;
+  --teal: #14532D;
+  --teal-light: #166534;
   --white: #FFFFFF;
-  --off-white: #F5F6FA;
-  --text-muted: #8892A4;
-  --border: rgba(255,255,255,0.07);
+  --off-white: #F8FAFC;
+  --bg: #FFFFFF;
+  --text: #1E293B;
+  --text-muted: #64748B;
+  --border: rgba(0,0,0,0.06);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -19,16 +20,16 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--navy);
-  color: #E8ECF4;
+  background: var(--bg);
+  color: var(--text);
   font-family: 'Inter', system-ui, sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--navy); }
-::-webkit-scrollbar-thumb { background: var(--copper); border-radius: 4px; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--off-white); }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
 
 /* Lenis */
 html.lenis { height: auto; }
@@ -64,13 +65,14 @@ h1, h2, h3, h4 { font-family: 'Outfit', 'Inter', sans-serif; }
 
 /* ── Glass ── */
 .glass {
-  background: rgba(255,255,255,0.03);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.03);
 }
-.glass-light {
-  background: rgba(255,255,255,0.06);
+.glass-dark {
+  background: rgba(15,23,42,0.9);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255,255,255,0.1);
@@ -104,13 +106,12 @@ h1, h2, h3, h4 { font-family: 'Outfit', 'Inter', sans-serif; }
 
 /* ── Cursor ── */
 .cursor {
-  width: 8px; height: 8px; background: #D4792A; border-radius: 50%;
+  width: 8px; height: 8px; background: var(--copper); border-radius: 50%;
   position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998;
   transform: translate(-50%,-50%); transition: width 0.25s, height 0.25s;
-  mix-blend-mode: screen;
 }
 .cursor-ring {
-  width: 32px; height: 32px; border: 1.5px solid rgba(212,121,42,0.5);
+  width: 32px; height: 32px; border: 1.5px solid rgba(212,121,42,0.4);
   border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none;
   z-index: 9997; transform: translate(-50%,-50%); transition: all 0.12s ease;
 }
@@ -135,16 +136,17 @@ h1, h2, h3, h4 { font-family: 'Outfit', 'Inter', sans-serif; }
 /* ── Divider line ── */
 .divider {
   height: 1px; width: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.05), transparent);
 }
 
 /* ── Card hover lift ── */
 .card-lift {
-  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease, border-color 0.4s ease;
 }
 .card-lift:hover {
   transform: translateY(-6px);
-  box-shadow: 0 32px 64px rgba(0,0,0,0.4), 0 0 0 1px rgba(212,121,42,0.12);
+  box-shadow: 0 40px 80px rgba(15,23,42,0.08);
+  border-color: rgba(212,121,42,0.2) !important;
 }
 
 /* ── Flip cards ── */
@@ -162,7 +164,7 @@ h1, h2, h3, h4 { font-family: 'Outfit', 'Inter', sans-serif; }
 
 /* ── Loading ── */
 #loading-screen {
-  position: fixed; inset: 0; z-index: 9999; background: var(--navy);
+  position: fixed; inset: 0; z-index: 9999; background: #FFFFFF;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   transition: opacity 0.9s ease, visibility 0.9s ease;
 }
@@ -182,13 +184,14 @@ h1, h2, h3, h4 { font-family: 'Outfit', 'Inter', sans-serif; }
 .btn-ghost {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 14px 28px; border-radius: 10px; font-weight: 600; font-size: 14px;
-  background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.8);
-  border: 1px solid rgba(255,255,255,0.1); cursor: pointer;
+  background: var(--off-white); color: var(--navy);
+  border: 1px solid var(--border); cursor: pointer;
   transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
 }
 .btn-ghost:hover {
-  background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.2);
+  background: #FFFFFF; border-color: var(--copper);
   transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -26,83 +26,84 @@ export default function Services() {
   }, []);
 
   return (
-    <section id="services" ref={ref} className="section-pad relative overflow-hidden" style={{ background: "var(--navy)" }}>
+    <section id="services" ref={ref} className="section-pad relative overflow-hidden" style={{ background: "var(--bg)" }}>
       {/* Grid texture */}
-      <div className="absolute inset-0 pointer-events-none" style={{
-        backgroundImage: "linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px)",
-        backgroundSize: "72px 72px",
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{
+        backgroundImage: "linear-gradient(#000 1.5px, transparent 1.5px), linear-gradient(90deg, #000 1.5px, transparent 1.5px)",
+        backgroundSize: "60px 60px",
       }} />
 
       {/* Glows */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full pointer-events-none" style={{
-        background: "radial-gradient(ellipse, rgba(212,121,42,0.04) 0%, transparent 70%)",
+        background: "radial-gradient(ellipse, rgba(212,121,42,0.05) 0%, transparent 70%)",
       }} />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
         {/* Header */}
         <div className="max-w-2xl mb-16 reveal">
           <div className="label-chip mb-5">Our Services</div>
-          <h2 className="font-display font-extrabold mb-4" style={{ fontSize: "clamp(2rem,4vw,3rem)", color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.1 }}>
+          <h2 className="font-display font-extrabold mb-4" style={{ fontSize: "clamp(2rem,4vw,3.2rem)", color: "var(--navy)", letterSpacing: "-0.03em", lineHeight: 1.1 }}>
             Eight Ways We Deliver<br />
             <span className="text-grad-copper">Engineering Value</span>
           </h2>
-          <p style={{ color: "rgba(255,255,255,0.45)" }}>
+          <p style={{ color: "var(--text-muted)" }}>
             Hover any card to explore the full service. Click to get a quote.
           </p>
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((s, i) => (
             <div
               key={s.id}
               className="service-card reveal"
-              style={{ height: 260, transitionDelay: `${i * 50}ms` }}
+              style={{ height: 280, transitionDelay: `${i * 50}ms` }}
             >
               <div className="service-card-inner" style={{ transform: flipped === s.id ? "rotateY(180deg)" : "rotateY(0deg)" }}>
                 {/* FRONT */}
                 <div
-                  className="service-card-front flex flex-col justify-between p-6 cursor-pointer"
+                  className="service-card-front flex flex-col justify-between p-7 cursor-pointer"
                   style={{
-                    background: "rgba(255,255,255,0.03)",
-                    border: "1px solid rgba(255,255,255,0.07)",
+                    background: "var(--off-white)",
+                    border: "1px solid rgba(0,0,0,0.04)",
+                    boxShadow: "0 4px 20px rgba(0,0,0,0.02)"
                   }}
                   onClick={() => setFlipped(flipped === s.id ? null : s.id)}
                 >
                   <div>
-                    <div className="w-11 h-11 rounded-xl flex items-center justify-center text-xl mb-5" style={{ background: `${s.color}18`, border: `1px solid ${s.color}28` }}>
+                    <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm" style={{ background: "#FFFFFF", border: `1px solid ${s.color}20` }}>
                       {s.icon}
                     </div>
-                    <h3 className="font-display font-bold text-white text-sm leading-snug mb-2">{s.title}</h3>
-                    <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.4)" }}>{s.short}</p>
+                    <h3 className="font-display font-bold text-var(--navy) text-sm leading-snug mb-3">{s.title}</h3>
+                    <p className="text-[11px] leading-relaxed" style={{ color: "var(--text-muted)" }}>{s.short}</p>
                   </div>
-                  <div className="flex items-center gap-1.5 text-xs font-medium" style={{ color: s.color }}>
+                  <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider" style={{ color: s.color }}>
                     <span>Learn more</span>
                     <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
                   </div>
                   {/* Bottom accent */}
-                  <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: `linear-gradient(90deg, transparent, ${s.color}50, transparent)` }} />
+                  <div className="absolute bottom-0 left-0 right-0 h-1" style={{ background: s.color, opacity: 0.1 }} />
                 </div>
 
                 {/* BACK */}
                 <div
-                  className="service-card-back flex flex-col justify-between p-5 cursor-pointer relative"
-                  style={{ background: `linear-gradient(145deg, ${s.color}22, rgba(11,22,40,0.98))`, border: `1px solid ${s.color}25` }}
+                  className="service-card-back flex flex-col justify-between p-6 cursor-pointer relative overflow-hidden"
+                  style={{ background: "var(--navy)", border: `1px solid rgba(255,255,255,0.1)` }}
                   onClick={() => setFlipped(null)}
                 >
-                  <div className="absolute inset-0 opacity-10 pointer-events-none" style={{
+                  <div className="absolute inset-0 opacity-20 pointer-events-none" style={{
                     backgroundImage: `url(${s.image})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    mixBlendMode: 'overlay'
+                    filter: "grayscale(100%) brightness(0.5)"
                   }} />
                   <div className="relative z-10">
-                    <h3 className="font-display font-bold text-white text-xs mb-2.5">{s.title}</h3>
-                    <p className="text-xs leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.6)" }}>{s.desc}</p>
-                    <ul className="space-y-1.5">
+                    <h3 className="font-display font-bold text-[#FFFFFF] text-xs mb-3">{s.title}</h3>
+                    <p className="text-[11px] leading-relaxed mb-5" style={{ color: "rgba(255,255,255,0.6)" }}>{s.desc}</p>
+                    <ul className="space-y-2">
                       {s.features.map((f) => (
-                        <li key={f} className="flex items-center gap-2 text-xs" style={{ color: "rgba(255,255,255,0.7)" }}>
-                          <span className="w-1 h-1 rounded-full shrink-0" style={{ background: s.color }} />
+                        <li key={f} className="flex items-center gap-2.5 text-[10px] font-medium" style={{ color: "rgba(255,255,255,0.8)" }}>
+                          <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: s.color }} />
                           {f}
                         </li>
                       ))}
@@ -110,7 +111,7 @@ export default function Services() {
                   </div>
                   <button
                     onClick={(e) => { e.stopPropagation(); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }}
-                    className="w-full py-2.5 rounded-lg text-xs font-bold text-white mt-3 transition-all hover:opacity-90"
+                    className="w-full py-3 rounded-xl text-[11px] font-bold text-white mt-4 transition-all hover:scale-[1.02] shadow-lg relative z-10"
                     style={{ background: s.color }}
                   >
                     Request Quote
