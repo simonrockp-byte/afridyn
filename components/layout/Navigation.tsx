@@ -53,22 +53,22 @@ export function Navigation() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 h-[72px] flex items-center ${
-        scrolled ? 'bg-white/80' : 'bg-transparent'
+        scrolled ? 'bg-white/90' : 'bg-transparent'
       }`}
       style={{ 
         backdropFilter: scrolled ? 'blur(20px)' : 'none',
-        boxShadow: scrolled ? '0 10px 40px rgba(15, 23, 42, 0.08)' : 'none'
+        boxShadow: scrolled ? '0 10px 40px rgba(255, 107, 0, 0.08)' : 'none'
       }}
     >
       {/* Animated glowing bottom border when scrolled */}
       <div 
-        className={`absolute bottom-0 left-0 right-0 h-[1px] transition-opacity duration-500 ${
+        className={`absolute bottom-0 left-0 right-0 h-[1.5px] transition-opacity duration-500 ${
           scrolled ? 'opacity-100' : 'opacity-0'
         }`}
         style={{
-          background: 'linear-gradient(90deg, transparent, rgba(71, 85, 105, 0.1), rgba(15, 23, 42, 0.2), rgba(71, 85, 105, 0.1), transparent)',
+          background: 'linear-gradient(90deg, transparent, #FF6B00, #FF007F, #FF6B00, transparent)',
           backgroundSize: '200% auto',
-          animation: 'fireShift 4s ease-in-out infinite',
+          animation: 'fireShift 3s ease-in-out infinite',
         }}
       />
 
@@ -83,8 +83,8 @@ export function Navigation() {
               aria-label="Afridyn Engineering — home"
             >
               <div className="relative w-10 h-10 flex items-center justify-center">
-                {/* Subtle glow behind logo on hover */}
-                <div className="absolute inset-0 bg-slate-900/5 blur-xl rounded-full scale-0 group-hover:scale-150 transition-transform duration-500" />
+                {/* Vibrant glow behind logo on hover */}
+                <div className="absolute inset-0 bg-orange-500/20 blur-xl rounded-full scale-0 group-hover:scale-150 transition-transform duration-500" />
                 <img
                   src="/images/logo.png"
                   alt=""
@@ -92,8 +92,8 @@ export function Navigation() {
                 />
               </div>
               <div className="leading-none text-left relative z-10">
-                <span className="block font-display font-black text-slate-900 text-[17px] tracking-[.06em] group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-slate-900 group-hover:to-slate-500 transition-all duration-300">AFRIDYN</span>
-                <span className="block text-[9px] tracking-[.35em] font-mono text-slate-500 uppercase mt-1">Engineering</span>
+                <span className="block font-display font-black text-slate-900 text-[17px] tracking-[.06em] group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-orange-500 group-hover:to-pink-500 transition-all duration-300">AFRIDYN</span>
+                <span className="block text-[9px] tracking-[.35em] font-mono text-orange-600/60 uppercase mt-1">Engineering</span>
               </div>
             </button>
           </div>
@@ -105,18 +105,18 @@ export function Navigation() {
                 <button
                   key={link.href}
                   onClick={() => goto(link.href)}
-                  className={`relative px-5 py-2.5 text-[13px] font-semibold tracking-[0.06em] transition-colors rounded-full uppercase
+                  className={`relative px-5 py-2.5 text-[13px] font-bold tracking-[0.06em] transition-colors rounded-full uppercase
                     ${active === link.href 
-                      ? 'text-slate-900' 
-                      : 'text-slate-500 hover:text-slate-900'}`}
+                      ? 'text-white' 
+                      : 'text-slate-500 hover:text-orange-600'}`}
                 >
                   {active === link.href && (
                     <motion.div
                       layoutId="active-nav-pill"
                       className="absolute inset-0 rounded-full"
                       style={{
-                        background: 'rgba(15, 23, 42, 0.05)',
-                        border: '1px solid rgba(15, 23, 42, 0.1)'
+                        background: 'linear-gradient(135deg, #FF6B00, #FF007F)',
+                        boxShadow: '0 4px 15px rgba(255, 107, 0, 0.3)',
                       }}
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
@@ -130,9 +130,9 @@ export function Navigation() {
           {/* Right: CTA / Mobile Toggle */}
           <div className="flex justify-end items-center gap-4">
             <div className="relative group hidden lg:block">
-              {/* Subtle shadow glow behind button */}
+              {/* Vibrant shadow glow behind button */}
               <div 
-                className="absolute -inset-[2px] rounded-xl blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-500 bg-slate-900/20"
+                className="absolute -inset-[2px] rounded-xl blur-md opacity-0 group-hover:opacity-60 transition-opacity duration-500 bg-gradient-to-r from-orange-500 to-pink-500"
               />
               <button
                 onClick={() => goto('contact')}
@@ -143,7 +143,7 @@ export function Navigation() {
             </div>
 
             <button
-              className="lg:hidden p-2 rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-900/5 transition-all"
+              className="lg:hidden p-2 rounded-lg text-slate-700 hover:text-orange-600 hover:bg-orange-500/5 transition-all"
               onClick={() => setMenuOpen(v => !v)}
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             >
@@ -165,7 +165,7 @@ export function Navigation() {
             <button
               key={link.href}
               onClick={() => goto(link.href)}
-              className="text-left text-xl font-display font-bold text-slate-400 hover:text-slate-900 py-4 px-2 border-b border-slate-100 transition-all"
+              className="text-left text-xl font-display font-bold text-slate-400 hover:text-orange-600 py-4 px-2 border-b border-slate-100 transition-all"
               style={{ transitionDelay: `${i * 50}ms` }}
             >
               {link.label}

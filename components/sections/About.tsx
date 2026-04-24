@@ -27,7 +27,7 @@ const itemVariants = {
 export function About() {
   return (
     <section id="about" className="section" style={{ background: '#F8FAFC' }}>
-      <div className="container">
+      <div className="container" data-aos="fade-up">
         <div className="grid lg:grid-cols-2 gap-20 xl:gap-28 items-center">
 
           {/* ── LEFT ── */}

@@ -3,6 +3,7 @@ import { Inter, Outfit, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { Navigation } from '@/components/layout/Navigation'
 import { Footer } from '@/components/layout/Footer'
+import { ClientProviders } from '@/components/ClientProviders'
 
 const inter = Inter({
   subsets:  ['latin'],
@@ -77,7 +78,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <div id="scroll-bar" />
         <Navigation />
-        <main>{children}</main>
+        <ClientProviders>
+          <main>{children}</main>
+        </ClientProviders>
         <Footer />
         <script
           dangerouslySetInnerHTML={{

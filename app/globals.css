@@ -8,10 +8,12 @@
   --navy-700: #E2E8F0;
 
   /* Brand / Accents */
-  --copper:       #334155;
-  --copper-light: #475569;
-  --amber:        #B45309;
-  --rose:         #9F1239;
+  --brand-orange: #FF6B00;
+  --brand-pink:   #FF007F;
+  --copper:       #FF6B00;
+  --copper-light: #FF8533;
+  --amber:        #FF6B00;
+  --rose:         #FF007F;
 
   /* Text */
   --text-primary:   #0F172A;
@@ -27,10 +29,6 @@
   --border:        rgba(15, 23, 42, 0.06);
   --border-medium: rgba(15, 23, 42, 0.10);
   --border-strong: rgba(15, 23, 42, 0.15);
-
-  /* Legacy Brand (mapped to professional light tones) */
-  --brand-orange: #B45309;
-  --brand-pink:   #9F1239;
 }
 
 /* ── Base ── */
@@ -78,22 +76,29 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ── Gradients ── */
 .text-gradient-copper {
-  background: linear-gradient(135deg, #1E293B, #475569);
+  background: linear-gradient(135deg, #FF6B00, #FF007F);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 .text-gradient-fire {
-  background: linear-gradient(135deg, #0F172A 0%, #334155 55%, #64748B 100%);
+  background: linear-gradient(135deg, #FF6B00 0%, #FF0000 50%, #7000FF 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fireShift 4s ease infinite;
+}
+.text-gradient-warm {
+  background: linear-gradient(135deg, #FF6B00 0%, #FFB800 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-.text-gradient-warm {
-  background: linear-gradient(135deg, #1E293B 0%, #475569 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.bg-gradient-premium {
+  background: linear-gradient(135deg, #FF6B00 0%, #FF0000 50%, #7000FF 100%);
+  background-size: 200% auto;
+  animation: fireShift 6s ease infinite;
 }
 
 /* ── Keyframes ── */
@@ -231,13 +236,13 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 6px 24px rgba(30,41,59,0.7);
 }
 .btn-cta {
-  background: linear-gradient(135deg, #0F172A, #334155);
+  background: linear-gradient(135deg, #FF6B00, #FF007F);
   color: #fff;
-  box-shadow: 0 4px 20px rgba(15,23,42,0.5);
+  box-shadow: 0 4px 20px rgba(255, 107, 0, 0.3);
 }
 .btn-cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(15,23,42,0.7);
+  box-shadow: 0 8px 32px rgba(255, 107, 0, 0.5);
 }
 .btn-outline {
   background: transparent;
@@ -373,7 +378,7 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-family: var(--font-mono), monospace;
-  color: var(--copper-light, #E8834A);
+  color: var(--brand-orange);
   margin-bottom: 20px;
 }
 .section-label::before {

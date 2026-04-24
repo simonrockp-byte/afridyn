@@ -30,25 +30,25 @@ export function CTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.65, ease: 'easeOut' }}
-          className="rounded-3xl overflow-hidden relative border border-slate-200 bg-[#F1F5F9]"
+          className="rounded-3xl overflow-hidden relative border border-white/10 bg-gradient-premium shadow-2xl"
         >
-          <div className="px-10 md:px-16 py-16 md:py-20 flex flex-col md:flex-row items-center gap-10">
+          <div className="px-10 md:px-16 py-16 md:py-20 flex flex-col md:flex-row items-center gap-10 bg-black/10 backdrop-blur-sm">
 
             {/* Text */}
             <div className="flex-1 text-center md:text-left">
               <div
-                className="section-label mb-5 md:justify-start justify-center"
+                className="section-label mb-5 md:justify-start justify-center text-white/90 before:bg-white"
               >
                 Start a Conversation
               </div>
               <h2
-                className="font-display font-black text-slate-900 mb-4"
+                className="font-display font-black text-white mb-4"
                 style={{ fontSize: 'clamp(1.8rem, 4.5vw, 3.2rem)', letterSpacing: '-0.04em', lineHeight: 1.05 }}
               >
                 Ready to Solve Your<br />
-                <span className="text-gradient-fire">Engineering Challenge?</span>
+                <span className="text-white underline decoration-orange-500/50">Engineering Challenge?</span>
               </h2>
-              <p className="text-[15px] text-slate-500">
+              <p className="text-[15px] text-white/80">
                 Talk to our team today. We respond within 24 hours, every time.
               </p>
             </div>
@@ -59,7 +59,7 @@ export function CTA() {
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="btn btn-cta btn-lg"
+                className="btn btn-lg bg-white text-orange-600 hover:bg-orange-50 transition-colors shadow-xl"
               >
                 Request a Quote
                 <ArrowRight size={17} strokeWidth={2} />
@@ -69,8 +69,8 @@ export function CTA() {
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.97 }}
                 href="tel:+260956797916"
-                className="btn btn-outline btn-lg"
-                style={{ background: '#fff' }}
+                className="btn btn-lg border-white/20 text-white hover:bg-white/10 backdrop-blur-md transition-all"
+                style={{ background: 'rgba(255,255,255,0.05)' }}
               >
                 <Phone size={16} strokeWidth={1.8} />
                 Call Now

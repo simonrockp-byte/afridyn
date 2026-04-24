@@ -5,6 +5,7 @@ import {
 } from 'lucide-react'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { Scene3D } from '@/components/Scene3D'
 
 const services = [
   {
@@ -97,6 +98,8 @@ function ServiceCard({
 
   return (
     <motion.div
+      data-aos="fade-up"
+      data-aos-delay={i * 50}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
@@ -222,6 +225,9 @@ export function Services() {
       className="section relative overflow-hidden"
       style={{ background: '#F8FAFC' }}
     >
+      {/* ── Three.js Scene ── */}
+      <Scene3D />
+
       {/* Ambient orbs */}
       <div
         className="absolute top-0 right-0 w-[480px] h-[480px] rounded-full pointer-events-none"

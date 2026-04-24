@@ -83,6 +83,8 @@ export function Sectors() {
           {sectors.map((s, i) => (
             <motion.div
               key={s.label}
+              data-aos="zoom-in-up"
+              data-aos-delay={i * 100}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
