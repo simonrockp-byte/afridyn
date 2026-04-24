@@ -83,6 +83,96 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+.text-gradient-fire {
+  background: linear-gradient(135deg, #FF2D55 0%, #FF6A00 40%, #CC00FF 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fireShift 4s ease-in-out infinite;
+}
+
+/* ── Hero Animation Keyframes ── */
+@keyframes fireShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+@keyframes orbFloat1 {
+  0%   { transform: translate(0,    0)   scale(1);    }
+  33%  { transform: translate(60px, -80px) scale(1.15); }
+  66%  { transform: translate(-40px, 40px) scale(0.9); }
+  100% { transform: translate(0,    0)   scale(1);    }
+}
+@keyframes orbFloat2 {
+  0%   { transform: translate(0,    0)   scale(1);    }
+  33%  { transform: translate(-70px, 60px) scale(1.2); }
+  66%  { transform: translate(50px, -50px) scale(0.85); }
+  100% { transform: translate(0,    0)   scale(1);    }
+}
+@keyframes orbFloat3 {
+  0%   { transform: translate(0,    0)   scale(1);    }
+  50%  { transform: translate(40px, 80px) scale(1.1); }
+  100% { transform: translate(0,    0)   scale(1);    }
+}
+@keyframes particleDrift {
+  0%   { transform: translateY(0)   translateX(0)   opacity(0); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(-120px) translateX(30px); opacity: 0; }
+}
+@keyframes hexSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes hexSpinReverse {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+@keyframes colorPulse {
+  0%, 100% { stroke: rgba(255,45,85,0.7);  filter: drop-shadow(0 0 6px rgba(255,45,85,0.5));  }
+  33%      { stroke: rgba(255,106,0,0.8);  filter: drop-shadow(0 0 10px rgba(255,106,0,0.6)); }
+  66%      { stroke: rgba(204,0,255,0.7);  filter: drop-shadow(0 0 8px rgba(204,0,255,0.5));  }
+}
+@keyframes centerGlow {
+  0%, 100% { fill: #FF2D55; box-shadow: 0 0 20px #FF2D55; }
+  33%      { fill: #FF6A00; }
+  66%      { fill: #CC00FF; }
+}
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+@keyframes cardFloat2 {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+@keyframes cardFloat3 {
+  0%, 100% { transform: translateY(-50%) translateX(0); }
+  50%      { transform: translateY(-56%) translateX(-4px); }
+}
+@keyframes scanLine {
+  0%   { top: 0%; }
+  100% { top: 100%; }
+}
+@keyframes particlePop {
+  0%   { transform: scale(0); opacity: 0; }
+  60%  { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1);   opacity: 0.6; }
+}
+@keyframes borderGlow {
+  0%, 100% { border-color: rgba(255,45,85,0.4); box-shadow: 0 0 20px rgba(255,45,85,0.15); }
+  33%      { border-color: rgba(255,106,0,0.4); box-shadow: 0 0 25px rgba(255,106,0,0.2);  }
+  66%      { border-color: rgba(204,0,255,0.4); box-shadow: 0 0 22px rgba(204,0,255,0.18); }
+}
+@keyframes textReveal {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes bgShift {
+  0%   { background-position: 0% 0%; }
+  50%  { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
 
 /* ── Section Spacing ── */
 .section { padding: 100px 0; }
@@ -301,6 +391,23 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 6px;
   display: block;
 }
+
+/* ── Hero Utility Classes ── */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+.hero-particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: particleDrift linear infinite;
+}
+.hero-card-float-1 { animation: cardFloat  3.5s ease-in-out infinite; }
+.hero-card-float-2 { animation: cardFloat2 4.2s ease-in-out infinite 0.8s; }
+.hero-card-float-3 { animation: cardFloat3 3.8s ease-in-out infinite 0.4s; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
