@@ -68,7 +68,7 @@ const services = [
     features: ['Vetted professionals', 'All disciplines', 'Flexible contracts', 'Skills transfer'],
     accent: '#FF6A00',
     sector: 'All sectors',
-    image: 'https://images.unsplash.com/photo-1541746972996-4e0b0f43e01a?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1600880210834-8b6b7a4be602?q=80&w=800&auto=format&fit=crop',
   },
   {
     id: 7,
@@ -79,7 +79,7 @@ const services = [
     features: ['Route optimisation', 'Cost reduction', 'Vendor management', 'KPI dashboards'],
     accent: '#CC00FF',
     sector: 'Mining/Commercial',
-    image: 'https://images.unsplash.com/photo-1566650554919-44ee6bbe2518?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1519003306447-da7f91754403?q=80&w=800&auto=format&fit=crop',
   },
   {
     id: 8,
@@ -90,7 +90,7 @@ const services = [
     features: ['Customs clearance', 'Full documentation', 'Freight forwarding', 'Track & trace'],
     accent: '#0D7A6F',
     sector: 'Import/Export',
-    image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1566140967404-b8b393ed4f3a?q=80&w=800&auto=format&fit=crop',
   },
 ]
 
