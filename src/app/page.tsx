@@ -1,18 +1,18 @@
 "use client";
 
-import LoadingScreen from "@/components/LoadingScreen";
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Services from "@/components/Services";
-import MissionVision from "@/components/MissionVision";
-import WhyChooseUs from "@/components/WhyChooseUs";
-import Certifications from "@/components/Certifications";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
+import { Navigation } from "@/components/layout/Navigation";
+import { Footer } from "@/components/layout/Footer";
+import { Hero } from "@/components/sections/Hero";
+import { About } from "@/components/sections/About";
+import { Services } from "@/components/sections/Services";
+import { MissionVision } from "@/components/sections/MissionVision";
+import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
+import { Certifications } from "@/components/sections/Certifications";
+import { Contact } from "@/components/sections/Contact";
+import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgress from "@/components/ScrollProgress";
 import CustomCursor from "@/components/CustomCursor";
-import SmoothScroll from "@/components/SmoothScroll";
+import LoadingScreen from "@/components/LoadingScreen";
 
 export default function Home() {
   return (
@@ -20,7 +20,7 @@ export default function Home() {
       <CustomCursor />
       <ScrollProgress />
       <LoadingScreen />
-      <Navbar />
+      <Navigation />
       <main>
         <Hero />
         <About />

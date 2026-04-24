@@ -30,17 +30,17 @@ export default function CustomCursor() {
     };
 
     const onMouseEnterLink = () => {
-      cursor.style.width = "20px";
-      cursor.style.height = "20px";
-      follower.style.width = "54px";
-      follower.style.height = "54px";
+      cursor.style.width = "16px";
+      cursor.style.height = "16px";
+      follower.style.width = "50px";
+      follower.style.height = "50px";
     };
 
     const onMouseLeaveLink = () => {
-      cursor.style.width = "12px";
-      cursor.style.height = "12px";
-      follower.style.width = "36px";
-      follower.style.height = "36px";
+      cursor.style.width = "8px";
+      cursor.style.height = "8px";
+      follower.style.width = "30px";
+      follower.style.height = "30px";
     };
 
     document.addEventListener("mousemove", onMouseMove);
@@ -59,7 +59,7 @@ export default function CustomCursor() {
   return (
     <>
       <div ref={cursorRef} className="cursor" />
-      <div ref={followerRef} className="cursor-follower" />
+      <div ref={followerRef} className="cursor-ring" />
     </>
   );
 }
