@@ -3,112 +3,171 @@ import { Zap, Shield, Target, Globe } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const pillars = [
-  { icon: Zap, title: 'Innovation', desc: 'Leveraging modern engineering methods and technologies to solve complex industrial challenges.', color: '#FF6B00' },
-  { icon: Shield, title: 'Integrity', desc: 'Transparent operations backed by full PACRA, TPIN, and ZPPA regulatory compliance.', color: '#FF007F' },
-  { icon: Target, title: 'Precision', desc: 'International-standard engineering execution on every project — zero tolerance for mediocrity.', color: '#FF6B00' },
-  { icon: Globe, title: 'Pan-African', desc: 'Local knowledge, pan-African capability and ambition. Headquartered in Lusaka.', color: '#FF007F' },
+  { icon: Zap,    title: 'Innovation', desc: 'Modern engineering methods and technologies applied to complex industrial challenges.', color: '#D4692A' },
+  { icon: Shield, title: 'Integrity',  desc: 'Transparent operations backed by full PACRA, TPIN, and ZPPA regulatory compliance.', color: '#E8305A' },
+  { icon: Target, title: 'Precision',  desc: 'International-standard engineering execution on every project — zero tolerance for mediocrity.', color: '#D4692A' },
+  { icon: Globe,  title: 'Pan-African',desc: 'Local knowledge, pan-African capability. Headquartered in Lusaka, Zambia.', color: '#E8305A' },
 ]
 
 const credentials = [
   { label: 'PACRA', value: '120261040695', desc: 'Company Registration' },
-  { label: 'TPIN', value: '2004257975', desc: 'Tax Identification' },
-  { label: 'ZPPA', value: '137269', desc: 'Procurement Authority' },
+  { label: 'TPIN',  value: '2004257975',   desc: 'Tax Identification' },
+  { label: 'ZPPA',  value: '137269',        desc: 'Procurement Authority' },
 ]
+
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+}
+const itemVariants = {
+  hidden:  { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' as const } },
+}
 
 export function About() {
   return (
-    <section id="about" className="section" style={{ background: '#0A0A0F' }}>
+    <section id="about" className="section" style={{ background: '#080810' }}>
       <div className="container">
-        <div className="grid lg:grid-cols-2 gap-24 items-center">
+        <div className="grid lg:grid-cols-2 gap-20 xl:gap-28 items-center">
 
-          {/* LEFT */}
-          <div>
-            <div className="label-chip mb-8 reveal" style={{ background: 'rgba(255,107,0,0.1)', borderColor: 'rgba(255,107,0,0.25)', color: '#FF6B00' }}>
-              Corporate Profile
-            </div>
-            <h2 className="font-display font-black text-4xl md:text-6xl mb-10 reveal" style={{ color: '#FFFFFF', letterSpacing: '-0.04em', lineHeight: 1.05 }}>
+          {/* ── LEFT ── */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            variants={containerVariants}
+          >
+            <motion.div variants={itemVariants}>
+              <div className="section-label mb-5">Corporate Profile</div>
+            </motion.div>
+
+            <motion.h2
+              variants={itemVariants}
+              className="font-display font-black text-white mb-8"
+              style={{ fontSize: 'clamp(2rem, 5vw, 3.8rem)', letterSpacing: '-0.04em', lineHeight: 1.05 }}
+            >
               Africa's Trusted<br />
               <span className="text-gradient-fire">Engineering Partner</span>
-            </h2>
+            </motion.h2>
 
-            <p className="text-lg leading-relaxed mb-6 reveal opacity-70" style={{ color: '#FFFFFF' }}>
-              Afridyn Engineering Limited delivers integrated engineering services spanning mechanical, electrical, IT, optical fibre, and logistics across Sub-Saharan Africa.
-            </p>
-            <p className="text-lg leading-relaxed mb-12 reveal opacity-70" style={{ color: '#FFFFFF' }}>
-              Founded in Lusaka, Zambia, we are dedicated to building a resilient infrastructure foundation for the continent through precision and modern methodology.
-            </p>
+            <motion.p variants={itemVariants} className="text-base leading-relaxed mb-4 text-white/55">
+              Afridyn Engineering Limited delivers integrated engineering services spanning
+              mechanical, electrical, IT, optical fibre, and logistics across Sub-Saharan Africa.
+            </motion.p>
+            <motion.p variants={itemVariants} className="text-base leading-relaxed mb-12 text-white/55">
+              Founded in Lusaka, Zambia, we are dedicated to building a resilient infrastructure
+              foundation for the continent through precision and modern methodology.
+            </motion.p>
 
-            {/* Pillars */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 reveal">
+            {/* Pillars grid */}
+            <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {pillars.map(p => {
                 const Icon = p.icon
                 return (
-                  <div key={p.title} className="rounded-[24px] p-6 group transition-all duration-500" 
-                    style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
-                    <div className="w-12 h-12 rounded-xl mb-4 flex items-center justify-center transition-transform group-hover:scale-110" 
-                      style={{ background: `${p.color}15`, color: p.color, border: `1px solid ${p.color}25` }}>
-                      <Icon size={22} />
+                  <div
+                    key={p.title}
+                    className="rounded-2xl p-6 group transition-all duration-300 hover:border-white/12"
+                    style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.07)' }}
+                  >
+                    <div
+                      className="w-10 h-10 rounded-xl mb-4 flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                      style={{ background: `${p.color}12`, color: p.color, border: `1px solid ${p.color}22` }}
+                    >
+                      <Icon size={18} strokeWidth={1.8} />
                     </div>
-                    <h4 className="font-display font-bold text-base mb-2 text-white">{p.title}</h4>
-                    <p className="text-xs leading-relaxed opacity-50 group-hover:opacity-80 transition-opacity" style={{ color: '#FFFFFF' }}>{p.desc}</p>
+                    <h4 className="font-display font-bold text-sm text-white mb-1.5">{p.title}</h4>
+                    <p className="text-[12px] leading-relaxed text-white/40 group-hover:text-white/60 transition-colors">{p.desc}</p>
                   </div>
                 )
               })}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          {/* RIGHT */}
-          <div className="space-y-10 reveal">
-            {/* Visual with Badge */}
-            <div className="relative rounded-[40px] overflow-hidden aspect-[4/3] group shadow-2xl"
-              style={{ border: '1px solid rgba(255,255,255,0.08)' }}>
-              <img 
-                src="/images/services/maintenance.png" 
-                alt="Afridyn Technical Capability" 
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
+          {/* ── RIGHT ── */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="space-y-5"
+          >
+            {/* Main image */}
+            <div
+              className="relative rounded-3xl overflow-hidden aspect-[4/3] group"
+              style={{ border: '1px solid rgba(255,255,255,0.08)' }}
+            >
+              <img
+                src="/images/services/maintenance.png"
+                alt="Afridyn Technical Capability"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0F] via-transparent to-transparent opacity-80" />
-              <div className="absolute bottom-8 left-8">
-                 <div className="label-chip label-chip-dark" style={{ background: 'rgba(255,0,127,0.8)', borderColor: 'rgba(255,255,255,0.2)', color: '#FFF' }}>
-                   Pan-African Capability
-                 </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#080810]/80 via-transparent to-transparent" />
+              <div className="absolute bottom-6 left-6">
+                <span
+                  className="text-[10px] font-mono font-bold tracking-[0.18em] uppercase px-4 py-2 rounded-full"
+                  style={{
+                    background: 'rgba(232,48,90,0.85)',
+                    border: '1px solid rgba(255,255,255,0.2)',
+                    color: '#fff',
+                    backdropFilter: 'blur(12px)',
+                  }}
+                >
+                  Pan-African Capability
+                </span>
               </div>
             </div>
 
-            {/* Mission/Vision cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-8 rounded-[32px]" style={{ border: '1px solid rgba(255,255,255,0.06)', background: 'rgba(255,255,255,0.02)' }}>
-                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.3em] block mb-4" style={{ color: '#FF007F' }}>Our Mission</span>
-                <p className="text-sm leading-relaxed opacity-60" style={{ color: '#FFFFFF' }}>
-                  Reliable engineering support that enhances operational efficiency and supports African industrial development.
-                </p>
-              </div>
-              <div className="p-8 rounded-[32px]" style={{ border: '1px solid rgba(255,255,255,0.06)', background: 'rgba(255,255,255,0.02)' }}>
-                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.3em] block mb-4" style={{ color: '#FF6B00' }}>Our Vision</span>
-                <p className="text-sm leading-relaxed opacity-60" style={{ color: '#FFFFFF' }}>
-                  To be the most trusted technical solutions provider for Africa's most demanding sectors.
-                </p>
-              </div>
+            {/* Mission / Vision */}
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { label: 'Our Mission', color: '#E8305A', text: 'Reliable engineering support that enhances operational efficiency and supports African industrial development.' },
+                { label: 'Our Vision',  color: '#D4692A', text: 'To be the most trusted technical solutions provider for Africa\'s most demanding sectors.' },
+              ].map(card => (
+                <div
+                  key={card.label}
+                  className="p-6 rounded-2xl"
+                  style={{ border: '1px solid rgba(255,255,255,0.07)', background: 'rgba(255,255,255,0.025)' }}
+                >
+                  <span
+                    className="text-[10px] font-mono font-bold uppercase tracking-[0.25em] block mb-3"
+                    style={{ color: card.color }}
+                  >
+                    {card.label}
+                  </span>
+                  <p className="text-[13px] leading-relaxed text-white/50">{card.text}</p>
+                </div>
+              ))}
             </div>
 
             {/* Credentials */}
-            <div className="rounded-[32px] p-8" style={{ border: '1px solid rgba(255,255,255,0.06)', background: 'rgba(255,255,255,0.02)' }}>
-              <h4 className="font-display font-bold text-sm mb-6 tracking-widest uppercase opacity-40">Regulatory Compliance</h4>
-              <div className="space-y-4">
+            <div
+              className="rounded-2xl p-6"
+              style={{ border: '1px solid rgba(255,255,255,0.07)', background: 'rgba(255,255,255,0.025)' }}
+            >
+              <p className="text-[10px] font-mono font-bold uppercase tracking-[0.25em] text-white/30 mb-5">
+                Regulatory Compliance
+              </p>
+              <div className="space-y-3">
                 {credentials.map(c => (
-                  <div key={c.label} className="flex items-center justify-between py-3 border-b border-white/5 last:border-0">
+                  <div
+                    key={c.label}
+                    className="flex items-center justify-between py-2.5 border-b border-white/05 last:border-0"
+                  >
                     <div>
-                      <p className="font-display font-bold text-sm text-white">{c.label}</p>
-                      <p className="text-[10px] opacity-40 text-white">{c.desc}</p>
+                      <p className="font-display font-bold text-[13px] text-white">{c.label}</p>
+                      <p className="text-[10px] text-white/35 mt-0.5">{c.desc}</p>
                     </div>
-                    <span className="font-mono text-xs font-semibold px-4 py-1.5 rounded-full" style={{ background: 'rgba(255,255,255,0.05)', color: '#FFFFFF' }}>
+                    <span
+                      className="font-mono text-[11px] font-semibold px-3 py-1.5 rounded-full"
+                      style={{ background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.55)' }}
+                    >
                       {c.value}
                     </span>
                   </div>
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

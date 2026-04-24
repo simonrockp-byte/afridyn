@@ -1,6 +1,5 @@
 'use client'
-import Link from 'next/link'
-import { Phone, Mail, MapPin, ArrowRight } from 'lucide-react'
+import { Phone, Mail, MapPin } from 'lucide-react'
 
 const services = [
   'Mechanical & Electrical Spares',
@@ -8,51 +7,72 @@ const services = [
   'Engineering Consultation',
   'IT Equipment Supply',
   'Optical Fibre Installation',
-  'Technical Outsourcing',
-  'Logistics Consultancy',
-  'Clearing & Forwarding',
+]
+
+const companyLinks: [string, string][] = [
+  ['home',    'Home'],
+  ['about',   'About Us'],
+  ['why-us',  'Why Afridyn'],
+  ['sectors', 'Sectors'],
+  ['contact', 'Contact'],
 ]
 
 const goto = (id: string) => {
-  const el = document.getElementById(id)
-  if (el) el.scrollIntoView({ behavior: 'smooth' })
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 }
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden pt-24 pb-12" style={{ background: '#05050A' }}>
-      {/* Blueprint Background Overlay */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.04] mix-blend-screen"
+    <footer className="relative overflow-hidden pt-20 pb-10" style={{ background: '#05050A' }}>
+
+      {/* Blueprint bg */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none opacity-[0.035]"
         style={{
           backgroundImage: 'url(/images/assets/footer-blueprint-afridyn.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-        }} />
+        }}
+      />
 
-      {/* Top accent */}
-      <div className="absolute top-0 left-0 right-0 h-[1px]" 
-        style={{ background: 'linear-gradient(90deg, transparent 0%, #FF007F 30%, #FF6B00 70%, transparent 100%)' }} />
+      {/* Top gradient rule */}
+      <div
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{ background: 'linear-gradient(90deg, transparent, #E8305A 30%, #D4692A 70%, transparent)' }}
+      />
 
       <div className="container relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+        {/* Main grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
 
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-4 mb-8">
-              <div className="relative w-11 h-11">
-                <img src="/images/logo.png" alt="Afridyn Logo" className="w-full h-full object-contain filter brightness-0 invert" />
-              </div>
+            <div className="flex items-center gap-3 mb-6">
+              <img
+                src="/images/logo.png"
+                alt="Afridyn Logo"
+                className="w-9 h-9 object-contain filter brightness-0 invert opacity-80"
+              />
               <div>
-                <p className="font-display font-black text-white text-base tracking-widest">AFRIDYN</p>
-                <p className="text-[9px] tracking-[.4em] font-mono opacity-40 text-white">ENGINEERING LIMITED</p>
+                <p className="font-display font-black text-white text-[15px] tracking-[.1em]">AFRIDYN</p>
+                <p className="text-[9px] tracking-[.38em] font-mono text-white/30 uppercase mt-0.5">Engineering Limited</p>
               </div>
             </div>
-            <p className="text-sm leading-relaxed mb-8 text-white/50 max-w-xs">
-              Providing world-class engineering solutions, technical procurement, and infrastructure services across Sub-Saharan Africa.
+            <p className="text-[13px] leading-relaxed text-white/40 max-w-xs mb-7">
+              World-class engineering solutions, technical procurement, and
+              infrastructure services across Sub-Saharan Africa.
             </p>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 flex-wrap">
               {['PACRA', 'ZPPA', 'TPIN'].map(tag => (
-                <span key={tag} className="px-3 py-1 rounded-full text-[10px] font-mono font-bold border border-white/10 bg-white/5 text-white/40">
+                <span
+                  key={tag}
+                  className="px-3 py-1 rounded-full text-[10px] font-mono font-bold"
+                  style={{
+                    border: '1px solid rgba(255,255,255,0.09)',
+                    background: 'rgba(255,255,255,0.04)',
+                    color: 'rgba(255,255,255,0.35)',
+                  }}
+                >
                   {tag}
                 </span>
               ))}
@@ -61,28 +81,38 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="text-white font-display font-bold text-sm mb-8 tracking-[0.2em] uppercase">Expertise</h4>
-            <ul className="space-y-4">
-              {services.slice(0, 5).map(s => (
+            <h4 className="text-white font-display font-bold text-[12px] mb-6 tracking-[0.18em] uppercase">
+              Expertise
+            </h4>
+            <ul className="space-y-3">
+              {services.map(s => (
                 <li key={s}>
-                  <button onClick={() => goto('services')} className="text-sm text-left flex items-start gap-3 group transition-all" style={{ color: 'rgba(255,255,255,0.4)' }}>
-                    <div className="w-1 h-1 rounded-full bg-brand-pink mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <span className="group-hover:text-white group-hover:translate-x-1 transition-all">{s}</span>
+                  <button
+                    onClick={() => goto('services')}
+                    className="text-[13px] text-left text-white/35 hover:text-white/80 transition-colors group flex items-center gap-2"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-current opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                    {s}
                   </button>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Navigation */}
+          {/* Company */}
           <div>
-            <h4 className="text-white font-display font-bold text-sm mb-8 tracking-[0.2em] uppercase">Company</h4>
-            <ul className="space-y-4">
-              {[['home', 'Home'], ['about', 'About Us'], ['why-us', 'Success Factors'], ['contact', 'Connect']].map(([id, label]) => (
+            <h4 className="text-white font-display font-bold text-[12px] mb-6 tracking-[0.18em] uppercase">
+              Company
+            </h4>
+            <ul className="space-y-3">
+              {companyLinks.map(([id, label]) => (
                 <li key={id}>
-                  <button onClick={() => goto(id)} className="text-sm group flex items-start gap-3 transition-all" style={{ color: 'rgba(255,255,255,0.4)' }}>
-                    <div className="w-1 h-1 rounded-full bg-brand-orange mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <span className="group-hover:text-white group-hover:translate-x-1 transition-all">{label}</span>
+                  <button
+                    onClick={() => goto(id)}
+                    className="text-[13px] text-white/35 hover:text-white/80 transition-colors group flex items-center gap-2"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-current opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                    {label}
                   </button>
                 </li>
               ))}
@@ -91,32 +121,46 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-white font-display font-bold text-sm mb-8 tracking-[0.2em] uppercase">Contact</h4>
-            <div className="space-y-6">
+            <h4 className="text-white font-display font-bold text-[12px] mb-6 tracking-[0.18em] uppercase">
+              Contact
+            </h4>
+            <div className="space-y-4">
               {[
-                { icon: MapPin, text: '31 Salama Park, Lusaka, Zambia' },
-                { icon: Phone, text: '+260 956 797 916' },
-                { icon: Mail, text: 'info@afridynengineering.com' },
-              ].map(({ icon: Icon, text }) => (
-                <div key={text} className="flex items-start gap-4 group">
-                  <Icon size={18} className="mt-0.5 shrink-0 transition-colors group-hover:text-brand-pink" style={{ color: 'rgba(255,255,255,0.2)' }} />
-                  <span className="text-sm leading-relaxed transition-colors group-hover:text-white" style={{ color: 'rgba(255,255,255,0.4)' }}>{text}</span>
+                { Icon: MapPin, text: '31 Salama Park, Lusaka, Zambia' },
+                { Icon: Phone,  text: '+260 956 797 916' },
+                { Icon: Mail,   text: 'info@afridynengineering.com' },
+              ].map(({ Icon, text }) => (
+                <div key={text} className="flex items-start gap-3 group">
+                  <Icon
+                    size={15}
+                    strokeWidth={1.8}
+                    className="mt-0.5 shrink-0 transition-colors group-hover:text-white/60"
+                    style={{ color: 'rgba(255,255,255,0.2)' }}
+                  />
+                  <span
+                    className="text-[13px] leading-relaxed transition-colors group-hover:text-white/60"
+                    style={{ color: 'rgba(255,255,255,0.35)' }}
+                  >
+                    {text}
+                  </span>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-10 border-t border-white/5">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-            <p className="text-[11px] font-medium tracking-wide" style={{ color: 'rgba(255,255,255,0.2)' }}>
-              © {new Date().getFullYear()} Afridyn Engineering Limited. High Precision Infrastructure.
-            </p>
-            <div className="flex items-center gap-8 text-[10px] font-mono tracking-widest" style={{ color: 'rgba(255,255,255,0.15)' }}>
-              <span>PACRA: 120261040695</span>
-              <span>ZPPA: 137269</span>
-            </div>
+        {/* Bottom bar */}
+        <div className="pt-8 border-t border-white/05 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-[11px] font-medium tracking-wide text-white/20">
+            © {new Date().getFullYear()} Afridyn Engineering Limited. All rights reserved.
+          </p>
+          <div
+            className="flex items-center gap-6 text-[10px] font-mono tracking-widest"
+            style={{ color: 'rgba(255,255,255,0.14)' }}
+          >
+            <span>PACRA: 120261040695</span>
+            <span className="w-px h-3 bg-white/10" />
+            <span>ZPPA: 137269</span>
           </div>
         </div>
       </div>
