@@ -1,17 +1,107 @@
 'use client'
+import { useEffect, useRef } from 'react'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { Scene3D } from '@/components/Scene3D'
 
-const PARTICLES = [
-  { left: '8%',  top: '60%', size: 3, dur: 8,  del: 0,   color: '#FF6B00' },
-  { left: '18%', top: '78%', size: 2, dur: 10, del: 1.2, color: '#FF007F' },
-  { left: '32%', top: '68%', size: 4, dur: 7,  del: 0.5, color: '#FF6B00' },
-  { left: '48%', top: '82%', size: 2, dur: 11, del: 2.0, color: '#FF007F' },
-  { left: '62%', top: '64%', size: 3, dur: 9,  del: 1.7, color: '#FF8533' },
-  { left: '75%', top: '74%', size: 4, dur: 8,  del: 0.3, color: '#FF6B00' },
-  { left: '88%', top: '58%', size: 2, dur: 12, del: 2.4, color: '#FF007F' },
-  { left: '52%', top: '55%', size: 3, dur: 9,  del: 0.8, color: '#FF8533' },
+/* ─── Canvas Lava Animation ─── */
+function LavaCanvas() {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    let animId: number
+    let t = 0
+
+    const resize = () => {
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+    }
+    resize()
+    window.addEventListener('resize', resize)
+
+    // Blobs config
+    const blobs = [
+      { x: 0.2, y: 0.3, r: 0.38, color: '#FF4500', speed: 0.0008, phase: 0 },
+      { x: 0.75, y: 0.5, r: 0.45, color: '#FF0000', speed: 0.0006, phase: 1.2 },
+      { x: 0.5,  y: 0.8, r: 0.30, color: '#FF6B00', speed: 0.001,  phase: 2.4 },
+      { x: 0.1,  y: 0.7, r: 0.25, color: '#CC0000', speed: 0.0012, phase: 0.8 },
+      { x: 0.85, y: 0.2, r: 0.28, color: '#FF2D00', speed: 0.0009, phase: 3.1 },
+    ]
+
+    const draw = () => {
+      t++
+      const W = canvas.width
+      const H = canvas.height
+
+      ctx.clearRect(0, 0, W, H)
+
+      // Dark base
+      ctx.fillStyle = '#0a0000'
+      ctx.fillRect(0, 0, W, H)
+
+      // Draw animated blobs
+      for (const b of blobs) {
+        const bx = (b.x + Math.sin(t * b.speed + b.phase) * 0.18) * W
+        const by = (b.y + Math.cos(t * b.speed * 0.7 + b.phase) * 0.14) * H
+        const br = b.r * Math.min(W, H)
+
+        const grad = ctx.createRadialGradient(bx, by, 0, bx, by, br)
+        grad.addColorStop(0,   b.color + 'CC') // 80% opacity core
+        grad.addColorStop(0.4, b.color + '66') // 40% mid
+        grad.addColorStop(1,   b.color + '00') // transparent edge
+
+        ctx.globalCompositeOperation = 'screen'
+        ctx.beginPath()
+        ctx.arc(bx, by, br, 0, Math.PI * 2)
+        ctx.fillStyle = grad
+        ctx.fill()
+      }
+
+      // Bright spark overlay — tiny fast particles
+      ctx.globalCompositeOperation = 'screen'
+      const sparkCount = 60
+      for (let i = 0; i < sparkCount; i++) {
+        const sx = ((i * 137.5 + t * 0.4 + Math.sin(i + t * 0.003) * 200) % W + W) % W
+        const sy = ((i * 93.7 + Math.cos(i * 0.8 + t * 0.005) * 150 - t * 0.15) % H + H) % H
+        const sr = 1 + Math.sin(i * 5.3 + t * 0.04) * 0.8
+        const opacity = (0.4 + Math.sin(i * 3.1 + t * 0.06) * 0.4)
+        const col = i % 2 === 0 ? `rgba(255, 120, 0, ${opacity})` : `rgba(255, 0, 0, ${opacity})`
+        ctx.beginPath()
+        ctx.arc(sx, sy, sr, 0, Math.PI * 2)
+        ctx.fillStyle = col
+        ctx.fill()
+      }
+
+      ctx.globalCompositeOperation = 'source-over'
+      animId = requestAnimationFrame(draw)
+    }
+
+    draw()
+    return () => {
+      cancelAnimationFrame(animId)
+      window.removeEventListener('resize', resize)
+    }
+  }, [])
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full"
+      style={{ zIndex: 0 }}
+    />
+  )
+}
+
+/* ─── Floating glowing orbs (CSS) ─── */
+const ORBS = [
+  { size: 700, top: '-10%', left: '-10%',  color: 'rgba(255,69,0,0.55)',   dur: '14s', anim: 'orbFloat1' },
+  { size: 600, top: '30%',  right: '-12%', color: 'rgba(255,0,0,0.50)',    dur: '18s', anim: 'orbFloat2' },
+  { size: 500, top: '60%',  left: '20%',   color: 'rgba(255,107,0,0.45)', dur: '12s', anim: 'orbFloat3' },
+  { size: 400, top: '-5%',  right: '30%',  color: 'rgba(200,0,0,0.40)',    dur: '20s', anim: 'orbFloat1' },
 ]
 
 const fadeUp = (delay = 0) => ({
@@ -29,104 +119,81 @@ export function Hero() {
     <section
       id="home"
       className="relative min-h-screen flex items-center overflow-hidden"
-      style={{ background: '#020617' }}
+      style={{ background: '#0a0000' }}
     >
-      {/* ── Three.js Scene ── */}
-      <div className="absolute inset-0 z-10">
-        <Scene3D />
-      </div>
+      {/* ── Canvas lava animation ── */}
+      <LavaCanvas />
 
-      {/* ── Full-bleed vivid background ── */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: 'url(/images/assets/hero-banner-afridyn.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center 40%',
-          opacity: 0.12,
-          mixBlendMode: 'multiply'
-        }}
-      />
-
-      {/* ── Light colour-grade ── */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          background:
-            'linear-gradient(135deg, rgba(255,107,0,0.05) 0%, transparent 50%, rgba(255,0,127,0.05) 100%)',
-        }}
-      />
-
-      {/* ── Bottom-to-top fade for transitions ── */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          background:
-            'linear-gradient(to top, #F8FAFC 0%, rgba(248,250,252,0.8) 15%, transparent 100%)',
-        }}
-      />
-
-      {/* ── Vibrant Orbs for Light Mode ── */}
-      <div className="hero-orb" style={{
-        width: 800, height: 800, top: '-15%', right: '-10%',
-        background: 'radial-gradient(circle, rgba(255,107,0,0.08) 0%, transparent 70%)',
-        filter: 'blur(100px)', animation: 'orbFloat1 16s ease-in-out infinite',
-      }} />
-      <div className="hero-orb" style={{
-        width: 600, height: 600, bottom: '-15%', left: '-8%',
-        background: 'radial-gradient(circle, rgba(255,0,127,0.08) 0%, transparent 70%)',
-        filter: 'blur(80px)', animation: 'orbFloat2 20s ease-in-out infinite',
-      }} />
-
-      {/* ── Subtle Grid ── */}
-      <div className="absolute inset-0 z-0 pointer-events-none" style={{
-        backgroundImage:
-          'linear-gradient(rgba(255,107,0,0.03) 1px, transparent 1px),' +
-          'linear-gradient(90deg, rgba(255,107,0,0.03) 1px, transparent 1px)',
-        backgroundSize: '64px 64px',
-      }} />
-
-      {/* ── Particles ── */}
-      {PARTICLES.map((p, i) => (
-        <div key={i} className="hero-particle z-0" style={{
-          left: p.left, top: p.top,
-          width: p.size, height: p.size,
-          background: p.color,
-          animationDuration: `${p.dur}s`,
-          animationDelay: `${p.del}s`,
-          opacity: 0.4
-        }} />
+      {/* ── Vivid glowing orbs ── */}
+      {ORBS.map((o, i) => (
+        <div
+          key={i}
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            width:  o.size,
+            height: o.size,
+            top:    o.top,
+            left:   (o as any).left  ?? 'unset',
+            right:  (o as any).right ?? 'unset',
+            background: `radial-gradient(circle, ${o.color} 0%, transparent 70%)`,
+            filter: 'blur(60px)',
+            animation: `${o.anim} ${o.dur} ease-in-out infinite`,
+            zIndex: 1,
+            mixBlendMode: 'screen',
+          }}
+        />
       ))}
 
+      {/* ── Glowing grid ── */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          zIndex: 2,
+          backgroundImage:
+            'linear-gradient(rgba(255,80,0,0.07) 1px, transparent 1px),' +
+            'linear-gradient(90deg, rgba(255,80,0,0.07) 1px, transparent 1px)',
+          backgroundSize: '64px 64px',
+        }}
+      />
+
+      {/* ── Vignette edges ── */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          zIndex: 3,
+          background:
+            'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%)',
+        }}
+      />
+
       {/* ── Content ── */}
-      <div className="container relative z-20 pt-36 pb-32">
-        <motion.div 
+      <div className="container relative pt-36 pb-32" style={{ zIndex: 10 }}>
+        <motion.div
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2 }}
           className="max-w-5xl mx-auto flex flex-col items-center text-center"
         >
 
-          {/* Eyebrow */}
+          {/* Eyebrow badge */}
           <motion.div
             {...fadeUp(0)}
             className="inline-flex items-center gap-3 mb-10 px-5 py-2.5 rounded-full"
             style={{
-              background: 'rgba(255,107,0,0.03)',
-              border: '1px solid rgba(255,107,0,0.1)',
-              backdropFilter: 'blur(12px)',
+              background:    'rgba(255,80,0,0.12)',
+              border:        '1px solid rgba(255,107,0,0.35)',
+              backdropFilter:'blur(12px)',
             }}
           >
             <span
-              className="w-1.5 h-1.5 rounded-full bg-orange-500"
+              className="w-2 h-2 rounded-full"
               style={{
-                animation: 'pulseRing 2s ease-in-out infinite',
-                boxShadow: '0 0 10px rgba(255,107,0,0.5)'
+                background:  '#FF6B00',
+                animation:   'pulseRing 1.5s ease-in-out infinite',
+                boxShadow:   '0 0 14px rgba(255,107,0,0.9)',
               }}
             />
-            <span
-              className="text-[10px] font-mono font-bold tracking-[0.22em] uppercase text-orange-600"
-            >
+            <span className="text-[11px] font-mono font-bold tracking-[0.22em] uppercase text-orange-400">
               Certified Industrial Excellence — Zambia &amp; Sub-Saharan Africa
             </span>
           </motion.div>
@@ -136,20 +203,24 @@ export function Hero() {
             {['Engineering', 'Excellence'].map((word, i) => (
               <motion.div
                 key={word}
-                data-aos="fade-right"
-                data-aos-delay={100 + i * 200}
-                initial={{ opacity: 0, x: -60 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2, delay: 0.15 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                initial={{ opacity: 0, x: -80 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1.0, delay: 0.2 + i * 0.15, ease: [0.16, 1, 0.3, 1] }}
               >
                 <span
-                  className="block font-display font-black text-gradient-fire"
+                  className="block font-display font-black"
                   style={{
-                    fontSize: 'clamp(3.5rem, 12vw, 8.5rem)',
+                    fontSize: 'clamp(3.8rem, 13vw, 9rem)',
                     letterSpacing: '-0.05em',
-                    lineHeight: 0.9,
-                    marginBottom: '0.1em'
+                    lineHeight: 0.88,
+                    marginBottom: '0.05em',
+                    background: 'linear-gradient(135deg, #FF6B00 0%, #FF2200 50%, #FF0000 100%)',
+                    backgroundSize: '200% auto',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    animation: 'fireShift 3s ease-in-out infinite',
+                    filter: 'drop-shadow(0 0 40px rgba(255, 60, 0, 0.6))',
                   }}
                 >
                   {word}
@@ -158,20 +229,23 @@ export function Hero() {
             ))}
 
             <motion.div
-              data-aos="fade-left"
-              data-aos-delay={600}
-              initial={{ opacity: 0, x: 60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.2, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, x: 80 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1.0, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
             >
               <span
-                className="block font-display font-black text-gradient-fire"
+                className="block font-display font-black"
                 style={{
-                  fontSize: 'clamp(3.5rem, 12vw, 8.5rem)',
+                  fontSize: 'clamp(3.8rem, 13vw, 9rem)',
                   letterSpacing: '-0.05em',
-                  lineHeight: 0.9,
-                  filter: 'drop-shadow(0 0 50px rgba(255, 0, 0, 0.2))',
+                  lineHeight: 0.88,
+                  background: 'linear-gradient(135deg, #FF8C00 0%, #FF3300 40%, #CC0000 100%)',
+                  backgroundSize: '200% auto',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  animation: 'fireShift 3s ease-in-out infinite reverse',
+                  filter: 'drop-shadow(0 0 60px rgba(255, 0, 0, 0.7))',
                 }}
               >
                 Across Africa
@@ -181,8 +255,9 @@ export function Hero() {
 
           {/* Sub-copy */}
           <motion.p
-            {...fadeUp(0.55)}
-            className="text-lg md:text-xl leading-relaxed mb-12 max-w-2xl text-white/60"
+            {...fadeUp(0.65)}
+            className="text-lg md:text-xl leading-relaxed mb-12 max-w-2xl"
+            style={{ color: 'rgba(255,200,150,0.8)' }}
           >
             Afridyn Engineering delivers mechanical, electrical, IT, and fibre optic
             solutions for mining, manufacturing, and infrastructure sectors across
@@ -191,21 +266,22 @@ export function Hero() {
 
           {/* CTAs */}
           <motion.div
-            {...fadeUp(0.70)}
+            {...fadeUp(0.80)}
             className="flex flex-wrap justify-center gap-4"
           >
             <motion.button
               onClick={() => goto('services')}
-              whileHover={{ y: -5, scale: 1.05, boxShadow: '0 20px 40px rgba(255, 107, 0, 0.4)' }}
+              whileHover={{ y: -6, scale: 1.06 }}
               whileTap={{ scale: 0.95 }}
               className="btn btn-lg font-bold group"
               style={{
-                background: 'linear-gradient(135deg, #FF6B00, #FF0000)',
-                color: '#fff',
-                boxShadow: '0 12px 32px rgba(255, 107, 0, 0.25)',
+                background:   'linear-gradient(135deg, #FF6B00, #FF0000)',
+                color:        '#fff',
+                boxShadow:    '0 0 40px rgba(255, 80, 0, 0.5), 0 8px 32px rgba(255,0,0,0.3)',
                 borderRadius: 16,
-                fontSize: 17,
-                padding: '18px 42px',
+                fontSize:     17,
+                padding:      '18px 44px',
+                border:       '1px solid rgba(255,120,0,0.4)',
               }}
             >
               Explore Services
@@ -214,17 +290,18 @@ export function Hero() {
 
             <motion.button
               onClick={() => goto('contact')}
-              whileHover={{ y: -5, scale: 1.05, border: '1px solid rgba(255,107,0,0.3)', background: 'rgba(255,107,0,0.02)' }}
+              whileHover={{ y: -6, scale: 1.06, background: 'rgba(255,80,0,0.15)' }}
               whileTap={{ scale: 0.95 }}
-              className="btn btn-lg"
+              className="btn btn-lg font-bold"
               style={{
-                background: '#fff',
-                border: '1px solid rgba(255,107,0,0.15)',
-                color: '#FF6B00',
-                boxShadow: '0 8px 32px rgba(255,107,0,0.08)',
+                background:   'rgba(255,80,0,0.08)',
+                border:       '1px solid rgba(255,107,0,0.4)',
+                color:        '#FF8C42',
+                boxShadow:    '0 0 20px rgba(255,80,0,0.15)',
                 borderRadius: 16,
-                fontSize: 17,
-                padding: '18px 42px',
+                fontSize:     17,
+                padding:      '18px 44px',
+                backdropFilter: 'blur(10px)',
               }}
             >
               Get a Quote
@@ -237,16 +314,20 @@ export function Hero() {
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
+        transition={{ delay: 1.6, duration: 0.6 }}
         onClick={() => goto('trust')}
         aria-label="Scroll down"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 group z-10"
-        style={{ color: 'rgba(255,107,0,0.4)' }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 group"
+        style={{ zIndex: 10 }}
       >
+        <span className="text-[10px] font-mono tracking-[0.25em] uppercase mb-1" style={{ color: 'rgba(255,107,0,0.5)' }}>
+          Scroll
+        </span>
         <ChevronDown
-          size={26}
-          strokeWidth={1.4}
-          className="animate-bounce group-hover:text-orange-600 transition-colors"
+          size={28}
+          strokeWidth={1.5}
+          className="animate-bounce transition-colors"
+          style={{ color: 'rgba(255,107,0,0.6)' }}
         />
       </motion.button>
     </section>

@@ -105,8 +105,13 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ── Keyframes ── */
 @keyframes fireShift {
-  0%, 100% { background-position: 0% 50%; }
-  50%       { background-position: 100% 50%; }
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes lavaPulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.08); }
 }
 @keyframes orbFloat1 {
   0%   { transform: translate(0,    0)    scale(1);    }
@@ -319,8 +324,10 @@ h1, h2, h3, h4, h5, h6 {
 /* ── Scroll progress ── */
 #scroll-bar {
   position: fixed;
-  top: 0; left: 0; height: 2px;
-  background: linear-gradient(90deg, #334155, #64748B);
+  top: 0; left: 0; height: 3px;
+  background: linear-gradient(90deg, #FF6B00, #FF0000, #FF6B00);
+  background-size: 200% auto;
+  animation: fireShift 2s linear infinite;
   z-index: 9999;
   transform-origin: left;
   transform: scaleX(0);
