@@ -9,80 +9,88 @@ const services = [
     icon: Settings,
     title: 'Mechanical & Electrical Spares',
     short: 'OEM-quality components for industrial machinery and electrical systems.',
-    desc: 'We source and supply high-quality mechanical and electrical spare parts and components including bearings, motors, cables, switchgear, instrumentation, and more from trusted global suppliers.',
+    desc: 'We source and supply high-quality mechanical and electrical spare parts and components including bearings, motors, cables, switchgear, and instrumentation.',
     features: ['OEM & aftermarket parts', 'Rapid procurement', 'Quality certified', 'Technical guidance'],
     accent: '#FF2D55',
     sector: 'Industrial',
+    image: '/images/services/spares.png',
   },
   {
     id: 2,
     icon: Wrench,
     title: 'Maintenance Services',
     short: 'Preventive and corrective maintenance to maximise plant uptime.',
-    desc: 'Our certified technicians deliver preventive, predictive, and corrective maintenance programs for mechanical and electrical systems. We are committed to reducing unplanned downtime.',
+    desc: 'Our certified technicians deliver preventive, predictive, and corrective maintenance programs for mechanical and electrical systems.',
     features: ['Preventive programs', 'Emergency response', 'CMMS integration', 'SLA-backed service'],
     accent: '#FF6A00',
     sector: 'Mining/Industrial',
+    image: '/images/services/maintenance.png',
   },
   {
     id: 3,
     icon: Lightbulb,
     title: 'Engineering Consultation',
     short: 'Strategic technical advisory and project management services.',
-    desc: 'Expert engineering consultants providing feasibility studies, technical specifications, project planning, and execution oversight across all disciplines.',
+    desc: 'Expert engineering consultants providing feasibility studies, technical specifications, and execution oversight.',
     features: ['Feasibility studies', 'Project management', 'Risk assessment', 'Design & specification'],
     accent: '#CC00FF',
     sector: 'Multi-sector',
+    image: '/images/services/consultation.png',
   },
   {
     id: 4,
     icon: Monitor,
     title: 'IT Equipment Supply',
     short: 'Enterprise-grade hardware, servers, and infrastructure solutions.',
-    desc: 'Procurement and supply of enterprise IT equipment including servers, workstations, networking devices, and peripherals fully supported from global brands.',
+    desc: 'Procurement and supply of enterprise IT equipment including servers, workstations, and networking devices.',
     features: ['Enterprise hardware', 'Network infrastructure', 'Configuration & setup', 'Warranty & support'],
     accent: '#0D7A6F',
     sector: 'Commercial/Industrial',
+    image: '/images/services/it_supply.png',
   },
   {
     id: 5,
     icon: Radio,
     title: 'Optical Fibre Services',
     short: 'Design, installation, splicing, and maintenance of fibre networks.',
-    desc: 'Full-service capabilities including network design, cable laying, fusion splicing, termination, and OTDR testing for industrial and data centres.',
+    desc: 'Full-service capabilities including network design, cable laying, fusion splicing, and maintenance.',
     features: ['Network design', 'Fusion splicing', 'OTDR testing', '24/7 maintenance'],
     accent: '#FF2D55',
     sector: 'Telecoms/Infrastructure',
+    image: '/images/services/fibre.png',
   },
   {
     id: 6,
     icon: Users,
     title: 'Technical Outsourcing',
     short: 'Qualified engineering personnel on flexible contract terms.',
-    desc: 'Access specialised engineering skills on demand. We provide vetted, experienced technical personnel for roles across all disciplines.',
+    desc: 'Access specialised engineering skills on demand. We provide vetted experienced technical personnel.',
     features: ['Vetted professionals', 'All disciplines', 'Flexible contracts', 'Skills transfer'],
     accent: '#FF6A00',
     sector: 'All sectors',
+    image: 'https://images.unsplash.com/photo-1541746972996-4e0b0f43e01a?q=80&w=800&auto=format&fit=crop',
   },
   {
     id: 7,
     icon: Truck,
     title: 'Logistics Consultancy',
     short: 'End-to-end supply chain analysis and optimisation.',
-    desc: 'We analyse, design, and optimise supply chains. Our consultants deliver measurable cost reductions for complex operations.',
+    desc: 'We analyse, design, and optimise supply chains and transportation networks.',
     features: ['Route optimisation', 'Cost reduction', 'Vendor management', 'KPI dashboards'],
     accent: '#CC00FF',
     sector: 'Mining/Commercial',
+    image: 'https://images.unsplash.com/photo-1566650554919-44ee6bbe2518?q=80&w=800&auto=format&fit=crop',
   },
   {
     id: 8,
     icon: Anchor,
     title: 'Clearing & Forwarding',
     short: 'Seamless customs clearance and international freight management.',
-    desc: 'Complete customs brokerage and freight forwarding ensuring your goods cross borders efficiently, compliantly, and on schedule.',
+    desc: 'Complete customs brokerage and freight forwarding ensuring goods cross borders efficiently.',
     features: ['Customs clearance', 'Full documentation', 'Freight forwarding', 'Track & trace'],
     accent: '#0D7A6F',
     sector: 'Import/Export',
+    image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=800&auto=format&fit=crop',
   },
 ]
 
@@ -91,7 +99,6 @@ function ServiceCard({ s, i, active, setActive }: any) {
   const isActive = active === s.id
   const cardRef = useRef<HTMLDivElement>(null)
 
-  // Mouse hover tilt effect logic
   const x = useMotionValue(0)
   const y = useMotionValue(0)
 
@@ -138,56 +145,69 @@ function ServiceCard({ s, i, active, setActive }: any) {
     >
       <div
         onClick={() => setActive(isActive ? null : s.id)}
-        className="relative h-full rounded-2xl p-6 cursor-pointer group transition-all duration-500 overflow-hidden"
+        className="relative h-full rounded-[32px] cursor-pointer group transition-all duration-500 overflow-hidden"
         style={{
-          border: isActive ? `1.5px solid ${s.accent}40` : '1px solid rgba(0,0,0,0.08)',
-          background: isActive 
-            ? `linear-gradient(145deg, rgba(255,255,255,1), ${s.accent}08)` 
-            : 'rgba(255,255,255,0.8)',
-          backdropFilter: 'blur(10px)',
+          border: isActive ? `1.5px solid ${s.accent}40` : '1px solid rgba(0,0,0,0.06)',
+          background: '#FFFFFF',
           boxShadow: isActive 
-            ? `0 24px 60px ${s.accent}15` 
-            : '0 8px 30px rgba(0,0,0,0.03)',
+            ? `0 40px 80px ${s.accent}15` 
+            : '0 4px 20px rgba(0,0,0,0.02)',
           transformStyle: 'preserve-3d',
         }}
       >
-        {/* Layered Content */}
-        <div style={{ transform: 'translateZ(50px)' }} className="relative z-10">
-          {/* Icon Container */}
-          <div className="icon-box mb-5 relative" style={{ 
-            background: `${s.accent}15`, 
-            color: s.accent,
-            transformStyle: 'preserve-3d'
-          }}>
-            <Icon size={24} style={{ transform: 'translateZ(20px)' }} />
+        {/* Image Header */}
+        <div className="relative h-56 w-full overflow-hidden bg-slate-100">
+          <img 
+            src={s.image} 
+            alt={s.title} 
+            loading="lazy"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop'
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-white/10 to-transparent" />
+          
+          {/* Overlay Icon */}
+          <div className="absolute bottom-8 left-8" style={{ transform: 'translateZ(40px)' }}>
+            <div className="w-14 h-14 rounded-2xl flex items-center justify-center backdrop-blur-2xl border shadow-xl"
+              style={{ 
+                background: `${s.accent}20`, 
+                borderColor: `${s.accent}30`,
+                color: s.accent
+              }}>
+              <Icon size={28} />
+            </div>
           </div>
+        </div>
 
-          {/* Sector label */}
-          <div className="flex items-center gap-2 mb-3">
-             <span className="text-[10px] font-mono font-bold tracking-widest uppercase px-2 py-0.5 rounded"
-              style={{ background: `${s.accent}10`, color: s.accent }}>
+        {/* Content */}
+        <div className="p-10 pt-2 relative">
+          <div className="flex items-center gap-2 mb-6">
+             <span className="text-[10px] font-mono font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full"
+              style={{ background: `${s.accent}08`, color: s.accent, border: `1px solid ${s.accent}15` }}>
               {s.sector}
             </span>
           </div>
 
-          <h3 className="font-display font-bold text-lg leading-snug mb-3" style={{ color: 'var(--navy-900)' }}>
+          <h3 className="font-display font-bold text-2xl leading-tight mb-5" style={{ color: 'var(--navy-900)', letterSpacing: '-0.02em' }}>
             {s.title}
           </h3>
-          <p className="text-sm leading-relaxed mb-6" style={{ color: 'var(--text-secondary)', opacity: 0.8 }}>
+          <p className="text-[16px] leading-[1.65] mb-10" style={{ color: 'var(--text-secondary)', opacity: 0.85 }}>
             {s.short}
           </p>
 
-          {/* Expanded Content */}
+          {/* Expandable Section */}
           <motion.div
             initial={false}
             animate={{ height: isActive ? 'auto' : 0, opacity: isActive ? 1 : 0 }}
             className="overflow-hidden"
           >
-            <div className="pt-4 border-t border-black/[0.05] space-y-4">
-              <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{s.desc}</p>
-              <div className="space-y-2">
+            <div className="pt-6 border-t border-black/[0.05] space-y-6">
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{s.desc}</p>
+              <div className="grid grid-cols-1 gap-3">
                 {s.features.map(f => (
-                  <div key={f} className="flex items-center gap-2 text-xs" style={{ color: 'var(--text-secondary)' }}>
+                  <div key={f} className="flex items-center gap-3 text-[13px]" style={{ color: 'var(--text-secondary)' }}>
                     <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: s.accent }} />
                     {f}
                   </div>
@@ -195,35 +215,29 @@ function ServiceCard({ s, i, active, setActive }: any) {
               </div>
               <button
                 onClick={(e) => { e.stopPropagation(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) }}
-                className="btn btn-sm w-full justify-center text-white mt-2"
+                className="btn btn-lg w-full justify-center text-white mt-4"
                 style={{ background: s.accent, boxShadow: `0 4px 12px ${s.accent}30` }}
               >
                 Request Quote
-                <ArrowRight size={13} />
+                <ArrowRight size={16} />
               </button>
             </div>
           </motion.div>
 
-          {/* Static Indicator */}
+          {/* Indicator */}
           {!isActive && (
-            <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider mt-2 group-hover:gap-3 transition-all" style={{ color: s.accent }}>
-              <span>Discover More</span>
-              <ArrowRight size={12} />
+            <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] mt-2 group-hover:gap-4 transition-all" style={{ color: s.accent }}>
+              <span>Experience</span>
+              <ArrowRight size={14} />
             </div>
           )}
         </div>
 
-        {/* Dynamic Background Element */}
-        <div 
-          className="absolute -right-4 -bottom-4 w-24 h-24 rounded-full blur-3xl opacity-0 group-hover:opacity-40 transition-opacity duration-700" 
-          style={{ background: s.accent }}
-        />
-        
-        {/* Glow effect that follows mouse */}
+        {/* Parallax Depth Elements */}
         <div 
           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
           style={{
-            background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), ${s.accent}08, transparent 40%)`
+            background: `radial-gradient(500px circle at var(--mouse-x) var(--mouse-y), ${s.accent}03, transparent 40%)`
           }}
         />
       </div>
@@ -236,38 +250,38 @@ export function Services() {
 
   return (
     <section id="services" className="section relative overflow-hidden" 
-      style={{ background: '#F8FAFC' }}>
+      style={{ background: '#FFFFFF' }}>
       
-      {/* Background Decor */}
-      <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-br from-blue-50/50 to-transparent pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-orange-50/50 to-transparent pointer-events-none" />
+      {/* Dynamic BG elements */}
+      <div className="absolute top-0 right-0 w-1/4 h-1/4 bg-red-500/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/4 w-1/4 h-1/4 bg-purple-500/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-1/4 h-1/4 bg-orange-500/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container relative z-10">
-        {/* Header */}
         <motion.div 
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-2xl mb-20"
+          className="max-w-2xl mb-24"
         >
-          <div className="label-chip mb-6" style={{ 
-            background: 'rgba(0,0,0,0.04)', 
-            borderColor: 'rgba(0,0,0,0.08)',
-            color: 'var(--navy-700)'
+          <div className="label-chip mb-8" style={{ 
+            background: 'rgba(0,0,0,0.03)', 
+            borderColor: 'rgba(0,0,0,0.06)',
+            color: 'var(--navy-700)',
+            padding: '6px 20px'
           }}>
-            Strategic Solutions
+            Advanced Engineered Solutions
           </div>
-          <h2 className="font-display font-black text-4xl md:text-6xl mb-6" style={{ color: 'var(--navy-900)', letterSpacing: '-0.04em' }}>
-            Eight Ways We<br />
-            <span className="text-gradient-fire">Deliver Value</span>
+          <h2 className="font-display font-black text-5xl md:text-7xl mb-8" style={{ color: 'var(--navy-900)', letterSpacing: '-0.05em' }}>
+            Technical<br />
+            <span className="text-gradient-fire">Capability</span>
           </h2>
-          <p className="text-lg text-slate-500 max-w-xl">
-            From industrial procurement to precision infrastructure — we provide the technical foundation for Sub-Saharan Africa's industrial growth.
+          <p className="text-xl text-slate-500 max-w-xl leading-relaxed">
+            Delivering robust engineering, maintenance, and IT infrastructure solutions across Sub-Saharan Africa's critical sectors.
           </p>
         </motion.div>
 
-        {/* 4-column grid with 3D tilt */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {services.map((s, i) => (
             <ServiceCard 
               key={s.id} 
