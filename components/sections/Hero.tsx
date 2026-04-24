@@ -38,10 +38,9 @@ export function Hero() {
 
             <h1 className="font-display font-black text-white leading-[1.0] mb-6"
               style={{ fontSize: 'clamp(3rem, 7vw, 5.5rem)', letterSpacing: '-0.03em' }}>
-              Industrial&nbsp;
-              <span className="text-gradient-copper">Grade</span>
-              <br />Engineering
-              <br />Solutions
+              Engineering
+              <br />Excellence
+              <br /><span className="text-gradient-copper">Across Africa</span>
             </h1>
 
             <p className="text-lg leading-relaxed mb-8 max-w-xl" style={{ color: 'rgba(255,255,255,0.55)' }}>

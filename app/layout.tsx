@@ -4,14 +4,45 @@ import { Navigation } from '@/components/layout/Navigation'
 import { Footer } from '@/components/layout/Footer'
 
 export const metadata: Metadata = {
-  title: 'Afridyn Engineering Limited | Engineering Excellence Across Africa',
-  description: 'Professional engineering and technical services for industrial, mining, and infrastructure sectors across Zambia and Sub-Saharan Africa. PACRA, TPIN, and ZPPA certified.',
-  keywords: 'engineering, mechanical, electrical, maintenance, mining, industrial, Zambia, Africa, fibre optic, IT equipment, logistics',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://afridynengineering.com'),
+  title: {
+    default: 'Afridyn Engineering Limited | Engineering Excellence Across Africa',
+    template: '%s | Afridyn Engineering',
+  },
+  description: 'Professional engineering and technical services for industrial, mining, construction, and infrastructure sectors across Sub-Saharan Africa. Mechanical, electrical, IT, optical fibre solutions and maintenance services. ZPPA approved.',
+  keywords: [
+    'engineering services Zambia',
+    'mechanical engineering Africa',
+    'electrical maintenance Lusaka',
+    'mining equipment supply Zambia',
+    'industrial engineering',
+    'infrastructure support Africa',
+    'technical services Lusaka',
+    'engineering consultation',
+    'fibre optic installation Zambia',
+    'logistics consultancy Africa',
+    'ZPPA approved supplier',
+    'IT equipment supply Zambia',
+  ],
+  authors: [{ name: 'Afridyn Engineering Limited' }],
   openGraph: {
+    type: 'website',
+    locale: 'en_ZM',
+    url: '/',
+    title: 'Afridyn Engineering Limited | Engineering Excellence Across Africa',
+    description: 'Professional engineering services for industrial, mining, and infrastructure sectors across Africa.',
+    siteName: 'Afridyn Engineering Limited',
+  },
+  twitter: {
+    card: 'summary_large_image',
     title: 'Afridyn Engineering Limited',
     description: 'Engineering Excellence Across Africa',
-    type: 'website',
-  }
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
 }
 
 export default function RootLayout({

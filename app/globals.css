@@ -309,3 +309,13 @@ h1, h2, h3, h4, h5, h6 {
   }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* ── Print Styles ── */
+@media print {
+  header, footer, #scroll-bar, .btn, .no-print { display: none !important; }
+  body { background: white !important; color: black !important; font-size: 12pt; }
+  section { padding: 24pt 0; break-inside: avoid; }
+  h1, h2, h3 { color: #0A1628 !important; }
+  a { color: black !important; text-decoration: underline; }
+  .card, .card-dark { border: 1px solid #ccc !important; box-shadow: none !important; }
+}
