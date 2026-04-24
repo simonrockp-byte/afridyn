@@ -82,12 +82,14 @@ h1, h2, h3, h4, h5, h6 {
   background-clip: text;
 }
 .text-gradient-fire {
-  background: linear-gradient(135deg, #FF6B00 0%, #FF0000 50%, #7000FF 100%);
+  background: linear-gradient(135deg, #FF6B00 0%, #FF0000 45%, #990000 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: fireShift 4s ease infinite;
+  animation: fireShift 3s ease-in-out infinite;
+  display: inline-block;
+  filter: drop-shadow(0 0 40px rgba(255, 0, 0, 0.15));
 }
 .text-gradient-warm {
   background: linear-gradient(135deg, #FF6B00 0%, #FFB800 100%);

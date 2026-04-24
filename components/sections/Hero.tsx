@@ -98,7 +98,12 @@ export function Hero() {
 
       {/* ── Content ── */}
       <div className="container relative z-10 pt-36 pb-32">
-        <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="max-w-5xl mx-auto flex flex-col items-center text-center"
+        >
 
           {/* Eyebrow */}
           <motion.div
@@ -125,21 +130,24 @@ export function Hero() {
           </motion.div>
 
           {/* Headline */}
-          <div className="mb-8 overflow-hidden">
+          <div className="mb-8">
             {['Engineering', 'Excellence'].map((word, i) => (
               <motion.div
                 key={word}
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                data-aos="fade-right"
+                data-aos-delay={100 + i * 200}
+                initial={{ opacity: 0, x: -60 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.9, delay: 0.15 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 1.2, delay: 0.15 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
               >
                 <span
                   className="block font-display font-black text-gradient-fire"
                   style={{
-                    fontSize: 'clamp(3.2rem, 10vw, 7.5rem)',
-                    letterSpacing: '-0.045em',
-                    lineHeight: 0.98,
+                    fontSize: 'clamp(3.5rem, 12vw, 8.5rem)',
+                    letterSpacing: '-0.05em',
+                    lineHeight: 0.9,
+                    marginBottom: '0.1em'
                   }}
                 >
                   {word}
@@ -148,18 +156,20 @@ export function Hero() {
             ))}
 
             <motion.div
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              data-aos="fade-left"
+              data-aos-delay={600}
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.9, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 1.2, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}
             >
               <span
                 className="block font-display font-black text-gradient-fire"
                 style={{
-                  fontSize: 'clamp(3.2rem, 10vw, 7.5rem)',
-                  letterSpacing: '-0.045em',
-                  lineHeight: 1.0,
-                  filter: 'drop-shadow(0 0 30px rgba(255,107,0,0.15))',
+                  fontSize: 'clamp(3.5rem, 12vw, 8.5rem)',
+                  letterSpacing: '-0.05em',
+                  lineHeight: 0.9,
+                  filter: 'drop-shadow(0 0 50px rgba(255, 0, 0, 0.2))',
                 }}
               >
                 Across Africa
@@ -184,41 +194,41 @@ export function Hero() {
           >
             <motion.button
               onClick={() => goto('services')}
-              whileHover={{ y: -3, scale: 1.02 }}
-              whileTap={{ scale: 0.97 }}
-              className="btn btn-lg font-bold"
+              whileHover={{ y: -5, scale: 1.05, boxShadow: '0 20px 40px rgba(255, 107, 0, 0.4)' }}
+              whileTap={{ scale: 0.95 }}
+              className="btn btn-lg font-bold group"
               style={{
-                background: 'linear-gradient(135deg, #FF6B00, #FF007F)',
+                background: 'linear-gradient(135deg, #FF6B00, #FF0000)',
                 color: '#fff',
-                boxShadow: '0 8px 32px rgba(255,107,0,0.2)',
-                borderRadius: 14,
-                fontSize: 16,
-                padding: '16px 38px',
+                boxShadow: '0 12px 32px rgba(255, 107, 0, 0.25)',
+                borderRadius: 16,
+                fontSize: 17,
+                padding: '18px 42px',
               }}
             >
               Explore Services
-              <ArrowRight size={19} strokeWidth={2.2} />
+              <ArrowRight size={20} strokeWidth={2.5} className="group-hover:translate-x-1 transition-transform" />
             </motion.button>
 
             <motion.button
               onClick={() => goto('contact')}
-              whileHover={{ y: -3, scale: 1.02 }}
-              whileTap={{ scale: 0.97 }}
+              whileHover={{ y: -5, scale: 1.05, border: '1px solid rgba(255,107,0,0.3)', background: 'rgba(255,107,0,0.02)' }}
+              whileTap={{ scale: 0.95 }}
               className="btn btn-lg"
               style={{
                 background: '#fff',
-                border: '1px solid rgba(255,107,0,0.1)',
+                border: '1px solid rgba(255,107,0,0.15)',
                 color: '#FF6B00',
-                boxShadow: '0 4px 20px rgba(255,107,0,0.05)',
-                borderRadius: 14,
-                fontSize: 16,
-                padding: '16px 38px',
+                boxShadow: '0 8px 32px rgba(255,107,0,0.08)',
+                borderRadius: 16,
+                fontSize: 17,
+                padding: '18px 42px',
               }}
             >
               Get a Quote
             </motion.button>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
 
       {/* ── Scroll cue ── */}
