@@ -29,10 +29,10 @@ export function About() {
             </h2>
 
             <p className="text-base leading-relaxed mb-4 reveal" style={{ color: 'var(--text-secondary)' }}>
-              Afridyn Engineering Limited was founded in February 2026, headquartered at 31 Salama Park, Lusaka, Zambia. We deliver integrated engineering services spanning mechanical, electrical, IT, optical fibre, and logistics.
+              Afridyn Engineering Limited was founded in February 2026, headquartered in Lusaka, Zambia. We deliver integrated engineering services spanning mechanical, electrical, IT, optical fibre, and logistics.
             </p>
             <p className="text-base leading-relaxed mb-10 reveal" style={{ color: 'var(--text-secondary)' }}>
-              Our mission is to provide reliable engineering, maintenance, and technical support that enhances operational efficiency, reduces downtime, and supports sustainable industrial and infrastructure development across Africa.
+              We are dedicated to building a resilient infrastructure foundation for the continent through precision, modern methodology, and a commitment to operational uptime.
             </p>
 
             {/* Pillars */}

@@ -91,7 +91,7 @@ export function Hero() {
               fontWeight: 800,
               letterSpacing: '0.12em'
             }}>
-              Engineering Excellence Across Africa
+              Certified Industrial Solutions
             </div>
 
             {/* Headline */}

@@ -46,14 +46,14 @@ const reasons = [
   },
 ]
 
-const valueProps = [
-  'Professional & reliable engineering solutions',
-  'High-quality mechanical & electrical components',
-  'Skilled and experienced technical personnel',
-  'Strong global sourcing & supplier network',
-  'Efficient maintenance & technical support',
-  'Commitment to safety, quality & efficiency',
-  'Customer-focused & responsive delivery',
+const industries = [
+  'Mining & Mineral Processing',
+  'Manufacturing & Industrial',
+  'Energy, Power & Water',
+  'Telecommunications',
+  'Infrastructure & Construction',
+  'Supply Chain & Commerce',
+  'Public Sector & Government',
 ]
 
 export function WhyUs() {
@@ -80,12 +80,12 @@ export function WhyUs() {
             <div className="rounded-2xl p-6"
               style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)', maxWidth: 320 }}>
               <p className="text-xs font-mono font-bold uppercase tracking-widest mb-4" style={{ color: 'rgba(255,255,255,0.3)' }}>
-                Our Value Commitments
+                Industry Sectors Served
               </p>
               <ul className="space-y-2.5">
-                {valueProps.map(v => (
+                {industries.map(v => (
                   <li key={v} className="flex items-start gap-3 text-xs" style={{ color: 'rgba(255,255,255,0.6)' }}>
-                    <CheckCircle size={13} className="mt-0.5 shrink-0" style={{ color: '#D4692A' }} />
+                    <div className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style={{ background: '#D4692A' }} />
                     {v}
                   </li>
                 ))}
