@@ -17,128 +17,121 @@ export function Navigation() {
   const [active, setActive]       = useState('')
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
+    const onScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Close mobile menu on resize if above breakpoint
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
+    const onResize = () => {
+      if (window.innerWidth >= 1024) setMenuOpen(false)
     }
-    return () => { document.body.style.overflow = '' }
-  }, [menuOpen])
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
 
   const goto = (id: string) => {
     setMenuOpen(false)
     const el = document.getElementById(id)
-    if (el) el.scrollIntoView({ behavior: 'smooth' })
+    if (el) {
+      const offset = 80 // height of header
+      const bodyRect = document.body.getBoundingClientRect().top
+      const elementRect = el.getBoundingClientRect().top
+      const elementPosition = elementRect - bodyRect
+      const offsetPosition = elementPosition - offset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+    }
     setActive(id)
   }
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-      style={{
-        background: scrolled ? 'rgba(8, 8, 16, 0.92)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(24px) saturate(1.4)' : 'none',
-        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.07)' : 'none',
-      }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? 'h-16 bg-[#080810]/95 border-b border-white/10 shadow-lg' : 'h-20 bg-transparent'
+      }`}
+      style={{ backdropFilter: scrolled ? 'blur(16px)' : 'none' }}
     >
-      <div className="container">
-        <div className="flex items-center justify-between h-[72px]">
+      <div className="container h-full">
+        <div className="flex items-center justify-between h-full">
 
           {/* Logo */}
           <button
             onClick={() => goto('home')}
-            className="flex items-center gap-3 group focus-visible:outline-none"
+            className="flex items-center gap-2 group transition-transform active:scale-95"
             aria-label="Afridyn Engineering — home"
           >
-            <div className="w-9 h-9 flex items-center justify-center">
+            <div className="w-8 h-8 flex items-center justify-center">
               <img
                 src="/images/logo.png"
                 alt=""
-                className="w-full h-full object-contain filter brightness-0 invert opacity-90 group-hover:opacity-100 transition-opacity"
+                className="w-full h-full object-contain filter brightness-0 invert"
               />
             </div>
-            <div className="hidden sm:block leading-none">
-              <span className="block font-display font-black text-white text-[15px] tracking-[.1em]">AFRIDYN</span>
-              <span className="block text-[9px] tracking-[.32em] font-mono text-white/35 uppercase mt-0.5">Engineering</span>
+            <div className="leading-none text-left">
+              <span className="block font-display font-black text-white text-[16px] tracking-[.05em]">AFRIDYN</span>
+              <span className="block text-[8px] tracking-[.4em] font-mono text-white/40 uppercase mt-0.5">Engineering</span>
             </div>
           </button>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-1" aria-label="Primary navigation">
-            {navLinks.map(link => (
-              <button
-                key={link.href}
-                onClick={() => goto(link.href)}
-                className={`nav-link text-[13px] font-medium transition-all ${active === link.href ? 'text-white bg-white/7' : ''}`}
-              >
-                {link.label}
-              </button>
-            ))}
-          </nav>
+          {/* Right Section: Desktop Nav + CTA */}
+          <div className="hidden lg:flex items-center gap-8">
+            <nav className="flex items-center gap-1" aria-label="Primary navigation">
+              {navLinks.map(link => (
+                <button
+                  key={link.href}
+                  onClick={() => goto(link.href)}
+                  className={`px-4 py-2 text-[13px] font-semibold tracking-wide transition-all rounded-lg uppercase
+                    ${active === link.href 
+                      ? 'text-white bg-white/10' 
+                      : 'text-white/60 hover:text-white hover:bg-white/5'}`}
+                >
+                  {link.label}
+                </button>
+              ))}
+            </nav>
 
-          {/* CTA + mobile toggle */}
-          <div className="flex items-center gap-3">
             <button
               onClick={() => goto('contact')}
-              className="hidden lg:inline-flex btn btn-cta btn-sm"
+              className="btn btn-cta btn-sm px-6 py-2.5"
             >
               Get a Quote
             </button>
-
-            <button
-              className="lg:hidden p-2 rounded-lg text-white/50 hover:text-white hover:bg-white/06 transition-all"
-              onClick={() => setMenuOpen(v => !v)}
-              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={menuOpen}
-            >
-              {menuOpen ? <X size={22} strokeWidth={1.8} /> : <Menu size={22} strokeWidth={1.8} />}
-            </button>
           </div>
+
+          {/* Mobile Toggle */}
+          <button
+            className="lg:hidden p-2 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-all"
+            onClick={() => setMenuOpen(v => !v)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          >
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div
-          className="lg:hidden fixed inset-0 z-40 flex flex-col"
-          style={{ background: 'rgba(8,8,16,0.98)', backdropFilter: 'blur(32px)' }}
-        >
-          {/* Close area / header repeat */}
-          <div className="container flex items-center justify-between h-[72px]">
-            <div className="flex items-center gap-3">
-              <img src="/images/logo.png" alt="" className="w-9 h-9 object-contain filter brightness-0 invert opacity-90" />
-              <span className="font-display font-black text-white text-[15px] tracking-[.1em]">AFRIDYN</span>
-            </div>
+      {/* Mobile Menu (Standard Drawer) */}
+      <div 
+        className={`lg:hidden fixed inset-0 top-[64px] z-40 bg-[#080810]/98 transition-all duration-500 overflow-y-auto
+          ${menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+        style={{ backdropFilter: 'blur(20px)' }}
+      >
+        <div className="container py-10 flex flex-col gap-1">
+          {navLinks.map((link, i) => (
             <button
-              onClick={() => setMenuOpen(false)}
-              className="p-2 text-white/40 hover:text-white transition-colors"
-              aria-label="Close menu"
+              key={link.href}
+              onClick={() => goto(link.href)}
+              className="text-left text-xl font-display font-bold text-white/60 hover:text-white py-4 px-2 border-b border-white/5 transition-all"
+              style={{ transitionDelay: `${i * 50}ms` }}
             >
-              <X size={22} strokeWidth={1.8} />
+              {link.label}
             </button>
-          </div>
-
-          {/* Links */}
-          <nav className="container flex flex-col gap-2 pt-8">
-            {navLinks.map((link, i) => (
-              <button
-                key={link.href}
-                onClick={() => goto(link.href)}
-                className="text-left text-2xl font-display font-bold text-white/30 hover:text-white py-3 border-b border-white/05 transition-all tracking-tight"
-                style={{ animationDelay: `${i * 60}ms` }}
-              >
-                {link.label}
-              </button>
-            ))}
-          </nav>
-
-          <div className="container pt-10 mt-auto pb-12">
+          ))}
+          <div className="pt-8">
             <button
               onClick={() => goto('contact')}
               className="btn btn-cta btn-lg w-full justify-center"
@@ -147,7 +140,7 @@ export function Navigation() {
             </button>
           </div>
         </div>
-      )}
+      </div>
     </header>
   )
 }

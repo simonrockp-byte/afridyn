@@ -73,7 +73,7 @@ export function WhyUs() {
 
       <div className="container relative z-10">
         {/* Header row */}
-        <div className="flex flex-col lg:flex-row lg:items-end gap-12 mb-18">
+        <div className="flex flex-col lg:flex-row lg:items-end gap-12 mb-[72px]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

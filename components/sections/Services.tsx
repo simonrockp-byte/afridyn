@@ -170,7 +170,7 @@ function ServiceCard({
             animate={{ height: isActive ? 'auto' : 0, opacity: isActive ? 1 : 0 }}
             className="overflow-hidden"
           >
-            <div className="pt-5 border-t border-white/08 space-y-5 mt-1">
+            <div className="pt-5 space-y-5 mt-1" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
               <p className="text-[13px] leading-relaxed text-white/55">{s.desc}</p>
               <ul className="space-y-2.5">
                 {s.features.map(f => (

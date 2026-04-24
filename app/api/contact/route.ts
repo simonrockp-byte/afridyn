@@ -6,8 +6,8 @@ export async function POST(request: Request) {
     const { name, email, phone, company, service, message } = body
 
     // Validation
-    if (!name || !email || !message) {
-      return NextResponse.json({ error: 'Missing required fields: name, email, and message are required.' }, { status: 400 })
+    if (!name || !email || !message || !service) {
+      return NextResponse.json({ error: 'Missing required fields: name, email, service, and message are required.' }, { status: 400 })
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/

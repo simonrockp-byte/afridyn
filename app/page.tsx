@@ -1,15 +1,17 @@
-import { Hero } from '@/components/sections/Hero'
+import { Hero }     from '@/components/sections/Hero'
+import { TrustBar } from '@/components/sections/TrustBar'
 import { Services } from '@/components/sections/Services'
-import { About } from '@/components/sections/About'
-import { Sectors } from '@/components/sections/Sectors'
-import { WhyUs } from '@/components/sections/WhyUs'
-import { CTA } from '@/components/sections/CTA'
-import { Contact } from '@/components/sections/Contact'
+import { About }    from '@/components/sections/About'
+import { Sectors }  from '@/components/sections/Sectors'
+import { WhyUs }    from '@/components/sections/WhyUs'
+import { CTA }      from '@/components/sections/CTA'
+import { Contact }  from '@/components/sections/Contact'
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <TrustBar />
       <Services />
       <About />
       <Sectors />
