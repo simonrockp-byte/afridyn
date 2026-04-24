@@ -109,7 +109,7 @@ export default function About() {
           <div className="space-y-5 reveal">
             {/* Image card */}
             <div className="relative rounded-2xl overflow-hidden" style={{ aspectRatio: "4/3", boxShadow: "0 40px 80px rgba(0,0,0,0.5)" }}>
-              <Image src="/enginee.png" alt="Engineering" fill className="object-cover" />
+              <Image src="/assets/team.png" alt="Engineering" fill className="object-cover" />
               <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(11,22,40,0.85) 0%, transparent 50%)" }} />
               {/* Floating badge */}
               <div className="absolute bottom-5 left-5 right-5">

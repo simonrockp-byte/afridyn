@@ -3,14 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 
 const services = [
-  { id: 1, icon: "⚙️", title: "Mechanical & Electrical Spares", short: "Premium industrial components & OEM parts", desc: "We supply high-quality mechanical and electrical spare parts for industrial equipment — genuine OEM components from leading global manufacturers, delivered fast.", color: "#D4792A", features: ["Genuine OEM parts","Fast delivery","Quality certified","Technical support"] },
-  { id: 2, icon: "🔧", title: "Maintenance Services", short: "Preventive & corrective maintenance programs", desc: "Comprehensive maintenance programs designed to reduce unplanned downtime, extend equipment lifespan, and optimise operational efficiency.", color: "#1A7A70", features: ["24/7 availability","Certified technicians","CMMS integration","SLA agreements"] },
-  { id: 3, icon: "📐", title: "Engineering Consultation", short: "Strategic technical guidance & project management", desc: "Expert consultants providing feasibility studies, project planning, risk assessment, and execution oversight to achieve your engineering objectives.", color: "#D4792A", features: ["Feasibility studies","Project management","Risk assessment","Design review"] },
-  { id: 4, icon: "💻", title: "IT Equipment Supply", short: "Enterprise hardware & infrastructure solutions", desc: "Enterprise-grade IT infrastructure — servers, workstations, networking equipment and peripherals from trusted global brands, fully configured and supported.", color: "#1A7A70", features: ["Enterprise hardware","Warranty support","Configuration services","Lifecycle management"] },
-  { id: 5, icon: "🔆", title: "Optical Fibre Services", short: "High-speed fibre installation & maintenance", desc: "Design, install, and maintain optical fibre networks for telecoms, industrial automation, and data centres — reliable, high-bandwidth connectivity.", color: "#D4792A", features: ["OTDR testing","Splicing & termination","Network design","24/7 support"] },
-  { id: 6, icon: "👷", title: "Technical Outsourcing", short: "Skilled engineering workforce on demand", desc: "Qualified engineering personnel on contract or permanent basis — access specialist skills without the overhead of full-time employment.", color: "#1A7A70", features: ["Vetted professionals","Flexible contracts","Quick deployment","Skills transfer"] },
-  { id: 7, icon: "🚛", title: "Logistics Consultancy", short: "End-to-end supply chain optimisation", desc: "Analyse and optimise supply chains, transportation networks, and warehouse operations to reduce costs and improve delivery performance.", color: "#D4792A", features: ["Route optimisation","Cost reduction","Vendor management","KPI tracking"] },
-  { id: 8, icon: "🚢", title: "Clearing & Forwarding", short: "Seamless customs clearance & freight forwarding", desc: "Full-service customs clearance and freight forwarding — ensuring your goods cross borders efficiently with complete regulatory compliance.", color: "#1A7A70", features: ["Customs clearance","Documentation","Freight forwarding","Track & trace"] },
+  { id: 1, icon: "⚙️", title: "Mechanical & Electrical Spares", short: "Premium industrial components & OEM parts", desc: "We supply high-quality mechanical and electrical spare parts for industrial equipment — genuine OEM components from leading global manufacturers, delivered fast.", color: "#D4792A", features: ["Genuine OEM parts","Fast delivery","Quality certified","Technical support"], image: "/assets/mechanical_parts.png" },
+  { id: 2, icon: "🔧", title: "Maintenance Services", short: "Preventive & corrective maintenance programs", desc: "Comprehensive maintenance programs designed to reduce unplanned downtime, extend equipment lifespan, and optimise operational efficiency.", color: "#1A7A70", features: ["24/7 availability","Certified technicians","CMMS integration","SLA agreements"], image: "/assets/maintenance_service.png" },
+  { id: 3, icon: "📐", title: "Engineering Consultation", short: "Strategic technical guidance & project management", desc: "Expert consultants providing feasibility studies, project planning, risk assessment, and execution oversight to achieve your engineering objectives.", color: "#D4792A", features: ["Feasibility studies","Project management","Risk assessment","Design review"], image: "/assets/consultation.png" },
+  { id: 4, icon: "💻", title: "IT Equipment Supply", short: "Enterprise hardware & infrastructure solutions", desc: "Enterprise-grade IT infrastructure — servers, workstations, networking equipment and peripherals from trusted global brands, fully configured and supported.", color: "#1A7A70", features: ["Enterprise hardware","Warranty support","Configuration services","Lifecycle management"], image: "/assets/it_infrastructure.png" },
+  { id: 5, icon: "🔆", title: "Optical Fibre Services", short: "High-speed fibre installation & maintenance", desc: "Design, install, and maintain optical fibre networks for telecoms, industrial automation, and data centres — reliable, high-bandwidth connectivity.", color: "#D4792A", features: ["OTDR testing","Splicing & termination","Network design","24/7 support"], image: "/assets/fibre_optics.png" },
+  { id: 6, icon: "👷", title: "Technical Outsourcing", short: "Skilled engineering workforce on demand", desc: "Qualified engineering personnel on contract or permanent basis — access specialist skills without the overhead of full-time employment.", color: "#1A7A70", features: ["Vetted professionals","Flexible contracts","Quick deployment","Skills transfer"], image: "/assets/team.png" },
+  { id: 7, icon: "🚛", title: "Logistics Consultancy", short: "End-to-end supply chain optimisation", desc: "Analyse and optimise supply chains, transportation networks, and warehouse operations to reduce costs and improve delivery performance.", color: "#D4792A", features: ["Route optimisation","Cost reduction","Vendor management","KPI tracking"], image: "/assets/logistics.png" },
+  { id: 8, icon: "🚢", title: "Clearing & Forwarding", short: "Seamless customs clearance & freight forwarding", desc: "Full-service customs clearance and freight forwarding — ensuring your goods cross borders efficiently with complete regulatory compliance.", color: "#1A7A70", features: ["Customs clearance","Documentation","Freight forwarding","Track & trace"], image: "/assets/logistics_port.png" },
 ];
 
 export default function Services() {
@@ -86,11 +86,17 @@ export default function Services() {
 
                 {/* BACK */}
                 <div
-                  className="service-card-back flex flex-col justify-between p-5 cursor-pointer"
-                  style={{ background: `linear-gradient(145deg, ${s.color}12, rgba(11,22,40,0.98))`, border: `1px solid ${s.color}25` }}
+                  className="service-card-back flex flex-col justify-between p-5 cursor-pointer relative"
+                  style={{ background: `linear-gradient(145deg, ${s.color}22, rgba(11,22,40,0.98))`, border: `1px solid ${s.color}25` }}
                   onClick={() => setFlipped(null)}
                 >
-                  <div>
+                  <div className="absolute inset-0 opacity-10 pointer-events-none" style={{
+                    backgroundImage: `url(${s.image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    mixBlendMode: 'overlay'
+                  }} />
+                  <div className="relative z-10">
                     <h3 className="font-display font-bold text-white text-xs mb-2.5">{s.title}</h3>
                     <p className="text-xs leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.6)" }}>{s.desc}</p>
                     <ul className="space-y-1.5">

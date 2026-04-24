@@ -29,6 +29,16 @@ export default function Hero() {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden" style={{ background: "var(--navy)" }}>
+      {/* Background Image Layer */}
+      <div className="absolute inset-0 opacity-40 pointer-events-none">
+        <div className="absolute inset-0" style={{
+          backgroundImage: "url('/assets/hero_industrial.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          mixBlendMode: "luminosity"
+        }} />
+      </div>
+
       {/* 3D canvas */}
       <HeroCanvas />
 
