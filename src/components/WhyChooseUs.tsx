@@ -3,172 +3,77 @@
 import { useEffect, useRef } from "react";
 
 const reasons = [
-  {
-    icon: "🏆",
-    title: "Proven Track Record",
-    desc: "Over a decade of successful project delivery across Zambia and the African continent, with a portfolio spanning multiple industries.",
-    stat: "10+ Years",
-    color: "#E67817",
-  },
-  {
-    icon: "🎓",
-    title: "Certified Professionals",
-    desc: "Our team comprises qualified engineers, technicians, and specialists certified by international engineering bodies.",
-    stat: "100% Certified",
-    color: "#1F857A",
-  },
-  {
-    icon: "⚡",
-    title: "Rapid Response",
-    desc: "24/7 emergency response capability ensures your operations never face prolonged downtime due to equipment failure.",
-    stat: "24/7 Support",
-    color: "#E67817",
-  },
-  {
-    icon: "🌍",
-    title: "Pan-African Reach",
-    desc: "Our network and partnerships span the entire African continent, enabling us to deliver services wherever you operate.",
-    stat: "Africa-Wide",
-    color: "#1F857A",
-  },
-  {
-    icon: "📋",
-    title: "Fully Compliant",
-    desc: "Registered with PACRA, TPIN, and ZPPA, we operate with full regulatory compliance and transparent business practices.",
-    stat: "ZPPA Certified",
-    color: "#E67817",
-  },
-  {
-    icon: "💡",
-    title: "Integrated Solutions",
-    desc: "From procurement to installation, maintenance, and logistics — we handle the complete project lifecycle under one roof.",
-    stat: "End-to-End",
-    color: "#1F857A",
-  },
+  { icon: "🏆", title: "Proven Track Record", desc: "Over a decade of successful project delivery across Zambia and Africa, with a portfolio spanning multiple industries and sectors.", stat: "10+ Years", color: "#D4792A" },
+  { icon: "🎓", title: "Certified Professionals", desc: "Our engineers and technicians hold qualifications from internationally recognised bodies — delivering work to global standards.", stat: "100% Certified", color: "#1A7A70" },
+  { icon: "⚡", title: "Rapid Response", desc: "24/7 emergency response capability ensures your operations never face prolonged downtime due to equipment or infrastructure failure.", stat: "24/7", color: "#D4792A" },
+  { icon: "🌍", title: "Pan-African Reach", desc: "Our network and strategic partnerships span the continent, enabling us to deliver services wherever your operations are based.", stat: "Africa-Wide", color: "#1A7A70" },
+  { icon: "📋", title: "Fully Compliant", desc: "Registered with PACRA, TPIN, and ZPPA — operating with full regulatory compliance and transparent business practices.", stat: "ZPPA Certified", color: "#D4792A" },
+  { icon: "🔗", title: "Integrated Solutions", desc: "From procurement to installation, maintenance, and logistics — a single reliable partner for your complete project lifecycle.", stat: "End-to-End", color: "#1A7A70" },
 ];
 
 export default function WhyChooseUs() {
-  const sectionRef = useRef<HTMLElement>(null);
-
+  const ref = useRef<HTMLElement>(null);
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add("visible");
-        });
-      },
-      { threshold: 0.05 }
-    );
-    const reveals = sectionRef.current?.querySelectorAll(".reveal");
-    reveals?.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) e.target.classList.add("visible"); }, { threshold: 0.05 });
+    ref.current?.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
   }, []);
 
   return (
-    <section
-      id="why-us"
-      ref={sectionRef}
-      className="py-24 relative overflow-hidden"
-      style={{ background: "#f8f9fc" }}
-    >
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: "radial-gradient(ellipse at 50% 100%, rgba(20,34,62,0.04) 0%, transparent 60%)",
-        }}
-      />
+    <section id="why-us" ref={ref} className="section-pad relative overflow-hidden" style={{ background: "var(--navy-2)" }}>
+      <div className="divider absolute top-0 left-0 right-0" />
 
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-16 reveal">
-          <span
-            className="text-xs tracking-widest uppercase font-semibold"
-            style={{ color: "#E67817", fontFamily: "var(--font-mono)" }}
-          >
-            The Afridyn Advantage
-          </span>
-          <h2
-            className="text-4xl md:text-5xl font-bold mt-3"
-            style={{ fontFamily: "var(--font-outfit)", color: "#14223E" }}
-          >
-            Why Choose Us
-          </h2>
-          <p className="mt-4 max-w-2xl mx-auto" style={{ color: "#595959" }}>
-            We combine technical expertise, regional knowledge, and a passion for
-            excellence to deliver engineering solutions that exceed expectations.
-          </p>
+      {/* Glow accent */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] pointer-events-none" style={{
+        background: "radial-gradient(ellipse, rgba(212,121,42,0.05) 0%, transparent 70%)",
+      }} />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
+          <div>
+            <div className="label-chip mb-5 reveal">The Afridyn Advantage</div>
+            <h2 className="font-display font-extrabold reveal" style={{ fontSize: "clamp(2rem,4vw,3rem)", color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.1 }}>
+              Why Industry Leaders<br />
+              <span className="text-grad-copper">Choose Afridyn</span>
+            </h2>
+          </div>
+          <button onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })} className="btn-primary shrink-0 reveal">
+            Start a Project →
+          </button>
         </div>
 
-        {/* Reasons grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {reasons.map((reason, i) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {reasons.map((r, i) => (
             <div
-              key={reason.title}
-              className="reveal group p-8 rounded-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl cursor-default"
-              style={{
-                background: "#ffffff",
-                border: "1px solid rgba(20,34,62,0.06)",
-                transitionDelay: `${i * 60}ms`,
-              }}
+              key={r.title}
+              className="reveal group relative rounded-xl p-7 overflow-hidden card-lift"
+              style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", transitionDelay: `${i * 60}ms` }}
             >
-              <div className="flex items-start gap-4">
-                <div
-                  className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 transition-transform group-hover:scale-110"
-                  style={{
-                    background: `${reason.color}12`,
-                    border: `1px solid ${reason.color}30`,
-                  }}
-                >
-                  {reason.icon}
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-start justify-between gap-2 mb-2">
-                    <h3
-                      className="font-bold"
-                      style={{ fontFamily: "var(--font-outfit)", color: "#14223E" }}
-                    >
-                      {reason.title}
-                    </h3>
-                    <span
-                      className="text-xs font-bold px-2 py-1 rounded-full flex-shrink-0"
-                      style={{
-                        background: `${reason.color}15`,
-                        color: reason.color,
-                        fontFamily: "var(--font-mono)",
-                      }}
-                    >
-                      {reason.stat}
-                    </span>
-                  </div>
-                  <p className="text-sm leading-relaxed" style={{ color: "#595959" }}>
-                    {reason.desc}
-                  </p>
-                </div>
-              </div>
+              {/* Hover glow */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{
+                background: `radial-gradient(circle at 30% 30%, ${r.color}08 0%, transparent 70%)`
+              }} />
 
-              {/* Hover accent bar */}
-              <div
-                className="mt-6 h-0.5 w-0 group-hover:w-full transition-all duration-500 rounded-full"
-                style={{ background: `linear-gradient(90deg, ${reason.color}, transparent)` }}
-              />
+              <div className="relative">
+                <div className="flex items-start justify-between mb-5">
+                  <div className="w-11 h-11 rounded-xl flex items-center justify-center text-xl" style={{ background: `${r.color}12`, border: `1px solid ${r.color}20` }}>
+                    {r.icon}
+                  </div>
+                  <span className="font-mono-custom text-xs font-bold px-2.5 py-1 rounded-full" style={{ background: `${r.color}10`, color: r.color, border: `1px solid ${r.color}20` }}>
+                    {r.stat}
+                  </span>
+                </div>
+                <h3 className="font-display font-bold text-white mb-2.5">{r.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>{r.desc}</p>
+
+                {/* Bottom accent line */}
+                <div className="mt-6 h-px w-0 group-hover:w-full transition-all duration-700 rounded-full" style={{ background: `linear-gradient(90deg, ${r.color}, transparent)` }} />
+              </div>
             </div>
           ))}
         </div>
-
-        {/* CTA */}
-        <div className="text-center mt-16 reveal">
-          <p className="text-lg mb-6" style={{ color: "#595959" }}>
-            Ready to experience the Afridyn difference?
-          </p>
-          <button
-            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-            className="px-10 py-4 rounded-full font-semibold text-white transition-all hover:scale-105 hover:shadow-xl"
-            style={{ background: "linear-gradient(135deg, #14223E, #1F857A)" }}
-          >
-            Start Your Project
-          </button>
-        </div>
       </div>
+      <div className="divider absolute bottom-0 left-0 right-0" />
     </section>
   );
 }

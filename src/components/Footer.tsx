@@ -2,111 +2,53 @@
 
 import Image from "next/image";
 
-const quickLinks = ["Home", "About", "Services", "Why Us", "Contact"];
-const services = [
-  "Mechanical & Electrical Spares",
-  "Maintenance Services",
-  "Engineering Consultation",
-  "IT Equipment Supply",
-  "Optical Fibre Services",
-  "Logistics Consultancy",
-];
-
 export default function Footer() {
-  const scrollTo = (id: string) => {
-    document.getElementById(id.toLowerCase().replace(" ", "-"))?.scrollIntoView({ behavior: "smooth" });
-  };
+  const goto = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <footer
-      className="relative overflow-hidden"
-      style={{ background: "#0d1b35" }}
-    >
-      {/* Decorative top border */}
-      <div
-        className="h-px w-full"
-        style={{ background: "linear-gradient(90deg, transparent, #E67817, #1F857A, transparent)" }}
-      />
+    <footer className="relative overflow-hidden" style={{ background: "var(--navy)" }}>
+      {/* Top gradient accent */}
+      <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #D4792A 40%, #1A7A70 60%, transparent 100%)" }} />
 
-      {/* Background grid */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-20"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(230,120,23,0.12) 1px, transparent 0)`,
-          backgroundSize: "40px 40px",
-        }}
-      />
+      {/* Grid texture */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        backgroundImage: "linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px)",
+        backgroundSize: "72px 72px",
+      }} />
 
-      <div className="max-w-7xl mx-auto px-6 pt-16 pb-8 relative">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-16 pb-8 relative">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
           {/* Brand */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
-              <Image
-                src="/afridyn_logo.png"
-                alt="Afridyn"
-                width={44}
-                height={44}
-                className="object-contain"
-                style={{ filter: "brightness(0) invert(1)" }}
-              />
+          <div>
+            <div className="flex items-center gap-3 mb-5">
+              <div className="relative w-8 h-8">
+                <Image src="/afridyn_logo.png" alt="Afridyn" fill className="object-contain" style={{ filter: "brightness(0) invert(1)" }} />
+              </div>
               <div>
-                <p
-                  className="font-bold text-sm text-white"
-                  style={{ fontFamily: "var(--font-outfit)", letterSpacing: "0.05em" }}
-                >
-                  AFRIDYN
-                </p>
-                <p
-                  className="text-xs text-white/40"
-                  style={{ letterSpacing: "0.1em" }}
-                >
-                  ENGINEERING LIMITED
-                </p>
+                <p className="font-display font-bold text-sm text-white tracking-wider">AFRIDYN</p>
+                <p className="text-[9px] text-white/30 tracking-[0.2em]" style={{ fontFamily: "monospace" }}>ENGINEERING LIMITED</p>
               </div>
             </div>
-            <p className="text-sm text-white/50 leading-relaxed mb-6">
+            <p className="text-sm leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.38)" }}>
               Engineering Excellence Across Africa — delivering world-class industrial,
-              IT, and logistics solutions.
+              IT, and logistics solutions since 2013.
             </p>
-            <div className="flex gap-3">
-              {[
-                { icon: "in", bg: "#0077B5" },
-                { icon: "f", bg: "#1877F2" },
-                { icon: "t", bg: "#1DA1F2" },
-              ].map((s) => (
-                <a
-                  key={s.icon}
-                  href="#"
-                  className="w-9 h-9 rounded-lg flex items-center justify-center text-white text-xs font-bold transition-all hover:scale-110"
-                  style={{ background: s.bg }}
-                >
-                  {s.icon}
-                </a>
+            <div className="flex gap-2.5">
+              {[{ l: "in", bg: "#0077B5" }, { l: "f", bg: "#1877F2" }, { l: "t", bg: "#1DA1F2" }].map((s) => (
+                <a key={s.l} href="#" className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-bold transition-all hover:scale-110" style={{ background: s.bg }}>{s.l}</a>
               ))}
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4
-              className="font-bold text-white mb-4 text-sm"
-              style={{ fontFamily: "var(--font-outfit)" }}
-            >
-              Quick Links
-            </h4>
-            <ul className="space-y-2.5">
-              {quickLinks.map((link) => (
-                <li key={link}>
-                  <button
-                    onClick={() => scrollTo(link)}
-                    className="text-sm text-white/50 hover:text-orange-400 transition-colors flex items-center gap-2 group"
-                  >
-                    <span
-                      className="w-0 group-hover:w-3 h-px transition-all"
-                      style={{ background: "#E67817" }}
-                    />
-                    {link}
+            <h4 className="font-display font-bold text-white text-sm mb-5 tracking-wide">Navigation</h4>
+            <ul className="space-y-3">
+              {[["home","Home"],["about","About"],["services","Services"],["why-us","Why Choose Us"],["contact","Contact"]].map(([id, label]) => (
+                <li key={id}>
+                  <button onClick={() => goto(id)} className="text-sm transition-colors hover:text-white group flex items-center gap-2" style={{ color: "rgba(255,255,255,0.4)" }}>
+                    <span className="w-0 group-hover:w-3 h-px transition-all duration-300" style={{ background: "#D4792A" }} />
+                    {label}
                   </button>
                 </li>
               ))}
@@ -115,85 +57,42 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h4
-              className="font-bold text-white mb-4 text-sm"
-              style={{ fontFamily: "var(--font-outfit)" }}
-            >
-              Services
-            </h4>
-            <ul className="space-y-2.5">
-              {services.map((svc) => (
-                <li key={svc}>
-                  <button
-                    onClick={() => scrollTo("services")}
-                    className="text-sm text-white/50 hover:text-teal-400 transition-colors text-left flex items-center gap-2 group"
-                  >
-                    <span
-                      className="w-0 group-hover:w-3 h-px transition-all flex-shrink-0"
-                      style={{ background: "#1F857A" }}
-                    />
-                    {svc}
+            <h4 className="font-display font-bold text-white text-sm mb-5 tracking-wide">Services</h4>
+            <ul className="space-y-3">
+              {["Mech. & Elec. Spares","Maintenance","Engineering Consulting","IT Equipment","Optical Fibre","Logistics","Clearing & Forwarding"].map((s) => (
+                <li key={s}>
+                  <button onClick={() => goto("services")} className="text-sm transition-colors hover:text-white text-left group flex items-center gap-2" style={{ color: "rgba(255,255,255,0.4)" }}>
+                    <span className="w-0 group-hover:w-3 h-px transition-all duration-300 shrink-0" style={{ background: "#1A7A70" }} />
+                    {s}
                   </button>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Contact + Certs */}
           <div>
-            <h4
-              className="font-bold text-white mb-4 text-sm"
-              style={{ fontFamily: "var(--font-outfit)" }}
-            >
-              Contact
-            </h4>
-            <div className="space-y-4">
-              {[
-                { icon: "📍", text: "Lusaka, Zambia" },
-                { icon: "📞", text: "+260 XXX XXX XXX" },
-                { icon: "✉️", text: "info@afridynengineering.com" },
-              ].map((item) => (
-                <div key={item.text} className="flex items-center gap-3">
-                  <span className="text-lg">{item.icon}</span>
-                  <span className="text-sm text-white/50">{item.text}</span>
-                </div>
+            <h4 className="font-display font-bold text-white text-sm mb-5 tracking-wide">Contact</h4>
+            <div className="space-y-3 mb-7">
+              {[["📍","Lusaka, Zambia"], ["📞","+260 XXX XXX XXX"], ["✉️","info@afridynengineering.com"]].map(([icon, text]) => (
+                <p key={text} className="flex items-center gap-2.5 text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
+                  <span>{icon}</span><span>{text}</span>
+                </p>
               ))}
             </div>
-
-            {/* Certifications badges */}
-            <div className="mt-6">
-              <p className="text-xs text-white/30 mb-3 uppercase tracking-wider">Certified By</p>
-              <div className="flex flex-wrap gap-2">
-                {["PACRA", "ZPPA", "TPIN", "ZRA"].map((cert) => (
-                  <span
-                    key={cert}
-                    className="px-2 py-1 rounded text-xs font-bold"
-                    style={{
-                      background: "rgba(230,120,23,0.1)",
-                      border: "1px solid rgba(230,120,23,0.25)",
-                      color: "#E67817",
-                      fontFamily: "var(--font-mono)",
-                    }}
-                  >
-                    {cert}
-                  </span>
-                ))}
-              </div>
+            <p className="text-xs mb-2.5 uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.2)" }}>Certified By</p>
+            <div className="flex flex-wrap gap-2">
+              {["PACRA","ZPPA","TPIN","ZRA"].map((c) => (
+                <span key={c} className="px-2 py-1 rounded text-xs font-bold" style={{ background: "rgba(212,121,42,0.08)", border: "1px solid rgba(212,121,42,0.2)", color: "#D4792A", fontFamily: "monospace" }}>{c}</span>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div
-          className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4"
-          style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
-        >
-          <p className="text-xs text-white/30">
-            © {new Date().getFullYear()} Afridyn Engineering Limited. All rights reserved.
-          </p>
-          <p className="text-xs text-white/30">
-            Registered in Zambia · PACRA · TPIN · ZPPA Approved
-          </p>
+        <div className="h-px w-full mb-6" style={{ background: "rgba(255,255,255,0.05)" }} />
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>© {new Date().getFullYear()} Afridyn Engineering Limited. All rights reserved.</p>
+          <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Registered in Zambia · PACRA · TPIN · ZPPA Approved</p>
         </div>
       </div>
     </footer>

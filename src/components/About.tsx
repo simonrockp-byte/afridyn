@@ -3,209 +3,141 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
-function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const started = useRef(false);
-
+function useReveal(ref: React.RefObject<Element | null>) {
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true;
-          let start = 0;
-          const duration = 2000;
-          const step = (timestamp: number) => {
-            if (!start) start = timestamp;
-            const progress = Math.min((timestamp - start) / duration, 1);
-            const ease = 1 - Math.pow(1 - progress, 3);
-            setCount(Math.round(ease * target));
-            if (progress < 1) requestAnimationFrame(step);
-          };
-          requestAnimationFrame(step);
-        }
-      },
-      { threshold: 0.5 }
-    );
+    const observer = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) e.target.classList.add("visible");
+    }, { threshold: 0.12 });
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
-  }, [target]);
+  }, [ref]);
+}
 
-  return (
-    <span ref={ref}>
-      {count}
-      {suffix}
-    </span>
-  );
+function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
+  const [val, setVal] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const started = useRef(false);
+  useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !started.current) {
+        started.current = true;
+        let t0 = 0;
+        const step = (ts: number) => {
+          if (!t0) t0 = ts;
+          const p = Math.min((ts - t0) / 1800, 1);
+          setVal(Math.round((1 - Math.pow(1 - p, 4)) * to));
+          if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      }
+    }, { threshold: 0.5 });
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, [to]);
+  return <span ref={ref}>{val}{suffix}</span>;
 }
 
 export default function About() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const sRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const reveals = sectionRef.current?.querySelectorAll(".reveal");
-    reveals?.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) e.target.classList.add("visible");
+    }, { threshold: 0.08 });
+    sRef.current?.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
   }, []);
 
+  const pillars = [
+    { icon: "⚡", title: "Innovation", desc: "Leveraging cutting-edge technologies to solve complex engineering challenges." },
+    { icon: "🛡️", title: "Integrity", desc: "Transparent operations underpinned by full PACRA, TPIN & ZPPA compliance." },
+    { icon: "🎯", title: "Precision", desc: "International-standard engineering execution on every project." },
+    { icon: "🌍", title: "Pan-African", desc: "Network and capability spanning the entire African continent." },
+  ];
+
   return (
-    <section
-      id="about"
-      ref={sectionRef}
-      className="py-24 relative overflow-hidden"
-      style={{ background: "#f8f9fc" }}
-    >
-      {/* Background decoration */}
-      <div
-        className="absolute top-0 right-0 w-1/2 h-full pointer-events-none"
-        style={{
-          background: "radial-gradient(ellipse at top right, rgba(31,133,122,0.05) 0%, transparent 60%)",
-        }}
-      />
+    <section id="about" ref={sRef} className="section-pad relative overflow-hidden" style={{ background: "var(--navy-2)" }}>
+      {/* Subtle top edge */}
+      <div className="divider absolute top-0 left-0 right-0" />
 
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-16 reveal">
-          <span
-            className="text-xs tracking-widest uppercase font-semibold"
-            style={{ color: "#E67817", fontFamily: "var(--font-mono)" }}
-          >
-            Who We Are
-          </span>
-          <h2
-            className="text-4xl md:text-5xl font-bold mt-3 mb-6"
-            style={{ fontFamily: "var(--font-outfit)", color: "#14223E" }}
-          >
-            About Afridyn
-            <span
-              className="block text-3xl font-normal mt-1"
-              style={{
-                background: "linear-gradient(135deg, #E67817, #1F857A)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Engineering Limited
-            </span>
-          </h2>
-        </div>
+      {/* Glow */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full pointer-events-none" style={{
+        background: "radial-gradient(circle, rgba(26,122,112,0.06) 0%, transparent 70%)",
+        transform: "translate(30%,-30%)"
+      }} />
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left - Text */}
-          <div className="space-y-6">
-            <div className="reveal">
-              <p
-                className="text-lg leading-relaxed"
-                style={{ color: "#595959" }}
-              >
-                Afridyn Engineering Limited is a premier engineering services company
-                delivering integrated solutions across mechanical, electrical, IT, optical
-                fibre, and logistics sectors throughout Africa.
-              </p>
-            </div>
-            <div className="reveal">
-              <p className="leading-relaxed" style={{ color: "#595959" }}>
-                Registered and compliant with PACRA, TPIN, and ZPPA, we bring together
-                decades of engineering expertise with a commitment to quality, innovation,
-                and customer satisfaction. Our team of qualified engineers and technicians
-                ensures every project meets international standards.
-              </p>
-            </div>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
+          {/* Left */}
+          <div>
+            <div className="label-chip mb-6 reveal">Who We Are</div>
+            <h2 className="font-display font-extrabold mb-6 reveal" style={{ fontSize: "clamp(2rem,4vw,3rem)", color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.1 }}>
+              Africa's Partner in<br />
+              <span className="text-grad-teal">Engineering Excellence</span>
+            </h2>
+            <p className="text-base leading-relaxed mb-5 reveal" style={{ color: "rgba(255,255,255,0.5)" }}>
+              Afridyn Engineering Limited delivers integrated engineering services across
+              mechanical, electrical, IT, optical fibre, and logistics sectors. We combine
+              deep technical expertise with an unwavering commitment to quality and compliance.
+            </p>
+            <p className="text-base leading-relaxed mb-10 reveal" style={{ color: "rgba(255,255,255,0.4)" }}>
+              Registered with PACRA, TPIN, and ZPPA, our team of certified engineers and
+              technicians has built a reputation for on-time, on-budget delivery across
+              Zambia and the wider African region.
+            </p>
 
-            {/* Values */}
-            <div className="grid grid-cols-2 gap-4 mt-8 reveal">
+            {/* Stats inline */}
+            <div className="grid grid-cols-3 gap-4 mb-10 reveal">
               {[
-                { icon: "⚡", label: "Innovation", desc: "Cutting-edge solutions" },
-                { icon: "🎯", label: "Precision", desc: "Exact engineering standards" },
-                { icon: "🤝", label: "Integrity", desc: "Transparent partnerships" },
-                { icon: "🌍", label: "Pan-African", desc: "Continent-wide reach" },
-              ].map((v) => (
-                <div
-                  key={v.label}
-                  className="p-4 rounded-xl transition-all hover:-translate-y-1 hover:shadow-lg"
-                  style={{ border: "1px solid rgba(20,34,62,0.08)", background: "#fff" }}
-                >
-                  <div className="text-2xl mb-2">{v.icon}</div>
-                  <p className="font-semibold text-sm" style={{ color: "#14223E" }}>
-                    {v.label}
-                  </p>
-                  <p className="text-xs mt-1" style={{ color: "#595959" }}>
-                    {v.desc}
-                  </p>
+                { n: 10, s: "+", label: "Years" },
+                { n: 200, s: "+", label: "Projects" },
+                { n: 50, s: "+", label: "Clients" },
+              ].map((st) => (
+                <div key={st.label} className="text-center py-5 rounded-xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                  <p className="font-display font-bold text-3xl text-grad-copper leading-none"><CountUp to={st.n} suffix={st.s} /></p>
+                  <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.35)" }}>{st.label}</p>
                 </div>
               ))}
             </div>
+
+            <button onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })} className="btn-primary reveal">
+              Work With Us →
+            </button>
           </div>
 
-          {/* Right - Stats + Image */}
-          <div className="space-y-6 reveal">
-            {/* Image */}
-            <div
-              className="relative rounded-2xl overflow-hidden aspect-video"
-              style={{ boxShadow: "0 30px 80px rgba(20,34,62,0.15)" }}
-            >
-              <Image
-                src="/enginee.png"
-                alt="Afridyn Engineering"
-                fill
-                className="object-cover"
-              />
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: "linear-gradient(to top, rgba(20,34,62,0.7) 0%, transparent 60%)",
-                }}
-              />
-              <div className="absolute bottom-4 left-4">
-                <p className="text-white font-bold text-lg" style={{ fontFamily: "var(--font-outfit)" }}>
-                  Professional Engineering
-                </p>
-                <p className="text-white/70 text-sm">Zambia & Beyond</p>
+          {/* Right */}
+          <div className="space-y-5 reveal">
+            {/* Image card */}
+            <div className="relative rounded-2xl overflow-hidden" style={{ aspectRatio: "4/3", boxShadow: "0 40px 80px rgba(0,0,0,0.5)" }}>
+              <Image src="/enginee.png" alt="Engineering" fill className="object-cover" />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(11,22,40,0.85) 0%, transparent 50%)" }} />
+              {/* Floating badge */}
+              <div className="absolute bottom-5 left-5 right-5">
+                <div className="glass rounded-xl p-4 flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center text-xl shrink-0" style={{ background: "rgba(212,121,42,0.15)" }}>🏆</div>
+                  <div>
+                    <p className="font-semibold text-sm text-white">ZPPA Approved Supplier</p>
+                    <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.45)" }}>Fully compliant & certified</p>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Stats */}
-            <div
-              className="grid grid-cols-3 gap-4 p-6 rounded-2xl"
-              style={{ background: "#14223E" }}
-            >
-              {[
-                { value: 10, suffix: "+", label: "Years" },
-                { value: 200, suffix: "+", label: "Projects" },
-                { value: 50, suffix: "+", label: "Clients" },
-              ].map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <p
-                    className="text-3xl font-bold"
-                    style={{
-                      fontFamily: "var(--font-outfit)",
-                      background: "linear-gradient(135deg, #E67817, #1F857A)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                    }}
-                  >
-                    <CountUp target={stat.value} suffix={stat.suffix} />
-                  </p>
-                  <p className="text-xs mt-1 text-white/60">{stat.label}</p>
+            {/* Pillars */}
+            <div className="grid grid-cols-2 gap-3">
+              {pillars.map((p) => (
+                <div key={p.title} className="card-lift rounded-xl p-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                  <span className="text-xl block mb-2">{p.icon}</span>
+                  <p className="font-semibold text-sm text-white mb-1">{p.title}</p>
+                  <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.4)" }}>{p.desc}</p>
                 </div>
               ))}
             </div>
           </div>
         </div>
       </div>
+
+      <div className="divider absolute bottom-0 left-0 right-0" />
     </section>
   );
 }

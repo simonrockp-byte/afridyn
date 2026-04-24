@@ -1,93 +1,54 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 export default function LoadingScreen() {
   const [progress, setProgress] = useState(0);
-  const [hidden, setHidden] = useState(false);
-  const screenRef = useRef<HTMLDivElement>(null);
+  const [gone, setGone] = useState(false);
 
   useEffect(() => {
-    let current = 0;
-    const interval = setInterval(() => {
-      current += Math.random() * 15 + 5;
-      if (current >= 100) {
-        current = 100;
-        clearInterval(interval);
-        setTimeout(() => {
-          setHidden(true);
-        }, 600);
+    let cur = 0;
+    const iv = setInterval(() => {
+      cur += Math.random() * 18 + 6;
+      if (cur >= 100) {
+        cur = 100;
+        clearInterval(iv);
+        setTimeout(() => setGone(true), 700);
       }
-      setProgress(Math.min(current, 100));
-    }, 120);
-
-    return () => clearInterval(interval);
+      setProgress(Math.min(cur, 100));
+    }, 110);
+    return () => clearInterval(iv);
   }, []);
 
-  if (hidden) return null;
+  if (gone) return null;
 
   return (
     <div
-      ref={screenRef}
       id="loading-screen"
-      className={hidden ? "hidden" : ""}
-      style={{
-        opacity: progress >= 100 ? 0 : 1,
-        transition: "opacity 0.8s ease",
-        pointerEvents: progress >= 100 ? "none" : "all",
-      }}
+      style={{ opacity: progress >= 100 ? 0 : 1, transition: "opacity 0.9s ease", pointerEvents: progress >= 100 ? "none" : "all" }}
     >
-      <div className="flex flex-col items-center gap-8">
-        <div
-          className="relative"
-          style={{
-            animation: "spin 3s linear infinite",
-          }}
-        >
-          <Image
-            src="/afridyn_logo.png"
-            alt="Afridyn Engineering"
-            width={100}
-            height={100}
-            className="object-contain"
-            style={{ filter: "brightness(0) invert(1)" }}
-          />
+      <div className="flex flex-col items-center gap-10">
+        {/* Spinning logo ring */}
+        <div className="relative w-20 h-20 flex items-center justify-center">
+          <svg className="absolute inset-0 w-full h-full animate-spin" style={{ animationDuration: "3s" }} viewBox="0 0 80 80">
+            <circle cx="40" cy="40" r="36" fill="none" stroke="rgba(212,121,42,0.15)" strokeWidth="1" />
+            <circle cx="40" cy="40" r="36" fill="none" stroke="#D4792A" strokeWidth="1.5"
+              strokeDasharray="60 166" strokeLinecap="round" />
+          </svg>
+          <Image src="/afridyn_logo.png" alt="Afridyn" width={36} height={36} className="object-contain" style={{ filter: "brightness(0) invert(1)" }} />
         </div>
 
         <div className="text-center">
-          <p
-            className="text-white/60 text-sm tracking-[0.3em] uppercase mb-6"
-            style={{ fontFamily: "var(--font-mono)" }}
-          >
-            Engineering your experience...
+          <p className="text-white/30 text-xs tracking-[0.35em] uppercase mb-5 font-mono-custom">
+            Engineering your experience
           </p>
-
-          <div className="w-64 h-1 bg-white/10 rounded-full overflow-hidden">
-            <div
-              className="h-full rounded-full transition-all duration-200"
-              style={{
-                width: `${progress}%`,
-                background: "linear-gradient(90deg, #E67817, #1F857A)",
-              }}
-            />
+          <div className="w-48 h-px bg-white/5 rounded-full overflow-hidden mx-auto">
+            <div className="h-full rounded-full transition-all duration-150" style={{ width: `${progress}%`, background: "linear-gradient(90deg, #D4792A, #1A7A70)" }} />
           </div>
-
-          <p
-            className="text-white/40 text-xs mt-3"
-            style={{ fontFamily: "var(--font-mono)" }}
-          >
-            {Math.round(progress)}%
-          </p>
+          <p className="text-white/20 text-xs mt-3 font-mono-custom">{Math.round(progress)}%</p>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-      `}</style>
     </div>
   );
 }

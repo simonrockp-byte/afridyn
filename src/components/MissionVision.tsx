@@ -1,185 +1,86 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 
 export default function MissionVision() {
-  const sectionRef = useRef<HTMLElement>(null);
-
+  const ref = useRef<HTMLElement>(null);
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add("visible");
-        });
-      },
-      { threshold: 0.1 }
-    );
-    const reveals = sectionRef.current?.querySelectorAll(".reveal");
-    reveals?.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) e.target.classList.add("visible"); }, { threshold: 0.08 });
+    ref.current?.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
   }, []);
 
   return (
-    <section
-      id="mission"
-      ref={sectionRef}
-      className="py-24 relative overflow-hidden"
-      style={{ background: "#ffffff" }}
-    >
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="mission" ref={ref} className="section-pad relative overflow-hidden" style={{ background: "var(--navy-3)" }}>
+      <div className="divider absolute top-0 left-0 right-0" />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16 reveal">
-          <span
-            className="text-xs tracking-widest uppercase font-semibold"
-            style={{ color: "#E67817", fontFamily: "var(--font-mono)" }}
-          >
-            Our Purpose
-          </span>
-          <h2
-            className="text-4xl md:text-5xl font-bold mt-3"
-            style={{ fontFamily: "var(--font-outfit)", color: "#14223E" }}
-          >
-            Mission & Vision
+          <div className="label-chip mx-auto mb-5" style={{ display: "inline-flex" }}>Our Purpose</div>
+          <h2 className="font-display font-extrabold" style={{ fontSize: "clamp(2rem,4vw,3rem)", color: "#fff", letterSpacing: "-0.02em" }}>
+            Mission & <span className="text-grad-teal">Vision</span>
           </h2>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-2 gap-6 mb-12">
           {/* Mission */}
-          <div
-            className="reveal relative rounded-3xl overflow-hidden p-10"
-            style={{
-              background: "linear-gradient(135deg, #14223E 0%, #1a2d4a 100%)",
-              boxShadow: "0 30px 80px rgba(20,34,62,0.2)",
-            }}
-          >
-            <div
-              className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-10"
-              style={{
-                background: "#E67817",
-                filter: "blur(60px)",
-                transform: "translate(30%, -30%)",
-              }}
-            />
-            <div className="relative z-10">
-              <div
-                className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-6"
-                style={{ background: "rgba(230,120,23,0.15)", border: "1px solid rgba(230,120,23,0.3)" }}
-              >
-                🎯
-              </div>
-              <h3
-                className="text-2xl font-bold text-white mb-4"
-                style={{ fontFamily: "var(--font-outfit)" }}
-              >
-                Our Mission
-              </h3>
-              <p className="text-white/70 leading-relaxed text-lg">
+          <div className="reveal rounded-2xl overflow-hidden relative p-10" style={{ background: "rgba(212,121,42,0.05)", border: "1px solid rgba(212,121,42,0.12)" }}>
+            <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(212,121,42,0.1) 0%, transparent 70%)" }} />
+            <div className="relative">
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-6" style={{ background: "rgba(212,121,42,0.12)", border: "1px solid rgba(212,121,42,0.2)" }}>🎯</div>
+              <p className="font-mono-custom text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: "#D4792A" }}>Our Mission</p>
+              <h3 className="font-display font-bold text-white text-xl mb-4 leading-snug">Deliver engineering solutions that power Africa's industries</h3>
+              <p className="text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
                 To deliver exceptional engineering services that empower African industries,
-                drive economic growth, and create lasting value for our clients through
-                innovation, technical excellence, and uncompromising quality.
+                drive economic growth, and create lasting value through innovation, technical
+                excellence, and an uncompromising commitment to quality.
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                {["Excellence", "Innovation", "Value Creation"].map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 rounded-full text-xs font-medium"
-                    style={{
-                      background: "rgba(230,120,23,0.15)",
-                      border: "1px solid rgba(230,120,23,0.3)",
-                      color: "#E67817",
-                    }}
-                  >
-                    {tag}
-                  </span>
+              <div className="flex flex-wrap gap-2 mt-6">
+                {["Excellence","Innovation","Value Creation"].map((t) => (
+                  <span key={t} className="px-3 py-1 rounded-full text-xs font-medium" style={{ background: "rgba(212,121,42,0.1)", border: "1px solid rgba(212,121,42,0.2)", color: "#D4792A" }}>{t}</span>
                 ))}
               </div>
             </div>
           </div>
 
           {/* Vision */}
-          <div
-            className="reveal relative rounded-3xl overflow-hidden p-10"
-            style={{
-              background: "linear-gradient(135deg, #1F857A 0%, #166b61 100%)",
-              boxShadow: "0 30px 80px rgba(31,133,122,0.2)",
-            }}
-          >
-            <div
-              className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-10"
-              style={{
-                background: "#ffffff",
-                filter: "blur(60px)",
-                transform: "translate(30%, -30%)",
-              }}
-            />
-            <div className="relative z-10">
-              <div
-                className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-6"
-                style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)" }}
-              >
-                🔭
-              </div>
-              <h3
-                className="text-2xl font-bold text-white mb-4"
-                style={{ fontFamily: "var(--font-outfit)" }}
-              >
-                Our Vision
-              </h3>
-              <p className="text-white/80 leading-relaxed text-lg">
-                To be the foremost engineering services company in Africa, recognized for
+          <div className="reveal rounded-2xl overflow-hidden relative p-10" style={{ background: "rgba(26,122,112,0.05)", border: "1px solid rgba(26,122,112,0.15)", transitionDelay: "100ms" }}>
+            <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(26,122,112,0.1) 0%, transparent 70%)" }} />
+            <div className="relative">
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-6" style={{ background: "rgba(26,122,112,0.12)", border: "1px solid rgba(26,122,112,0.2)" }}>🔭</div>
+              <p className="font-mono-custom text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: "#22A090" }}>Our Vision</p>
+              <h3 className="font-display font-bold text-white text-xl mb-4 leading-snug">Africa's foremost engineering services company</h3>
+              <p className="text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
+                To be the foremost engineering services company in Africa — recognised for
                 transforming industrial landscapes through sustainable practices, cutting-edge
                 technology, and a team of world-class engineering professionals.
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                {["Pan-African", "Sustainable", "World-Class"].map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 rounded-full text-xs font-medium"
-                    style={{
-                      background: "rgba(255,255,255,0.15)",
-                      border: "1px solid rgba(255,255,255,0.3)",
-                      color: "rgba(255,255,255,0.9)",
-                    }}
-                  >
-                    {tag}
-                  </span>
+              <div className="flex flex-wrap gap-2 mt-6">
+                {["Pan-African","Sustainable","World-Class"].map((t) => (
+                  <span key={t} className="px-3 py-1 rounded-full text-xs font-medium" style={{ background: "rgba(26,122,112,0.1)", border: "1px solid rgba(26,122,112,0.2)", color: "#22A090" }}>{t}</span>
                 ))}
               </div>
             </div>
           </div>
         </div>
 
-        {/* Core values row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+        {/* Core values */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { icon: "⚡", title: "Innovation", desc: "Embracing new technologies" },
-            { icon: "🛡️", title: "Integrity", desc: "Honest and transparent" },
-            { icon: "🤝", title: "Collaboration", desc: "Partnering for success" },
-            { icon: "🌍", title: "Impact", desc: "Making Africa stronger" },
-          ].map((val, i) => (
-            <div
-              key={val.title}
-              className="reveal text-center p-6 rounded-2xl transition-all hover:-translate-y-2 hover:shadow-xl"
-              style={{
-                border: "1px solid rgba(20,34,62,0.08)",
-                background: "#fff",
-                transitionDelay: `${i * 80}ms`,
-              }}
-            >
-              <div className="text-3xl mb-3">{val.icon}</div>
-              <h4
-                className="font-bold mb-2"
-                style={{ fontFamily: "var(--font-outfit)", color: "#14223E" }}
-              >
-                {val.title}
-              </h4>
-              <p className="text-sm" style={{ color: "#595959" }}>
-                {val.desc}
-              </p>
+            { icon: "⚡", title: "Innovation", desc: "Embracing technology" },
+            { icon: "🛡️", title: "Integrity", desc: "Transparent business" },
+            { icon: "🤝", title: "Collaboration", desc: "Stronger together" },
+            { icon: "🌍", title: "Impact", desc: "Africa's progress" },
+          ].map((v, i) => (
+            <div key={v.title} className="reveal card-lift text-center p-6 rounded-xl" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", transitionDelay: `${i * 60}ms` }}>
+              <span className="text-2xl block mb-3">{v.icon}</span>
+              <p className="font-display font-bold text-white text-sm mb-1">{v.title}</p>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.38)" }}>{v.desc}</p>
             </div>
           ))}
         </div>
       </div>
+      <div className="divider absolute bottom-0 left-0 right-0" />
     </section>
   );
 }

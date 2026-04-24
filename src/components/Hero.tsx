@@ -6,173 +6,98 @@ import dynamic from "next/dynamic";
 const HeroCanvas = dynamic(() => import("./HeroCanvas"), { ssr: false });
 
 export default function Hero() {
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
+  const badgeRef  = useRef<HTMLDivElement>(null);
+  const h1Ref     = useRef<HTMLHeadingElement>(null);
+  const subRef    = useRef<HTMLParagraphElement>(null);
+  const ctaRef    = useRef<HTMLDivElement>(null);
+  const statsRef  = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const els = [titleRef.current, subtitleRef.current, ctaRef.current];
-    els.forEach((el, i) => {
+    const els = [badgeRef, h1Ref, subRef, ctaRef, statsRef];
+    els.forEach((r, i) => {
+      const el = r.current;
       if (!el) return;
       el.style.opacity = "0";
-      el.style.transform = "translateY(40px)";
+      el.style.transform = "translateY(28px)";
       setTimeout(() => {
-        if (!el) return;
-        el.style.transition = "opacity 0.9s ease, transform 0.9s ease";
+        el.style.transition = "opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1)";
         el.style.opacity = "1";
         el.style.transform = "translateY(0)";
-      }, 1200 + i * 200);
+      }, 900 + i * 140);
     });
   }, []);
 
-  const scrollToServices = () => {
-    document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center overflow-hidden"
-      style={{ background: "linear-gradient(135deg, #0d1b35 0%, #14223E 50%, #1a2d4a 100%)" }}
-    >
-      {/* 3D Canvas Background */}
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden" style={{ background: "var(--navy)" }}>
+      {/* 3D canvas */}
       <HeroCanvas />
 
-      {/* Radial gradient overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse at 60% 50%, rgba(230,120,23,0.08) 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, rgba(31,133,122,0.08) 0%, transparent 50%)",
-        }}
-      />
+      {/* Deep gradient overlays for legibility */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        background: "radial-gradient(ellipse 80% 60% at 15% 60%, rgba(11,22,40,0.7) 0%, transparent 100%)",
+      }} />
+      <div className="absolute inset-0 pointer-events-none" style={{
+        background: "linear-gradient(to right, rgba(11,22,40,0.95) 0%, rgba(11,22,40,0.6) 50%, rgba(11,22,40,0.1) 100%)",
+      }} />
+      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none" style={{
+        background: "linear-gradient(to top, var(--navy), transparent)",
+      }} />
 
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-32">
-        <div className="max-w-3xl">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full pt-24 pb-20">
+        <div className="max-w-2xl">
           {/* Badge */}
-          <div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8"
-            style={{
-              background: "rgba(230,120,23,0.1)",
-              border: "1px solid rgba(230,120,23,0.3)",
-            }}
-          >
-            <span
-              className="w-2 h-2 rounded-full animate-pulse"
-              style={{ background: "#E67817" }}
-            />
-            <span
-              className="text-xs tracking-widest uppercase"
-              style={{ color: "#E67817", fontFamily: "var(--font-mono)" }}
-            >
-              Engineering Excellence Across Africa
-            </span>
+          <div ref={badgeRef} className="label-chip mb-8">
+            Engineering Excellence Across Africa
           </div>
 
-          {/* Title */}
-          <h1
-            ref={titleRef}
-            className="text-5xl md:text-7xl font-bold leading-tight mb-6"
-            style={{ fontFamily: "var(--font-outfit)", color: "#fff" }}
-          >
-            AFRIDYN
-            <br />
-            <span
-              style={{
-                background: "linear-gradient(135deg, #E67817, #1F857A)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              ENGINEERING
-            </span>
-            <br />
-            <span style={{ fontSize: "0.55em", fontWeight: 400, color: "rgba(255,255,255,0.7)" }}>
-              LIMITED
-            </span>
+          {/* Headline */}
+          <h1 ref={h1Ref} className="font-display font-extrabold leading-[1.05] mb-6" style={{ fontSize: "clamp(2.8rem, 6vw, 5.5rem)", color: "#fff", letterSpacing: "-0.02em" }}>
+            Powering Africa's{" "}
+            <span className="text-grad-copper">Industrial</span>
+            <br />Future
           </h1>
 
-          {/* Subtitle */}
-          <p
-            ref={subtitleRef}
-            className="text-lg md:text-xl mb-10 max-w-xl"
-            style={{ color: "rgba(255,255,255,0.65)", lineHeight: 1.8 }}
-          >
-            Delivering world-class mechanical, electrical, IT, fibre optic, and logistics
-            engineering solutions that power Africa's industrial future.
+          {/* Sub */}
+          <p ref={subRef} className="text-lg leading-relaxed mb-10 max-w-lg" style={{ color: "rgba(255,255,255,0.55)" }}>
+            From mechanical spares to fibre optic networks — Afridyn Engineering delivers
+            world-class solutions built for Africa's most demanding environments.
           </p>
 
-          {/* CTA */}
-          <div ref={ctaRef} className="flex flex-wrap gap-4">
-            <button
-              onClick={scrollToServices}
-              className="group relative px-8 py-4 rounded-full font-semibold text-white transition-all hover:scale-105 hover:shadow-2xl overflow-hidden"
-              style={{ background: "linear-gradient(135deg, #E67817, #cc6a10)" }}
-            >
-              <span className="relative z-10 flex items-center gap-2">
-                Explore Our Services
-                <svg
-                  className="w-4 h-4 transition-transform group-hover:translate-x-1"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </span>
+          {/* CTAs */}
+          <div ref={ctaRef} className="flex flex-wrap gap-3 mb-16">
+            <button onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })} className="btn-primary">
+              Explore Services
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </button>
-
-            <button
-              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-              className="px-8 py-4 rounded-full font-semibold transition-all hover:scale-105"
-              style={{
-                border: "1px solid rgba(255,255,255,0.3)",
-                color: "rgba(255,255,255,0.85)",
-                background: "rgba(255,255,255,0.05)",
-              }}
-            >
+            <button onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })} className="btn-ghost">
               Contact Us
             </button>
           </div>
 
-          {/* Stats */}
-          <div className="flex flex-wrap gap-8 mt-16">
+          {/* Stats row */}
+          <div ref={statsRef} className="flex flex-wrap gap-8">
             {[
-              { value: "10+", label: "Years of Service" },
-              { value: "200+", label: "Projects Completed" },
-              { value: "50+", label: "Happy Clients" },
-            ].map((stat) => (
-              <div key={stat.label}>
-                <p
-                  className="text-3xl font-bold"
-                  style={{
-                    fontFamily: "var(--font-outfit)",
-                    background: "linear-gradient(135deg, #E67817, #1F857A)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}
-                >
-                  {stat.value}
-                </p>
-                <p className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>
-                  {stat.label}
-                </p>
+              { n: "10+", label: "Years Active" },
+              { n: "200+", label: "Projects Delivered" },
+              { n: "8", label: "Service Lines" },
+              { n: "ZPPA", label: "Approved Supplier" },
+            ].map((s) => (
+              <div key={s.label}>
+                <p className="font-display font-bold text-2xl text-grad-copper leading-none">{s.n}</p>
+                <p className="text-xs mt-1.5 tracking-wide" style={{ color: "rgba(255,255,255,0.4)" }}>{s.label}</p>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        <span className="text-xs tracking-widest text-white/40 uppercase">Scroll</span>
-        <div
-          className="w-px h-12 animate-pulse"
-          style={{ background: "linear-gradient(to bottom, rgba(230,120,23,0.8), transparent)" }}
-        />
+      {/* Scroll cue */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+        <svg className="w-5 h-5 text-white/20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
       </div>
     </section>
   );
