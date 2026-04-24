@@ -13,7 +13,7 @@ const services = [
     short: 'OEM-quality components for industrial machinery and electrical systems.',
     desc:  'We source and supply high-quality mechanical and electrical spare parts including bearings, motors, cables, switchgear, and instrumentation.',
     features: ['OEM & aftermarket parts', 'Rapid procurement', 'Quality certified', 'Technical guidance'],
-    accent: '#E8305A', sector: 'Industrial',
+    accent: '#334155', sector: 'Industrial',
     image: '/images/services/spares.png',
   },
   {
@@ -22,7 +22,7 @@ const services = [
     short: 'Preventive and corrective maintenance to maximise plant uptime.',
     desc:  'Our certified technicians deliver preventive, predictive, and corrective maintenance programs for mechanical and electrical systems.',
     features: ['Preventive programs', 'Emergency response', 'CMMS integration', 'SLA-backed service'],
-    accent: '#D4692A', sector: 'Mining / Industrial',
+    accent: '#475569', sector: 'Mining / Industrial',
     image: '/images/services/maintenance.png',
   },
   {
@@ -31,7 +31,7 @@ const services = [
     short: 'Strategic technical advisory and project management services.',
     desc:  'Expert engineering consultants providing feasibility studies, technical specifications, and execution oversight.',
     features: ['Feasibility studies', 'Project management', 'Risk assessment', 'Design & specification'],
-    accent: '#E8305A', sector: 'Multi-sector',
+    accent: '#334155', sector: 'Multi-sector',
     image: '/images/services/consultation.png',
   },
   {
@@ -40,7 +40,7 @@ const services = [
     short: 'Enterprise-grade hardware, servers, and infrastructure solutions.',
     desc:  'Procurement and supply of enterprise IT equipment including servers, workstations, and networking devices.',
     features: ['Enterprise hardware', 'Network infrastructure', 'Configuration & setup', 'Warranty & support'],
-    accent: '#D4692A', sector: 'Commercial / Industrial',
+    accent: '#475569', sector: 'Commercial / Industrial',
     image: '/images/services/it_supply.png',
   },
   {
@@ -49,7 +49,7 @@ const services = [
     short: 'Design, installation, splicing, and maintenance of fibre networks.',
     desc:  'Full-service capabilities including network design, cable laying, fusion splicing, and maintenance.',
     features: ['Network design', 'Fusion splicing', 'OTDR testing', '24/7 maintenance'],
-    accent: '#E8305A', sector: 'Telecoms / Infrastructure',
+    accent: '#334155', sector: 'Telecoms / Infrastructure',
     image: '/images/services/fibre.png',
   },
   {
@@ -58,7 +58,7 @@ const services = [
     short: 'Qualified engineering personnel on flexible contract terms.',
     desc:  'Access specialised engineering skills on demand — vetted, experienced technical personnel across all disciplines.',
     features: ['Vetted professionals', 'All disciplines', 'Flexible contracts', 'Skills transfer'],
-    accent: '#D4692A', sector: 'All Sectors',
+    accent: '#475569', sector: 'All Sectors',
     image: '/images/services/technical_outsourcing.png',
   },
   {
@@ -67,7 +67,7 @@ const services = [
     short: 'End-to-end supply chain analysis and optimisation.',
     desc:  'We analyse, design, and optimise supply chains and transportation networks for maximum efficiency.',
     features: ['Route optimisation', 'Cost reduction', 'Vendor management', 'KPI dashboards'],
-    accent: '#E8305A', sector: 'Mining / Commercial',
+    accent: '#334155', sector: 'Mining / Commercial',
     image: '/images/services/logistics.png',
   },
   {
@@ -76,7 +76,7 @@ const services = [
     short: 'Seamless customs clearance and international freight management.',
     desc:  'Complete customs brokerage and freight forwarding ensuring goods cross borders efficiently.',
     features: ['Customs clearance', 'Full documentation', 'Freight forwarding', 'Track & trace'],
-    accent: '#D4692A', sector: 'Import / Export',
+    accent: '#475569', sector: 'Import / Export',
     image: '/images/services/maintenance.png',
   },
 ]
@@ -229,14 +229,14 @@ export function Services() {
       <div
         className="absolute top-0 right-0 w-[480px] h-[480px] rounded-full pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, rgba(232,48,90,0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(51,65,85,0.06) 0%, transparent 70%)',
           filter: 'blur(100px)',
         }}
       />
       <div
         className="absolute bottom-0 left-0 w-[480px] h-[480px] rounded-full pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, rgba(212,105,42,0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(71,85,105,0.06) 0%, transparent 70%)',
           filter: 'blur(100px)',
         }}
       />
@@ -252,7 +252,7 @@ export function Services() {
         >
           <div className="label-chip label-chip-dark mx-auto mb-5">Advanced Technical Solutions</div>
           <h2
-            className="font-display font-black text-white mb-6"
+            className="font-display font-black text-white text-center mb-6 w-full"
             style={{ fontSize: 'clamp(2.2rem, 6vw, 4.5rem)', letterSpacing: '-0.04em' }}
           >
             Technical<br />
@@ -266,7 +266,7 @@ export function Services() {
               Capability
             </span>
           </h2>
-          <p className="text-lg text-white/50 leading-relaxed">
+          <p className="text-lg text-white/50 leading-relaxed text-center">
             Robust engineering, maintenance, and IT infrastructure solutions
             across Sub-Saharan Africa's critical sectors.
           </p>
