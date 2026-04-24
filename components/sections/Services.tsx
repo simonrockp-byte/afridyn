@@ -248,15 +248,23 @@ export function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center max-w-2xl mx-auto mb-20"
+          className="text-center max-w-2xl mx-auto mb-20 flex flex-col items-center"
         >
-          <div className="section-label justify-center mb-5">Advanced Technical Solutions</div>
+          <div className="label-chip label-chip-dark mx-auto mb-5">Advanced Technical Solutions</div>
           <h2
             className="font-display font-black text-white mb-6"
             style={{ fontSize: 'clamp(2.2rem, 6vw, 4.5rem)', letterSpacing: '-0.04em' }}
           >
             Technical<br />
-            <span className="text-gradient-fire">Capability</span>
+            <span
+              className="text-gradient-fire"
+              style={{
+                backgroundSize: '200% auto',
+                animation: 'fireShift 4s ease-in-out infinite',
+              }}
+            >
+              Capability
+            </span>
           </h2>
           <p className="text-lg text-white/50 leading-relaxed">
             Robust engineering, maintenance, and IT infrastructure solutions

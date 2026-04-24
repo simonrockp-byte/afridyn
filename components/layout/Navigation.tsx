@@ -35,7 +35,7 @@ export function Navigation() {
     setMenuOpen(false)
     const el = document.getElementById(id)
     if (el) {
-      const offset = 80 // height of header
+      const offset = 72 // height of header
       const bodyRect = document.body.getBoundingClientRect().top
       const elementRect = el.getBoundingClientRect().top
       const elementPosition = elementRect - bodyRect
@@ -51,13 +51,13 @@ export function Navigation() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'h-16 bg-[#080810]/95 border-b border-white/10 shadow-lg' : 'h-20 bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-[72px] flex items-center ${
+        scrolled ? 'bg-[#080810]/95 border-b border-white/10 shadow-lg' : 'bg-transparent'
       }`}
       style={{ backdropFilter: scrolled ? 'blur(16px)' : 'none' }}
     >
-      <div className="container h-full">
-        <div className="flex items-center justify-between h-full">
+      <div className="container w-full">
+        <div className="flex items-center justify-between w-full">
 
           {/* Logo */}
           <button
@@ -88,7 +88,7 @@ export function Navigation() {
                   className={`px-4 py-2 text-[13px] font-semibold tracking-wide transition-all rounded-lg uppercase
                     ${active === link.href 
                       ? 'text-white bg-white/10' 
-                      : 'text-white/60 hover:text-white hover:bg-white/5'}`}
+                      : 'text-white/50 hover:text-white hover:bg-white/5'}`}
                 >
                   {link.label}
                 </button>
@@ -116,7 +116,7 @@ export function Navigation() {
 
       {/* Mobile Menu (Standard Drawer) */}
       <div 
-        className={`lg:hidden fixed inset-0 top-[64px] z-40 bg-[#080810]/98 transition-all duration-500 overflow-y-auto
+        className={`lg:hidden fixed inset-0 top-[72px] z-40 bg-[#080810]/98 transition-all duration-500 overflow-y-auto
           ${menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
         style={{ backdropFilter: 'blur(20px)' }}
       >

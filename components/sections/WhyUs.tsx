@@ -72,54 +72,31 @@ export function WhyUs() {
       />
 
       <div className="container relative z-10">
-        {/* Header row */}
-        <div className="flex flex-col lg:flex-row lg:items-end gap-12 mb-[72px]">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="lg:max-w-lg"
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="text-center max-w-2xl mx-auto mb-20 flex flex-col items-center"
+        >
+          <div className="label-chip label-chip-dark mx-auto mb-5">Success Factors</div>
+          <h2
+            className="font-display font-black text-white mb-6"
+            style={{ fontSize: 'clamp(2.2rem, 6vw, 4.5rem)', letterSpacing: '-0.04em' }}
           >
-            <div className="section-label mb-5">Success Factors</div>
-            <h2
-              className="font-display font-black text-white"
-              style={{ fontSize: 'clamp(2rem, 5.5vw, 4rem)', letterSpacing: '-0.04em' }}
-            >
-              The Afridyn<br />
-              <span className="text-gradient-fire">Difference</span>
-            </h2>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
-            className="lg:ml-auto"
-          >
-            <div
-              className="rounded-2xl p-7"
+            The Afridyn<br />
+            <span
+              className="text-gradient-fire"
               style={{
-                background: 'rgba(255,255,255,0.025)',
-                border: '1px solid rgba(255,255,255,0.07)',
-                maxWidth: 340,
+                backgroundSize: '200% auto',
+                animation: 'fireShift 4s ease-in-out infinite',
               }}
             >
-              <p className="text-[10px] font-mono font-bold uppercase tracking-[0.25em] text-white/30 mb-5">
-                Industry Coverage
-              </p>
-              <ul className="space-y-3">
-                {industries.map(v => (
-                  <li key={v} className="flex items-center gap-3 text-[13px] text-white/45">
-                    <span className="w-1 h-1 rounded-full shrink-0 bg-copper" style={{ background: '#D4692A' }} />
-                    {v}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
-        </div>
+              Difference
+            </span>
+          </h2>
+        </motion.div>
 
         {/* Cards grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -166,6 +143,49 @@ export function WhyUs() {
             )
           })}
         </div>
+
+        {/* Industry Coverage - Excess Info Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+          className="mt-16 rounded-3xl p-8 lg:p-12 relative overflow-hidden group"
+          style={{
+            background: 'linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)',
+            border: '1px solid rgba(255,255,255,0.07)',
+          }}
+        >
+          {/* Subtle glow effect */}
+          <div
+            className="absolute top-0 right-0 w-64 h-64 bg-[#D4692A] opacity-0 group-hover:opacity-10 rounded-full blur-[80px] pointer-events-none transition-opacity duration-700"
+          />
+
+          <div className="flex flex-col lg:flex-row gap-8 items-center justify-between relative z-10">
+            <div className="lg:max-w-md text-center lg:text-left">
+              <h3 className="font-display font-bold text-2xl text-white mb-3">Extensive Industry Coverage</h3>
+              <p className="text-white/50 text-[13px] leading-relaxed">
+                Our operations span across critical sectors, providing specialised engineering, maintenance, and IT solutions tailored to the unique demands of each industry.
+              </p>
+            </div>
+            
+            <div className="flex flex-wrap justify-center lg:justify-end gap-3 lg:max-w-xl">
+              {industries.map(v => (
+                <span 
+                  key={v} 
+                  className="px-4 py-2 rounded-full text-[12px] font-medium transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:text-white"
+                  style={{
+                    background: 'rgba(255,255,255,0.04)',
+                    border: '1px solid rgba(255,255,255,0.08)',
+                    color: 'rgba(255,255,255,0.6)'
+                  }}
+                >
+                  {v}
+                </span>
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )
