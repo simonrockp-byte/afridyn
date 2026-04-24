@@ -26,6 +26,14 @@ export function Hero() {
         animation: 'bgShift 12s ease-in-out infinite',
       }}>
 
+      {/* ── Background Image Layer ── */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.12] grayscale mix-blend-screen"
+        style={{
+          backgroundImage: 'url(/images/assets/hero_original.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }} />
+
       {/* ── Aurora orbs ── */}
       <div className="hero-orb" style={{
         width: 600, height: 600,

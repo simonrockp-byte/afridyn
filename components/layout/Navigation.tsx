@@ -44,13 +44,12 @@ export function Navigation() {
 
           {/* Logo */}
           <button onClick={() => goto('#home')} className="flex items-center gap-3 group">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-display font-black text-sm"
-              style={{ background: 'linear-gradient(135deg, #D4692A, #B85A1A)' }}>
-              AE
+            <div className="relative w-10 h-10 overflow-hidden">
+              <img src="/images/logo.png" alt="Afridyn Logo" className="w-full h-full object-contain" />
             </div>
-            <div className="leading-none text-left">
-              <span className="block font-display font-black text-white text-sm tracking-[.15em]">AFRIDYN</span>
-              <span className="block text-[8px] tracking-[.3em] font-mono" style={{ color: 'rgba(255,255,255,0.3)' }}>ENGINEERING</span>
+            <div className="leading-tight text-left">
+              <span className="block font-display font-black text-white text-base tracking-[.05em]">AFRIDYN</span>
+              <span className="block text-[9px] tracking-[.25em] font-mono" style={{ color: 'rgba(255,255,255,0.4)' }}>ENGINEERING</span>
             </div>
           </button>
 

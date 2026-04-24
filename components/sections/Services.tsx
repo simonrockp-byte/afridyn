@@ -13,7 +13,7 @@ const services = [
     features: ['OEM & aftermarket parts', 'Rapid procurement', 'Quality certified', 'Technical guidance'],
     accent: '#FF2D55',
     sector: 'Industrial',
-    image: '/images/services/spares.png',
+    image: '/images/assets/spares.png',
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const services = [
     features: ['Preventive programs', 'Emergency response', 'CMMS integration', 'SLA-backed service'],
     accent: '#FF6A00',
     sector: 'Mining/Industrial',
-    image: '/images/services/maintenance.png',
+    image: '/images/assets/maintenance.png',
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ const services = [
     features: ['Feasibility studies', 'Project management', 'Risk assessment', 'Design & specification'],
     accent: '#CC00FF',
     sector: 'Multi-sector',
-    image: '/images/services/consultation.png',
+    image: '/images/assets/consultation.png',
   },
   {
     id: 4,
@@ -46,7 +46,7 @@ const services = [
     features: ['Enterprise hardware', 'Network infrastructure', 'Configuration & setup', 'Warranty & support'],
     accent: '#0D7A6F',
     sector: 'Commercial/Industrial',
-    image: '/images/services/it_supply.png',
+    image: '/images/assets/it_supply.png',
   },
   {
     id: 5,
@@ -57,7 +57,7 @@ const services = [
     features: ['Network design', 'Fusion splicing', 'OTDR testing', '24/7 maintenance'],
     accent: '#FF2D55',
     sector: 'Telecoms/Infrastructure',
-    image: '/images/services/fibre.png',
+    image: '/images/assets/fibre.png',
   },
   {
     id: 6,
@@ -68,7 +68,7 @@ const services = [
     features: ['Vetted professionals', 'All disciplines', 'Flexible contracts', 'Skills transfer'],
     accent: '#FF6A00',
     sector: 'All sectors',
-    image: 'https://images.unsplash.com/photo-1600880210834-8b6b7a4be602?q=80&w=800&auto=format&fit=crop',
+    image: '/images/assets/technical_outsourcing.png',
   },
   {
     id: 7,
@@ -79,7 +79,7 @@ const services = [
     features: ['Route optimisation', 'Cost reduction', 'Vendor management', 'KPI dashboards'],
     accent: '#CC00FF',
     sector: 'Mining/Commercial',
-    image: 'https://images.unsplash.com/photo-1519003306447-da7f91754403?q=80&w=800&auto=format&fit=crop',
+    image: '/images/assets/logistics.png',
   },
   {
     id: 8,
@@ -90,7 +90,7 @@ const services = [
     features: ['Customs clearance', 'Full documentation', 'Freight forwarding', 'Track & trace'],
     accent: '#0D7A6F',
     sector: 'Import/Export',
-    image: 'https://images.unsplash.com/photo-1566140967404-b8b393ed4f3a?q=80&w=800&auto=format&fit=crop',
+    image: '/images/assets/forwarding.png',
   },
 ]
 
@@ -206,7 +206,7 @@ function ServiceCard({ s, i, active, setActive }: any) {
             <div className="pt-6 border-t border-black/[0.05] space-y-6">
               <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{s.desc}</p>
               <div className="grid grid-cols-1 gap-3">
-                {s.features.map(f => (
+                {s.features.map((f: string) => (
                   <div key={f} className="flex items-center gap-3 text-[13px]" style={{ color: 'var(--text-secondary)' }}>
                     <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: s.accent }} />
                     {f}

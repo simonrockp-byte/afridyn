@@ -7,7 +7,7 @@ const sectors = [
     icon: Pickaxe,
     label: 'Mining',
     color: '#FF2D55',
-    bg: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=600&auto=format&fit=crop',
+    bg: '/images/assets/maintenance.png',
     desc: 'Maintenance, spares & workforce for major African mining operations.',
     stat: '60% of our work',
   },
@@ -15,7 +15,7 @@ const sectors = [
     icon: HardHat,
     label: 'Construction',
     color: '#FF6A00',
-    bg: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=600&auto=format&fit=crop',
+    bg: '/images/assets/spares.png',
     desc: 'Engineering consultation and equipment for infrastructure builds.',
     stat: 'Active projects',
   },
@@ -23,7 +23,7 @@ const sectors = [
     icon: Building2,
     label: 'Manufacturing',
     color: '#CC00FF',
-    bg: 'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?q=80&w=600&auto=format&fit=crop',
+    bg: '/images/assets/spares.png',
     desc: 'Operational efficiency and spare parts for production facilities.',
     stat: 'Multi-sector',
   },
@@ -31,7 +31,7 @@ const sectors = [
     icon: Laptop2,
     label: 'Commercial',
     color: '#FF2D55',
-    bg: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600&auto=format&fit=crop',
+    bg: '/images/assets/it_supply.png',
     desc: 'IT equipment and technical outsourcing for growing businesses.',
     stat: 'Enterprise grade',
   },
@@ -39,7 +39,7 @@ const sectors = [
     icon: Wifi,
     label: 'Telecoms',
     color: '#FF6A00',
-    bg: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=600&auto=format&fit=crop',
+    bg: '/images/assets/fibre.png',
     desc: 'Optical fibre installation and 24/7 network maintenance.',
     stat: 'Pan-African',
   },
@@ -94,8 +94,14 @@ export function Sectors() {
                   backdropFilter: 'blur(12px)',
                 }}
               >
+                {/* Background Image with Overlay */}
+                <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500">
+                  <img src={s.bg} alt="" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+                  <div className="absolute inset-0 bg-navy-900/80" />
+                </div>
+
                 {/* Content */}
-                <div className="p-6 text-center flex flex-col items-center gap-4">
+                <div className="p-6 text-center flex flex-col items-center gap-4 relative z-10">
                   {/* Icon with animated glow */}
                   <div className="relative">
                     <div className="w-14 h-14 rounded-2xl flex items-center justify-center"
@@ -108,7 +114,7 @@ export function Sectors() {
 
                   <div>
                     <h4 className="font-display font-bold text-base text-white mb-2">{s.label}</h4>
-                    <p className="text-[11px] leading-relaxed" style={{ color: 'rgba(255,255,255,0.45)' }}>{s.desc}</p>
+                    <p className="text-[11px] leading-relaxed" style={{ color: 'rgba(255,255,255,0.6)' }}>{s.desc}</p>
                   </div>
 
                   {/* Stat pill */}

@@ -53,19 +53,35 @@ export function About() {
           </div>
 
           {/* RIGHT */}
-          <div className="space-y-6 reveal">
+          <div className="space-y-8 reveal">
+            {/* Team/Facility Visual */}
+            <div className="relative rounded-3xl overflow-hidden aspect-[4/3] group shadow-2xl"
+              style={{ border: '1px solid var(--border)' }}>
+              <img 
+                src="/images/assets/technical_outsourcing.png" 
+                alt="Afridyn Technical Team" 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent opacity-60" />
+              <div className="absolute bottom-6 left-6">
+                 <div className="label-chip label-chip-dark" style={{ background: 'rgba(255,45,85,0.8)', borderColor: 'rgba(255,255,255,0.2)' }}>
+                   Technical Excellence
+                 </div>
+              </div>
+            </div>
+
             {/* Mission/Vision cards */}
-            <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
-              <div className="p-7" style={{ background: 'linear-gradient(135deg, var(--navy-900), var(--navy-800))' }}>
-                <span className="label-chip label-chip-dark mb-4 block" style={{ display: 'inline-block' }}>Mission</span>
-                <p className="text-white/80 text-sm leading-relaxed">
-                  To deliver reliable engineering, maintenance, and technical support services that enhance operational efficiency, reduce downtime, and support sustainable industrial and infrastructure development.
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-6 rounded-2xl" style={{ border: '1px solid var(--border)', background: 'linear-gradient(135deg, var(--white), var(--surface)-2)' }}>
+                <span className="text-[10px] font-mono font-bold uppercase tracking-widest block mb-3" style={{ color: '#FF2D55' }}>Our Mission</span>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                  Reliable engineering support that enhances operational efficiency and supports African industrial development.
                 </p>
               </div>
-              <div className="p-7" style={{ background: 'linear-gradient(135deg, #0A2A24, #0D3830)' }}>
-                <span className="label-chip mb-4 block" style={{ display: 'inline-block', background: 'rgba(31,133,122,0.15)', borderColor: 'rgba(31,133,122,0.3)', color: '#2EA89A' }}>Vision</span>
-                <p className="text-white/80 text-sm leading-relaxed">
-                  To become a trusted engineering solutions provider recognized for technical excellence, reliability, and professional service delivery across Africa.
+              <div className="p-6 rounded-2xl" style={{ border: '1px solid var(--border)', background: 'linear-gradient(135deg, var(--white), var(--surface)-2)' }}>
+                <span className="text-[10px] font-mono font-bold uppercase tracking-widest block mb-3" style={{ color: '#CC00FF' }}>Our Vision</span>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                  To be the most trusted technical solutions provider for Africa's most demanding sectors.
                 </p>
               </div>
             </div>
