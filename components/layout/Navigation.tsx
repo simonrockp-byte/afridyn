@@ -88,11 +88,15 @@ export function Navigation() {
                 <img
                   src="/images/logo.png"
                   alt=""
-                  className="w-full h-full object-contain filter brightness-0 relative z-10 group-hover:scale-110 transition-transform duration-500"
+                  className={`w-full h-full object-contain relative z-10 group-hover:scale-110 transition-all duration-500 ${
+                    scrolled ? 'brightness-0' : 'brightness-0 invert'
+                  }`}
                 />
               </div>
               <div className="leading-none text-left relative z-10">
-                <span className="block font-display font-black text-slate-900 text-[17px] tracking-[.06em] group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-orange-500 group-hover:to-pink-500 transition-all duration-300">AFRIDYN</span>
+                <span className={`block font-display font-black text-[17px] tracking-[.06em] group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-orange-500 group-hover:to-pink-500 transition-all duration-300 ${
+                  scrolled ? 'text-slate-900' : 'text-white'
+                }`}>AFRIDYN</span>
                 <span className="block text-[9px] tracking-[.35em] font-mono text-orange-600/60 uppercase mt-1">Engineering</span>
               </div>
             </button>
@@ -108,7 +112,7 @@ export function Navigation() {
                   className={`relative px-5 py-2.5 text-[13px] font-bold tracking-[0.06em] transition-colors rounded-full uppercase
                     ${active === link.href 
                       ? 'text-white' 
-                      : 'text-slate-500 hover:text-orange-600'}`}
+                      : scrolled ? 'text-slate-500 hover:text-orange-600' : 'text-white/70 hover:text-white'}`}
                 >
                   {active === link.href && (
                     <motion.div
