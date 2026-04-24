@@ -3,19 +3,20 @@ import { ArrowRight, ChevronDown } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const PARTICLES = [
-  { left: '8%',  top: '60%', size: 3, dur: 8,  del: 0,   color: '#334155' },
-  { left: '18%', top: '78%', size: 2, dur: 10, del: 1.2, color: '#0F172A' },
-  { left: '32%', top: '68%', size: 4, dur: 7,  del: 0.5, color: '#334155' },
-  { left: '48%', top: '82%', size: 2, dur: 11, del: 2.0, color: '#0F172A' },
-  { left: '62%', top: '64%', size: 3, dur: 9,  del: 1.7, color: '#1E293B' },
-  { left: '75%', top: '74%', size: 4, dur: 8,  del: 0.3, color: '#334155' },
-  { left: '88%', top: '58%', size: 2, dur: 12, del: 2.4, color: '#0F172A' },
-  { left: '52%', top: '55%', size: 3, dur: 9,  del: 0.8, color: '#1E293B' },
+  { left: '8%',  top: '60%', size: 3, dur: 8,  del: 0,   color: '#CBD5E1' },
+  { left: '18%', top: '78%', size: 2, dur: 10, del: 1.2, color: '#94A3B8' },
+  { left: '32%', top: '68%', size: 4, dur: 7,  del: 0.5, color: '#E2E8F0' },
+  { left: '48%', top: '82%', size: 2, dur: 11, del: 2.0, color: '#94A3B8' },
+  { left: '62%', top: '64%', size: 3, dur: 9,  del: 1.7, color: '#CBD5E1' },
+  { left: '75%', top: '74%', size: 4, dur: 8,  del: 0.3, color: '#E2E8F0' },
+  { left: '88%', top: '58%', size: 2, dur: 12, del: 2.4, color: '#94A3B8' },
+  { left: '52%', top: '55%', size: 3, dur: 9,  del: 0.8, color: '#CBD5E1' },
 ]
 
 const fadeUp = (delay = 0) => ({
   initial:   { opacity: 0, y: 32 },
-  animate:   { opacity: 1, y: 0 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
   transition: { duration: 0.85, delay, ease: [0.16, 1, 0.3, 1] as [number,number,number,number] },
 })
 
@@ -27,7 +28,7 @@ export function Hero() {
     <section
       id="home"
       className="relative min-h-screen flex items-center overflow-hidden"
-      style={{ background: '#06060E' }}
+      style={{ background: '#F8FAFC' }}
     >
       {/* ── Full-bleed vivid background ── */}
       <div
@@ -36,59 +37,47 @@ export function Hero() {
           backgroundImage: 'url(/images/assets/hero-banner-afridyn.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center 40%',
-          opacity: 0.55,
+          opacity: 0.15,
+          mixBlendMode: 'multiply'
         }}
       />
 
-      {/* ── Warm colour-grade ── */}
+      {/* ── Light colour-grade ── */}
       <div
         className="absolute inset-0 z-0"
         style={{
           background:
-            'linear-gradient(135deg, rgba(51,65,85,0.28) 0%, transparent 50%, rgba(71,85,105,0.22) 100%)',
+            'linear-gradient(135deg, rgba(248,250,252,0.8) 0%, transparent 50%, rgba(241,245,249,0.8) 100%)',
         }}
       />
 
-      {/* ── Bottom-to-top fade for readability ── */}
+      {/* ── Bottom-to-top fade for transitions ── */}
       <div
         className="absolute inset-0 z-0"
         style={{
           background:
-            'linear-gradient(to top, #06060E 0%, rgba(6,6,14,0.72) 28%, rgba(6,6,14,0.0) 60%)',
+            'linear-gradient(to top, #F8FAFC 0%, rgba(248,250,252,0.8) 15%, transparent 100%)',
         }}
       />
 
-      {/* ── Nav area darken ── */}
-      <div
-        className="absolute top-0 left-0 right-0 h-48 z-0"
-        style={{
-          background: 'linear-gradient(to bottom, rgba(6,6,14,0.80) 0%, transparent 100%)',
-        }}
-      />
-
-      {/* ── Aurora orbs ── */}
+      {/* ── Soft Orbs for Light Mode ── */}
       <div className="hero-orb" style={{
-        width: 900, height: 900, top: '-25%', right: '-15%',
-        background: 'radial-gradient(circle, rgba(51,65,85,0.22) 0%, transparent 65%)',
-        filter: 'blur(90px)', animation: 'orbFloat1 14s ease-in-out infinite',
+        width: 800, height: 800, top: '-15%', right: '-10%',
+        background: 'radial-gradient(circle, rgba(226,232,240,0.4) 0%, transparent 70%)',
+        filter: 'blur(100px)', animation: 'orbFloat1 16s ease-in-out infinite',
       }} />
       <div className="hero-orb" style={{
-        width: 700, height: 700, bottom: '-20%', left: '-12%',
-        background: 'radial-gradient(circle, rgba(71,85,105,0.20) 0%, transparent 65%)',
-        filter: 'blur(80px)', animation: 'orbFloat2 18s ease-in-out infinite',
-      }} />
-      <div className="hero-orb" style={{
-        width: 450, height: 450, top: '15%', left: '38%',
-        background: 'radial-gradient(circle, rgba(30,41,59,0.10) 0%, transparent 65%)',
-        filter: 'blur(60px)', animation: 'orbFloat3 22s ease-in-out infinite',
+        width: 600, height: 600, bottom: '-15%', left: '-8%',
+        background: 'radial-gradient(circle, rgba(241,245,249,0.5) 0%, transparent 70%)',
+        filter: 'blur(80px)', animation: 'orbFloat2 20s ease-in-out infinite',
       }} />
 
-      {/* ── Grid ── */}
+      {/* ── Subtle Grid ── */}
       <div className="absolute inset-0 z-0 pointer-events-none" style={{
         backgroundImage:
-          'linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),' +
-          'linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px)',
-        backgroundSize: '72px 72px',
+          'linear-gradient(rgba(15,23,42,0.03) 1px, transparent 1px),' +
+          'linear-gradient(90deg, rgba(15,23,42,0.03) 1px, transparent 1px)',
+        backgroundSize: '64px 64px',
       }} />
 
       {/* ── Particles ── */}
@@ -97,9 +86,9 @@ export function Hero() {
           left: p.left, top: p.top,
           width: p.size, height: p.size,
           background: p.color,
-          boxShadow: `0 0 ${p.size * 6}px ${p.color}`,
           animationDuration: `${p.dur}s`,
           animationDelay: `${p.del}s`,
+          opacity: 0.3
         }} />
       ))}
 
@@ -112,38 +101,36 @@ export function Hero() {
             {...fadeUp(0)}
             className="inline-flex items-center gap-3 mb-10 px-5 py-2.5 rounded-full"
             style={{
-              background: 'rgba(51,65,85,0.10)',
-              border: '1px solid rgba(51,65,85,0.28)',
-              backdropFilter: 'blur(16px)',
+              background: 'rgba(15,23,42,0.03)',
+              border: '1px solid rgba(15,23,42,0.08)',
+              backdropFilter: 'blur(12px)',
             }}
           >
             <span
-              className="w-1.5 h-1.5 rounded-full"
+              className="w-1.5 h-1.5 rounded-full bg-slate-400"
               style={{
-                background: '#334155',
-                boxShadow: '0 0 8px #334155',
                 animation: 'pulseRing 2s ease-in-out infinite',
               }}
             />
             <span
-              className="text-[10px] font-mono font-bold tracking-[0.22em] uppercase"
-              style={{ color: '#64748B' }}
+              className="text-[10px] font-mono font-bold tracking-[0.22em] uppercase text-slate-500"
             >
               Certified Industrial Excellence — Zambia &amp; Sub-Saharan Africa
             </span>
           </motion.div>
 
-          {/* Headline — each line staggers in */}
+          {/* Headline */}
           <div className="mb-8 overflow-hidden">
             {['Engineering', 'Excellence'].map((word, i) => (
               <motion.div
                 key={word}
                 initial={{ opacity: 0, y: 60 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.9, delay: 0.15 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
               >
                 <span
-                  className="block font-display font-black text-white"
+                  className="block font-display font-black text-slate-900"
                   style={{
                     fontSize: 'clamp(3.2rem, 10vw, 7.5rem)',
                     letterSpacing: '-0.045em',
@@ -155,10 +142,10 @@ export function Hero() {
               </motion.div>
             ))}
 
-            {/* Gradient accent line */}
             <motion.div
               initial={{ opacity: 0, y: 60 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.9, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}
             >
               <span
@@ -177,8 +164,7 @@ export function Hero() {
           {/* Sub-copy */}
           <motion.p
             {...fadeUp(0.55)}
-            className="text-lg md:text-xl leading-relaxed mb-12 max-w-2xl"
-            style={{ color: 'rgba(255,255,255,0.58)' }}
+            className="text-lg md:text-xl leading-relaxed mb-12 max-w-2xl text-slate-500"
           >
             Afridyn Engineering delivers mechanical, electrical, IT, and fibre optic
             solutions for mining, manufacturing, and infrastructure sectors across
@@ -196,9 +182,9 @@ export function Hero() {
               whileTap={{ scale: 0.97 }}
               className="btn btn-lg font-bold"
               style={{
-                background: 'linear-gradient(135deg, #334155, #475569)',
+                background: 'linear-gradient(135deg, #0F172A, #334155)',
                 color: '#fff',
-                boxShadow: '0 6px 32px rgba(51,65,85,0.45)',
+                boxShadow: '0 8px 32px rgba(15,23,42,0.15)',
                 borderRadius: 14,
                 fontSize: 16,
                 padding: '16px 38px',
@@ -214,13 +200,13 @@ export function Hero() {
               whileTap={{ scale: 0.97 }}
               className="btn btn-lg"
               style={{
-                background: 'rgba(255,255,255,0.07)',
-                border: '1px solid rgba(255,255,255,0.20)',
-                color: 'rgba(255,255,255,0.88)',
+                background: '#fff',
+                border: '1px solid rgba(15,23,42,0.1)',
+                color: '#0F172A',
+                boxShadow: '0 4px 20px rgba(15,23,42,0.05)',
                 borderRadius: 14,
                 fontSize: 16,
                 padding: '16px 38px',
-                backdropFilter: 'blur(16px)',
               }}
             >
               Get a Quote
@@ -237,12 +223,12 @@ export function Hero() {
         onClick={() => goto('trust')}
         aria-label="Scroll down"
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 group z-10"
-        style={{ color: 'rgba(255,255,255,0.22)' }}
+        style={{ color: 'rgba(15,23,42,0.2)' }}
       >
         <ChevronDown
           size={26}
           strokeWidth={1.4}
-          className="animate-bounce group-hover:text-white/55 transition-colors"
+          className="animate-bounce group-hover:text-slate-900 transition-colors"
         />
       </motion.button>
     </section>

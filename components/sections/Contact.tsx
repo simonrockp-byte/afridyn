@@ -55,13 +55,13 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="section relative overflow-hidden" style={{ background: '#0E0E1A' }}>
+    <section id="contact" className="section relative overflow-hidden" style={{ background: '#F1F5F9' }}>
 
       {/* Ambient */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none opacity-10"
-        style={{ background: 'radial-gradient(circle, rgba(71,85,105,0.15) 0%, transparent 70%)', filter: 'blur(100px)' }} />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[400px] rounded-full pointer-events-none opacity-10"
-        style={{ background: 'radial-gradient(circle, rgba(51,65,85,0.15) 0%, transparent 70%)', filter: 'blur(100px)' }} />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none opacity-20"
+        style={{ background: 'radial-gradient(circle, rgba(15,23,42,0.05) 0%, transparent 70%)', filter: 'blur(100px)' }} />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[400px] rounded-full pointer-events-none opacity-20"
+        style={{ background: 'radial-gradient(circle, rgba(15,23,42,0.05) 0%, transparent 70%)', filter: 'blur(100px)' }} />
 
       <div className="container relative z-10 max-w-6xl">
         <div className="grid lg:grid-cols-[1fr_1.5fr] gap-16 xl:gap-24 items-start">
@@ -75,18 +75,18 @@ export function Contact() {
           >
             <div className="section-label mb-5">Connect with Us</div>
             <h2
-              className="font-display font-black text-white mb-6"
+              className="font-display font-black text-slate-900 mb-6"
               style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', letterSpacing: '-0.04em', lineHeight: 1.05 }}
             >
               Let&apos;s Discuss<br />
               <span className="text-gradient-fire">Your Project</span>
             </h2>
-            <p className="text-[15px] leading-relaxed text-white/50 mb-12">
+            <p className="text-[15px] leading-relaxed text-slate-500 mb-12">
               Whether you need spare parts, maintenance support, or comprehensive
               engineering consultation — our team is ready to help.
             </p>
 
-            {/* Contact Details (Clean List) */}
+            {/* Contact Details */}
             <div className="space-y-6">
               {contactInfo.map(({ icon: Icon, title, val }, i) => (
                 <motion.div
@@ -97,12 +97,12 @@ export function Contact() {
                   transition={{ delay: i * 0.1, duration: 0.5, ease: 'easeOut' }}
                   className="flex items-start gap-5"
                 >
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center shrink-0 bg-white/[0.03] border border-white/[0.08] text-white/60">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center shrink-0 bg-white border border-slate-200 text-slate-600 shadow-sm">
                     <Icon size={20} strokeWidth={1.5} />
                   </div>
                   <div className="pt-1">
-                    <p className="text-[11px] font-mono font-bold uppercase tracking-[0.15em] text-white/40 mb-1">{title}</p>
-                    <p className="text-[15px] text-white/80 whitespace-pre-line leading-relaxed">{val}</p>
+                    <p className="text-[11px] font-mono font-bold uppercase tracking-[0.15em] text-slate-400 mb-1">{title}</p>
+                    <p className="text-[15px] text-slate-700 whitespace-pre-line leading-relaxed">{val}</p>
                   </div>
                 </motion.div>
               ))}
@@ -115,21 +115,15 @@ export function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.65, delay: 0.12, ease: 'easeOut' }}
-            className="rounded-3xl p-8 md:p-10"
-            style={{
-              background: 'rgba(255,255,255,0.02)',
-              border: '1px solid rgba(255,255,255,0.06)',
-              backdropFilter: 'blur(24px)',
-              boxShadow: '0 32px 80px rgba(0,0,0,0.4)',
-            }}
+            className="rounded-3xl p-8 md:p-10 bg-white border border-slate-200 shadow-[0_32px_80px_rgba(15,23,42,0.08)]"
           >
             {status === 'success' ? (
               <div className="flex flex-col items-center text-center py-16">
                 <div className="w-20 h-20 rounded-full flex items-center justify-center mb-6 bg-green-500/10 border border-green-500/20">
                   <CheckCircle size={36} className="text-green-500" strokeWidth={1.6} />
                 </div>
-                <h3 className="font-display font-bold text-2xl text-white mb-3">Inquiry Received</h3>
-                <p className="text-[15px] text-white/50 max-w-xs mx-auto leading-relaxed">
+                <h3 className="font-display font-bold text-2xl text-slate-900 mb-3">Inquiry Received</h3>
+                <p className="text-[15px] text-slate-500 max-w-xs mx-auto leading-relaxed">
                   Thank you for reaching out. Our engineering team will respond within 24 hours.
                 </p>
                 <button
@@ -142,8 +136,8 @@ export function Contact() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="mb-6">
-                  <h3 className="font-display font-bold text-2xl text-white mb-2">Request a Quote</h3>
-                  <p className="text-[14px] text-white/40">Technical procurement and project estimates.</p>
+                  <h3 className="font-display font-bold text-2xl text-slate-900 mb-2">Request a Quote</h3>
+                  <p className="text-[14px] text-slate-500">Technical procurement and project estimates.</p>
                 </div>
 
                 {status === 'error' && (
@@ -198,11 +192,11 @@ export function Contact() {
                     value={form.service}
                     onChange={set('service')}
                     className="form-input cursor-pointer appearance-none"
-                    style={{ color: form.service ? '#fff' : 'rgba(255,255,255,0.4)' }}
+                    style={{ color: form.service ? '#0F172A' : '#94A3B8' }}
                   >
                     <option value="" disabled>Select expertise required…</option>
                     {serviceOptions.map(s => (
-                      <option key={s} value={s} className="bg-[#161624] text-white">{s}</option>
+                      <option key={s} value={s} className="bg-white text-slate-900">{s}</option>
                     ))}
                   </select>
                 </div>

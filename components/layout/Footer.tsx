@@ -35,12 +35,12 @@ export function Footer() {
   const springY = useSpring(mouseY, { stiffness: 100, damping: 30 })
 
   // Tilt transforms
-  const rotateX = useTransform(springY, [-300, 300], [5, -5])
-  const rotateY = useTransform(springX, [-300, 300], [-5, 5])
+  const rotateX = useTransform(springY, [-300, 300], [2, -2])
+  const rotateY = useTransform(springX, [-300, 300], [-2, 2])
   
   // Floating orb positions
-  const orbX = useTransform(springX, [-500, 500], [-20, 20])
-  const orbY = useTransform(springY, [-500, 500], [-20, 20])
+  const orbX = useTransform(springX, [-500, 500], [-10, 10])
+  const orbY = useTransform(springY, [-500, 500], [-10, 10])
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return
@@ -62,30 +62,26 @@ export function Footer() {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className="relative overflow-hidden pt-24 pb-12" 
-      style={{ background: '#030308', perspective: '1000px' }}
+      style={{ background: '#F8FAFC', perspective: '1000px' }}
     >
       {/* 3D Background Layers */}
       <motion.div 
         style={{ rotateX, rotateY, z: -100 }}
         className="absolute inset-0 z-0 pointer-events-none"
       >
-        {/* Loud Glow Orbs */}
+        {/* Soft Glow Orbs */}
         <motion.div 
-          className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full opacity-20 blur-[120px]"
-          style={{ x: orbX, y: orbY, background: 'radial-gradient(circle, #334155 0%, transparent 70%)' }}
+          className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full opacity-30 blur-[120px]"
+          style={{ x: orbX, y: orbY, background: 'radial-gradient(circle, #E2E8F0 0%, transparent 70%)' }}
         />
         <motion.div 
-          className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full opacity-20 blur-[120px]"
-          style={{ x: useTransform(orbX, (v) => -v), y: useTransform(orbY, (v) => -v), background: 'radial-gradient(circle, #0F172A 0%, transparent 70%)' }}
-        />
-        <motion.div 
-          className="absolute top-[20%] right-[10%] w-[30%] h-[30%] rounded-full opacity-15 blur-[100px]"
-          style={{ background: 'radial-gradient(circle, #1E293B 0%, transparent 70%)' }}
+          className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full opacity-30 blur-[120px]"
+          style={{ x: useTransform(orbX, (v) => -v), y: useTransform(orbY, (v) => -v), background: 'radial-gradient(circle, #F1F5F9 0%, transparent 70%)' }}
         />
 
-        {/* Blueprint Pattern */}
+        {/* Blueprint Pattern (Lighter for Light Mode) */}
         <div
-          className="absolute inset-0 opacity-[0.05]"
+          className="absolute inset-0 opacity-[0.03] mix-blend-multiply"
           style={{
             backgroundImage: 'url(/images/assets/footer-blueprint-afridyn.png)',
             backgroundSize: 'cover',
@@ -94,14 +90,14 @@ export function Footer() {
         />
       </motion.div>
 
-      {/* Top Animated "Loud" Border */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] overflow-hidden">
+      {/* Top Animated Border */}
+      <div className="absolute top-0 left-0 right-0 h-[1px] overflow-hidden">
         <motion.div 
           animate={{ x: ['-100%', '100%'] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
           className="w-full h-full"
           style={{ 
-            background: 'linear-gradient(90deg, transparent, #334155, #64748B, #0F172A, transparent)',
+            background: 'linear-gradient(90deg, transparent, rgba(15, 23, 42, 0.05), rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.05), transparent)',
             width: '200%'
           }}
         />
@@ -118,24 +114,24 @@ export function Footer() {
           {/* Brand */}
           <div className="flex flex-col items-center md:items-start">
             <motion.div 
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.02 }}
               className="flex items-center gap-4 mb-8"
             >
-              <div className="p-2 rounded-xl bg-white/5 border border-white/10 relative group">
-                <div className="absolute inset-0 bg-gradient-to-tr from-slate-600 via-slate-500 to-slate-800 opacity-0 group-hover:opacity-20 blur-xl transition-opacity" />
+              <div className="p-2 rounded-xl bg-slate-900/[0.03] border border-slate-900/10 relative group">
+                <div className="absolute inset-0 bg-slate-900 opacity-0 group-hover:opacity-5 blur-xl transition-opacity" />
                 <img
                   src="/images/logo.png"
                   alt="Afridyn Logo"
-                  className="w-10 h-10 object-contain filter brightness-0 invert"
+                  className="w-10 h-10 object-contain filter brightness-0"
                 />
               </div>
               <div>
-                <p className="font-display font-black text-white text-xl tracking-[.15em]">AFRIDYN</p>
-                <p className="text-[10px] tracking-[.4em] font-mono text-white/40 uppercase mt-0.5">Engineering Limited</p>
+                <p className="font-display font-black text-slate-900 text-xl tracking-[.15em]">AFRIDYN</p>
+                <p className="text-[10px] tracking-[.4em] font-mono text-slate-400 uppercase mt-0.5">Engineering Limited</p>
               </div>
             </motion.div>
             
-            <p className="text-sm leading-relaxed text-white/50 max-w-xs mb-8 mx-auto md:mx-0">
+            <p className="text-sm leading-relaxed text-slate-500 max-w-xs mb-8 mx-auto md:mx-0">
               World-class engineering solutions, technical procurement, and
               infrastructure services across Sub-Saharan Africa.
             </p>
@@ -144,12 +140,12 @@ export function Footer() {
               {['PACRA', 'ZPPA', 'TPIN'].map(tag => (
                 <motion.span
                   key={tag}
-                  whileHover={{ y: -2, borderColor: 'rgba(255,255,255,0.2)' }}
+                  whileHover={{ y: -2, backgroundColor: 'rgba(15,23,42,0.05)' }}
                   className="px-4 py-1.5 rounded-full text-[11px] font-mono font-bold tracking-wider"
                   style={{
-                    border: '1px solid rgba(255,255,255,0.08)',
-                    background: 'rgba(255,255,255,0.03)',
-                    color: 'rgba(255,255,255,0.4)',
+                    border: '1px solid rgba(15,23,42,0.08)',
+                    background: 'rgba(15,23,42,0.02)',
+                    color: 'rgba(15,23,42,0.4)',
                   }}
                 >
                   {tag}
@@ -160,8 +156,8 @@ export function Footer() {
 
           {/* Expertise */}
           <div className="space-y-6">
-            <h4 className="text-white font-display font-bold text-[13px] tracking-[0.25em] uppercase flex items-center justify-center md:justify-start gap-3">
-              <span className="w-8 h-px bg-slate-600/50 hidden md:block" />
+            <h4 className="text-slate-900 font-display font-bold text-[13px] tracking-[0.25em] uppercase flex items-center justify-center md:justify-start gap-3">
+              <span className="w-8 h-px bg-slate-200 hidden md:block" />
               Expertise
             </h4>
             <ul className="space-y-4">
@@ -172,9 +168,9 @@ export function Footer() {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: idx * 0.05 }}
                     onClick={() => goto('services')}
-                    className="text-[14px] text-white/40 hover:text-white transition-all group flex items-center justify-center md:justify-start gap-3 hover:translate-x-2"
+                    className="text-[14px] text-slate-500 hover:text-slate-900 transition-all group flex items-center justify-center md:justify-start gap-3 hover:translate-x-2"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-slate-500 scale-0 group-hover:scale-100 transition-transform" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-300 scale-0 group-hover:scale-100 transition-transform" />
                     {s}
                   </motion.button>
                 </li>
@@ -184,8 +180,8 @@ export function Footer() {
 
           {/* Company */}
           <div className="space-y-6">
-            <h4 className="text-white font-display font-bold text-[13px] tracking-[0.25em] uppercase flex items-center justify-center md:justify-start gap-3">
-              <span className="w-8 h-px bg-slate-500/50 hidden md:block" />
+            <h4 className="text-slate-900 font-display font-bold text-[13px] tracking-[0.25em] uppercase flex items-center justify-center md:justify-start gap-3">
+              <span className="w-8 h-px bg-slate-200 hidden md:block" />
               Company
             </h4>
             <ul className="space-y-4">
@@ -196,9 +192,9 @@ export function Footer() {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: idx * 0.05 }}
                     onClick={() => goto(id)}
-                    className="text-[14px] text-white/40 hover:text-white transition-all group flex items-center justify-center md:justify-start gap-3 hover:translate-x-2"
+                    className="text-[14px] text-slate-500 hover:text-slate-900 transition-all group flex items-center justify-center md:justify-start gap-3 hover:translate-x-2"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-slate-600 scale-0 group-hover:scale-100 transition-transform" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-400 scale-0 group-hover:scale-100 transition-transform" />
                     {label}
                   </motion.button>
                 </li>
@@ -208,8 +204,8 @@ export function Footer() {
 
           {/* Contact */}
           <div className="space-y-6">
-            <h4 className="text-white font-display font-bold text-[13px] tracking-[0.25em] uppercase flex items-center justify-center md:justify-start gap-3">
-              <span className="w-8 h-px bg-slate-700/50 hidden md:block" />
+            <h4 className="text-slate-900 font-display font-bold text-[13px] tracking-[0.25em] uppercase flex items-center justify-center md:justify-start gap-3">
+              <span className="w-8 h-px bg-slate-200 hidden md:block" />
               Contact
             </h4>
             <div className="space-y-6">
@@ -226,14 +222,13 @@ export function Footer() {
                   className="flex flex-col md:flex-row items-center md:items-start gap-4 group cursor-pointer"
                 >
                   <div 
-                    className="p-3 rounded-xl bg-white/5 border border-white/10 transition-colors group-hover:border-white/20"
-                    style={{ color: 'rgba(255,255,255,0.3)' }}
+                    className="p-3 rounded-xl bg-slate-900/[0.03] border border-slate-900/10 transition-colors group-hover:border-slate-900/20"
+                    style={{ color: 'rgba(15,23,42,0.4)' }}
                   >
                     <Icon size={18} strokeWidth={1.5} className="group-hover:scale-110 transition-transform" style={{ color }} />
                   </div>
                   <span
-                    className="text-[14px] leading-relaxed transition-colors group-hover:text-white text-center md:text-left"
-                    style={{ color: 'rgba(255,255,255,0.4)' }}
+                    className="text-[14px] leading-relaxed transition-colors group-hover:text-slate-900 text-center md:text-left text-slate-500"
                   >
                     {text}
                   </span>
@@ -244,25 +239,24 @@ export function Footer() {
         </motion.div>
 
         {/* Bottom bar */}
-        <div className="pt-10 border-t border-white/5 flex flex-col lg:flex-row items-center justify-between gap-8">
-          <p className="text-[12px] font-medium tracking-wide text-white/30 text-center lg:text-left">
-            © {new Date().getFullYear()} <span className="text-white">Afridyn Engineering Limited</span>. All rights reserved.
+        <div className="pt-10 border-t border-slate-200 flex flex-col lg:flex-row items-center justify-between gap-8">
+          <p className="text-[12px] font-medium tracking-wide text-slate-400 text-center lg:text-left">
+            © {new Date().getFullYear()} <span className="text-slate-900">Afridyn Engineering Limited</span>. All rights reserved.
           </p>
           
           <div className="flex flex-wrap justify-center items-center gap-8 text-[11px] font-mono tracking-[0.3em] uppercase">
             <div className="flex items-center gap-3">
-              <span className="text-white/20">PACRA</span>
-              <span className="text-white/60">120261040695</span>
+              <span className="text-slate-400">PACRA</span>
+              <span className="text-slate-700">120261040695</span>
             </div>
-            <div className="w-px h-4 bg-white/10 hidden sm:block" />
+            <div className="w-px h-4 bg-slate-200 hidden sm:block" />
             <div className="flex items-center gap-3">
-              <span className="text-white/20">ZPPA</span>
-              <span className="text-white/60">137269</span>
+              <span className="text-slate-400">ZPPA</span>
+              <span className="text-slate-700">137269</span>
             </div>
           </div>
 
           <div className="flex items-center gap-4">
-             {/* Social or status indicators could go here */}
              <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20">
                 <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
                 <span className="text-[9px] font-bold text-green-500 uppercase tracking-widest">Network Live</span>

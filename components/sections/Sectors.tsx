@@ -19,21 +19,21 @@ const sectors = [
   {
     img:   '/images/assets/industry-energy-afridyn.png',
     label: 'Energy',
-    color: '#F0A040',
+    color: '#334155',
     desc:  'Engineering solutions for power generation and distribution.',
     stat:  'Infrastructure',
   },
   {
     img:   '/images/assets/service-icon-it-afridyn.png',
     label: 'Commercial / IT',
-    color: '#334155',
+    color: '#475569',
     desc:  'IT equipment and technical outsourcing for growing businesses.',
     stat:  'Enterprise grade',
   },
   {
     img:   '/images/assets/service-icon-fiber-afridyn.png',
     label: 'Telecoms',
-    color: '#475569',
+    color: '#334155',
     desc:  'Optical fibre installation and 24/7 network maintenance.',
     stat:  'Pan-African',
   },
@@ -44,15 +44,15 @@ export function Sectors() {
     <section
       id="sectors"
       className="section relative overflow-hidden"
-      style={{ background: '#0E0E1A' }}
+      style={{ background: '#FFFFFF' }}
     >
       {/* Subtle grid */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage:
-            'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),' +
-            'linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)',
+            'linear-gradient(rgba(15,23,42,0.03) 1px, transparent 1px),' +
+            'linear-gradient(90deg, rgba(15,23,42,0.03) 1px, transparent 1px)',
           backgroundSize: '64px 64px',
         }}
       />
@@ -66,11 +66,11 @@ export function Sectors() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
           className="text-center mb-16"
         >
-          <div className="section-label justify-center mb-5" style={{ color: '#334155' }}>
+          <div className="section-label justify-center mb-5">
             Industries We Serve
           </div>
           <h2
-            className="font-display font-black text-white"
+            className="font-display font-black text-slate-900"
             style={{ fontSize: 'clamp(2rem, 5.5vw, 4rem)', letterSpacing: '-0.04em' }}
           >
             Driving Growth in<br />
@@ -90,14 +90,14 @@ export function Sectors() {
               whileHover={{ y: -6 }}
               className="group cursor-default relative rounded-3xl overflow-hidden p-7 flex flex-col items-center text-center gap-5 transition-all duration-300"
               style={{
-                border: '1px solid rgba(255,255,255,0.07)',
-                background: 'rgba(255,255,255,0.025)',
+                border: '1px solid rgba(15,23,42,0.06)',
+                background: '#F8FAFC',
               }}
             >
               {/* Hover glow */}
               <div
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{ background: `radial-gradient(circle at center, ${s.color}0A, transparent 70%)` }}
+                style={{ background: `radial-gradient(circle at center, ${s.color}08, transparent 70%)` }}
               />
 
               {/* Icon */}
@@ -106,22 +106,22 @@ export function Sectors() {
                   src={s.img}
                   alt={s.label}
                   className="w-full h-full object-contain"
-                  style={{ filter: 'drop-shadow(0 0 12px rgba(255,255,255,0.08))' }}
+                  style={{ filter: 'drop-shadow(0 4px 12px rgba(15,23,42,0.1))' }}
                 />
               </div>
 
               <div className="relative z-10 space-y-2">
-                <h4 className="font-display font-bold text-[17px] text-white tracking-tight">{s.label}</h4>
-                <p className="text-[12px] leading-relaxed text-white/45 group-hover:text-white/65 transition-colors">{s.desc}</p>
+                <h4 className="font-display font-bold text-[17px] text-slate-900 tracking-tight">{s.label}</h4>
+                <p className="text-[12px] leading-relaxed text-slate-500 group-hover:text-slate-700 transition-colors">{s.desc}</p>
               </div>
 
               {/* Stat pill */}
               <span
                 className="relative z-10 text-[10px] font-mono font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full"
                 style={{
-                  background: 'rgba(255,255,255,0.05)',
-                  color: 'rgba(255,255,255,0.4)',
-                  border: '1px solid rgba(255,255,255,0.09)',
+                  background: 'rgba(15,23,42,0.03)',
+                  color: 'rgba(15,23,42,0.5)',
+                  border: '1px solid rgba(15,23,42,0.08)',
                 }}
               >
                 {s.stat}

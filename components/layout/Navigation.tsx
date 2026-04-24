@@ -53,11 +53,11 @@ export function Navigation() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 h-[72px] flex items-center ${
-        scrolled ? 'bg-[#040406]/80' : 'bg-transparent'
+        scrolled ? 'bg-white/80' : 'bg-transparent'
       }`}
       style={{ 
         backdropFilter: scrolled ? 'blur(20px)' : 'none',
-        boxShadow: scrolled ? '0 10px 40px rgba(0,0,0,0.5)' : 'none'
+        boxShadow: scrolled ? '0 10px 40px rgba(15, 23, 42, 0.08)' : 'none'
       }}
     >
       {/* Animated glowing bottom border when scrolled */}
@@ -66,10 +66,9 @@ export function Navigation() {
           scrolled ? 'opacity-100' : 'opacity-0'
         }`}
         style={{
-          background: 'linear-gradient(90deg, transparent, rgba(148,163,184,0.3), #E2E8F0, rgba(148,163,184,0.3), transparent)',
+          background: 'linear-gradient(90deg, transparent, rgba(71, 85, 105, 0.1), rgba(15, 23, 42, 0.2), rgba(71, 85, 105, 0.1), transparent)',
           backgroundSize: '200% auto',
           animation: 'fireShift 4s ease-in-out infinite',
-          boxShadow: '0 0 15px 1px rgba(226,232,240,0.3)'
         }}
       />
 
@@ -84,17 +83,17 @@ export function Navigation() {
               aria-label="Afridyn Engineering — home"
             >
               <div className="relative w-10 h-10 flex items-center justify-center">
-                {/* Glowing orb behind logo on hover */}
-                <div className="absolute inset-0 bg-white/20 blur-xl rounded-full scale-0 group-hover:scale-150 transition-transform duration-500" />
+                {/* Subtle glow behind logo on hover */}
+                <div className="absolute inset-0 bg-slate-900/5 blur-xl rounded-full scale-0 group-hover:scale-150 transition-transform duration-500" />
                 <img
                   src="/images/logo.png"
                   alt=""
-                  className="w-full h-full object-contain filter brightness-0 invert relative z-10 group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-contain filter brightness-0 relative z-10 group-hover:scale-110 transition-transform duration-500"
                 />
               </div>
               <div className="leading-none text-left relative z-10">
-                <span className="block font-display font-black text-white text-[17px] tracking-[.06em] group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-[#94A3B8] transition-all duration-300">AFRIDYN</span>
-                <span className="block text-[9px] tracking-[.35em] font-mono text-white/50 uppercase mt-1">Engineering</span>
+                <span className="block font-display font-black text-slate-900 text-[17px] tracking-[.06em] group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-slate-900 group-hover:to-slate-500 transition-all duration-300">AFRIDYN</span>
+                <span className="block text-[9px] tracking-[.35em] font-mono text-slate-500 uppercase mt-1">Engineering</span>
               </div>
             </button>
           </div>
@@ -108,17 +107,16 @@ export function Navigation() {
                   onClick={() => goto(link.href)}
                   className={`relative px-5 py-2.5 text-[13px] font-semibold tracking-[0.06em] transition-colors rounded-full uppercase
                     ${active === link.href 
-                      ? 'text-white' 
-                      : 'text-white/50 hover:text-white'}`}
+                      ? 'text-slate-900' 
+                      : 'text-slate-500 hover:text-slate-900'}`}
                 >
                   {active === link.href && (
                     <motion.div
                       layoutId="active-nav-pill"
                       className="absolute inset-0 rounded-full"
                       style={{
-                        background: 'linear-gradient(135deg, rgba(71,85,105,0.4), rgba(30,41,59,0.4))',
-                        boxShadow: '0 0 15px rgba(100,116,139,0.3)',
-                        border: '1px solid rgba(148,163,184,0.2)'
+                        background: 'rgba(15, 23, 42, 0.05)',
+                        border: '1px solid rgba(15, 23, 42, 0.1)'
                       }}
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
@@ -132,14 +130,9 @@ export function Navigation() {
           {/* Right: CTA / Mobile Toggle */}
           <div className="flex justify-end items-center gap-4">
             <div className="relative group hidden lg:block">
-              {/* Animated glow behind button */}
+              {/* Subtle shadow glow behind button */}
               <div 
-                className="absolute -inset-[2px] rounded-xl blur-md opacity-30 group-hover:opacity-80 transition-opacity duration-500"
-                style={{
-                  background: 'linear-gradient(90deg, #475569, #E2E8F0, #475569)',
-                  backgroundSize: '200% auto',
-                  animation: 'fireShift 3s linear infinite'
-                }}
+                className="absolute -inset-[2px] rounded-xl blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-500 bg-slate-900/20"
               />
               <button
                 onClick={() => goto('contact')}
@@ -150,7 +143,7 @@ export function Navigation() {
             </div>
 
             <button
-              className="lg:hidden p-2 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-all"
+              className="lg:hidden p-2 rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-900/5 transition-all"
               onClick={() => setMenuOpen(v => !v)}
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             >
@@ -163,7 +156,7 @@ export function Navigation() {
 
       {/* Mobile Menu (Standard Drawer) */}
       <div 
-        className={`lg:hidden fixed inset-0 top-[72px] z-40 bg-[#040406]/98 transition-all duration-500 overflow-y-auto
+        className={`lg:hidden fixed inset-0 top-[72px] z-40 bg-white/98 transition-all duration-500 overflow-y-auto
           ${menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
         style={{ backdropFilter: 'blur(20px)' }}
       >
@@ -172,22 +165,13 @@ export function Navigation() {
             <button
               key={link.href}
               onClick={() => goto(link.href)}
-              className="text-left text-xl font-display font-bold text-white/60 hover:text-white py-4 px-2 border-b border-white/5 transition-all"
+              className="text-left text-xl font-display font-bold text-slate-400 hover:text-slate-900 py-4 px-2 border-b border-slate-100 transition-all"
               style={{ transitionDelay: `${i * 50}ms` }}
             >
               {link.label}
             </button>
           ))}
-          <div className="pt-8 relative group">
-            {/* Animated glow behind mobile button */}
-            <div 
-              className="absolute -inset-[2px] rounded-xl blur-md opacity-50 transition-opacity duration-500"
-              style={{
-                background: 'linear-gradient(90deg, #475569, #E2E8F0, #475569)',
-                backgroundSize: '200% auto',
-                animation: 'fireShift 3s linear infinite'
-              }}
-            />
+          <div className="pt-8">
             <button
               onClick={() => goto('contact')}
               className="relative btn btn-cta btn-lg w-full justify-center"

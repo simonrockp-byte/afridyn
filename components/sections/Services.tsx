@@ -105,15 +105,12 @@ function ServiceCard({
     >
       <div
         onClick={() => setActive(isActive ? null : s.id)}
-        className="relative h-full rounded-3xl cursor-pointer group transition-all duration-400 overflow-hidden flex flex-col"
+        className="relative h-full rounded-3xl cursor-pointer group transition-all duration-400 overflow-hidden flex flex-col border border-slate-200/60 bg-white"
         style={{
-          border: isActive
-            ? `1px solid ${s.accent}40`
-            : '1px solid rgba(255,255,255,0.07)',
-          background: isActive
-            ? `linear-gradient(160deg, ${s.accent}08 0%, rgba(14,14,26,0.95) 60%)`
-            : 'rgba(14,14,26,0.6)',
-          boxShadow: isActive ? `0 24px 60px ${s.accent}12` : 'none',
+          boxShadow: isActive 
+            ? `0 32px 64px -12px rgba(15, 23, 42, 0.12)` 
+            : '0 4px 20px -4px rgba(15, 23, 42, 0.03)',
+          transform: isActive ? 'scale(1.02)' : 'scale(1)',
         }}
       >
         {/* Image */}
@@ -128,14 +125,14 @@ function ServiceCard({
                 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop'
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0E0E1A] via-[#0E0E1A]/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent" />
 
           {/* Icon badge */}
           <div
             className="absolute bottom-5 left-5 w-12 h-12 rounded-2xl flex items-center justify-center backdrop-blur-xl border transition-transform duration-300 group-hover:-translate-y-1"
             style={{
-              background: `${s.accent}18`,
-              borderColor: `${s.accent}35`,
+              background: `rgba(255, 255, 255, 0.8)`,
+              borderColor: `rgba(15, 23, 42, 0.1)`,
               color: s.accent,
             }}
           >
@@ -157,10 +154,10 @@ function ServiceCard({
             {s.sector}
           </span>
 
-          <h3 className="font-display font-bold text-[17px] leading-snug mb-3 text-white tracking-tight">
+          <h3 className="font-display font-bold text-[17px] leading-snug mb-3 text-slate-900 tracking-tight">
             {s.title}
           </h3>
-          <p className="text-[13px] leading-relaxed text-white/50 group-hover:text-white/70 transition-colors mb-4 flex-1">
+          <p className="text-[13px] leading-relaxed text-slate-500 group-hover:text-slate-700 transition-colors mb-4 flex-1">
             {s.short}
           </p>
 
@@ -170,11 +167,11 @@ function ServiceCard({
             animate={{ height: isActive ? 'auto' : 0, opacity: isActive ? 1 : 0 }}
             className="overflow-hidden"
           >
-            <div className="pt-5 space-y-5 mt-1" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-              <p className="text-[13px] leading-relaxed text-white/55">{s.desc}</p>
+            <div className="pt-5 space-y-5 mt-1" style={{ borderTop: '1px solid rgba(15, 23, 42, 0.06)' }}>
+              <p className="text-[13px] leading-relaxed text-slate-600">{s.desc}</p>
               <ul className="space-y-2.5">
                 {s.features.map(f => (
-                  <li key={f} className="flex items-center gap-3 text-[13px] text-white/60">
+                  <li key={f} className="flex items-center gap-3 text-[13px] text-slate-600">
                     <span
                       className="w-1.5 h-1.5 rounded-full shrink-0"
                       style={{ background: s.accent }}
@@ -190,8 +187,8 @@ function ServiceCard({
                 }}
                 className="btn btn-lg w-full justify-center text-white mt-2"
                 style={{
-                  background: `linear-gradient(135deg, ${s.accent}CC, ${s.accent})`,
-                  boxShadow: `0 6px 20px ${s.accent}30`,
+                  background: 'linear-gradient(135deg, #0F172A, #334155)',
+                  boxShadow: `0 8px 24px rgba(15, 23, 42, 0.15)`,
                 }}
               >
                 Request Consultation
@@ -223,20 +220,20 @@ export function Services() {
     <section
       id="services"
       className="section relative overflow-hidden"
-      style={{ background: '#080810' }}
+      style={{ background: '#F8FAFC' }}
     >
       {/* Ambient orbs */}
       <div
         className="absolute top-0 right-0 w-[480px] h-[480px] rounded-full pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, rgba(51,65,85,0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(15, 23, 42, 0.03) 0%, transparent 70%)',
           filter: 'blur(100px)',
         }}
       />
       <div
         className="absolute bottom-0 left-0 w-[480px] h-[480px] rounded-full pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, rgba(71,85,105,0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(15, 23, 42, 0.03) 0%, transparent 70%)',
           filter: 'blur(100px)',
         }}
       />
@@ -250,23 +247,19 @@ export function Services() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="text-center max-w-2xl mx-auto mb-20 flex flex-col items-center"
         >
-          <div className="label-chip label-chip-dark mx-auto mb-5">Advanced Technical Solutions</div>
+          <div className="label-chip mb-5">Advanced Technical Solutions</div>
           <h2
-            className="font-display font-black text-white text-center mb-6 w-full"
+            className="font-display font-black text-slate-900 text-center mb-6 w-full"
             style={{ fontSize: 'clamp(2.2rem, 6vw, 4.5rem)', letterSpacing: '-0.04em' }}
           >
             Technical<br />
             <span
               className="text-gradient-fire"
-              style={{
-                backgroundSize: '200% auto',
-                animation: 'fireShift 4s ease-in-out infinite',
-              }}
             >
               Capability
             </span>
           </h2>
-          <p className="text-lg text-white/50 leading-relaxed text-center">
+          <p className="text-lg text-slate-500 leading-relaxed text-center">
             Robust engineering, maintenance, and IT infrastructure solutions
             across Sub-Saharan Africa's critical sectors.
           </p>
