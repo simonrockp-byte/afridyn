@@ -29,10 +29,12 @@ export function Hero() {
     <section
       id="home"
       className="relative min-h-screen flex items-center overflow-hidden"
-      style={{ background: '#F8FAFC' }}
+      style={{ background: '#020617' }}
     >
       {/* ── Three.js Scene ── */}
-      <Scene3D />
+      <div className="absolute inset-0 z-10">
+        <Scene3D />
+      </div>
 
       {/* ── Full-bleed vivid background ── */}
       <div
@@ -97,7 +99,7 @@ export function Hero() {
       ))}
 
       {/* ── Content ── */}
-      <div className="container relative z-10 pt-36 pb-32">
+      <div className="container relative z-20 pt-36 pb-32">
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -180,7 +182,7 @@ export function Hero() {
           {/* Sub-copy */}
           <motion.p
             {...fadeUp(0.55)}
-            className="text-lg md:text-xl leading-relaxed mb-12 max-w-2xl text-slate-500"
+            className="text-lg md:text-xl leading-relaxed mb-12 max-w-2xl text-white/60"
           >
             Afridyn Engineering delivers mechanical, electrical, IT, and fibre optic
             solutions for mining, manufacturing, and infrastructure sectors across
