@@ -20,11 +20,19 @@ const goto = (id: string) => {
 
 export function Footer() {
   return (
-    <footer style={{ background: '#050510' }}>
-      {/* Top accent */}
-      <div className="h-[2px] w-full" style={{ background: 'linear-gradient(90deg, transparent 0%, #FF2D55 30%, #CC00FF 70%, transparent 100%)' }} />
+    <footer className="relative overflow-hidden" style={{ background: '#050510' }}>
+      {/* Blueprint Background Overlay */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.03] mix-blend-screen"
+        style={{
+          backgroundImage: 'url(/images/assets/footer_blueprint.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }} />
 
-      <div className="container py-16">
+      {/* Top accent */}
+      <div className="relative z-10 h-[2px] w-full" style={{ background: 'linear-gradient(90deg, transparent 0%, #FF2D55 30%, #CC00FF 70%, transparent 100%)' }} />
+
+      <div className="container relative z-10 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
 
           {/* Brand */}

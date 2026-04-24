@@ -27,9 +27,9 @@ export function Hero() {
       }}>
 
       {/* ── Background Image Layer ── */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.12] grayscale mix-blend-screen"
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-20 mix-blend-overlay"
         style={{
-          backgroundImage: 'url(/images/assets/hero_original.png)',
+          backgroundImage: 'url(/images/assets/hero_banner.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }} />
@@ -115,7 +115,7 @@ export function Hero() {
               <br /><span className="text-gradient-fire">Across Africa</span>
             </h1>
 
-            <p className="text-lg leading-relaxed mb-8 max-w-xl" style={{
+            <p className="text-lg leading-relaxed mb-6 max-w-xl" style={{
               color: 'rgba(255,255,255,0.85)',
               animationDelay: '0.2s',
               textShadow: '0 1px 4px rgba(0,0,0,0.2)'
@@ -125,8 +125,24 @@ export function Hero() {
               sectors across Zambia and Sub-Saharan Africa.
             </p>
 
+            {/* Trust Badges */}
+            <div className="flex flex-wrap items-center gap-8 mb-10">
+              {[
+                { img: '/images/assets/badge_iso.png', label: 'ISO Certified' },
+                { img: '/images/assets/badge_support.png', label: '24/7 Support' },
+                { img: '/images/assets/badge_excellence.png', label: 'Project Excellence' },
+              ].map((b, i) => (
+                <div key={i} className="flex items-center gap-3 group">
+                  <div className="w-10 h-10 relative overflow-hidden transition-transform group-hover:scale-110">
+                    <img src={b.img} alt={b.label} className="w-full h-full object-contain" />
+                  </div>
+                  <span className="text-[10px] font-bold tracking-widest text-white/60 uppercase group-hover:text-white transition-colors">{b.label}</span>
+                </div>
+              ))}
+            </div>
+
             {/* CTA buttons */}
-            <div className="flex flex-wrap gap-4 mb-14">
+            <div className="flex flex-wrap gap-4 mb-8">
               <button onClick={() => goto('services')} className="btn btn-lg" style={{
                 background: 'linear-gradient(135deg, #FF2D55, #FF6A00)',
                 color: '#fff',
@@ -164,6 +180,23 @@ export function Hero() {
                 }}>
                 Get a Quote
               </button>
+            </div>
+
+            {/* Service Icons Grid */}
+            <div className="grid grid-cols-4 gap-4 mb-14 max-w-lg">
+              {[
+                { img: '/images/assets/icon_mechanical.png', label: 'Mechanical' },
+                { img: '/images/assets/icon_electrical.png', label: 'Electrical' },
+                { img: '/images/assets/icon_it.png', label: 'IT Solutions' },
+                { img: '/images/assets/icon_fiber.png', label: 'Fiber Optics' },
+              ].map((s, i) => (
+                <div key={i} className="flex flex-col items-center gap-2 group cursor-pointer" onClick={() => goto('services')}>
+                  <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-2 transition-all group-hover:bg-white/10 group-hover:border-white/20 group-hover:shadow-[0_0_20px_rgba(255,45,85,0.2)]">
+                    <img src={s.img} alt={s.label} className="w-full h-full object-contain" />
+                  </div>
+                  <span className="text-[10px] font-mono font-bold tracking-wider text-white/40 group-hover:text-white transition-colors">{s.label}</span>
+                </div>
+              ))}
             </div>
 
             {/* Stats */}

@@ -1,10 +1,11 @@
 'use client'
-import { Building2, Pickaxe, HardHat, Laptop2, Wifi } from 'lucide-react'
+import { Building2, Pickaxe, Laptop2, Wifi, Zap } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const sectors = [
   {
     icon: Pickaxe,
+    img: '/images/assets/industry_mining.png',
     label: 'Mining',
     color: '#FF2D55',
     bg: '/images/assets/maintenance.png',
@@ -12,15 +13,8 @@ const sectors = [
     stat: '60% of our work',
   },
   {
-    icon: HardHat,
-    label: 'Construction',
-    color: '#FF6A00',
-    bg: '/images/assets/spares.png',
-    desc: 'Engineering consultation and equipment for infrastructure builds.',
-    stat: 'Active projects',
-  },
-  {
     icon: Building2,
+    img: '/images/assets/industry_manufacturing.png',
     label: 'Manufacturing',
     color: '#CC00FF',
     bg: '/images/assets/spares.png',
@@ -28,8 +22,18 @@ const sectors = [
     stat: 'Multi-sector',
   },
   {
+    icon: Zap,
+    img: '/images/assets/industry_energy.png',
+    label: 'Energy',
+    color: '#FF6A00',
+    bg: '/images/assets/spares.png',
+    desc: 'Engineering solutions for power generation and distribution.',
+    stat: 'Infrastructure',
+  },
+  {
     icon: Laptop2,
-    label: 'Commercial',
+    img: '/images/assets/icon_it.png',
+    label: 'Commercial/IT',
     color: '#FF2D55',
     bg: '/images/assets/it_supply.png',
     desc: 'IT equipment and technical outsourcing for growing businesses.',
@@ -37,6 +41,7 @@ const sectors = [
   },
   {
     icon: Wifi,
+    img: '/images/assets/icon_fiber.png',
     label: 'Telecoms',
     color: '#FF6A00',
     bg: '/images/assets/fibre.png',
@@ -47,7 +52,7 @@ const sectors = [
 
 export function Sectors() {
   return (
-    <section className="section-sm relative overflow-hidden" style={{ background: 'var(--navy-900)' }}>
+    <section id="sectors" className="section-sm relative overflow-hidden" style={{ background: 'var(--navy-900)' }}>
 
       {/* Background grid */}
       <div className="absolute inset-0 pointer-events-none opacity-10"
@@ -102,14 +107,9 @@ export function Sectors() {
 
                 {/* Content */}
                 <div className="p-6 text-center flex flex-col items-center gap-4 relative z-10">
-                  {/* Icon with animated glow */}
-                  <div className="relative">
-                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center"
-                      style={{ background: `${s.color}15`, color: s.color, boxShadow: `0 0 0 0 ${s.color}30` }}>
-                      <Icon size={26} />
-                    </div>
-                    <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                      style={{ boxShadow: `0 0 20px ${s.color}40`, background: `${s.color}08` }} />
+                  {/* Industry Icon Illustration */}
+                  <div className="relative w-16 h-16 mb-2">
+                    <img src={s.img} alt={s.label} className="w-full h-full object-contain drop-shadow-[0_0_8px_rgba(255,45,85,0.5)]" />
                   </div>
 
                   <div>
