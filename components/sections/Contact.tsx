@@ -59,9 +59,9 @@ export function Contact() {
 
       {/* Ambient */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none opacity-10"
-        style={{ background: 'radial-gradient(circle, rgba(212,105,42,0.15) 0%, transparent 70%)', filter: 'blur(100px)' }} />
+        style={{ background: 'radial-gradient(circle, rgba(71,85,105,0.15) 0%, transparent 70%)', filter: 'blur(100px)' }} />
       <div className="absolute bottom-0 left-0 w-[500px] h-[400px] rounded-full pointer-events-none opacity-10"
-        style={{ background: 'radial-gradient(circle, rgba(232,48,90,0.15) 0%, transparent 70%)', filter: 'blur(100px)' }} />
+        style={{ background: 'radial-gradient(circle, rgba(51,65,85,0.15) 0%, transparent 70%)', filter: 'blur(100px)' }} />
 
       <div className="container relative z-10 max-w-6xl">
         <div className="grid lg:grid-cols-[1fr_1.5fr] gap-16 xl:gap-24 items-start">

@@ -3,14 +3,14 @@ import { ArrowRight, ChevronDown } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const PARTICLES = [
-  { left: '8%',  top: '60%', size: 3, dur: 8,  del: 0,   color: '#E8305A' },
-  { left: '18%', top: '78%', size: 2, dur: 10, del: 1.2, color: '#FF6B00' },
-  { left: '32%', top: '68%', size: 4, dur: 7,  del: 0.5, color: '#E8305A' },
-  { left: '48%', top: '82%', size: 2, dur: 11, del: 2.0, color: '#FF6B00' },
-  { left: '62%', top: '64%', size: 3, dur: 9,  del: 1.7, color: '#FFB800' },
-  { left: '75%', top: '74%', size: 4, dur: 8,  del: 0.3, color: '#E8305A' },
-  { left: '88%', top: '58%', size: 2, dur: 12, del: 2.4, color: '#FF6B00' },
-  { left: '52%', top: '55%', size: 3, dur: 9,  del: 0.8, color: '#FFB800' },
+  { left: '8%',  top: '60%', size: 3, dur: 8,  del: 0,   color: '#334155' },
+  { left: '18%', top: '78%', size: 2, dur: 10, del: 1.2, color: '#0F172A' },
+  { left: '32%', top: '68%', size: 4, dur: 7,  del: 0.5, color: '#334155' },
+  { left: '48%', top: '82%', size: 2, dur: 11, del: 2.0, color: '#0F172A' },
+  { left: '62%', top: '64%', size: 3, dur: 9,  del: 1.7, color: '#1E293B' },
+  { left: '75%', top: '74%', size: 4, dur: 8,  del: 0.3, color: '#334155' },
+  { left: '88%', top: '58%', size: 2, dur: 12, del: 2.4, color: '#0F172A' },
+  { left: '52%', top: '55%', size: 3, dur: 9,  del: 0.8, color: '#1E293B' },
 ]
 
 const fadeUp = (delay = 0) => ({
@@ -45,7 +45,7 @@ export function Hero() {
         className="absolute inset-0 z-0"
         style={{
           background:
-            'linear-gradient(135deg, rgba(232,48,90,0.28) 0%, transparent 50%, rgba(212,105,42,0.22) 100%)',
+            'linear-gradient(135deg, rgba(51,65,85,0.28) 0%, transparent 50%, rgba(71,85,105,0.22) 100%)',
         }}
       />
 
@@ -69,17 +69,17 @@ export function Hero() {
       {/* ── Aurora orbs ── */}
       <div className="hero-orb" style={{
         width: 900, height: 900, top: '-25%', right: '-15%',
-        background: 'radial-gradient(circle, rgba(232,48,90,0.22) 0%, transparent 65%)',
+        background: 'radial-gradient(circle, rgba(51,65,85,0.22) 0%, transparent 65%)',
         filter: 'blur(90px)', animation: 'orbFloat1 14s ease-in-out infinite',
       }} />
       <div className="hero-orb" style={{
         width: 700, height: 700, bottom: '-20%', left: '-12%',
-        background: 'radial-gradient(circle, rgba(212,105,42,0.20) 0%, transparent 65%)',
+        background: 'radial-gradient(circle, rgba(71,85,105,0.20) 0%, transparent 65%)',
         filter: 'blur(80px)', animation: 'orbFloat2 18s ease-in-out infinite',
       }} />
       <div className="hero-orb" style={{
         width: 450, height: 450, top: '15%', left: '38%',
-        background: 'radial-gradient(circle, rgba(255,184,0,0.10) 0%, transparent 65%)',
+        background: 'radial-gradient(circle, rgba(30,41,59,0.10) 0%, transparent 65%)',
         filter: 'blur(60px)', animation: 'orbFloat3 22s ease-in-out infinite',
       }} />
 
@@ -112,22 +112,22 @@ export function Hero() {
             {...fadeUp(0)}
             className="inline-flex items-center gap-3 mb-10 px-5 py-2.5 rounded-full"
             style={{
-              background: 'rgba(232,48,90,0.10)',
-              border: '1px solid rgba(232,48,90,0.28)',
+              background: 'rgba(51,65,85,0.10)',
+              border: '1px solid rgba(51,65,85,0.28)',
               backdropFilter: 'blur(16px)',
             }}
           >
             <span
               className="w-1.5 h-1.5 rounded-full"
               style={{
-                background: '#E8305A',
-                boxShadow: '0 0 8px #E8305A',
+                background: '#334155',
+                boxShadow: '0 0 8px #334155',
                 animation: 'pulseRing 2s ease-in-out infinite',
               }}
             />
             <span
               className="text-[10px] font-mono font-bold tracking-[0.22em] uppercase"
-              style={{ color: '#FF8090' }}
+              style={{ color: '#64748B' }}
             >
               Certified Industrial Excellence — Zambia &amp; Sub-Saharan Africa
             </span>
@@ -196,9 +196,9 @@ export function Hero() {
               whileTap={{ scale: 0.97 }}
               className="btn btn-lg font-bold"
               style={{
-                background: 'linear-gradient(135deg, #E8305A, #D4692A)',
+                background: 'linear-gradient(135deg, #334155, #475569)',
                 color: '#fff',
-                boxShadow: '0 6px 32px rgba(232,48,90,0.45)',
+                boxShadow: '0 6px 32px rgba(51,65,85,0.45)',
                 borderRadius: 14,
                 fontSize: 16,
                 padding: '16px 38px',

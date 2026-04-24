@@ -3,10 +3,10 @@ import { Zap, Shield, Target, Globe } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const pillars = [
-  { icon: Zap,    title: 'Innovation', desc: 'Modern engineering methods and technologies applied to complex industrial challenges.', color: '#D4692A' },
-  { icon: Shield, title: 'Integrity',  desc: 'Transparent operations backed by full PACRA, TPIN, and ZPPA regulatory compliance.', color: '#E8305A' },
-  { icon: Target, title: 'Precision',  desc: 'International-standard engineering execution on every project — zero tolerance for mediocrity.', color: '#D4692A' },
-  { icon: Globe,  title: 'Pan-African',desc: 'Local knowledge, pan-African capability. Headquartered in Lusaka, Zambia.', color: '#E8305A' },
+  { icon: Zap,    title: 'Innovation', desc: 'Modern engineering methods and technologies applied to complex industrial challenges.', color: '#475569' },
+  { icon: Shield, title: 'Integrity',  desc: 'Transparent operations backed by full PACRA, TPIN, and ZPPA regulatory compliance.', color: '#334155' },
+  { icon: Target, title: 'Precision',  desc: 'International-standard engineering execution on every project — zero tolerance for mediocrity.', color: '#475569' },
+  { icon: Globe,  title: 'Pan-African',desc: 'Local knowledge, pan-African capability. Headquartered in Lusaka, Zambia.', color: '#334155' },
 ]
 
 const credentials = [
@@ -106,7 +106,7 @@ export function About() {
                 <span
                   className="text-[10px] font-mono font-bold tracking-[0.18em] uppercase px-4 py-2 rounded-full"
                   style={{
-                    background: 'rgba(232,48,90,0.85)',
+                    background: 'rgba(51,65,85,0.85)',
                     border: '1px solid rgba(255,255,255,0.2)',
                     color: '#fff',
                     backdropFilter: 'blur(12px)',
@@ -120,8 +120,8 @@ export function About() {
             {/* Mission / Vision */}
             <div className="grid grid-cols-2 gap-3">
               {[
-                { label: 'Our Mission', color: '#E8305A', text: 'Reliable engineering support that enhances operational efficiency and supports African industrial development.' },
-                { label: 'Our Vision',  color: '#D4692A', text: 'To be the most trusted technical solutions provider for Africa\'s most demanding sectors.' },
+                { label: 'Our Mission', color: '#334155', text: 'Reliable engineering support that enhances operational efficiency and supports African industrial development.' },
+                { label: 'Our Vision',  color: '#475569', text: 'To be the most trusted technical solutions provider for Africa\'s most demanding sectors.' },
               ].map(card => (
                 <div
                   key={card.label}

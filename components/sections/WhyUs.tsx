@@ -8,42 +8,42 @@ const reasons = [
     title: 'Certified & Compliant',
     desc: 'Fully registered with PACRA, ZPPA-approved (Reg: 137269), and TPIN registered. We meet Zambia\'s highest procurement and regulatory standards.',
     highlight: 'ZPPA Approved',
-    color: '#D4692A',
+    color: '#475569',
   },
   {
     icon: UserCheck,
     title: 'Skilled Technical Team',
     desc: 'Qualified engineers, certified technicians, and industry specialists with verifiable experience across mechanical, electrical, IT, and fibre optic domains.',
     highlight: 'Expert Personnel',
-    color: '#E8305A',
+    color: '#334155',
   },
   {
     icon: Network,
     title: 'Strong Supplier Network',
     desc: 'Established relationships with global OEM suppliers and distributors, ensuring access to genuine parts, competitive pricing, and fast delivery.',
     highlight: 'Global Sourcing',
-    color: '#D4692A',
+    color: '#475569',
   },
   {
     icon: Gauge,
     title: 'Operational Efficiency Focus',
     desc: 'Every service is oriented towards improving your uptime, reducing costs, and optimising performance — measured outcomes, not just completed tasks.',
     highlight: 'Results Driven',
-    color: '#E8305A',
+    color: '#334155',
   },
   {
     icon: HeartHandshake,
     title: 'Customer-First Approach',
     desc: 'Responsive, accessible, and committed to building long-term partnerships. Your operational challenges are our engineering problems to solve.',
     highlight: 'Dedicated Support',
-    color: '#D4692A',
+    color: '#475569',
   },
   {
     icon: CheckCircle,
     title: 'Safety & Quality Standards',
     desc: 'Our operations adhere to international safety standards and quality assurance protocols on every engagement, regardless of scope.',
     highlight: 'ISO Standards',
-    color: '#E8305A',
+    color: '#334155',
   },
 ]
 
@@ -158,7 +158,7 @@ export function WhyUs() {
         >
           {/* Subtle glow effect */}
           <div
-            className="absolute top-0 right-0 w-64 h-64 bg-[#D4692A] opacity-0 group-hover:opacity-10 rounded-full blur-[80px] pointer-events-none transition-opacity duration-700"
+            className="absolute top-0 right-0 w-64 h-64 bg-[#475569] opacity-0 group-hover:opacity-10 rounded-full blur-[80px] pointer-events-none transition-opacity duration-700"
           />
 
           <div className="flex flex-col lg:flex-row gap-8 items-center justify-between relative z-10">

@@ -11,7 +11,7 @@ export default function NotFound() {
           backgroundSize: '60px 60px',
         }} />
       <div className="text-center relative z-10">
-        <p className="font-mono text-sm font-bold tracking-widest mb-4" style={{ color: '#D4692A' }}>404 — PAGE NOT FOUND</p>
+        <p className="font-mono text-sm font-bold tracking-widest mb-4" style={{ color: '#475569' }}>404 — PAGE NOT FOUND</p>
         <h1 className="font-display font-black text-white mb-4"
           style={{ fontSize: 'clamp(4rem, 15vw, 10rem)', letterSpacing: '-0.05em', lineHeight: 1, color: 'rgba(255,255,255,0.06)' }}>
           404

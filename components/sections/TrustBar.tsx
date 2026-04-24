@@ -2,16 +2,16 @@
 import { motion } from 'framer-motion'
 
 const badges = [
-  { img: '/images/assets/trust-badge-iso.png',              label: 'ISO Certified',      color: '#E8305A' },
-  { img: '/images/assets/trust-badge-support-afridyn.png',  label: '24/7 Support',       color: '#FF6B00' },
-  { img: '/images/assets/trust-badge-excellence-afridyn.png', label: 'Project Excellence', color: '#FFB800' },
+  { img: '/images/assets/trust-badge-iso.png',              label: 'ISO Certified',      color: '#334155' },
+  { img: '/images/assets/trust-badge-support-afridyn.png',  label: '24/7 Support',       color: '#0F172A' },
+  { img: '/images/assets/trust-badge-excellence-afridyn.png', label: 'Project Excellence', color: '#1E293B' },
 ]
 
 const serviceIcons = [
-  { img: '/images/assets/service-icon-mechanical-afridyn.png', label: 'Mechanical',   color: '#E8305A' },
-  { img: '/images/assets/service-icon-electrical-afridyn.png', label: 'Electrical',   color: '#FF6B00' },
-  { img: '/images/assets/service-icon-it-afridyn.png',         label: 'IT Solutions', color: '#FFB800' },
-  { img: '/images/assets/service-icon-fiber-afridyn.png',      label: 'Fiber Optics', color: '#E8305A' },
+  { img: '/images/assets/service-icon-mechanical-afridyn.png', label: 'Mechanical',   color: '#334155' },
+  { img: '/images/assets/service-icon-electrical-afridyn.png', label: 'Electrical',   color: '#0F172A' },
+  { img: '/images/assets/service-icon-it-afridyn.png',         label: 'IT Solutions', color: '#1E293B' },
+  { img: '/images/assets/service-icon-fiber-afridyn.png',      label: 'Fiber Optics', color: '#334155' },
 ]
 
 export function TrustBar() {
@@ -27,7 +27,7 @@ export function TrustBar() {
       {/* Thin top accent rule */}
       <div
         className="absolute top-0 left-0 right-0 h-px"
-        style={{ background: 'linear-gradient(90deg, transparent, rgba(232,48,90,0.4) 30%, rgba(212,105,42,0.4) 70%, transparent)' }}
+        style={{ background: 'linear-gradient(90deg, transparent, rgba(51,65,85,0.4) 30%, rgba(71,85,105,0.4) 70%, transparent)' }}
       />
 
       <div className="container py-16">

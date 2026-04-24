@@ -5,14 +5,14 @@ const sectors = [
   {
     img:   '/images/assets/industry-mining-afridyn.png',
     label: 'Mining',
-    color: '#E8305A',
+    color: '#334155',
     desc:  'Maintenance, spares & workforce for major African mining operations.',
     stat:  '60% of our work',
   },
   {
     img:   '/images/assets/industry-manufacturing-afridyn.png',
     label: 'Manufacturing',
-    color: '#D4692A',
+    color: '#475569',
     desc:  'Operational efficiency and spare parts for production facilities.',
     stat:  'Multi-sector',
   },
@@ -26,14 +26,14 @@ const sectors = [
   {
     img:   '/images/assets/service-icon-it-afridyn.png',
     label: 'Commercial / IT',
-    color: '#E8305A',
+    color: '#334155',
     desc:  'IT equipment and technical outsourcing for growing businesses.',
     stat:  'Enterprise grade',
   },
   {
     img:   '/images/assets/service-icon-fiber-afridyn.png',
     label: 'Telecoms',
-    color: '#D4692A',
+    color: '#475569',
     desc:  'Optical fibre installation and 24/7 network maintenance.',
     stat:  'Pan-African',
   },
@@ -66,7 +66,7 @@ export function Sectors() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
           className="text-center mb-16"
         >
-          <div className="section-label justify-center mb-5" style={{ color: '#E8305A' }}>
+          <div className="section-label justify-center mb-5" style={{ color: '#334155' }}>
             Industries We Serve
           </div>
           <h2

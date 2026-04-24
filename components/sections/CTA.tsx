@@ -10,7 +10,7 @@ export function CTA() {
       <div
         className="absolute top-0 left-1/4 w-[480px] h-[480px] rounded-full pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, rgba(232,48,90,0.10) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(51,65,85,0.10) 0%, transparent 70%)',
           filter: 'blur(80px)',
           animation: 'orbFloat1 16s ease-in-out infinite',
         }}
@@ -18,7 +18,7 @@ export function CTA() {
       <div
         className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, rgba(212,105,42,0.08) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(71,85,105,0.08) 0%, transparent 70%)',
           filter: 'blur(70px)',
           animation: 'orbFloat2 20s ease-in-out infinite',
         }}
@@ -32,9 +32,9 @@ export function CTA() {
           transition={{ duration: 0.65, ease: 'easeOut' }}
           className="rounded-3xl overflow-hidden relative"
           style={{
-            border: '1px solid rgba(232,48,90,0.16)',
+            border: '1px solid rgba(51,65,85,0.16)',
             background:
-              'linear-gradient(135deg, rgba(232,48,90,0.05) 0%, rgba(14,14,26,0.9) 50%, rgba(212,105,42,0.05) 100%)',
+              'linear-gradient(135deg, rgba(51,65,85,0.05) 0%, rgba(14,14,26,0.9) 50%, rgba(71,85,105,0.05) 100%)',
             backdropFilter: 'blur(24px)',
           }}
         >
@@ -44,7 +44,7 @@ export function CTA() {
             <div className="flex-1 text-center md:text-left">
               <div
                 className="section-label mb-5 md:justify-start justify-center"
-                style={{ color: '#E8305A' }}
+                style={{ color: '#334155' }}
               >
                 Start a Conversation
               </div>

@@ -6,7 +6,7 @@ export default function Loading() {
         <div className="relative w-14 h-14">
           <div className="absolute inset-0 rounded-full border-2 border-white/10" />
           <div className="absolute inset-0 rounded-full border-2 border-t-transparent animate-spin"
-            style={{ borderColor: 'transparent', borderTopColor: '#D4692A' }} />
+            style={{ borderColor: 'transparent', borderTopColor: '#475569' }} />
         </div>
         <div className="text-center">
           <p className="font-display font-bold text-white text-sm mb-1">AFRIDYN</p>
