@@ -56,61 +56,66 @@ export function Navigation() {
       }`}
       style={{ backdropFilter: scrolled ? 'blur(16px)' : 'none' }}
     >
-      <div className="container w-full">
-        <div className="flex items-center justify-between w-full">
+      <div className="container w-full h-full">
+        <div className="grid grid-cols-[auto_1fr_auto] lg:grid-cols-3 items-center w-full h-full">
 
-          {/* Logo */}
-          <button
-            onClick={() => goto('home')}
-            className="flex items-center gap-2 group transition-transform active:scale-95"
-            aria-label="Afridyn Engineering — home"
-          >
-            <div className="w-8 h-8 flex items-center justify-center">
-              <img
-                src="/images/logo.png"
-                alt=""
-                className="w-full h-full object-contain filter brightness-0 invert"
-              />
-            </div>
-            <div className="leading-none text-left">
-              <span className="block font-display font-black text-white text-[16px] tracking-[.05em]">AFRIDYN</span>
-              <span className="block text-[8px] tracking-[.4em] font-mono text-white/40 uppercase mt-0.5">Engineering</span>
-            </div>
-          </button>
+          {/* Left: Logo */}
+          <div className="flex justify-start">
+            <button
+              onClick={() => goto('home')}
+              className="flex items-center gap-3 group transition-transform active:scale-95"
+              aria-label="Afridyn Engineering — home"
+            >
+              <div className="w-10 h-10 flex items-center justify-center">
+                <img
+                  src="/images/logo.png"
+                  alt=""
+                  className="w-full h-full object-contain filter brightness-0 invert"
+                />
+              </div>
+              <div className="leading-none text-left">
+                <span className="block font-display font-black text-white text-[17px] tracking-[.06em]">AFRIDYN</span>
+                <span className="block text-[9px] tracking-[.35em] font-mono text-white/50 uppercase mt-1">Engineering</span>
+              </div>
+            </button>
+          </div>
 
-          {/* Right Section: Desktop Nav + CTA */}
-          <div className="hidden lg:flex items-center gap-8">
-            <nav className="flex items-center gap-1" aria-label="Primary navigation">
+          {/* Center: Desktop Nav */}
+          <div className="hidden lg:flex justify-center">
+            <nav className="flex items-center gap-2" aria-label="Primary navigation">
               {navLinks.map(link => (
                 <button
                   key={link.href}
                   onClick={() => goto(link.href)}
-                  className={`px-4 py-2 text-[13px] font-semibold tracking-wide transition-all rounded-lg uppercase
+                  className={`px-5 py-2.5 text-[13px] font-semibold tracking-[0.05em] transition-all rounded-full uppercase
                     ${active === link.href 
                       ? 'text-white bg-white/10' 
-                      : 'text-white/50 hover:text-white hover:bg-white/5'}`}
+                      : 'text-white/60 hover:text-white hover:bg-white/5'}`}
                 >
                   {link.label}
                 </button>
               ))}
             </nav>
+          </div>
 
+          {/* Right: CTA / Mobile Toggle */}
+          <div className="flex justify-end items-center gap-4">
             <button
               onClick={() => goto('contact')}
-              className="btn btn-cta btn-sm px-6 py-2.5"
+              className="hidden lg:inline-flex btn btn-cta btn-sm px-7 py-3 text-[14px]"
             >
               Get a Quote
             </button>
+
+            <button
+              className="lg:hidden p-2 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-all"
+              onClick={() => setMenuOpen(v => !v)}
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            >
+              {menuOpen ? <X size={26} /> : <Menu size={26} />}
+            </button>
           </div>
 
-          {/* Mobile Toggle */}
-          <button
-            className="lg:hidden p-2 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-all"
-            onClick={() => setMenuOpen(v => !v)}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          >
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
         </div>
       </div>
 
