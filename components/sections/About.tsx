@@ -43,6 +43,7 @@ export function About() {
 
             <motion.h2
               variants={itemVariants}
+              data-aos="fade-right"
               className="font-display font-black text-slate-900 mb-8"
               style={{ fontSize: 'clamp(2rem, 5vw, 3.8rem)', letterSpacing: '-0.04em', lineHeight: 1.05 }}
             >
@@ -61,12 +62,14 @@ export function About() {
 
             {/* Pillars grid */}
             <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {pillars.map(p => {
+              {pillars.map((p, i) => {
                 const Icon = p.icon
                 const pColor = p.color === '#334155' ? '#FF4500' : '#FF0000'
                 return (
                   <div
                     key={p.title}
+                    data-aos="fade-up"
+                    data-aos-delay={i * 100}
                     className="rounded-3xl p-7 group transition-all duration-500 relative overflow-hidden"
                     style={{
                       background: 'rgba(255, 255, 255, 0.4)',

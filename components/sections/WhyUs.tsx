@@ -109,6 +109,8 @@ export function WhyUs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ delay: i * 0.08, duration: 0.55, ease: 'easeOut' }}
+                data-aos="fade-up"
+                data-aos-delay={i * 100}
                 className="group relative rounded-[2.5rem] p-10 transition-all duration-500 overflow-hidden"
                 style={{
                   background: 'rgba(255, 255, 255, 0.4)',
@@ -171,6 +173,8 @@ export function WhyUs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+          data-aos="zoom-in"
+          data-aos-duration="1000"
           className="mt-32 rounded-[3rem] p-12 lg:p-20 relative overflow-hidden group"
           style={{
             background: 'rgba(255, 255, 255, 0.5)',

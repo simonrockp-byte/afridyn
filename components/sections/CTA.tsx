@@ -30,6 +30,8 @@ export function CTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.65, ease: 'easeOut' }}
+          data-aos="zoom-in"
+          data-aos-duration="800"
           className="rounded-3xl overflow-hidden relative border border-white/10 bg-gradient-premium shadow-2xl"
         >
           <div className="px-10 md:px-16 py-16 md:py-20 flex flex-col md:flex-row items-center gap-10 bg-black/10 backdrop-blur-sm">

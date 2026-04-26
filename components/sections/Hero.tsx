@@ -172,6 +172,8 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2 }}
+          data-aos="fade-in"
+          data-aos-duration="1500"
           className="max-w-5xl mx-auto flex flex-col items-center text-center"
         >
 

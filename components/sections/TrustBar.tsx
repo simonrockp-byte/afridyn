@@ -39,6 +39,7 @@ export function TrustBar() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            data-aos="fade-right"
             className="flex flex-col items-center md:items-start gap-4"
           >
             <p
@@ -86,6 +87,7 @@ export function TrustBar() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            data-aos="fade-left"
             className="flex flex-col items-center md:items-end gap-4"
           >
             <p

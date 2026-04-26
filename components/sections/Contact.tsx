@@ -72,6 +72,7 @@ export function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.65, ease: 'easeOut' }}
+            data-aos="fade-right"
           >
             <div className="section-label mb-5">Connect with Us</div>
             <h2
@@ -95,6 +96,8 @@ export function Contact() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.5, ease: 'easeOut' }}
+                  data-aos="fade-up"
+                  data-aos-delay={i * 100}
                   className="flex items-start gap-5"
                 >
                   <div className="w-12 h-12 rounded-full flex items-center justify-center shrink-0 bg-white border border-slate-200 text-slate-600 shadow-sm">
@@ -115,6 +118,7 @@ export function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.65, delay: 0.12, ease: 'easeOut' }}
+            data-aos="fade-left"
             className="rounded-3xl p-8 md:p-10 bg-white border border-slate-200 shadow-[0_32px_80px_rgba(15,23,42,0.08)]"
           >
             {status === 'success' ? (
