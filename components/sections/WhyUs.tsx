@@ -8,42 +8,42 @@ const reasons = [
     title: 'Certified & Compliant',
     desc: 'Fully registered with PACRA, ZPPA-approved (Reg: 137269), and TPIN registered. We meet Zambia\'s highest procurement and regulatory standards.',
     highlight: 'ZPPA Approved',
-    color: '#334155',
+    color: '#FF4500',
   },
   {
     icon: UserCheck,
     title: 'Skilled Technical Team',
     desc: 'Qualified engineers, certified technicians, and industry specialists with verifiable experience across mechanical, electrical, IT, and fibre optic domains.',
     highlight: 'Expert Personnel',
-    color: '#475569',
+    color: '#FF0000',
   },
   {
     icon: Network,
     title: 'Strong Supplier Network',
     desc: 'Established relationships with global OEM suppliers and distributors, ensuring access to genuine parts, competitive pricing, and fast delivery.',
     highlight: 'Global Sourcing',
-    color: '#334155',
+    color: '#FF6B00',
   },
   {
     icon: Gauge,
     title: 'Operational Efficiency Focus',
     desc: 'Every service is oriented towards improving your uptime, reducing costs, and optimising performance — measured outcomes, not just completed tasks.',
     highlight: 'Results Driven',
-    color: '#475569',
+    color: '#CC0000',
   },
   {
     icon: HeartHandshake,
     title: 'Customer-First Approach',
     desc: 'Responsive, accessible, and committed to building long-term partnerships. Your operational challenges are our engineering problems to solve.',
     highlight: 'Dedicated Support',
-    color: '#334155',
+    color: '#FF2D00',
   },
   {
     icon: CheckCircle,
     title: 'Safety & Quality Standards',
     desc: 'Our operations adhere to international safety standards and quality assurance protocols on every engagement, regardless of scope.',
     highlight: 'ISO Standards',
-    color: '#475569',
+    color: '#FF8C00',
   },
 ]
 
@@ -60,14 +60,18 @@ const industries = [
 export function WhyUs() {
   return (
     <section id="why-us" className="section relative overflow-hidden" style={{ background: '#F8FAFC' }}>
+      {/* Decorative Orbs */}
+      <div className="absolute top-[20%] left-[-10%] w-[600px] h-[600px] rounded-full pointer-events-none opacity-20 blur-[100px]" style={{ background: 'radial-gradient(circle, #FF4500 0%, transparent 70%)' }} />
+      <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full pointer-events-none opacity-20 blur-[100px]" style={{ background: 'radial-gradient(circle, #FF0000 0%, transparent 70%)' }} />
+      
       {/* Subtle grid */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.02]"
+        className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{
           backgroundImage:
-            'linear-gradient(rgba(15,23,42,1) 1px, transparent 1px),' +
-            'linear-gradient(90deg, rgba(15,23,42,1) 1px, transparent 1px)',
-          backgroundSize: '64px 64px',
+            'linear-gradient(rgba(255,69,0,0.1) 1px, transparent 1px),' +
+            'linear-gradient(90deg, rgba(255,69,0,0.1) 1px, transparent 1px)',
+          backgroundSize: '48px 48px',
         }}
       />
 
@@ -95,7 +99,7 @@ export function WhyUs() {
         </motion.div>
 
         {/* Cards grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {reasons.map((r, i) => {
             const Icon = r.icon
             return (
@@ -105,31 +109,56 @@ export function WhyUs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ delay: i * 0.08, duration: 0.55, ease: 'easeOut' }}
-                className="group relative rounded-3xl p-8 transition-all duration-300 overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:shadow-slate-200/50"
+                className="group relative rounded-[2rem] p-9 transition-all duration-500 overflow-hidden"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.4)',
+                  backdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(255, 255, 255, 0.6)',
+                  boxShadow: '0 8px 32px rgba(15, 23, 42, 0.05)',
+                }}
               >
-                {/* Hover glow */}
+                {/* Hover gradient background */}
                 <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{ background: `radial-gradient(circle at 0% 0%, ${r.color}06, transparent 70%)` }}
+                  className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-700"
+                  style={{ background: `linear-gradient(135deg, ${r.color}, transparent)` }}
+                />
+
+                {/* Animated corner glow */}
+                <div
+                  className="absolute -top-24 -right-24 w-48 h-48 rounded-full opacity-0 group-hover:opacity-20 blur-3xl transition-opacity duration-700"
+                  style={{ background: r.color }}
                 />
 
                 <div className="relative z-10">
                   <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110"
-                    style={{ background: `${r.color}08`, color: r.color, border: `1px solid ${r.color}15` }}
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center mb-8 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3"
+                    style={{ 
+                      background: `${r.color}15`, 
+                      color: r.color, 
+                      border: `1px solid ${r.color}25`,
+                      boxShadow: `0 8px 20px ${r.color}20`
+                    }}
                   >
-                    <Icon size={22} strokeWidth={1.8} />
+                    <Icon size={26} strokeWidth={2} />
                   </div>
 
                   <span
-                    className="text-[10px] font-mono font-bold tracking-[0.18em] uppercase px-3 py-1 rounded-full mb-4 inline-block"
-                    style={{ background: `${r.color}06`, color: r.color, border: `1px solid ${r.color}10` }}
+                    className="text-[10px] font-mono font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full mb-5 inline-block transition-colors duration-300 group-hover:bg-opacity-20"
+                    style={{ 
+                      background: `${r.color}10`, 
+                      color: r.color, 
+                      border: `1px solid ${r.color}20` 
+                    }}
                   >
                     {r.highlight}
                   </span>
 
-                  <h3 className="font-display font-bold text-[17px] text-slate-900 mb-3 tracking-tight">{r.title}</h3>
-                  <p className="text-[13px] leading-relaxed text-slate-500 group-hover:text-slate-700 transition-colors">{r.desc}</p>
+                  <h3 className="font-display font-black text-[20px] text-slate-900 mb-4 tracking-tight leading-tight">
+                    {r.title}
+                  </h3>
+                  <p className="text-[14px] leading-relaxed text-slate-500 group-hover:text-slate-900 transition-colors duration-300">
+                    {r.desc}
+                  </p>
                 </div>
               </motion.div>
             )
@@ -142,24 +171,34 @@ export function WhyUs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-          className="mt-16 rounded-3xl p-8 lg:p-12 relative overflow-hidden group bg-white border border-slate-200"
+          className="mt-20 rounded-[2.5rem] p-10 lg:p-16 relative overflow-hidden group"
+          style={{
+            background: 'rgba(255, 255, 255, 0.5)',
+            backdropFilter: 'blur(24px)',
+            border: '1px solid rgba(255, 255, 255, 0.7)',
+            boxShadow: '0 20px 50px rgba(15, 23, 42, 0.08)',
+          }}
         >
-          <div className="flex flex-col lg:flex-row gap-8 items-center justify-between relative z-10">
+          {/* Subtle accent gradient */}
+          <div className="absolute top-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, #FF4500, #FF0000, #FF6B00)' }} />
+
+          <div className="flex flex-col lg:flex-row gap-12 items-center justify-between relative z-10">
             <div className="lg:max-w-md text-center lg:text-left">
-              <h3 className="font-display font-bold text-2xl text-slate-900 mb-3">Extensive Industry Coverage</h3>
-              <p className="text-slate-500 text-[13px] leading-relaxed">
+              <h3 className="font-display font-black text-3xl text-slate-900 mb-5 tracking-tight">Extensive Industry Coverage</h3>
+              <p className="text-slate-500 text-[15px] leading-relaxed">
                 Our operations span across critical sectors, providing specialised engineering, maintenance, and IT solutions tailored to the unique demands of each industry.
               </p>
             </div>
             
             <div className="flex flex-wrap justify-center lg:justify-end gap-3 lg:max-w-xl">
               {industries.map(v => (
-                <span 
+                <motion.span 
                   key={v} 
-                  className="px-4 py-2 rounded-full text-[12px] font-medium transition-all duration-300 hover:bg-slate-100 border border-slate-200 text-slate-600"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  className="px-5 py-2.5 rounded-full text-[13px] font-bold transition-all duration-300 bg-white hover:bg-slate-50 border border-slate-100 text-slate-600 hover:text-slate-900 hover:border-orange-200 shadow-sm hover:shadow-md"
                 >
                   {v}
-                </span>
+                </motion.span>
               ))}
             </div>
           </div>

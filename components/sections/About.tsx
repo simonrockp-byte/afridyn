@@ -60,22 +60,38 @@ export function About() {
             </motion.p>
 
             {/* Pillars grid */}
-            <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {pillars.map(p => {
                 const Icon = p.icon
+                const pColor = p.color === '#334155' ? '#FF4500' : '#FF0000'
                 return (
                   <div
                     key={p.title}
-                    className="rounded-2xl p-6 group transition-all duration-300 bg-white border border-slate-200 shadow-sm hover:shadow-md"
+                    className="rounded-3xl p-7 group transition-all duration-500 relative overflow-hidden"
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.4)',
+                      backdropFilter: 'blur(20px)',
+                      border: '1px solid rgba(255, 255, 255, 0.6)',
+                      boxShadow: '0 8px 32px rgba(15, 23, 42, 0.04)',
+                    }}
                   >
                     <div
-                      className="w-10 h-10 rounded-xl mb-4 flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-                      style={{ background: `${p.color}08`, color: p.color, border: `1px solid ${p.color}15` }}
+                      className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500"
+                      style={{ background: `linear-gradient(135deg, ${pColor}, transparent)` }}
+                    />
+                    <div
+                      className="w-12 h-12 rounded-2xl mb-5 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 shadow-sm"
+                      style={{ 
+                        background: `${pColor}15`, 
+                        color: pColor, 
+                        border: `1px solid ${pColor}25`,
+                        boxShadow: `0 4px 15px ${pColor}15`
+                      }}
                     >
-                      <Icon size={18} strokeWidth={1.8} />
+                      <Icon size={20} strokeWidth={2} />
                     </div>
-                    <h4 className="font-display font-bold text-sm text-slate-900 mb-1.5">{p.title}</h4>
-                    <p className="text-[12px] leading-relaxed text-slate-500 group-hover:text-slate-700 transition-colors">{p.desc}</p>
+                    <h4 className="font-display font-black text-base text-slate-900 mb-2 tracking-tight">{p.title}</h4>
+                    <p className="text-[13px] leading-relaxed text-slate-500 group-hover:text-slate-900 transition-colors duration-300">{p.desc}</p>
                   </div>
                 )
               })}
@@ -88,27 +104,28 @@ export function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="space-y-5"
+            className="space-y-6"
           >
             {/* Main image */}
             <div
-              className="relative rounded-3xl overflow-hidden aspect-[4/3] group shadow-xl"
+              className="relative rounded-[2.5rem] overflow-hidden aspect-[4/3] group shadow-2xl"
               style={{ border: '1px solid rgba(15,23,42,0.1)' }}
             >
               <img
                 src="/images/services/maintenance.png"
                 alt="Afridyn Technical Capability"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
-              <div className="absolute bottom-6 left-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
+              <div className="absolute bottom-8 left-8">
                 <span
-                  className="text-[10px] font-mono font-bold tracking-[0.18em] uppercase px-4 py-2 rounded-full"
+                  className="text-[11px] font-mono font-bold tracking-[0.2em] uppercase px-5 py-2.5 rounded-full"
                   style={{
-                    background: 'rgba(15, 23, 42, 0.85)',
+                    background: 'rgba(255, 80, 0, 0.9)',
                     border: '1px solid rgba(255,255,255,0.2)',
                     color: '#fff',
                     backdropFilter: 'blur(12px)',
+                    boxShadow: '0 10px 30px rgba(255, 80, 0, 0.4)'
                   }}
                 >
                   Pan-African Capability
@@ -117,44 +134,58 @@ export function About() {
             </div>
 
             {/* Mission / Vision */}
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4">
               {[
-                { label: 'Our Mission', color: '#334155', text: 'Reliable engineering support that enhances operational efficiency and supports African industrial development.' },
-                { label: 'Our Vision',  color: '#475569', text: 'To be the most trusted technical solutions provider for Africa\'s most demanding sectors.' },
+                { label: 'Our Mission', color: '#FF4500', text: 'Reliable engineering support that enhances operational efficiency and supports African industrial development.' },
+                { label: 'Our Vision',  color: '#FF0000', text: 'To be the most trusted technical solutions provider for Africa\'s most demanding sectors.' },
               ].map(card => (
                 <div
                   key={card.label}
-                  className="p-6 rounded-2xl bg-white border border-slate-200"
+                  className="p-7 rounded-3xl relative overflow-hidden"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.5)',
+                    backdropFilter: 'blur(20px)',
+                    border: '1px solid rgba(255, 255, 255, 0.6)',
+                    boxShadow: '0 10px 30px rgba(15, 23, 42, 0.03)',
+                  }}
                 >
+                  <div className="absolute top-0 left-0 w-1 h-full" style={{ background: card.color }} />
                   <span
-                    className="text-[10px] font-mono font-bold uppercase tracking-[0.25em] block mb-3 text-slate-400"
+                    className="text-[11px] font-mono font-bold uppercase tracking-[0.25em] block mb-4"
+                    style={{ color: card.color }}
                   >
                     {card.label}
                   </span>
-                  <p className="text-[13px] leading-relaxed text-slate-500">{card.text}</p>
+                  <p className="text-[14px] leading-relaxed text-slate-600 font-medium">{card.text}</p>
                 </div>
               ))}
             </div>
 
             {/* Credentials */}
             <div
-              className="rounded-2xl p-6 bg-white border border-slate-200 shadow-sm"
+              className="rounded-3xl p-8 relative overflow-hidden"
+              style={{
+                background: 'rgba(255, 255, 255, 0.6)',
+                backdropFilter: 'blur(24px)',
+                border: '1px solid rgba(255, 255, 255, 0.7)',
+                boxShadow: '0 15px 40px rgba(15, 23, 42, 0.05)',
+              }}
             >
-              <p className="text-[10px] font-mono font-bold uppercase tracking-[0.25em] text-slate-400 mb-5">
+              <p className="text-[11px] font-mono font-bold uppercase tracking-[0.25em] text-slate-400 mb-6">
                 Regulatory Compliance
               </p>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {credentials.map(c => (
                   <div
                     key={c.label}
-                    className="flex items-center justify-between py-2.5 border-b border-slate-50 last:border-0"
+                    className="flex items-center justify-between py-3.5 border-b border-slate-100 last:border-0"
                   >
                     <div>
-                      <p className="font-display font-bold text-[13px] text-slate-900">{c.label}</p>
-                      <p className="text-[10px] text-slate-400 mt-0.5">{c.desc}</p>
+                      <p className="font-display font-black text-[15px] text-slate-900 leading-none mb-1.5">{c.label}</p>
+                      <p className="text-[11px] text-slate-400 font-medium">{c.desc}</p>
                     </div>
                     <span
-                      className="font-mono text-[11px] font-semibold px-3 py-1.5 rounded-full bg-slate-50 text-slate-600"
+                      className="font-mono text-[12px] font-bold px-4 py-2 rounded-xl bg-white border border-slate-100 text-slate-900 shadow-sm"
                     >
                       {c.value}
                     </span>

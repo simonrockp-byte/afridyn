@@ -95,11 +95,10 @@ function ServiceCard({
 }) {
   const Icon = s.icon
   const isActive = active === s.id
+  const accentColor = s.accent === '#334155' ? '#FF4500' : '#FF0000'
 
   return (
     <motion.div
-      data-aos="fade-up"
-      data-aos-delay={i * 50}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
@@ -108,59 +107,62 @@ function ServiceCard({
     >
       <div
         onClick={() => setActive(isActive ? null : s.id)}
-        className="relative h-full rounded-3xl cursor-pointer group transition-all duration-400 overflow-hidden flex flex-col border border-slate-200/60 bg-white"
+        className="relative h-full rounded-[2rem] cursor-pointer group transition-all duration-500 overflow-hidden flex flex-col"
         style={{
+          background: 'rgba(255, 255, 255, 0.4)',
+          backdropFilter: 'blur(20px)',
+          border: '1px solid rgba(255, 255, 255, 0.6)',
           boxShadow: isActive 
-            ? `0 32px 64px -12px rgba(15, 23, 42, 0.12)` 
-            : '0 4px 20px -4px rgba(15, 23, 42, 0.03)',
+            ? `0 32px 64px -12px rgba(255, 69, 0, 0.2)` 
+            : '0 8px 32px rgba(15, 23, 42, 0.04)',
           transform: isActive ? 'scale(1.02)' : 'scale(1)',
         }}
       >
         {/* Image */}
-        <div className="relative h-52 w-full overflow-hidden shrink-0">
+        <div className="relative h-56 w-full overflow-hidden shrink-0">
           <img
             src={s.image}
             alt={s.title}
             loading="lazy"
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
             onError={e => {
               (e.target as HTMLImageElement).src =
                 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop'
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/20 to-transparent" />
 
           {/* Icon badge */}
           <div
-            className="absolute bottom-5 left-5 w-12 h-12 rounded-2xl flex items-center justify-center backdrop-blur-xl border transition-transform duration-300 group-hover:-translate-y-1"
+            className="absolute bottom-6 left-6 w-14 h-14 rounded-2xl flex items-center justify-center backdrop-blur-2xl border transition-all duration-500 group-hover:-translate-y-2 group-hover:rotate-3 shadow-lg"
             style={{
-              background: `rgba(255, 255, 255, 0.8)`,
-              borderColor: `rgba(15, 23, 42, 0.1)`,
-              color: s.accent,
+              background: `rgba(255, 255, 255, 0.9)`,
+              borderColor: `${accentColor}30`,
+              color: accentColor,
             }}
           >
-            <Icon size={22} strokeWidth={1.8} />
+            <Icon size={24} strokeWidth={2} />
           </div>
         </div>
 
         {/* Body */}
-        <div className="flex flex-col flex-1 p-7">
+        <div className="flex flex-col flex-1 p-8">
           {/* Sector tag */}
           <span
-            className="text-[10px] font-mono font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full self-start mb-5"
+            className="text-[10px] font-mono font-bold tracking-[0.25em] uppercase px-4 py-1.5 rounded-full self-start mb-6 transition-all duration-300 group-hover:bg-opacity-20"
             style={{
-              background: `${s.accent}10`,
-              color: s.accent,
-              border: `1px solid ${s.accent}20`,
+              background: `${accentColor}10`,
+              color: accentColor,
+              border: `1px solid ${accentColor}20`,
             }}
           >
             {s.sector}
           </span>
 
-          <h3 className="font-display font-bold text-[17px] leading-snug mb-3 text-slate-900 tracking-tight">
+          <h3 className="font-display font-black text-[20px] leading-tight mb-4 text-slate-900 tracking-tight">
             {s.title}
           </h3>
-          <p className="text-[13px] leading-relaxed text-slate-500 group-hover:text-slate-700 transition-colors mb-4 flex-1">
+          <p className="text-[14px] leading-relaxed text-slate-500 group-hover:text-slate-900 transition-colors duration-300 mb-6 flex-1 font-medium">
             {s.short}
           </p>
 
@@ -170,14 +172,14 @@ function ServiceCard({
             animate={{ height: isActive ? 'auto' : 0, opacity: isActive ? 1 : 0 }}
             className="overflow-hidden"
           >
-            <div className="pt-5 space-y-5 mt-1" style={{ borderTop: '1px solid rgba(15, 23, 42, 0.06)' }}>
-              <p className="text-[13px] leading-relaxed text-slate-600">{s.desc}</p>
-              <ul className="space-y-2.5">
+            <div className="pt-6 space-y-6 mt-2" style={{ borderTop: `1px solid ${accentColor}15` }}>
+              <p className="text-[14px] leading-relaxed text-slate-600 font-medium">{s.desc}</p>
+              <ul className="space-y-3">
                 {s.features.map(f => (
-                  <li key={f} className="flex items-center gap-3 text-[13px] text-slate-600">
+                  <li key={f} className="flex items-center gap-4 text-[13px] text-slate-700 font-bold">
                     <span
-                      className="w-1.5 h-1.5 rounded-full shrink-0"
-                      style={{ background: s.accent }}
+                      className="w-2 h-2 rounded-full shrink-0 shadow-sm"
+                      style={{ background: accentColor }}
                     />
                     {f}
                   </li>
@@ -188,14 +190,15 @@ function ServiceCard({
                   e.stopPropagation()
                   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
                 }}
-                className="btn btn-lg w-full justify-center text-white mt-2"
+                className="btn btn-lg w-full justify-center text-white mt-4 font-bold"
                 style={{
-                  background: 'linear-gradient(135deg, #0F172A, #334155)',
-                  boxShadow: `0 8px 24px rgba(15, 23, 42, 0.15)`,
+                  background: `linear-gradient(135deg, ${accentColor}, #CC0000)`,
+                  boxShadow: `0 12px 24px ${accentColor}30`,
+                  borderRadius: '16px'
                 }}
               >
                 Request Consultation
-                <ArrowRight size={16} strokeWidth={2} />
+                <ArrowRight size={18} strokeWidth={2.5} />
               </button>
             </div>
           </motion.div>
@@ -203,11 +206,11 @@ function ServiceCard({
           {/* Expand hint */}
           {!isActive && (
             <div
-              className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-[0.25em] mt-3 group-hover:gap-3 transition-all"
-              style={{ color: s.accent }}
+              className="flex items-center gap-3 text-[11px] font-mono font-bold uppercase tracking-[0.25em] mt-4 group-hover:gap-4 transition-all duration-300"
+              style={{ color: accentColor }}
             >
               <span>Learn more</span>
-              <ArrowRight size={13} strokeWidth={2.5} />
+              <ArrowRight size={14} strokeWidth={2.5} className="group-hover:translate-x-1 transition-transform" />
             </div>
           )}
         </div>
