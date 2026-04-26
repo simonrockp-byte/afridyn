@@ -254,7 +254,7 @@ export function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center max-w-2xl mx-auto mb-20 flex flex-col items-center"
+          className="text-center max-w-2xl mx-auto mb-24 flex flex-col items-center"
         >
           <div className="label-chip mb-5">Advanced Technical Solutions</div>
           <h2
@@ -275,7 +275,7 @@ export function Services() {
         </motion.div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((s, i) => (
             <ServiceCard
               key={s.id}

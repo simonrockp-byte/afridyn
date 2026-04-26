@@ -68,7 +68,7 @@ export function Sectors() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="text-center mb-20"
+          className="text-center mb-24"
         >
           <div className="section-label justify-center mb-5">
             Industries We Serve
@@ -83,7 +83,7 @@ export function Sectors() {
         </motion.div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
           {sectors.map((s, i) => (
             <motion.div
               key={s.label}

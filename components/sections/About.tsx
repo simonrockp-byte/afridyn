@@ -28,7 +28,7 @@ export function About() {
   return (
     <section id="about" className="section" style={{ background: '#F8FAFC' }}>
       <div className="container" data-aos="fade-up">
-        <div className="grid lg:grid-cols-2 gap-20 xl:gap-28 items-center">
+        <div className="grid lg:grid-cols-2 gap-24 xl:gap-36 items-center">
 
           {/* ── LEFT ── */}
           <motion.div
@@ -60,7 +60,7 @@ export function About() {
             </motion.p>
 
             {/* Pillars grid */}
-            <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {pillars.map(p => {
                 const Icon = p.icon
                 const pColor = p.color === '#334155' ? '#FF4500' : '#FF0000'

@@ -99,7 +99,7 @@ export function WhyUs() {
         </motion.div>
 
         {/* Cards grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {reasons.map((r, i) => {
             const Icon = r.icon
             return (
@@ -109,10 +109,10 @@ export function WhyUs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ delay: i * 0.08, duration: 0.55, ease: 'easeOut' }}
-                className="group relative rounded-[2rem] p-9 transition-all duration-500 overflow-hidden"
+                className="group relative rounded-[2.5rem] p-10 transition-all duration-500 overflow-hidden"
                 style={{
                   background: 'rgba(255, 255, 255, 0.4)',
-                  backdropFilter: 'blur(20px)',
+                  backdropFilter: 'blur(24px)',
                   border: '1px solid rgba(255, 255, 255, 0.6)',
                   boxShadow: '0 8px 32px rgba(15, 23, 42, 0.05)',
                 }}
@@ -131,7 +131,7 @@ export function WhyUs() {
 
                 <div className="relative z-10">
                   <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center mb-8 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3"
+                    className="w-16 h-16 rounded-2xl flex items-center justify-center mb-10 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3"
                     style={{ 
                       background: `${r.color}15`, 
                       color: r.color, 
@@ -139,11 +139,11 @@ export function WhyUs() {
                       boxShadow: `0 8px 20px ${r.color}20`
                     }}
                   >
-                    <Icon size={26} strokeWidth={2} />
+                    <Icon size={30} strokeWidth={2} />
                   </div>
 
                   <span
-                    className="text-[10px] font-mono font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full mb-5 inline-block transition-colors duration-300 group-hover:bg-opacity-20"
+                    className="text-[10px] font-mono font-bold tracking-[0.25em] uppercase px-5 py-2 rounded-full mb-6 inline-block transition-colors duration-300 group-hover:bg-opacity-20"
                     style={{ 
                       background: `${r.color}10`, 
                       color: r.color, 
@@ -153,10 +153,10 @@ export function WhyUs() {
                     {r.highlight}
                   </span>
 
-                  <h3 className="font-display font-black text-[20px] text-slate-900 mb-4 tracking-tight leading-tight">
+                  <h3 className="font-display font-black text-[22px] text-slate-900 mb-5 tracking-tight leading-tight">
                     {r.title}
                   </h3>
-                  <p className="text-[14px] leading-relaxed text-slate-500 group-hover:text-slate-900 transition-colors duration-300">
+                  <p className="text-[15px] leading-relaxed text-slate-500 group-hover:text-slate-900 transition-colors duration-300 font-medium">
                     {r.desc}
                   </p>
                 </div>
@@ -171,7 +171,7 @@ export function WhyUs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-          className="mt-20 rounded-[2.5rem] p-10 lg:p-16 relative overflow-hidden group"
+          className="mt-32 rounded-[3rem] p-12 lg:p-20 relative overflow-hidden group"
           style={{
             background: 'rgba(255, 255, 255, 0.5)',
             backdropFilter: 'blur(24px)',
