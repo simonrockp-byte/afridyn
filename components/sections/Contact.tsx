@@ -31,10 +31,10 @@ export function Contact() {
     name: '', company: '', email: '', phone: '', service: '', message: '',
   })
 
-  const set = (key: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
+  const set = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setForm(f => ({ ...f, [key]: e.target.value }))
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setStatus('loading')
     setErrorMsg('')
@@ -64,7 +64,7 @@ export function Contact() {
         style={{ background: 'radial-gradient(circle, rgba(15,23,42,0.05) 0%, transparent 70%)', filter: 'blur(100px)' }} />
 
       <div className="container relative z-10 max-w-6xl">
-        <div className="grid lg:grid-cols-[1fr_1.5fr] gap-16 xl:gap-24 items-start">
+        <div className="grid lg:grid-cols-[1fr_1.5fr] gap-12 xl:gap-20 items-start">
 
           {/* ── LEFT ── */}
           <motion.div
@@ -153,16 +153,18 @@ export function Contact() {
 
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="form-label">Full Name *</label>
+                    <label htmlFor="cf-name" className="form-label">Full Name *</label>
                     <input
+                      id="cf-name"
                       required type="text" placeholder="John Mwale"
                       value={form.name} onChange={set('name')}
                       className="form-input"
                     />
                   </div>
                   <div>
-                    <label className="form-label">Company</label>
+                    <label htmlFor="cf-company" className="form-label">Company</label>
                     <input
+                      id="cf-company"
                       type="text" placeholder="Your Company Ltd"
                       value={form.company} onChange={set('company')}
                       className="form-input"
@@ -172,16 +174,18 @@ export function Contact() {
 
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="form-label">Email Address *</label>
+                    <label htmlFor="cf-email" className="form-label">Email Address *</label>
                     <input
+                      id="cf-email"
                       required type="email" placeholder="you@company.com"
                       value={form.email} onChange={set('email')}
                       className="form-input"
                     />
                   </div>
                   <div>
-                    <label className="form-label">Phone Number</label>
+                    <label htmlFor="cf-phone" className="form-label">Phone Number</label>
                     <input
+                      id="cf-phone"
                       type="tel" placeholder="+260 XXX XXX XXX"
                       value={form.phone} onChange={set('phone')}
                       className="form-input"
@@ -190,8 +194,9 @@ export function Contact() {
                 </div>
 
                 <div>
-                  <label className="form-label">Service Category *</label>
+                  <label htmlFor="cf-service" className="form-label">Service Category *</label>
                   <select
+                    id="cf-service"
                     required
                     value={form.service}
                     onChange={set('service')}
@@ -206,8 +211,9 @@ export function Contact() {
                 </div>
 
                 <div>
-                  <label className="form-label">Project Description *</label>
+                  <label htmlFor="cf-message" className="form-label">Project Description *</label>
                   <textarea
+                    id="cf-message"
                     required
                     rows={4}
                     placeholder="Detail your engineering requirements…"

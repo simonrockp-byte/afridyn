@@ -175,7 +175,7 @@ export function WhyUs() {
           transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
           data-aos="zoom-in"
           data-aos-duration="1000"
-          className="mt-32 rounded-[3rem] p-12 lg:p-20 relative overflow-hidden group"
+          className="mt-16 md:mt-24 lg:mt-32 rounded-[2rem] lg:rounded-[3rem] p-8 md:p-12 lg:p-20 relative overflow-hidden group"
           style={{
             background: 'rgba(255, 255, 255, 0.5)',
             backdropFilter: 'blur(24px)',

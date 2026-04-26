@@ -97,11 +97,12 @@ function LavaCanvas() {
 }
 
 /* ─── Floating glowing orbs (CSS) ─── */
-const ORBS = [
-  { size: 700, top: '-10%', left: '-10%',  color: 'rgba(255,69,0,0.55)',   dur: '14s', anim: 'orbFloat1' },
-  { size: 600, top: '30%',  right: '-12%', color: 'rgba(255,0,0,0.50)',    dur: '18s', anim: 'orbFloat2' },
+type Orb = { size: number; top: string; color: string; dur: string; anim: string; left?: string; right?: string }
+const ORBS: Orb[] = [
+  { size: 700, top: '-10%', left: '-10%',  color: 'rgba(255,69,0,0.55)',  dur: '14s', anim: 'orbFloat1' },
+  { size: 600, top: '30%',  right: '-12%', color: 'rgba(255,0,0,0.50)',   dur: '18s', anim: 'orbFloat2' },
   { size: 500, top: '60%',  left: '20%',   color: 'rgba(255,107,0,0.45)', dur: '12s', anim: 'orbFloat3' },
-  { size: 400, top: '-5%',  right: '30%',  color: 'rgba(200,0,0,0.40)',    dur: '20s', anim: 'orbFloat1' },
+  { size: 400, top: '-5%',  right: '30%',  color: 'rgba(200,0,0,0.40)',   dur: '20s', anim: 'orbFloat1' },
 ]
 
 const fadeUp = (delay = 0) => ({
@@ -133,8 +134,8 @@ export function Hero() {
             width:  o.size,
             height: o.size,
             top:    o.top,
-            left:   (o as any).left  ?? 'unset',
-            right:  (o as any).right ?? 'unset',
+            left:   o.left  ?? 'unset',
+            right:  o.right ?? 'unset',
             background: `radial-gradient(circle, ${o.color} 0%, transparent 70%)`,
             filter: 'blur(60px)',
             animation: `${o.anim} ${o.dur} ease-in-out infinite`,
@@ -167,7 +168,7 @@ export function Hero() {
       />
 
       {/* ── Content ── */}
-      <div className="container relative pt-36 pb-32" style={{ zIndex: 10 }}>
+      <div className="container relative pt-28 pb-24 md:pt-36 md:pb-32" style={{ zIndex: 10 }}>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -180,7 +181,7 @@ export function Hero() {
           {/* Eyebrow badge */}
           <motion.div
             {...fadeUp(0)}
-            className="inline-flex items-center gap-3 mb-10 px-5 py-2.5 rounded-full"
+            className="inline-flex items-center gap-2 mb-8 md:mb-10 px-4 py-2 md:px-5 md:py-2.5 rounded-full max-w-[90vw]"
             style={{
               background:    'rgba(255,80,0,0.12)',
               border:        '1px solid rgba(255,107,0,0.35)',
@@ -188,20 +189,20 @@ export function Hero() {
             }}
           >
             <span
-              className="w-2 h-2 rounded-full"
+              className="w-2 h-2 shrink-0 rounded-full"
               style={{
                 background:  '#FF6B00',
                 animation:   'pulseRing 1.5s ease-in-out infinite',
                 boxShadow:   '0 0 14px rgba(255,107,0,0.9)',
               }}
             />
-            <span className="text-[11px] font-mono font-bold tracking-[0.22em] uppercase text-orange-400">
+            <span className="text-[10px] md:text-[11px] font-mono font-bold tracking-[0.14em] md:tracking-[0.22em] uppercase text-orange-400 leading-tight">
               Certified Industrial Excellence — Zambia &amp; Sub-Saharan Africa
             </span>
           </motion.div>
 
           {/* Headline */}
-          <div className="mb-8">
+          <div className="mb-6 md:mb-8">
             {['Engineering', 'Excellence'].map((word, i) => (
               <motion.div
                 key={word}
@@ -212,7 +213,7 @@ export function Hero() {
                 <span
                   className="block font-display font-black"
                   style={{
-                    fontSize: 'clamp(3.8rem, 13vw, 9rem)',
+                    fontSize: 'clamp(3rem, 13vw, 9rem)',
                     letterSpacing: '-0.05em',
                     lineHeight: 0.88,
                     marginBottom: '0.05em',
@@ -238,7 +239,7 @@ export function Hero() {
               <span
                 className="block font-display font-black"
                 style={{
-                  fontSize: 'clamp(3.8rem, 13vw, 9rem)',
+                  fontSize: 'clamp(3rem, 13vw, 9rem)',
                   letterSpacing: '-0.05em',
                   lineHeight: 0.88,
                   background: 'linear-gradient(135deg, #FF8C00 0%, #FF3300 40%, #CC0000 100%)',
@@ -258,7 +259,7 @@ export function Hero() {
           {/* Sub-copy */}
           <motion.p
             {...fadeUp(0.65)}
-            className="text-lg md:text-xl leading-relaxed mb-12 max-w-2xl"
+            className="text-base md:text-lg lg:text-xl leading-relaxed mb-10 md:mb-12 max-w-2xl px-2"
             style={{ color: 'rgba(255,200,150,0.8)' }}
           >
             Afridyn Engineering delivers mechanical, electrical, IT, and fibre optic
@@ -269,13 +270,13 @@ export function Hero() {
           {/* CTAs */}
           <motion.div
             {...fadeUp(0.80)}
-            className="flex flex-wrap justify-center gap-4"
+            className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 w-full sm:w-auto px-4 sm:px-0"
           >
             <motion.button
               onClick={() => goto('services')}
               whileHover={{ y: -6, scale: 1.06 }}
               whileTap={{ scale: 0.95 }}
-              className="btn btn-lg font-bold group"
+              className="btn btn-lg font-bold group w-full sm:w-auto"
               style={{
                 background:   'linear-gradient(135deg, #FF6B00, #FF0000)',
                 color:        '#fff',
@@ -294,7 +295,7 @@ export function Hero() {
               onClick={() => goto('contact')}
               whileHover={{ y: -6, scale: 1.06, background: 'rgba(255,80,0,0.15)' }}
               whileTap={{ scale: 0.95 }}
-              className="btn btn-lg font-bold"
+              className="btn btn-lg font-bold w-full sm:w-auto"
               style={{
                 background:   'rgba(255,80,0,0.08)',
                 border:       '1px solid rgba(255,107,0,0.4)',

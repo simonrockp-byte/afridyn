@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const navLinks = [
   { label: 'Services',  href: 'services' },
@@ -85,10 +86,12 @@ export function Navigation() {
               <div className="relative w-10 h-10 flex items-center justify-center">
                 {/* Vibrant glow behind logo on hover */}
                 <div className="absolute inset-0 bg-orange-500/20 blur-xl rounded-full scale-0 group-hover:scale-150 transition-transform duration-500" />
-                <img
+                <Image
                   src="/images/logo.png"
                   alt=""
-                  className={`w-full h-full object-contain relative z-10 group-hover:scale-110 transition-all duration-500 ${
+                  width={40}
+                  height={40}
+                  className={`object-contain relative z-10 group-hover:scale-110 transition-all duration-500 ${
                     scrolled ? 'brightness-0' : 'brightness-0 invert'
                   }`}
                 />
@@ -147,7 +150,9 @@ export function Navigation() {
             </div>
 
             <button
-              className="lg:hidden p-2 rounded-lg text-slate-700 hover:text-orange-600 hover:bg-orange-500/5 transition-all"
+              className={`lg:hidden p-2 rounded-lg transition-all hover:text-orange-600 hover:bg-orange-500/5 ${
+                scrolled ? 'text-slate-700' : 'text-white'
+              }`}
               onClick={() => setMenuOpen(v => !v)}
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             >

@@ -5,7 +5,10 @@ import {
 } from 'lucide-react'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Scene3D } from '@/components/Scene3D'
+import Image from 'next/image'
+import dynamic from 'next/dynamic'
+
+const Scene3D = dynamic(() => import('@/components/Scene3D').then(m => ({ default: m.Scene3D })), { ssr: false })
 
 const services = [
   {
@@ -122,15 +125,12 @@ function ServiceCard({
       >
         {/* Image */}
         <div className="relative h-56 w-full overflow-hidden shrink-0">
-          <img
+          <Image
             src={s.image}
             alt={s.title}
-            loading="lazy"
-            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-            onError={e => {
-              (e.target as HTMLImageElement).src =
-                'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop'
-            }}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            className="object-cover transition-transform duration-1000 group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/20 to-transparent" />
 
@@ -277,7 +277,7 @@ export function Services() {
         </motion.div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8">
           {services.map((s, i) => (
             <ServiceCard
               key={s.id}

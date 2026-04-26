@@ -2,6 +2,7 @@
 import { Phone, Mail, MapPin } from 'lucide-react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { useRef } from 'react'
+import Image from 'next/image'
 
 const services = [
   'Mechanical & Electrical Spares',
@@ -37,10 +38,12 @@ export function Footer() {
   // Tilt transforms
   const rotateX = useTransform(springY, [-300, 300], [2, -2])
   const rotateY = useTransform(springX, [-300, 300], [-2, 2])
-  
+
   // Floating orb positions
   const orbX = useTransform(springX, [-500, 500], [-10, 10])
   const orbY = useTransform(springY, [-500, 500], [-10, 10])
+  const orbX2 = useTransform(orbX, (v) => -v)
+  const orbY2 = useTransform(orbY, (v) => -v)
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return
@@ -76,7 +79,7 @@ export function Footer() {
         />
         <motion.div 
           className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full opacity-30 blur-[120px]"
-          style={{ x: useTransform(orbX, (v) => -v), y: useTransform(orbY, (v) => -v), background: 'radial-gradient(circle, #F1F5F9 0%, transparent 70%)' }}
+          style={{ x: orbX2, y: orbY2, background: 'radial-gradient(circle, #F1F5F9 0%, transparent 70%)' }}
         />
 
         {/* Blueprint Pattern (Lighter for Light Mode) */}
@@ -109,7 +112,7 @@ export function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20 text-center md:text-left"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-16 md:mb-20 text-center md:text-left"
         >
           {/* Brand */}
           <div className="flex flex-col items-center md:items-start">
@@ -119,10 +122,12 @@ export function Footer() {
             >
               <div className="p-2 rounded-xl bg-slate-900/[0.03] border border-slate-900/10 relative group">
                 <div className="absolute inset-0 bg-slate-900 opacity-0 group-hover:opacity-5 blur-xl transition-opacity" />
-                <img
+                <Image
                   src="/images/logo.png"
                   alt="Afridyn Logo"
-                  className="w-10 h-10 object-contain filter brightness-0"
+                  width={40}
+                  height={40}
+                  className="object-contain filter brightness-0"
                 />
               </div>
               <div>
@@ -239,7 +244,7 @@ export function Footer() {
         </motion.div>
 
         {/* Bottom bar */}
-        <div className="pt-10 border-t border-slate-200 flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div className="pt-8 md:pt-10 border-t border-slate-200 flex flex-col lg:flex-row items-center justify-between gap-6 md:gap-8">
           <p className="text-[12px] font-medium tracking-wide text-slate-400 text-center lg:text-left">
             © {new Date().getFullYear()} <span className="text-slate-900">Afridyn Engineering Limited</span>. All rights reserved.
           </p>

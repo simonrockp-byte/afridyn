@@ -52,15 +52,24 @@ export const metadata: Metadata = {
   openGraph: {
     type:        'website',
     locale:      'en_ZM',
-    url:         '/',
+    url:         'https://afridynengineering.com',
     title:       'Afridyn Engineering Limited | Engineering Excellence Across Africa',
     description: 'Professional engineering services for industrial, mining, and infrastructure sectors across Africa.',
     siteName:    'Afridyn Engineering Limited',
+    images: [
+      {
+        url:    '/images/og-image.png',
+        width:  1200,
+        height: 630,
+        alt:    'Afridyn Engineering Limited',
+      },
+    ],
   },
   twitter: {
     card:        'summary_large_image',
     title:       'Afridyn Engineering Limited',
     description: 'Engineering Excellence Across Africa',
+    images:      ['/images/og-image.png'],
   },
   robots: {
     index:     true,

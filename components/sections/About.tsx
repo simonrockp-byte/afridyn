@@ -1,6 +1,7 @@
 'use client'
 import { Zap, Shield, Target, Globe } from 'lucide-react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const pillars = [
   { icon: Zap,    title: 'Innovation', desc: 'Modern engineering methods and technologies applied to complex industrial challenges.', color: '#334155' },
@@ -28,7 +29,7 @@ export function About() {
   return (
     <section id="about" className="section" style={{ background: '#F8FAFC' }}>
       <div className="container" data-aos="fade-up">
-        <div className="grid lg:grid-cols-2 gap-24 xl:gap-36 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 xl:gap-24 items-center">
 
           {/* ── LEFT ── */}
           <motion.div
@@ -114,10 +115,12 @@ export function About() {
               className="relative rounded-[2.5rem] overflow-hidden aspect-[4/3] group shadow-2xl"
               style={{ border: '1px solid rgba(15,23,42,0.1)' }}
             >
-              <img
+              <Image
                 src="/images/services/maintenance.png"
                 alt="Afridyn Technical Capability"
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover transition-transform duration-1000 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
               <div className="absolute bottom-8 left-8">
@@ -137,7 +140,7 @@ export function About() {
             </div>
 
             {/* Mission / Vision */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 min-[480px]:grid-cols-2 gap-4">
               {[
                 { label: 'Our Mission', color: '#FF4500', text: 'Reliable engineering support that enhances operational efficiency and supports African industrial development.' },
                 { label: 'Our Vision',  color: '#FF0000', text: 'To be the most trusted technical solutions provider for Africa\'s most demanding sectors.' },

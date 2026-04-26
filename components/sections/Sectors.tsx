@@ -1,5 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const sectors = [
   {
@@ -83,7 +84,7 @@ export function Sectors() {
         </motion.div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8">
           {sectors.map((s, i) => (
             <motion.div
               key={s.label}
@@ -117,10 +118,12 @@ export function Sectors() {
                   boxShadow: `0 10px 25px ${s.color}15`
                 }}
               >
-                <img
+                <Image
                   src={s.img}
                   alt={s.label}
-                  className="w-full h-full object-contain"
+                  width={80}
+                  height={80}
+                  className="object-contain"
                   style={{ filter: `drop-shadow(0 5px 15px ${s.color}30)` }}
                 />
               </div>

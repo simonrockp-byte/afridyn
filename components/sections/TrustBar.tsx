@@ -1,5 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const badges = [
   { img: '/images/assets/trust-badge-iso.png',              label: 'ISO Certified',      color: '#334155' },
@@ -30,8 +31,8 @@ export function TrustBar() {
         style={{ background: 'linear-gradient(90deg, transparent, rgba(15, 23, 42, 0.05) 30%, rgba(15, 23, 42, 0.05) 70%, transparent)' }}
       />
 
-      <div className="container py-16">
-        <div className="flex flex-col md:flex-row items-center gap-12 md:gap-0 md:justify-between">
+      <div className="container py-12 md:py-16">
+        <div className="flex flex-col md:flex-row items-center gap-10 md:gap-0 md:justify-between">
 
           {/* ── Trust Badges ── */}
           <motion.div
@@ -47,7 +48,7 @@ export function TrustBar() {
             >
               Certifications &amp; Standards
             </p>
-            <div className="flex items-center gap-8">
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-6 md:gap-8">
               {badges.map((b, i) => (
                 <motion.div
                   key={b.label}
@@ -63,7 +64,7 @@ export function TrustBar() {
                       boxShadow: `0 4px 12px rgba(15, 23, 42, 0.05)`,
                     }}
                   >
-                    <img src={b.img} alt={b.label} className="w-full h-full object-contain" />
+                    <Image src={b.img} alt={b.label} width={40} height={40} className="object-contain" />
                   </div>
                   <span
                     className="text-[10px] font-mono font-bold tracking-[0.16em] uppercase text-slate-400 transition-colors group-hover:text-slate-900"
@@ -95,7 +96,7 @@ export function TrustBar() {
             >
               Core Engineering Disciplines
             </p>
-            <div className="flex items-center gap-6">
+            <div className="flex flex-wrap items-center justify-center md:justify-end gap-5 md:gap-6">
               {serviceIcons.map((s, i) => (
                 <motion.div
                   key={s.label}
@@ -118,7 +119,7 @@ export function TrustBar() {
                       el.style.borderColor = 'rgba(15, 23, 42, 0.1)'
                     }}
                   >
-                    <img src={s.img} alt={s.label} className="w-full h-full object-contain" />
+                    <Image src={s.img} alt={s.label} width={40} height={40} className="object-contain" />
                   </div>
                   <span
                     className="text-[10px] font-mono font-bold tracking-[0.16em] uppercase text-slate-400 transition-colors group-hover:text-slate-900"
