@@ -4,10 +4,10 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 const pillars = [
-  { icon: Zap,    title: 'Innovation', desc: 'Modern engineering methods and technologies applied to complex industrial challenges.', color: '#334155' },
-  { icon: Shield, title: 'Integrity',  desc: 'Transparent operations backed by full PACRA, TPIN, and ZPPA regulatory compliance.', color: '#475569' },
-  { icon: Target, title: 'Precision',  desc: 'International-standard engineering execution on every project — zero tolerance for mediocrity.', color: '#334155' },
-  { icon: Globe,  title: 'Pan-African',desc: 'Local knowledge, pan-African capability. Headquartered in Lusaka, Zambia.', color: '#475569' },
+  { icon: Zap,    title: 'Innovation', desc: 'Modern engineering methods and technologies applied to complex industrial challenges.', color: '#E8621A' },
+  { icon: Shield, title: 'Integrity',  desc: 'Transparent operations backed by full PACRA, TPIN, and ZPPA regulatory compliance.', color: '#1A3A6B' },
+  { icon: Target, title: 'Precision',  desc: 'International-standard engineering execution on every project — zero tolerance for mediocrity.', color: '#E8621A' },
+  { icon: Globe,  title: 'Pan-African',desc: 'Local knowledge, pan-African capability. Headquartered in Lusaka, Zambia.', color: '#1A3A6B' },
 ]
 
 const credentials = [
@@ -65,7 +65,7 @@ export function About() {
             <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {pillars.map((p, i) => {
                 const Icon = p.icon
-                const pColor = p.color === '#334155' ? '#FF4500' : '#FF0000'
+                const pColor = p.color
                 return (
                   <div
                     key={p.title}
@@ -127,11 +127,11 @@ export function About() {
                 <span
                   className="text-[11px] font-mono font-bold tracking-[0.2em] uppercase px-5 py-2.5 rounded-full"
                   style={{
-                    background: 'rgba(255, 80, 0, 0.9)',
+                    background: 'rgba(26, 58, 107, 0.9)',
                     border: '1px solid rgba(255,255,255,0.2)',
                     color: '#fff',
                     backdropFilter: 'blur(12px)',
-                    boxShadow: '0 10px 30px rgba(255, 80, 0, 0.4)'
+                    boxShadow: '0 10px 30px rgba(26, 58, 107, 0.4)',
                   }}
                 >
                   Pan-African Capability
@@ -142,8 +142,8 @@ export function About() {
             {/* Mission / Vision */}
             <div className="grid grid-cols-1 min-[480px]:grid-cols-2 gap-4">
               {[
-                { label: 'Our Mission', color: '#FF4500', text: 'Reliable engineering support that enhances operational efficiency and supports African industrial development.' },
-                { label: 'Our Vision',  color: '#FF0000', text: 'To be the most trusted technical solutions provider for Africa\'s most demanding sectors.' },
+                { label: 'Our Mission', color: '#E8621A', text: 'Reliable engineering support that enhances operational efficiency and supports African industrial development.' },
+                { label: 'Our Vision',  color: '#1A3A6B', text: 'To be the most trusted technical solutions provider for Africa\'s most demanding sectors.' },
               ].map(card => (
                 <div
                   key={card.label}

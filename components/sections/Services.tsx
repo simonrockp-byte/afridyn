@@ -98,7 +98,7 @@ function ServiceCard({
 }) {
   const Icon = s.icon
   const isActive = active === s.id
-  const accentColor = s.accent === '#334155' ? '#FF4500' : '#FF0000'
+  const accentColor = s.accent === '#334155' ? '#E8621A' : '#1A3A6B'
 
   return (
     <motion.div
@@ -117,9 +117,9 @@ function ServiceCard({
           background: 'rgba(255, 255, 255, 0.4)',
           backdropFilter: 'blur(20px)',
           border: '1px solid rgba(255, 255, 255, 0.6)',
-          boxShadow: isActive 
-            ? `0 32px 64px -12px rgba(255, 69, 0, 0.2)` 
-            : '0 8px 32px rgba(15, 23, 42, 0.04)',
+          boxShadow: isActive
+            ? `0 32px 64px -12px rgba(26, 58, 107, 0.18)`
+            : '0 8px 32px rgba(26, 58, 107, 0.06)',
           transform: isActive ? 'scale(1.02)' : 'scale(1)',
         }}
       >
@@ -194,7 +194,9 @@ function ServiceCard({
                 }}
                 className="btn btn-lg w-full justify-center text-white mt-4 font-bold"
                 style={{
-                  background: `linear-gradient(135deg, ${accentColor}, #CC0000)`,
+                  background: accentColor === '#E8621A'
+                    ? 'linear-gradient(135deg, #E8621A, #F07A38)'
+                    : 'linear-gradient(135deg, #1A3A6B, #2B5BA8)',
                   boxShadow: `0 12px 24px ${accentColor}30`,
                   borderRadius: '16px'
                 }}

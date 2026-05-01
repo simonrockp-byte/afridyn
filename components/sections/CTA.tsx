@@ -61,7 +61,7 @@ export function CTA() {
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="btn btn-lg bg-white text-orange-600 hover:bg-orange-50 transition-colors shadow-xl"
+                className="btn btn-lg bg-white text-[#E8621A] hover:bg-orange-50 transition-colors shadow-xl"
               >
                 Request a Quote
                 <ArrowRight size={17} strokeWidth={2} />

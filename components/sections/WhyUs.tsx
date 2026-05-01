@@ -8,42 +8,42 @@ const reasons = [
     title: 'Certified & Compliant',
     desc: 'Fully registered with PACRA, ZPPA-approved (Reg: 137269), and TPIN registered. We meet Zambia\'s highest procurement and regulatory standards.',
     highlight: 'ZPPA Approved',
-    color: '#FF4500',
+    color: '#E8621A',
   },
   {
     icon: UserCheck,
     title: 'Skilled Technical Team',
     desc: 'Qualified engineers, certified technicians, and industry specialists with verifiable experience across mechanical, electrical, IT, and fibre optic domains.',
     highlight: 'Expert Personnel',
-    color: '#FF0000',
+    color: '#1A3A6B',
   },
   {
     icon: Network,
     title: 'Strong Supplier Network',
     desc: 'Established relationships with global OEM suppliers and distributors, ensuring access to genuine parts, competitive pricing, and fast delivery.',
     highlight: 'Global Sourcing',
-    color: '#FF6B00',
+    color: '#E8621A',
   },
   {
     icon: Gauge,
     title: 'Operational Efficiency Focus',
     desc: 'Every service is oriented towards improving your uptime, reducing costs, and optimising performance — measured outcomes, not just completed tasks.',
     highlight: 'Results Driven',
-    color: '#CC0000',
+    color: '#1A3A6B',
   },
   {
     icon: HeartHandshake,
     title: 'Customer-First Approach',
     desc: 'Responsive, accessible, and committed to building long-term partnerships. Your operational challenges are our engineering problems to solve.',
     highlight: 'Dedicated Support',
-    color: '#FF2D00',
+    color: '#E8621A',
   },
   {
     icon: CheckCircle,
     title: 'Safety & Quality Standards',
     desc: 'Our operations adhere to international safety standards and quality assurance protocols on every engagement, regardless of scope.',
     highlight: 'ISO Standards',
-    color: '#FF8C00',
+    color: '#1A3A6B',
   },
 ]
 
@@ -61,16 +61,16 @@ export function WhyUs() {
   return (
     <section id="why-us" className="section relative overflow-hidden" style={{ background: '#F8FAFC' }}>
       {/* Decorative Orbs */}
-      <div className="absolute top-[20%] left-[-10%] w-[600px] h-[600px] rounded-full pointer-events-none opacity-20 blur-[100px]" style={{ background: 'radial-gradient(circle, #FF4500 0%, transparent 70%)' }} />
-      <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full pointer-events-none opacity-20 blur-[100px]" style={{ background: 'radial-gradient(circle, #FF0000 0%, transparent 70%)' }} />
-      
+      <div className="absolute top-[20%] left-[-10%] w-[600px] h-[600px] rounded-full pointer-events-none opacity-20 blur-[100px]" style={{ background: 'radial-gradient(circle, #1A3A6B 0%, transparent 70%)' }} />
+      <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full pointer-events-none opacity-15 blur-[100px]" style={{ background: 'radial-gradient(circle, #E8621A 0%, transparent 70%)' }} />
+
       {/* Subtle grid */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.03]"
+        className="absolute inset-0 pointer-events-none opacity-[0.025]"
         style={{
           backgroundImage:
-            'linear-gradient(rgba(255,69,0,0.1) 1px, transparent 1px),' +
-            'linear-gradient(90deg, rgba(255,69,0,0.1) 1px, transparent 1px)',
+            'linear-gradient(rgba(26,58,107,0.15) 1px, transparent 1px),' +
+            'linear-gradient(90deg, rgba(26,58,107,0.15) 1px, transparent 1px)',
           backgroundSize: '48px 48px',
         }}
       />
@@ -184,7 +184,7 @@ export function WhyUs() {
           }}
         >
           {/* Subtle accent gradient */}
-          <div className="absolute top-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, #FF4500, #FF0000, #FF6B00)' }} />
+          <div className="absolute top-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, #1A3A6B, #E8621A, #1A3A6B)' }} />
 
           <div className="flex flex-col lg:flex-row gap-12 items-center justify-between relative z-10">
             <div className="lg:max-w-md text-center lg:text-left">
@@ -199,7 +199,7 @@ export function WhyUs() {
                 <motion.span 
                   key={v} 
                   whileHover={{ scale: 1.05, y: -2 }}
-                  className="px-5 py-2.5 rounded-full text-[13px] font-bold transition-all duration-300 bg-white hover:bg-slate-50 border border-slate-100 text-slate-600 hover:text-slate-900 hover:border-orange-200 shadow-sm hover:shadow-md"
+                  className="px-5 py-2.5 rounded-full text-[13px] font-bold transition-all duration-300 bg-white hover:bg-[#EEF2F7] border border-slate-100 text-[#3D5275] hover:text-[#1A3A6B] hover:border-[#1A3A6B]/20 shadow-sm hover:shadow-md"
                 >
                   {v}
                 </motion.span>

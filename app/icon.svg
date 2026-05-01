@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Navy "A" body -->
+  <polygon points="50,8 10,92 30,92 50,45 70,92 90,92" fill="#1A3A6B"/>
+  <!-- Orange arrow/chevron -->
+  <polygon points="50,8 72,55 60,55 50,30 40,55 28,55" fill="#E8621A"/>
+  <!-- Crossbar gap -->
+  <rect x="33" y="62" width="34" height="10" fill="#1A3A6B"/>
+</svg>
