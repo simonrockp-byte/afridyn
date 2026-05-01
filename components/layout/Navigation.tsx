@@ -54,7 +54,7 @@ export function Navigation() {
           scrolled ? 'opacity-100' : 'opacity-0'
         }`}
         style={{
-          background: 'linear-gradient(90deg, transparent, #1A3A6B 30%, #E8621A 70%, transparent)',
+          background: 'linear-gradient(90deg, transparent, #1B4E9B 35%, #6AAB2E 65%, transparent)',
         }}
       />
 
@@ -99,8 +99,8 @@ export function Navigation() {
                       layoutId="active-nav-pill"
                       className="absolute inset-0 rounded-full"
                       style={{
-                        background: 'linear-gradient(135deg, #1A3A6B, #2B5BA8)',
-                        boxShadow: '0 4px 14px rgba(26, 58, 107, 0.35)',
+                        background: 'linear-gradient(135deg, #1B4E9B, #2A6DD9)',
+                        boxShadow: '0 4px 14px rgba(27, 78, 155, 0.35)',
                       }}
                       transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                     />
@@ -114,7 +114,7 @@ export function Navigation() {
           {/* Right: CTA / Mobile Toggle */}
           <div className="flex justify-end items-center gap-4">
             <div className="relative group hidden lg:block">
-              <div className="absolute -inset-[2px] rounded-xl blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-500 bg-gradient-to-r from-[#E8621A] to-[#F07A38]" />
+              <div className="absolute -inset-[2px] rounded-xl blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-500 bg-gradient-to-r from-[#4E8020] to-[#6AAB2E]" />
               <button
                 onClick={() => goto('contact')}
                 className="relative btn btn-cta btn-sm px-7 py-3 text-[14px]"
@@ -142,7 +142,7 @@ export function Navigation() {
           ${menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
       >
         {/* Top accent bar */}
-        <div className="h-[3px] w-full bg-gradient-to-r from-[#1A3A6B] via-[#E8621A] to-[#1A3A6B]" />
+        <div className="h-[3px] w-full bg-gradient-to-r from-[#1B4E9B] via-[#6AAB2E] to-[#1B4E9B]" />
         <div className="container py-8 flex flex-col gap-1">
           {navLinks.map((link, i) => (
             <button

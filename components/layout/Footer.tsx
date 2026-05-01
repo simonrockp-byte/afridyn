@@ -117,7 +117,7 @@ export function Footer() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-16 md:mb-20 text-center md:text-left"
         >
           {/* ── Brand ── */}
-          <div className="flex flex-col items-center md:items-start">
+          <div data-aos="fade-up" data-aos-delay="0" className="flex flex-col items-center md:items-start">
             <motion.div whileHover={{ scale: 1.03 }} className="mb-7">
               <Image
                 src="/images/final_logo.png"
@@ -152,7 +152,7 @@ export function Footer() {
           </div>
 
           {/* ── Expertise ── */}
-          <div className="space-y-5">
+          <div data-aos="fade-up" data-aos-delay="100" className="space-y-5">
             <h4 className="text-white/40 font-display font-bold text-[11px] tracking-[0.28em] uppercase flex items-center justify-center md:justify-start gap-3">
               <span className="w-8 h-px bg-[#6AAB2E] hidden md:block opacity-60" />
               Expertise
@@ -176,7 +176,7 @@ export function Footer() {
           </div>
 
           {/* ── Company ── */}
-          <div className="space-y-5">
+          <div data-aos="fade-up" data-aos-delay="200" className="space-y-5">
             <h4 className="text-white/40 font-display font-bold text-[11px] tracking-[0.28em] uppercase flex items-center justify-center md:justify-start gap-3">
               <span className="w-8 h-px bg-[#1B4E9B] hidden md:block opacity-60" />
               Company
@@ -200,7 +200,7 @@ export function Footer() {
           </div>
 
           {/* ── Contact ── */}
-          <div className="space-y-5">
+          <div data-aos="fade-up" data-aos-delay="300" className="space-y-5">
             <h4 className="text-white/40 font-display font-bold text-[11px] tracking-[0.28em] uppercase flex items-center justify-center md:justify-start gap-3">
               <span className="w-8 h-px bg-[#6AAB2E] hidden md:block opacity-60" />
               Contact

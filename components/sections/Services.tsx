@@ -17,7 +17,7 @@ const services = [
     short: 'OEM-quality components for industrial machinery and electrical systems.',
     desc:  'We source and supply high-quality mechanical and electrical spare parts including bearings, motors, cables, switchgear, and instrumentation.',
     features: ['OEM & aftermarket parts', 'Rapid procurement', 'Quality certified', 'Technical guidance'],
-    accent: '#334155', sector: 'Industrial',
+    accent: '#1B4E9B', sector: 'Industrial',
     image: '/images/services/spares.png',
   },
   {
@@ -26,7 +26,7 @@ const services = [
     short: 'Preventive and corrective maintenance to maximise plant uptime.',
     desc:  'Our certified technicians deliver preventive, predictive, and corrective maintenance programs for mechanical and electrical systems.',
     features: ['Preventive programs', 'Emergency response', 'CMMS integration', 'SLA-backed service'],
-    accent: '#475569', sector: 'Mining / Industrial',
+    accent: '#6AAB2E', sector: 'Mining / Industrial',
     image: '/images/services/maintenance.png',
   },
   {
@@ -35,7 +35,7 @@ const services = [
     short: 'Strategic technical advisory and project management services.',
     desc:  'Expert engineering consultants providing feasibility studies, technical specifications, and execution oversight.',
     features: ['Feasibility studies', 'Project management', 'Risk assessment', 'Design & specification'],
-    accent: '#334155', sector: 'Multi-sector',
+    accent: '#1B4E9B', sector: 'Multi-sector',
     image: '/images/services/consultation.png',
   },
   {
@@ -44,7 +44,7 @@ const services = [
     short: 'Enterprise-grade hardware, servers, and infrastructure solutions.',
     desc:  'Procurement and supply of enterprise IT equipment including servers, workstations, and networking devices.',
     features: ['Enterprise hardware', 'Network infrastructure', 'Configuration & setup', 'Warranty & support'],
-    accent: '#475569', sector: 'Commercial / Industrial',
+    accent: '#6AAB2E', sector: 'Commercial / Industrial',
     image: '/images/services/it_supply.png',
   },
   {
@@ -53,7 +53,7 @@ const services = [
     short: 'Design, installation, splicing, and maintenance of fibre networks.',
     desc:  'Full-service capabilities including network design, cable laying, fusion splicing, and maintenance.',
     features: ['Network design', 'Fusion splicing', 'OTDR testing', '24/7 maintenance'],
-    accent: '#334155', sector: 'Telecoms / Infrastructure',
+    accent: '#1B4E9B', sector: 'Telecoms / Infrastructure',
     image: '/images/services/fibre.png',
   },
   {
@@ -62,7 +62,7 @@ const services = [
     short: 'Qualified engineering personnel on flexible contract terms.',
     desc:  'Access specialised engineering skills on demand — vetted, experienced technical personnel across all disciplines.',
     features: ['Vetted professionals', 'All disciplines', 'Flexible contracts', 'Skills transfer'],
-    accent: '#475569', sector: 'All Sectors',
+    accent: '#6AAB2E', sector: 'All Sectors',
     image: '/images/services/technical_outsourcing.png',
   },
   {
@@ -71,7 +71,7 @@ const services = [
     short: 'End-to-end supply chain analysis and optimisation.',
     desc:  'We analyse, design, and optimise supply chains and transportation networks for maximum efficiency.',
     features: ['Route optimisation', 'Cost reduction', 'Vendor management', 'KPI dashboards'],
-    accent: '#334155', sector: 'Mining / Commercial',
+    accent: '#1B4E9B', sector: 'Mining / Commercial',
     image: '/images/services/logistics.png',
   },
   {
@@ -80,7 +80,7 @@ const services = [
     short: 'Seamless customs clearance and international freight management.',
     desc:  'Complete customs brokerage and freight forwarding ensuring goods cross borders efficiently.',
     features: ['Customs clearance', 'Full documentation', 'Freight forwarding', 'Track & trace'],
-    accent: '#475569', sector: 'Import / Export',
+    accent: '#6AAB2E', sector: 'Import / Export',
     image: '/images/services/clearing_forwarding.png',
   },
 ]
@@ -98,7 +98,7 @@ function ServiceCard({
 }) {
   const Icon = s.icon
   const isActive = active === s.id
-  const accentColor = s.accent === '#334155' ? '#E8621A' : '#1A3A6B'
+  const accentColor = s.accent
 
   return (
     <motion.div
@@ -258,6 +258,7 @@ export function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          data-aos="fade-down"
           className="text-center max-w-2xl mx-auto mb-24 flex flex-col items-center"
         >
           <div className="label-chip mb-5">Advanced Technical Solutions</div>

@@ -8,42 +8,42 @@ const reasons = [
     title: 'Certified & Compliant',
     desc: 'Fully registered with PACRA, ZPPA-approved (Reg: 137269), and TPIN registered. We meet Zambia\'s highest procurement and regulatory standards.',
     highlight: 'ZPPA Approved',
-    color: '#E8621A',
+    color: '#6AAB2E',
   },
   {
     icon: UserCheck,
     title: 'Skilled Technical Team',
     desc: 'Qualified engineers, certified technicians, and industry specialists with verifiable experience across mechanical, electrical, IT, and fibre optic domains.',
     highlight: 'Expert Personnel',
-    color: '#1A3A6B',
+    color: '#1B4E9B',
   },
   {
     icon: Network,
     title: 'Strong Supplier Network',
     desc: 'Established relationships with global OEM suppliers and distributors, ensuring access to genuine parts, competitive pricing, and fast delivery.',
     highlight: 'Global Sourcing',
-    color: '#E8621A',
+    color: '#6AAB2E',
   },
   {
     icon: Gauge,
     title: 'Operational Efficiency Focus',
     desc: 'Every service is oriented towards improving your uptime, reducing costs, and optimising performance — measured outcomes, not just completed tasks.',
     highlight: 'Results Driven',
-    color: '#1A3A6B',
+    color: '#1B4E9B',
   },
   {
     icon: HeartHandshake,
     title: 'Customer-First Approach',
     desc: 'Responsive, accessible, and committed to building long-term partnerships. Your operational challenges are our engineering problems to solve.',
     highlight: 'Dedicated Support',
-    color: '#E8621A',
+    color: '#6AAB2E',
   },
   {
     icon: CheckCircle,
     title: 'Safety & Quality Standards',
     desc: 'Our operations adhere to international safety standards and quality assurance protocols on every engagement, regardless of scope.',
     highlight: 'ISO Standards',
-    color: '#1A3A6B',
+    color: '#1B4E9B',
   },
 ]
 
@@ -61,8 +61,8 @@ export function WhyUs() {
   return (
     <section id="why-us" className="section relative overflow-hidden" style={{ background: '#F8FAFC' }}>
       {/* Decorative Orbs */}
-      <div className="absolute top-[20%] left-[-10%] w-[600px] h-[600px] rounded-full pointer-events-none opacity-20 blur-[100px]" style={{ background: 'radial-gradient(circle, #1A3A6B 0%, transparent 70%)' }} />
-      <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full pointer-events-none opacity-15 blur-[100px]" style={{ background: 'radial-gradient(circle, #E8621A 0%, transparent 70%)' }} />
+      <div className="absolute top-[20%] left-[-10%] w-[600px] h-[600px] rounded-full pointer-events-none opacity-20 blur-[100px]" style={{ background: 'radial-gradient(circle, #1B4E9B 0%, transparent 70%)' }} />
+      <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full pointer-events-none opacity-15 blur-[100px]" style={{ background: 'radial-gradient(circle, #6AAB2E 0%, transparent 70%)' }} />
 
       {/* Subtle grid */}
       <div
@@ -82,6 +82,7 @@ export function WhyUs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
+          data-aos="fade-down"
           className="text-center max-w-2xl mx-auto mb-20 flex flex-col items-center"
         >
           <div className="label-chip mb-5">Success Factors</div>
@@ -180,7 +181,7 @@ export function WhyUs() {
           }}
         >
           {/* Subtle accent gradient */}
-          <div className="absolute top-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, #1A3A6B, #E8621A, #1A3A6B)' }} />
+          <div className="absolute top-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, #1B4E9B, #6AAB2E, #1B4E9B)' }} />
 
           <div className="flex flex-col lg:flex-row gap-12 items-center justify-between relative z-10">
             <div className="lg:max-w-md text-center lg:text-left">

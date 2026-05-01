@@ -6,35 +6,35 @@ const sectors = [
   {
     img:   '/images/assets/industry-mining-afridyn.png',
     label: 'Mining',
-    color: '#1A3A6B',
+    color: '#1B4E9B',
     desc:  'Maintenance, spares & workforce for major African mining operations.',
     stat:  '60% of our work',
   },
   {
     img:   '/images/assets/industry-manufacturing-afridyn.png',
     label: 'Manufacturing',
-    color: '#E8621A',
+    color: '#6AAB2E',
     desc:  'Operational efficiency and spare parts for production facilities.',
     stat:  'Multi-sector',
   },
   {
     img:   '/images/assets/industry-energy-afridyn.png',
     label: 'Energy',
-    color: '#1A3A6B',
+    color: '#1B4E9B',
     desc:  'Engineering solutions for power generation and distribution.',
     stat:  'Infrastructure',
   },
   {
     img:   '/images/assets/service-icon-it-afridyn.png',
     label: 'Commercial / IT',
-    color: '#E8621A',
+    color: '#6AAB2E',
     desc:  'IT equipment and technical outsourcing for growing businesses.',
     stat:  'Enterprise grade',
   },
   {
     img:   '/images/assets/service-icon-fiber-afridyn.png',
     label: 'Telecoms',
-    color: '#1A3A6B',
+    color: '#1B4E9B',
     desc:  'Optical fibre installation and 24/7 network maintenance.',
     stat:  'Pan-African',
   },
@@ -48,8 +48,8 @@ export function Sectors() {
       style={{ background: '#F8FAFC' }}
     >
       {/* Decorative Orbs */}
-      <div className="absolute top-[30%] right-[-10%] w-[600px] h-[600px] rounded-full pointer-events-none opacity-[0.12] blur-[100px]" style={{ background: 'radial-gradient(circle, #1A3A6B 0%, transparent 70%)' }} />
-      <div className="absolute bottom-[20%] left-[-5%] w-[500px] h-[500px] rounded-full pointer-events-none opacity-[0.12] blur-[100px]" style={{ background: 'radial-gradient(circle, #E8621A 0%, transparent 70%)' }} />
+      <div className="absolute top-[30%] right-[-10%] w-[600px] h-[600px] rounded-full pointer-events-none opacity-[0.12] blur-[100px]" style={{ background: 'radial-gradient(circle, #1B4E9B 0%, transparent 70%)' }} />
+      <div className="absolute bottom-[20%] left-[-5%] w-[500px] h-[500px] rounded-full pointer-events-none opacity-[0.12] blur-[100px]" style={{ background: 'radial-gradient(circle, #6AAB2E 0%, transparent 70%)' }} />
 
       {/* Subtle grid */}
       <div
@@ -69,6 +69,7 @@ export function Sectors() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
+          data-aos="fade-down"
           className="text-center mb-24"
         >
           <div className="section-label justify-center mb-5">

@@ -48,7 +48,7 @@ export function CTA() {
                 style={{ fontSize: 'clamp(1.8rem, 4.5vw, 3.2rem)', letterSpacing: '-0.04em', lineHeight: 1.05 }}
               >
                 Ready to Solve Your<br />
-                <span className="text-white underline decoration-orange-500/50">Engineering Challenge?</span>
+                <span className="text-white underline decoration-[#6AAB2E]/60">Engineering Challenge?</span>
               </h2>
               <p className="text-[15px] text-white/80">
                 Talk to our team today. We respond within 24 hours, every time.
@@ -61,7 +61,7 @@ export function CTA() {
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="btn btn-lg bg-white text-[#E8621A] hover:bg-orange-50 transition-colors shadow-xl"
+                className="btn btn-lg bg-white text-[#1B4E9B] hover:bg-blue-50 transition-colors shadow-xl font-bold"
               >
                 Request a Quote
                 <ArrowRight size={17} strokeWidth={2} />

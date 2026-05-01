@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm -rf .next)",
+      "Bash(npm run *)",
+      "Bash(npm pack *)",
+      "Bash(npm cache *)",
+      "Bash([ -f \"tailwindcss-$pkg-4.2.4.tgz\" ])",
+      "Bash(tar -xzf tailwindcss-__TRACKED_VAR__-4.2.4.tgz --strip-components=1 -C node_modules/@tailwindcss/__TRACKED_VAR__)",
+      "Bash(node -e \"console.log\\(JSON.parse\\(require\\('fs'\\).readFileSync\\('node_modules/@react-three/fiber/package.json','utf8'\\)\\).version\\)\")"
+    ]
+  }
+}

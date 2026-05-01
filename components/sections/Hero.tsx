@@ -13,10 +13,10 @@ const HeroScene3D = dynamic(
 /* ─── Floating orbs behind the 3D scene ─── */
 type Orb = { size: number; top: string; color: string; dur: string; anim: string; left?: string; right?: string }
 const ORBS: Orb[] = [
-  { size: 700, top: '-10%', left: '-10%',  color: 'rgba(26,58,107,0.45)',  dur: '14s', anim: 'orbFloat1' },
-  { size: 600, top: '30%',  right: '-12%', color: 'rgba(43,91,168,0.38)', dur: '18s', anim: 'orbFloat2' },
-  { size: 500, top: '60%',  left: '20%',   color: 'rgba(15,35,71,0.35)',  dur: '12s', anim: 'orbFloat3' },
-  { size: 360, top: '-5%',  right: '30%',  color: 'rgba(232,98,26,0.25)', dur: '20s', anim: 'orbFloat1' },
+  { size: 700, top: '-10%', left: '-10%',  color: 'rgba(27,78,155,0.45)',  dur: '14s', anim: 'orbFloat1' },
+  { size: 600, top: '30%',  right: '-12%', color: 'rgba(42,109,217,0.38)', dur: '18s', anim: 'orbFloat2' },
+  { size: 500, top: '60%',  left: '20%',   color: 'rgba(15,47,94,0.35)',   dur: '12s', anim: 'orbFloat3' },
+  { size: 360, top: '-5%',  right: '30%',  color: 'rgba(106,171,46,0.22)', dur: '20s', anim: 'orbFloat1' },
 ]
 
 const fadeUp = (delay = 0) => ({
@@ -169,7 +169,7 @@ export function Hero() {
             />
             <span
               className="text-[10px] md:text-[11px] font-mono font-bold tracking-[0.16em] uppercase leading-tight"
-              style={{ color: '#F07A38' }}
+              style={{ color: '#82C93A' }}
             >
               Certified Industrial Excellence — Zambia &amp; Sub-Saharan Africa
             </span>
@@ -229,7 +229,7 @@ export function Hero() {
                   fontSize:      'clamp(2.6rem, 10vw, 7.5rem)',
                   letterSpacing: '-0.05em',
                   lineHeight:    0.92,
-                  background:    'linear-gradient(90deg, #1A3A6B 0%, #2B5BA8 40%, #E8621A 100%)',
+                  background:    'linear-gradient(90deg, #1B4E9B 0%, #2A6DD9 40%, #6AAB2E 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -254,7 +254,9 @@ export function Hero() {
           {/* CTAs */}
           <motion.div
             {...fadeUp(0.80)}
-            className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 w-full sm:w-auto px-4 sm:px-0"
+            data-aos="fade-up"
+          data-aos-delay="600"
+          className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 w-full sm:w-auto px-4 sm:px-0"
           >
             <motion.button
               onClick={() => goto('services')}
@@ -300,7 +302,7 @@ export function Hero() {
       >
         <span
           className="text-[10px] font-mono tracking-[0.25em] uppercase mb-1"
-          style={{ color: 'rgba(232,98,26,0.55)' }}
+          style={{ color: 'rgba(106,171,46,0.55)' }}
         >
           Scroll
         </span>
@@ -308,7 +310,7 @@ export function Hero() {
           size={26}
           strokeWidth={1.5}
           className="animate-bounce"
-          style={{ color: 'rgba(232,98,26,0.65)' }}
+          style={{ color: 'rgba(106,171,46,0.65)' }}
         />
       </motion.button>
     </section>
