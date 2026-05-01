@@ -140,11 +140,11 @@ export function Hero() {
             className="mb-10 md:mb-12"
           >
             <Image
-              src="/images/logo.png"
+              src="/images/final_logo.png"
               alt="Afridyn Engineering | Technology"
               width={260}
               height={78}
-              className="object-contain brightness-0 invert"
+              className="object-contain"
               priority
             />
           </motion.div>
