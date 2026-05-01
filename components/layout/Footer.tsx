@@ -88,7 +88,7 @@ export function Footer() {
           <div className="flex flex-col items-center md:items-start">
             <motion.div whileHover={{ scale: 1.02 }} className="mb-7">
               <Image
-                src="/images/logo.png"
+                src="/images/final_logo.png"
                 alt="Afridyn Engineering | Technology"
                 width={180}
                 height={54}

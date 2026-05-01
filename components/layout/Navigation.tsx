@@ -69,7 +69,7 @@ export function Navigation() {
               aria-label="Afridyn Engineering — home"
             >
               <Image
-                src="/images/logo.png"
+                src="/images/final_logo.png"
                 alt="Afridyn Engineering | Technology"
                 width={160}
                 height={48}
