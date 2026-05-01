@@ -79,7 +79,7 @@ export function Sectors() {
             style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', letterSpacing: '-0.04em' }}
           >
             Driving Growth in<br />
-            <span className="text-gradient-fire">Critical Sectors</span>
+            <span className="text-gradient-dual">Critical Sectors</span>
           </h2>
         </motion.div>
 

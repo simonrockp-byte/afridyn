@@ -49,7 +49,7 @@ export function About() {
               style={{ fontSize: 'clamp(2rem, 5vw, 3.8rem)', letterSpacing: '-0.04em', lineHeight: 1.05 }}
             >
               Africa's Trusted<br />
-              <span className="text-gradient-fire">Engineering Partner</span>
+              <span className="text-gradient-dual">Engineering Partner</span>
             </motion.h2>
 
             <motion.p variants={itemVariants} className="text-base leading-relaxed mb-4 text-slate-500">

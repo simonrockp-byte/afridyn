@@ -90,11 +90,7 @@ export function WhyUs() {
             style={{ fontSize: 'clamp(2.2rem, 6vw, 4.5rem)', letterSpacing: '-0.04em' }}
           >
             The Afridyn<br />
-            <span
-              className="text-gradient-fire"
-            >
-              Difference
-            </span>
+            <span className="text-gradient-dual">Difference</span>
           </h2>
         </motion.div>
 

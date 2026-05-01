@@ -266,11 +266,7 @@ export function Services() {
             style={{ fontSize: 'clamp(2.2rem, 6vw, 4.5rem)', letterSpacing: '-0.04em' }}
           >
             Technical<br />
-            <span
-              className="text-gradient-fire"
-            >
-              Capability
-            </span>
+            <span className="text-gradient-dual">Capability</span>
           </h2>
           <p className="text-lg text-slate-500 leading-relaxed text-center">
             Robust engineering, maintenance, and IT infrastructure solutions

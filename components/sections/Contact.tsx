@@ -80,7 +80,7 @@ export function Contact() {
               style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', letterSpacing: '-0.04em', lineHeight: 1.05 }}
             >
               Let&apos;s Discuss<br />
-              <span className="text-gradient-fire">Your Project</span>
+              <span className="text-gradient-dual">Your Project</span>
             </h2>
             <p className="text-[15px] leading-relaxed text-slate-500 mb-12">
               Whether you need spare parts, maintenance support, or comprehensive
