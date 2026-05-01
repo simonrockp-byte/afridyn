@@ -81,7 +81,7 @@ const services = [
     desc:  'Complete customs brokerage and freight forwarding ensuring goods cross borders efficiently.',
     features: ['Customs clearance', 'Full documentation', 'Freight forwarding', 'Track & trace'],
     accent: '#475569', sector: 'Import / Export',
-    image: '/images/services/maintenance.png',
+    image: '/images/services/clearing_forwarding.png',
   },
 ]
 
