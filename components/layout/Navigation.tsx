@@ -1,9 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ShoppingBag } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 
 const navLinks = [
   { label: 'Services',  href: 'services' },
@@ -17,6 +19,9 @@ export function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [active, setActive]     = useState('')
+  const pathname = usePathname()
+  const router   = useRouter()
+  const isShop   = pathname === '/shop'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -33,6 +38,10 @@ export function Navigation() {
   const goto = (id: string) => {
     setMenuOpen(false)
     setActive(id)
+    if (isShop) {
+      router.push(`/#${id}`)
+      return
+    }
     const el = document.getElementById(id)
     if (el) {
       const offset = 72
@@ -112,7 +121,20 @@ export function Navigation() {
           </div>
 
           {/* Right: CTA / Mobile Toggle */}
-          <div className="flex justify-end items-center gap-4">
+          <div className="flex justify-end items-center gap-3">
+            <Link
+              href="/shop"
+              className={`hidden lg:flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-semibold transition-all border ${
+                isShop
+                  ? 'bg-[#1B4E9B] text-white border-[#1B4E9B]'
+                  : scrolled
+                    ? 'text-[#1B4E9B] border-[#1B4E9B]/30 hover:bg-[#1B4E9B]/5'
+                    : 'text-white border-white/30 hover:bg-white/10'
+              }`}
+            >
+              <ShoppingBag size={14} />
+              Shop
+            </Link>
             <div className="relative group hidden lg:block">
               <div className="absolute -inset-[2px] rounded-xl blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-500 bg-gradient-to-r from-[#4E8020] to-[#6AAB2E]" />
               <button
@@ -154,6 +176,14 @@ export function Navigation() {
               {link.label}
             </button>
           ))}
+          <Link
+            href="/shop"
+            onClick={() => setMenuOpen(false)}
+            className="flex items-center gap-2 text-xl font-display font-bold text-[#1B4E9B] py-4 px-2 border-b border-slate-100"
+          >
+            <ShoppingBag size={20} />
+            Shop
+          </Link>
           <div className="pt-8">
             <button
               onClick={() => goto('contact')}
