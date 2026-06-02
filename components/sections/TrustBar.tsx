@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
@@ -34,13 +34,12 @@ export function TrustBar() {
       <div className="container py-12 md:py-16">
         <div className="flex flex-col md:flex-row items-center gap-10 md:gap-0 md:justify-between">
 
-          {/* ── Trust Badges ── */}
+          {/* â”€â”€ Trust Badges â”€â”€ */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            data-aos="fade-right"
             className="flex flex-col items-center md:items-start gap-4"
           >
             <p
@@ -76,19 +75,18 @@ export function TrustBar() {
             </div>
           </motion.div>
 
-          {/* ── Vertical divider (desktop) ── */}
+          {/* â”€â”€ Vertical divider (desktop) â”€â”€ */}
           <div
             className="hidden md:block w-px self-stretch mx-8"
             style={{ background: 'rgba(15, 23, 42, 0.08)' }}
           />
 
-          {/* ── Core Service Icons ── */}
+          {/* â”€â”€ Core Service Icons â”€â”€ */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            data-aos="fade-left"
             className="flex flex-col items-center md:items-end gap-4"
           >
             <p
@@ -141,3 +139,4 @@ export function TrustBar() {
     </section>
   )
 }
+

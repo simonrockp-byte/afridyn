@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import {
   Settings, Wrench, Lightbulb, Monitor,
   Radio, Users, Truck, Anchor, ArrowRight,
@@ -60,7 +60,7 @@ const services = [
     id: 6, icon: Users,
     title: 'Technical Outsourcing',
     short: 'Qualified engineering personnel on flexible contract terms.',
-    desc:  'Access specialised engineering skills on demand — vetted, experienced technical personnel across all disciplines.',
+    desc:  'Access specialised engineering skills on demand â€” vetted, experienced technical personnel across all disciplines.',
     features: ['Vetted professionals', 'All disciplines', 'Flexible contracts', 'Skills transfer'],
     accent: '#6AAB2E', sector: 'All Sectors',
     image: '/images/services/technical_outsourcing.png',
@@ -106,8 +106,6 @@ function ServiceCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ delay: i * 0.07, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-      data-aos="fade-up"
-      data-aos-delay={i * 100}
       className="h-full"
     >
       <div
@@ -232,7 +230,7 @@ export function Services() {
       className="section relative overflow-hidden"
       style={{ background: '#F8FAFC' }}
     >
-      {/* ── Three.js Scene ── */}
+      {/* â”€â”€ Three.js Scene â”€â”€ */}
       <Scene3D />
 
       {/* Ambient orbs */}
@@ -258,7 +256,6 @@ export function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          data-aos="fade-down"
           className="text-center max-w-2xl mx-auto mb-24 flex flex-col items-center"
         >
           <div className="label-chip mb-5">Advanced Technical Solutions</div>
@@ -291,3 +288,5 @@ export function Services() {
     </section>
   )
 }
+
+

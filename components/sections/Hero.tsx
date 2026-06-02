@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useEffect, useRef, useState } from 'react'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import { motion } from 'framer-motion'
@@ -10,7 +10,7 @@ const HeroScene3D = dynamic(
   { ssr: false }
 )
 
-/* ─── Floating orbs behind the 3D scene ─── */
+/* â”€â”€â”€ Floating orbs behind the 3D scene â”€â”€â”€ */
 type Orb = { size: number; top: string; color: string; dur: string; anim: string; left?: string; right?: string }
 const ORBS: Orb[] = [
   { size: 700, top: '-10%', left: '-10%',  color: 'rgba(27,78,155,0.45)',  dur: '14s', anim: 'orbFloat1' },
@@ -25,7 +25,7 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.85, delay, ease: [0.16, 1, 0.3, 1] as [number,number,number,number] },
 })
 
-/* ─── Mobile static background (no Three.js) ─── */
+/* â”€â”€â”€ Mobile static background (no Three.js) â”€â”€â”€ */
 function StaticBackground() {
   return (
     <>
@@ -37,7 +37,7 @@ function StaticBackground() {
             'radial-gradient(ellipse 60% 50% at 80% 70%, rgba(232,98,26,0.18) 0%, transparent 60%)',
         }}
       />
-      {/* Hex grid blueprint lines — pure CSS */}
+      {/* Hex grid blueprint lines â€” pure CSS */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -70,7 +70,7 @@ export function Hero() {
       className="relative min-h-screen flex items-center overflow-hidden"
       style={{ background: '#0A1628' }}
     >
-      {/* Glowing orbs — always shown */}
+      {/* Glowing orbs â€” always shown */}
       {ORBS.map((o, i) => (
         <div
           key={i}
@@ -101,7 +101,7 @@ export function Hero() {
         }}
       />
 
-      {/* 3D network scene — desktop only */}
+      {/* 3D network scene â€” desktop only */}
       {!isMobile && (
         <div className="absolute inset-0" style={{ zIndex: 3 }}>
           <HeroScene3D />
@@ -171,13 +171,13 @@ export function Hero() {
               className="text-[10px] md:text-[11px] font-mono font-bold tracking-[0.16em] uppercase leading-tight"
               style={{ color: '#82C93A' }}
             >
-              Certified Industrial Excellence — Zambia &amp; Sub-Saharan Africa
+              Certified Industrial Excellence â€” Zambia &amp; Sub-Saharan Africa
             </span>
           </motion.div>
 
           {/* Main headline */}
           <div className="mb-6 md:mb-8">
-            {/* Line 1: "Powering Africa's" — white */}
+            {/* Line 1: "Powering Africa's" â€” white */}
             <motion.div
               initial={{ opacity: 0, x: -60 }}
               animate={{ opacity: 1, x: 0 }}
@@ -197,7 +197,7 @@ export function Hero() {
               </span>
             </motion.div>
 
-            {/* Line 2: "Industrial" — white */}
+            {/* Line 2: "Industrial" â€” white */}
             <motion.div
               initial={{ opacity: 0, x: -60 }}
               animate={{ opacity: 1, x: 0 }}
@@ -217,7 +217,7 @@ export function Hero() {
               </span>
             </motion.div>
 
-            {/* Line 3: "Future" — blue→orange gradient */}
+            {/* Line 3: "Future" â€” blueâ†’orange gradient */}
             <motion.div
               initial={{ opacity: 0, x: 60 }}
               animate={{ opacity: 1, x: 0 }}
@@ -254,8 +254,6 @@ export function Hero() {
           {/* CTAs */}
           <motion.div
             {...fadeUp(0.80)}
-            data-aos="fade-up"
-          data-aos-delay="600"
           className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 w-full sm:w-auto px-4 sm:px-0"
           >
             <motion.button
@@ -316,3 +314,4 @@ export function Hero() {
     </section>
   )
 }
+

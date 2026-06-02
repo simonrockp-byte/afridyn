@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { CheckCircle, Award, UserCheck, Network, Gauge, HeartHandshake } from 'lucide-react'
 import { motion } from 'framer-motion'
 
@@ -27,7 +27,7 @@ const reasons = [
   {
     icon: Gauge,
     title: 'Operational Efficiency Focus',
-    desc: 'Every service is oriented towards improving your uptime, reducing costs, and optimising performance — measured outcomes, not just completed tasks.',
+    desc: 'Every service is oriented towards improving your uptime, reducing costs, and optimising performance â€” measured outcomes, not just completed tasks.',
     highlight: 'Results Driven',
     color: '#1B4E9B',
   },
@@ -82,7 +82,6 @@ export function WhyUs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          data-aos="fade-down"
           className="text-center max-w-2xl mx-auto mb-20 flex flex-col items-center"
         >
           <div className="label-chip mb-5">Success Factors</div>
@@ -106,8 +105,6 @@ export function WhyUs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ delay: i * 0.08, duration: 0.55, ease: 'easeOut' }}
-                data-aos="fade-up"
-                data-aos-delay={i * 100}
                 className="group relative rounded-[2.5rem] p-10 transition-all duration-500 overflow-hidden"
                 style={{
                   background: 'rgba(255, 255, 255, 0.4)',
@@ -170,8 +167,6 @@ export function WhyUs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-          data-aos="zoom-in"
-          data-aos-duration="1000"
           className="mt-16 md:mt-24 lg:mt-32 rounded-[2rem] lg:rounded-[3rem] p-8 md:p-12 lg:p-20 relative overflow-hidden group"
           style={{
             background: 'rgba(255, 255, 255, 0.5)',
@@ -208,3 +203,5 @@ export function WhyUs() {
     </section>
   )
 }
+
+

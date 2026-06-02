@@ -1,9 +1,11 @@
-'use client'
+﻿'use client'
 import { Phone, Mail, MapPin } from 'lucide-react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import { usePathname, useRouter } from 'next/navigation'
 
 const FooterScene3D = dynamic(
   () => import('@/components/FooterScene3D').then(m => ({ default: m.FooterScene3D })),
@@ -26,11 +28,20 @@ const companyLinks: [string, string][] = [
   ['contact', 'Contact'],
 ]
 
-const goto = (id: string) =>
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+// Shop is a real route, not an anchor â€” handled separately below
 
 export function Footer() {
   const containerRef = useRef<HTMLDivElement>(null)
+  const pathname     = usePathname()
+  const router       = useRouter()
+
+  const goto = (id: string) => {
+    if (pathname !== '/') {
+      router.push(`/#${id}`)
+      return
+    }
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  }
 
   const mouseX  = useMotionValue(0)
   const mouseY  = useMotionValue(0)
@@ -58,10 +69,10 @@ export function Footer() {
       className="relative overflow-hidden pt-20 pb-10 md:pt-24 md:pb-12"
       style={{ background: '#060E1E' }}
     >
-      {/* ── Three.js circuit animation ── */}
+      {/* â”€â”€ Three.js circuit animation â”€â”€ */}
       <FooterScene3D />
 
-      {/* ── Parallax glow orbs (mouse-reactive) ── */}
+      {/* â”€â”€ Parallax glow orbs (mouse-reactive) â”€â”€ */}
       <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
         <motion.div
           className="absolute top-[-15%] left-[-8%] w-[55%] h-[55%] rounded-full blur-[130px]"
@@ -86,7 +97,7 @@ export function Footer() {
         />
       </div>
 
-      {/* ── Blueprint grid overlay ── */}
+      {/* â”€â”€ Blueprint grid overlay â”€â”€ */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -98,7 +109,7 @@ export function Footer() {
         }}
       />
 
-      {/* ── Top gradient border ── */}
+      {/* â”€â”€ Top gradient border â”€â”€ */}
       <div
         className="absolute top-0 left-0 right-0 h-[2px]"
         style={{
@@ -107,7 +118,7 @@ export function Footer() {
         }}
       />
 
-      {/* ── Content ── */}
+      {/* â”€â”€ Content â”€â”€ */}
       <div className="container relative" style={{ zIndex: 10 }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -116,8 +127,8 @@ export function Footer() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-16 md:mb-20 text-center md:text-left"
         >
-          {/* ── Brand ── */}
-          <div data-aos="fade-up" data-aos-delay="0" className="flex flex-col items-center md:items-start">
+          {/* â”€â”€ Brand â”€â”€ */}
+          <div className="flex flex-col items-center md:items-start">
             <motion.div whileHover={{ scale: 1.03 }} className="mb-7">
               <Image
                 src="/images/final_logo.png"
@@ -151,8 +162,8 @@ export function Footer() {
             </div>
           </div>
 
-          {/* ── Expertise ── */}
-          <div data-aos="fade-up" data-aos-delay="100" className="space-y-5">
+          {/* â”€â”€ Expertise â”€â”€ */}
+          <div className="space-y-5">
             <h4 className="text-white/40 font-display font-bold text-[11px] tracking-[0.28em] uppercase flex items-center justify-center md:justify-start gap-3">
               <span className="w-8 h-px bg-[#6AAB2E] hidden md:block opacity-60" />
               Expertise
@@ -175,8 +186,8 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* ── Company ── */}
-          <div data-aos="fade-up" data-aos-delay="200" className="space-y-5">
+          {/* â”€â”€ Company â”€â”€ */}
+          <div className="space-y-5">
             <h4 className="text-white/40 font-display font-bold text-[11px] tracking-[0.28em] uppercase flex items-center justify-center md:justify-start gap-3">
               <span className="w-8 h-px bg-[#1B4E9B] hidden md:block opacity-60" />
               Company
@@ -196,11 +207,20 @@ export function Footer() {
                   </motion.button>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/shop"
+                  className="text-[14px] text-white/50 hover:text-white transition-all duration-300 group flex items-center justify-center md:justify-start gap-3 hover:translate-x-1"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#6AAB2E] scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
+                  Shop
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* ── Contact ── */}
-          <div data-aos="fade-up" data-aos-delay="300" className="space-y-5">
+          {/* â”€â”€ Contact â”€â”€ */}
+          <div className="space-y-5">
             <h4 className="text-white/40 font-display font-bold text-[11px] tracking-[0.28em] uppercase flex items-center justify-center md:justify-start gap-3">
               <span className="w-8 h-px bg-[#6AAB2E] hidden md:block opacity-60" />
               Contact
@@ -237,13 +257,13 @@ export function Footer() {
           </div>
         </motion.div>
 
-        {/* ── Bottom bar ── */}
+        {/* â”€â”€ Bottom bar â”€â”€ */}
         <div
           className="pt-8 md:pt-10 border-t flex flex-col lg:flex-row items-center justify-between gap-6 md:gap-8"
           style={{ borderColor: 'rgba(255,255,255,0.07)' }}
         >
           <p className="text-[12px] font-medium tracking-wide text-white/30 text-center lg:text-left">
-            © {new Date().getFullYear()}{' '}
+            Â© {new Date().getFullYear()}{' '}
             <span className="text-white/70 font-semibold">Afridyn Engineering Limited</span>.{' '}
             All rights reserved.
           </p>
@@ -279,3 +299,4 @@ export function Footer() {
     </footer>
   )
 }
+

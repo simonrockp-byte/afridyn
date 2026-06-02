@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { ArrowRight, Phone } from 'lucide-react'
 import { motion } from 'framer-motion'
 
@@ -30,8 +30,6 @@ export function CTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.65, ease: 'easeOut' }}
-          data-aos="zoom-in"
-          data-aos-duration="800"
           className="rounded-3xl overflow-hidden relative border border-white/10 bg-gradient-premium shadow-2xl"
         >
           <div className="px-6 sm:px-10 md:px-16 py-12 md:py-20 flex flex-col md:flex-row items-center gap-8 md:gap-10 bg-black/10 backdrop-blur-sm">
@@ -84,3 +82,5 @@ export function CTA() {
     </section>
   )
 }
+
+

@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useState } from 'react'
 import { Phone, Mail, MapPin, Send, CheckCircle, Loader2, AlertCircle, Clock } from 'lucide-react'
 import { motion } from 'framer-motion'
@@ -66,13 +66,12 @@ export function Contact() {
       <div className="container relative z-10 max-w-6xl">
         <div className="grid lg:grid-cols-[1fr_1.5fr] gap-12 xl:gap-20 items-start">
 
-          {/* ── LEFT ── */}
+          {/* â”€â”€ LEFT â”€â”€ */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.65, ease: 'easeOut' }}
-            data-aos="fade-right"
           >
             <div className="section-label mb-5">Connect with Us</div>
             <h2
@@ -84,7 +83,7 @@ export function Contact() {
             </h2>
             <p className="text-[15px] leading-relaxed text-slate-500 mb-12">
               Whether you need spare parts, maintenance support, or comprehensive
-              engineering consultation — our team is ready to help.
+              engineering consultation â€” our team is ready to help.
             </p>
 
             {/* Contact Details */}
@@ -96,8 +95,6 @@ export function Contact() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.5, ease: 'easeOut' }}
-                  data-aos="fade-up"
-                  data-aos-delay={i * 100}
                   className="flex items-start gap-5"
                 >
                   <div className="w-12 h-12 rounded-full flex items-center justify-center shrink-0 bg-white border border-slate-200 text-slate-600 shadow-sm">
@@ -112,13 +109,12 @@ export function Contact() {
             </div>
           </motion.div>
 
-          {/* ── RIGHT — Form ── */}
+          {/* â”€â”€ RIGHT â€” Form â”€â”€ */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.65, delay: 0.12, ease: 'easeOut' }}
-            data-aos="fade-left"
             className="rounded-3xl p-8 md:p-10 bg-white border border-slate-200 shadow-[0_32px_80px_rgba(15,23,42,0.08)]"
           >
             {status === 'success' ? (
@@ -203,7 +199,7 @@ export function Contact() {
                     className="form-input cursor-pointer appearance-none"
                     style={{ color: form.service ? '#0F172A' : '#94A3B8' }}
                   >
-                    <option value="" disabled>Select expertise required…</option>
+                    <option value="" disabled>Select expertise requiredâ€¦</option>
                     {serviceOptions.map(s => (
                       <option key={s} value={s} className="bg-white text-slate-900">{s}</option>
                     ))}
@@ -216,7 +212,7 @@ export function Contact() {
                     id="cf-message"
                     required
                     rows={4}
-                    placeholder="Detail your engineering requirements…"
+                    placeholder="Detail your engineering requirementsâ€¦"
                     value={form.message}
                     onChange={set('message')}
                     className="form-input resize-none"
@@ -232,7 +228,7 @@ export function Contact() {
                   style={status === 'loading' ? { opacity: 0.6, cursor: 'not-allowed' } : {}}
                 >
                   {status === 'loading' ? (
-                    <><Loader2 size={18} className="animate-spin" strokeWidth={2} /> Sending…</>
+                    <><Loader2 size={18} className="animate-spin" strokeWidth={2} /> Sendingâ€¦</>
                   ) : (
                     <><Send size={17} strokeWidth={2} /> Submit Proposal</>
                   )}
@@ -245,3 +241,5 @@ export function Contact() {
     </section>
   )
 }
+
+

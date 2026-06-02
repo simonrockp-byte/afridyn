@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
@@ -69,7 +69,6 @@ export function Sectors() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          data-aos="fade-down"
           className="text-center mb-24"
         >
           <div className="section-label justify-center mb-5">
@@ -89,8 +88,6 @@ export function Sectors() {
           {sectors.map((s, i) => (
             <motion.div
               key={s.label}
-              data-aos="fade-up"
-              data-aos-delay={i * 100}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
@@ -158,3 +155,5 @@ export function Sectors() {
     </section>
   )
 }
+
+

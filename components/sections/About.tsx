@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { Zap, Shield, Target, Globe } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
@@ -6,7 +6,7 @@ import Image from 'next/image'
 const pillars = [
   { icon: Zap,    title: 'Innovation', desc: 'Modern engineering methods and technologies applied to complex industrial challenges.', color: '#6AAB2E' },
   { icon: Shield, title: 'Integrity',  desc: 'Transparent operations backed by full PACRA, TPIN, and ZPPA regulatory compliance.', color: '#1B4E9B' },
-  { icon: Target, title: 'Precision',  desc: 'International-standard engineering execution on every project — zero tolerance for mediocrity.', color: '#6AAB2E' },
+  { icon: Target, title: 'Precision',  desc: 'International-standard engineering execution on every project â€” zero tolerance for mediocrity.', color: '#6AAB2E' },
   { icon: Globe,  title: 'Pan-African',desc: 'Local knowledge, pan-African capability. Headquartered in Lusaka, Zambia.', color: '#1B4E9B' },
 ]
 
@@ -28,10 +28,10 @@ const itemVariants = {
 export function About() {
   return (
     <section id="about" className="section" style={{ background: '#F8FAFC' }}>
-      <div className="container" data-aos="fade-up">
+      <div className="container">
         <div className="grid lg:grid-cols-2 gap-16 xl:gap-24 items-center">
 
-          {/* ── LEFT ── */}
+          {/* â”€â”€ LEFT â”€â”€ */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -39,12 +39,11 @@ export function About() {
             variants={containerVariants}
           >
             <motion.div variants={itemVariants}>
-              <div className="section-label mb-5" data-aos="fade-right">Corporate Profile</div>
+              <div className="section-label mb-5">Corporate Profile</div>
             </motion.div>
 
             <motion.h2
               variants={itemVariants}
-              data-aos="fade-right"
               className="font-display font-black text-slate-900 mb-8"
               style={{ fontSize: 'clamp(2rem, 5vw, 3.8rem)', letterSpacing: '-0.04em', lineHeight: 1.05 }}
             >
@@ -69,8 +68,6 @@ export function About() {
                 return (
                   <div
                     key={p.title}
-                    data-aos="fade-up"
-                    data-aos-delay={i * 100}
                     className="rounded-3xl p-7 group transition-all duration-500 relative overflow-hidden"
                     style={{
                       background: 'rgba(255, 255, 255, 0.4)',
@@ -102,7 +99,7 @@ export function About() {
             </motion.div>
           </motion.div>
 
-          {/* ── RIGHT ── */}
+          {/* â”€â”€ RIGHT â”€â”€ */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -205,3 +202,5 @@ export function About() {
     </section>
   )
 }
+
+
