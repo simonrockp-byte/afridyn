@@ -14,14 +14,14 @@ export function FooterCircuit() {
           {/* Trunk line gradient */}
           <linearGradient id="trunkGrad" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%"   stopColor="#1B4E9B" stopOpacity="0" />
-            <stop offset="20%"  stopColor="#1B4E9B" stopOpacity="0.35" />
-            <stop offset="80%"  stopColor="#2A6DD9" stopOpacity="0.35" />
+            <stop offset="20%"  stopColor="#1B4E9B" stopOpacity="0.55" />
+            <stop offset="80%"  stopColor="#2A6DD9" stopOpacity="0.55" />
             <stop offset="100%" stopColor="#2A6DD9" stopOpacity="0" />
           </linearGradient>
           <linearGradient id="trunkGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%"   stopColor="#6AAB2E" stopOpacity="0" />
-            <stop offset="30%"  stopColor="#6AAB2E" stopOpacity="0.28" />
-            <stop offset="70%"  stopColor="#6AAB2E" stopOpacity="0.28" />
+            <stop offset="30%"  stopColor="#6AAB2E" stopOpacity="0.45" />
+            <stop offset="70%"  stopColor="#6AAB2E" stopOpacity="0.45" />
             <stop offset="100%" stopColor="#6AAB2E" stopOpacity="0" />
           </linearGradient>
           {/* Flow particle pulse */}
@@ -40,7 +40,7 @@ export function FooterCircuit() {
         {/* Vertical branches */}
         {[180, 360, 540, 720, 900, 1080, 1260].map((x, i) => (
           <line key={x} x1={x} y1={i % 2 === 0 ? 80 : 160} x2={x} y2={i % 2 === 0 ? 240 : 320}
-            stroke="#1B4E9B" strokeOpacity="0.18" strokeWidth="1" />
+            stroke="#1B4E9B" strokeOpacity="0.35" strokeWidth="1" />
         ))}
 
         {/* Junction dots */}

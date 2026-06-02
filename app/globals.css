@@ -195,8 +195,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ── Section Spacing ── */
-.section    { padding: 112px 0; }
-.section-sm { padding: 64px 0; }
+.section    { padding: 72px 0; }
+.section-sm { padding: 48px 0; }
+@media (min-width: 768px) {
+  .section    { padding: 96px 0; }
+  .section-sm { padding: 56px 0; }
+}
 
 /* ── Container ── */
 .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }

@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
@@ -90,8 +90,8 @@ export function Sectors() {
               key={s.label}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ delay: i * 0.08, duration: 0.55, ease: 'easeOut' }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ delay: i * 0.04, duration: 0.55, ease: 'easeOut' }}
               whileHover={{ y: -8 }}
               className="group cursor-default relative rounded-[2rem] overflow-hidden p-8 flex flex-col items-center text-center gap-6 transition-all duration-500"
               style={{

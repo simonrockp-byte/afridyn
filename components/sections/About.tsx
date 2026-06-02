@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { Zap, Shield, Target, Globe } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
@@ -35,7 +35,7 @@ export function About() {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
+            viewport={{ once: true, amount: 0.1 }}
             variants={containerVariants}
           >
             <motion.div variants={itemVariants}>
@@ -103,7 +103,7 @@ export function About() {
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="space-y-6"
           >

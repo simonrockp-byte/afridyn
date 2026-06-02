@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useState } from 'react'
 import { Phone, Mail, MapPin, CheckCircle, Clock } from 'lucide-react'
 import { motion } from 'framer-motion'
@@ -97,7 +97,7 @@ export function Contact() {
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1, duration: 0.5, ease: 'easeOut' }}
+                  transition={{ delay: i * 0.05, duration: 0.5, ease: 'easeOut' }}
                   className="flex items-start gap-5"
                 >
                   <div className="w-12 h-12 rounded-full flex items-center justify-center shrink-0 bg-white border border-slate-200 text-slate-600 shadow-sm">

@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { CheckCircle, Award, UserCheck, Network, Gauge, HeartHandshake } from 'lucide-react'
 import { motion } from 'framer-motion'
 
@@ -59,7 +59,7 @@ const industries = [
 
 export function WhyUs() {
   return (
-    <section id="why-us" className="section relative overflow-hidden" style={{ background: '#F8FAFC' }}>
+    <section id="why-us" className="section relative" style={{ background: '#F8FAFC' }}>
       {/* Decorative Orbs */}
       <div className="absolute top-[20%] left-[-10%] w-[600px] h-[600px] rounded-full pointer-events-none opacity-20 blur-[100px]" style={{ background: 'radial-gradient(circle, #1B4E9B 0%, transparent 70%)' }} />
       <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full pointer-events-none opacity-15 blur-[100px]" style={{ background: 'radial-gradient(circle, #6AAB2E 0%, transparent 70%)' }} />
@@ -103,8 +103,8 @@ export function WhyUs() {
                 key={r.title}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ delay: i * 0.08, duration: 0.55, ease: 'easeOut' }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ delay: i * 0.04, duration: 0.55, ease: 'easeOut' }}
                 className="group relative rounded-[2.5rem] p-10 transition-all duration-500 overflow-hidden"
                 style={{
                   background: 'rgba(255, 255, 255, 0.4)',
