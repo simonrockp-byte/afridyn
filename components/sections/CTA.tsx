@@ -68,7 +68,7 @@ export function CTA() {
               <motion.a
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.97 }}
-                href="tel:+260956797916"
+                href="tel:+260977244549"
                 className="btn btn-lg border-white/20 text-white hover:bg-white/10 backdrop-blur-md transition-all"
                 style={{ background: 'rgba(255,255,255,0.05)' }}
               >
@@ -82,5 +82,6 @@ export function CTA() {
     </section>
   )
 }
+
 
 

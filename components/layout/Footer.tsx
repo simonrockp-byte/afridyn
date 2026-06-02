@@ -228,7 +228,7 @@ export function Footer() {
             <div className="space-y-5">
               {[
                 { Icon: MapPin, text: '31 Salama Park, Lusaka, Zambia', color: '#2A6DD9' },
-                { Icon: Phone,  text: '+260 956 797 916',                color: '#6AAB2E' },
+                { Icon: Phone,  text: '+260 977 244 549',                color: '#6AAB2E' },
                 { Icon: Mail,   text: 'info@afridynengineering.com',     color: '#2A6DD9' },
               ].map(({ Icon, text, color }, idx) => (
                 <motion.div
@@ -299,4 +299,5 @@ export function Footer() {
     </footer>
   )
 }
+
 

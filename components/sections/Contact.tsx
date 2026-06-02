@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Phone, Mail, MapPin, CheckCircle, Clock } from 'lucide-react'
 import { motion } from 'framer-motion'
 
-const WHATSAPP_NUMBER = '260956797916' // +260 956 797 916
+const WHATSAPP_NUMBER = '260977244549' // +260 977 244 549
 
 const serviceOptions = [
   'Mechanical & Electrical Spares Supply',
@@ -21,7 +21,7 @@ type FormStatus = 'idle' | 'success'
 
 const contactInfo = [
   { icon: MapPin, title: 'Office Address',  val: '31 Salama Park, Lusaka, Zambia' },
-  { icon: Phone,  title: 'WhatsApp / Phone', val: '+260 956 797 916\n+260 969 628 707' },
+  { icon: Phone,  title: 'WhatsApp / Phone', val: '+260 977 244 549' },
   { icon: Mail,   title: 'Email Address',   val: 'info@afridynengineering.com' },
   { icon: Clock,  title: 'Response Time',   val: 'Within 24 hours' },
 ]
@@ -239,6 +239,7 @@ export function Contact() {
     </section>
   )
 }
+
 
 
 
