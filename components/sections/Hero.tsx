@@ -37,7 +37,7 @@ function StaticBackground() {
             'radial-gradient(ellipse 60% 50% at 80% 70%, rgba(232,98,26,0.18) 0%, transparent 60%)',
         }}
       />
-      {/* Hex grid blueprint lines â€” pure CSS */}
+      {/* Hex grid blueprint lines — pure CSS */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -70,7 +70,7 @@ export function Hero() {
       className="relative min-h-screen flex items-center overflow-hidden"
       style={{ background: '#0A1628' }}
     >
-      {/* Glowing orbs â€” always shown */}
+      {/* Glowing orbs — always shown */}
       {ORBS.map((o, i) => (
         <div
           key={i}
@@ -101,7 +101,7 @@ export function Hero() {
         }}
       />
 
-      {/* 3D network scene â€” desktop only */}
+      {/* 3D network scene — desktop only */}
       {!isMobile && (
         <div className="absolute inset-0" style={{ zIndex: 3 }}>
           <HeroScene3D />
@@ -171,13 +171,13 @@ export function Hero() {
               className="text-[10px] md:text-[11px] font-mono font-bold tracking-[0.16em] uppercase leading-tight"
               style={{ color: '#82C93A' }}
             >
-              Certified Industrial Excellence â€” Zambia &amp; Sub-Saharan Africa
+              Certified Industrial Excellence — Zambia &amp; Sub-Saharan Africa
             </span>
           </motion.div>
 
           {/* Main headline */}
           <div className="mb-6 md:mb-8">
-            {/* Line 1: "Powering Africa's" â€” white */}
+            {/* Line 1: "Powering Africa's" — white */}
             <motion.div
               initial={{ opacity: 0, x: -60 }}
               animate={{ opacity: 1, x: 0 }}
@@ -197,7 +197,7 @@ export function Hero() {
               </span>
             </motion.div>
 
-            {/* Line 2: "Industrial" â€” white */}
+            {/* Line 2: "Industrial" — white */}
             <motion.div
               initial={{ opacity: 0, x: -60 }}
               animate={{ opacity: 1, x: 0 }}
@@ -217,7 +217,7 @@ export function Hero() {
               </span>
             </motion.div>
 
-            {/* Line 3: "Future" â€” blueâ†’orange gradient */}
+            {/* Line 3: "Future" — blue→orange gradient */}
             <motion.div
               initial={{ opacity: 0, x: 60 }}
               animate={{ opacity: 1, x: 0 }}

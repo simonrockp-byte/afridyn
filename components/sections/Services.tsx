@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import {
   Settings, Wrench, Lightbulb, Monitor,
   Radio, Users, Truck, Anchor, ArrowRight,
@@ -6,9 +6,7 @@ import {
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import dynamic from 'next/dynamic'
 
-const Scene3D = dynamic(() => import('@/components/Scene3D').then(m => ({ default: m.Scene3D })), { ssr: false })
 
 const services = [
   {
@@ -60,7 +58,7 @@ const services = [
     id: 6, icon: Users,
     title: 'Technical Outsourcing',
     short: 'Qualified engineering personnel on flexible contract terms.',
-    desc:  'Access specialised engineering skills on demand â€” vetted, experienced technical personnel across all disciplines.',
+    desc:  'Access specialised engineering skills on demand — vetted, experienced technical personnel across all disciplines.',
     features: ['Vetted professionals', 'All disciplines', 'Flexible contracts', 'Skills transfer'],
     accent: '#6AAB2E', sector: 'All Sectors',
     image: '/images/services/technical_outsourcing.png',
@@ -230,8 +228,6 @@ export function Services() {
       className="section relative overflow-hidden"
       style={{ background: '#F8FAFC' }}
     >
-      {/* â”€â”€ Three.js Scene â”€â”€ */}
-      <Scene3D />
 
       {/* Ambient orbs */}
       <div

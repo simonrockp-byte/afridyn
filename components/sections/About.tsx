@@ -6,7 +6,7 @@ import Image from 'next/image'
 const pillars = [
   { icon: Zap,    title: 'Innovation', desc: 'Modern engineering methods and technologies applied to complex industrial challenges.', color: '#6AAB2E' },
   { icon: Shield, title: 'Integrity',  desc: 'Transparent operations backed by full PACRA, TPIN, and ZPPA regulatory compliance.', color: '#1B4E9B' },
-  { icon: Target, title: 'Precision',  desc: 'International-standard engineering execution on every project â€” zero tolerance for mediocrity.', color: '#6AAB2E' },
+  { icon: Target, title: 'Precision',  desc: 'International-standard engineering execution on every project — zero tolerance for mediocrity.', color: '#6AAB2E' },
   { icon: Globe,  title: 'Pan-African',desc: 'Local knowledge, pan-African capability. Headquartered in Lusaka, Zambia.', color: '#1B4E9B' },
 ]
 

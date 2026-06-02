@@ -27,7 +27,7 @@ const reasons = [
   {
     icon: Gauge,
     title: 'Operational Efficiency Focus',
-    desc: 'Every service is oriented towards improving your uptime, reducing costs, and optimising performance â€” measured outcomes, not just completed tasks.',
+    desc: 'Every service is oriented towards improving your uptime, reducing costs, and optimising performance — measured outcomes, not just completed tasks.',
     highlight: 'Results Driven',
     color: '#1B4E9B',
   },

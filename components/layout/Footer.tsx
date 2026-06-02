@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { Phone, Mail, MapPin } from 'lucide-react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { useRef } from 'react'
@@ -7,10 +7,7 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { usePathname, useRouter } from 'next/navigation'
 
-const FooterScene3D = dynamic(
-  () => import('@/components/FooterScene3D').then(m => ({ default: m.FooterScene3D })),
-  { ssr: false }
-)
+import { FooterCircuit } from '@/components/FooterCircuit'
 
 const services = [
   'Mechanical & Electrical Spares',
@@ -28,7 +25,7 @@ const companyLinks: [string, string][] = [
   ['contact', 'Contact'],
 ]
 
-// Shop is a real route, not an anchor â€” handled separately below
+// Shop is a real route, not an anchor — handled separately below
 
 export function Footer() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -70,7 +67,7 @@ export function Footer() {
       style={{ background: '#060E1E' }}
     >
       {/* â”€â”€ Three.js circuit animation â”€â”€ */}
-      <FooterScene3D />
+      <FooterCircuit />
 
       {/* â”€â”€ Parallax glow orbs (mouse-reactive) â”€â”€ */}
       <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
@@ -263,7 +260,7 @@ export function Footer() {
           style={{ borderColor: 'rgba(255,255,255,0.07)' }}
         >
           <p className="text-[12px] font-medium tracking-wide text-white/30 text-center lg:text-left">
-            Â© {new Date().getFullYear()}{' '}
+            © {new Date().getFullYear()}{' '}
             <span className="text-white/70 font-semibold">Afridyn Engineering Limited</span>.{' '}
             All rights reserved.
           </p>

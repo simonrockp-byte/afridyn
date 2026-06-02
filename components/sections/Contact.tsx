@@ -86,7 +86,7 @@ export function Contact() {
             </h2>
             <p className="text-[15px] leading-relaxed text-slate-500 mb-12">
               Whether you need spare parts, maintenance support, or comprehensive
-              engineering consultation â€” our team is ready to help.
+              engineering consultation — our team is ready to help.
             </p>
 
             {/* Contact Details */}
@@ -112,7 +112,7 @@ export function Contact() {
             </div>
           </motion.div>
 
-          {/* â”€â”€ RIGHT â€” Form â”€â”€ */}
+          {/* â”€â”€ RIGHT — Form â”€â”€ */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -195,7 +195,7 @@ export function Contact() {
                     className="form-input cursor-pointer appearance-none"
                     style={{ color: form.service ? '#0F172A' : '#94A3B8' }}
                   >
-                    <option value="" disabled>Select expertise requiredâ€¦</option>
+                    <option value="" disabled>Select expertise required…</option>
                     {serviceOptions.map(s => (
                       <option key={s} value={s} className="bg-white text-slate-900">{s}</option>
                     ))}
@@ -208,7 +208,7 @@ export function Contact() {
                     id="cf-message"
                     required
                     rows={4}
-                    placeholder="Detail your engineering requirementsâ€¦"
+                    placeholder="Detail your engineering requirements…"
                     value={form.message}
                     onChange={set('message')}
                     className="form-input resize-none"
