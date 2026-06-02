@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, Outfit, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
-import { Navigation } from '@/components/layout/Navigation'
-import { Footer } from '@/components/layout/Footer'
+import { SiteShell } from '@/components/SiteShell'
 import { ClientProviders } from '@/components/ClientProviders'
 
 const inter = Inter({
@@ -86,11 +85,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body>
         <div id="scroll-bar" />
-        <Navigation />
         <ClientProviders>
-          <main>{children}</main>
+          <SiteShell>{children}</SiteShell>
         </ClientProviders>
-        <Footer />
         <script
           dangerouslySetInnerHTML={{
             __html: `

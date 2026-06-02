@@ -199,7 +199,7 @@ const BADGE_STYLES: Record<string, string> = {
 }
 
 function formatPrice(n: number) {
-  return '₦' + n.toLocaleString('en-NG')
+  return 'K ' + n.toLocaleString('en-ZM')
 }
 
 export default function ShopPage() {
