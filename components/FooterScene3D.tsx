@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useMemo, useState } from 'react'
+import { useRef, useMemo, useEffect, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
@@ -132,6 +132,19 @@ function CircuitPaths() {
     return { trunkMesh, branchMesh, flowPoints, nodeMesh }
   }, [])
 
+  useEffect(() => {
+    return () => {
+      trunkMesh.geometry.dispose()
+      ;(trunkMesh.material as THREE.Material).dispose()
+      branchMesh.geometry.dispose()
+      ;(branchMesh.material as THREE.Material).dispose()
+      flowPoints.geometry.dispose()
+      ;(flowPoints.material as THREE.Material).dispose()
+      nodeMesh.geometry.dispose()
+      ;(nodeMesh.material as THREE.Material).dispose()
+    }
+  }, [trunkMesh, branchMesh, flowPoints, nodeMesh])
+
   /* Flow particle positions for animation */
   const flowState = useMemo(() => {
     const trunks = [2.8, 1.2, -0.3, -1.8, -3.2]
@@ -182,7 +195,7 @@ function CircuitPaths() {
 function BackgroundDots() {
   const ref = useRef<THREE.Points>(null!)
 
-  const { geo, mat } = useMemo(() => {
+  const points = useMemo(() => {
     const pos: number[] = []
     for (let i = 0; i < 60; i++) {
       pos.push(
@@ -198,14 +211,21 @@ function BackgroundDots() {
       transparent: true, opacity: 0.3,
       blending: THREE.AdditiveBlending, depthWrite: false,
     })
-    return { geo, mat }
+    return new THREE.Points(geo, mat)
   }, [])
+
+  useEffect(() => {
+    return () => {
+      points.geometry.dispose()
+      ;(points.material as THREE.Material).dispose()
+    }
+  }, [points])
 
   useFrame((_, delta) => {
     ref.current.rotation.z += delta * 0.008
   })
 
-  return <primitive object={new THREE.Points(geo, mat)} ref={ref} />
+  return <primitive object={points} ref={ref} />
 }
 
 /* ─── Exported component ─── */

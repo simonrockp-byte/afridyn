@@ -3,6 +3,7 @@ import { Inter, Outfit, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { SiteShell } from '@/components/SiteShell'
 import { ClientProviders } from '@/components/ClientProviders'
+import { ScrollProgressBar } from '@/components/ScrollProgressBar'
 
 const inter = Inter({
   subsets:  ['latin'],
@@ -88,25 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ClientProviders>
           <SiteShell>{children}</SiteShell>
         </ClientProviders>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.addEventListener('scroll', function() {
-                var p = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-                var bar = document.getElementById('scroll-bar');
-                if (bar) bar.style.transform = 'scaleX(' + p + ')';
-              }, { passive: true });
-              var observer = new IntersectionObserver(function(entries) {
-                entries.forEach(function(e) {
-                  if (e.isIntersecting) e.target.classList.add('visible');
-                });
-              }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-              document.addEventListener('DOMContentLoaded', function() {
-                document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
-              });
-            `,
-          }}
-        />
+        <ScrollProgressBar />
       </body>
     </html>
   )

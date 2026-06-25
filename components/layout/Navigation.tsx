@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
+import { scrollTo } from '@/lib/scroll'
 
 const navLinks = [
   { label: 'Services',  href: 'services' },
@@ -35,6 +36,22 @@ export function Navigation() {
     return () => window.removeEventListener('resize', onResize)
   }, [])
 
+  /* Track which section is in view */
+  useEffect(() => {
+    const ids = navLinks.map(l => l.href)
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => { if (entry.isIntersecting) setActive(entry.target.id) })
+      },
+      { threshold: 0.35, rootMargin: '-72px 0px 0px 0px' },
+    )
+    ids.forEach(id => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+    return () => observer.disconnect()
+  }, [])
+
   const goto = (id: string) => {
     setMenuOpen(false)
     setActive(id)
@@ -42,12 +59,7 @@ export function Navigation() {
       router.push(`/#${id}`)
       return
     }
-    const el = document.getElementById(id)
-    if (el) {
-      const offset = 72
-      const top = el.getBoundingClientRect().top + window.scrollY - offset
-      window.scrollTo({ top, behavior: 'smooth' })
-    }
+    scrollTo(id)
   }
 
   return (

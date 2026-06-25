@@ -6,6 +6,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { usePathname, useRouter } from 'next/navigation'
+import { scrollTo } from '@/lib/scroll'
+import { CONTACT_INFO } from '@/lib/contact-info'
 
 import { FooterCircuit } from '@/components/FooterCircuit'
 
@@ -37,7 +39,7 @@ export function Footer() {
       router.push(`/#${id}`)
       return
     }
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    scrollTo(id)
   }
 
   const mouseX  = useMotionValue(0)
@@ -124,7 +126,7 @@ export function Footer() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-16 md:mb-20 text-center md:text-left"
         >
-          {/* â”€â”€ Brand â”€â”€ */}
+          {/* ── Brand ── */}
           <div className="flex flex-col items-center md:items-start">
             <motion.div whileHover={{ scale: 1.03 }} className="mb-7">
               <Image
@@ -159,7 +161,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* â”€â”€ Expertise â”€â”€ */}
+          {/* ── Expertise ── */}
           <div className="space-y-5">
             <h4 className="text-white/40 font-display font-bold text-[11px] tracking-[0.28em] uppercase flex items-center justify-center md:justify-start gap-3">
               <span className="w-8 h-px bg-[#6AAB2E] hidden md:block opacity-60" />
@@ -172,7 +174,7 @@ export function Footer() {
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: idx * 0.06 }}
-                    onClick={() => goto('services')}
+                    onClick={() => scrollTo('services')}
                     className="text-[14px] text-white/50 hover:text-white transition-all duration-300 group flex items-center justify-center md:justify-start gap-3 hover:translate-x-1"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-[#6AAB2E] scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
@@ -183,7 +185,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* â”€â”€ Company â”€â”€ */}
+          {/* ── Company ── */}
           <div className="space-y-5">
             <h4 className="text-white/40 font-display font-bold text-[11px] tracking-[0.28em] uppercase flex items-center justify-center md:justify-start gap-3">
               <span className="w-8 h-px bg-[#1B4E9B] hidden md:block opacity-60" />
@@ -196,7 +198,7 @@ export function Footer() {
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: idx * 0.06 }}
-                    onClick={() => goto(id)}
+                    onClick={() => scrollTo(id)}
                     className="text-[14px] text-white/50 hover:text-white transition-all duration-300 group flex items-center justify-center md:justify-start gap-3 hover:translate-x-1"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-[#2A6DD9] scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
@@ -216,7 +218,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* â”€â”€ Contact â”€â”€ */}
+          {/* ── Contact ── */}
           <div className="space-y-5">
             <h4 className="text-white/40 font-display font-bold text-[11px] tracking-[0.28em] uppercase flex items-center justify-center md:justify-start gap-3">
               <span className="w-8 h-px bg-[#6AAB2E] hidden md:block opacity-60" />
@@ -224,9 +226,9 @@ export function Footer() {
             </h4>
             <div className="space-y-5">
               {[
-                { Icon: MapPin, text: '31 Salama Park, Lusaka, Zambia', color: '#2A6DD9' },
-                { Icon: Phone,  text: '+260 977 244 549',                color: '#6AAB2E' },
-                { Icon: Mail,   text: 'info@afridynengineering.com',     color: '#2A6DD9' },
+                { Icon: MapPin, text: CONTACT_INFO.address,   color: '#2A6DD9' },
+                { Icon: Phone,  text: CONTACT_INFO.phones[0], color: '#6AAB2E' },
+                { Icon: Mail,   text: CONTACT_INFO.email,     color: '#2A6DD9' },
               ].map(({ Icon, text, color }, idx) => (
                 <motion.div
                   key={text}

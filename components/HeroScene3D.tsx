@@ -123,6 +123,20 @@ function NodeNetwork() {
     return { edgeMesh, hexMesh, dotPoints, accentMeshes }
   }, [nodes])
 
+  /* Dispose GPU resources on unmount */
+  useEffect(() => {
+    return () => {
+      edgeMesh.geometry.dispose()
+      ;(edgeMesh.material as THREE.Material).dispose()
+      hexMesh.geometry.dispose()
+      ;(hexMesh.material as THREE.Material).dispose()
+      dotPoints.geometry.dispose()
+      ;(dotPoints.material as THREE.Material).dispose()
+      if (accentMeshes.length > 0) accentMeshes[0].geometry.dispose()
+      accentMeshes.forEach(m => (m.material as THREE.Material).dispose())
+    }
+  }, [edgeMesh, hexMesh, dotPoints, accentMeshes])
+
   /* Animation — pulse opacity on edges and dots */
   useFrame((state) => {
     const t = state.clock.getElapsedTime()
