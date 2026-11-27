@@ -97,9 +97,11 @@ export function Disciplines() {
           {DISCIPLINES.map((d, i) => (
             <Reveal key={d.code} as="li" delay={i * 0.06}>
               <article
+                data-tilt
                 className="ax-disc ax-panel ax-brackets group h-full min-h-[25rem] flex flex-col p-7 transition-colors duration-300 hover:bg-[#111821]"
                 aria-labelledby={`disc-${i}`}
               >
+                <span className="ax-glare" aria-hidden />
                 <div className="flex items-center justify-between">
                   <span className="ax-spec text-[10px]" style={{ color: 'var(--ax-copper)' }}>{d.code}</span>
                   <span className="ax-spec text-[10px]">0{i + 1}/04</span>

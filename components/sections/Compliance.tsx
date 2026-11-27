@@ -32,6 +32,7 @@ export function Compliance() {
             {PLATES.map((p, i) => (
               <Reveal key={p.org} as="li" delay={i * 0.07}>
                 <div
+                  data-tilt
                   className="relative h-full p-5 pt-6"
                   style={{
                     background: 'linear-gradient(145deg, #1A222D 0%, #0F141B 55%, #161D26 100%)',
@@ -39,6 +40,7 @@ export function Compliance() {
                     boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.6), 0 10px 30px rgba(0,0,0,0.35)',
                   }}
                 >
+                  <span className="ax-glare" aria-hidden />
                   {/* rivets */}
                   {['top-2 left-2', 'top-2 right-2', 'bottom-2 left-2', 'bottom-2 right-2'].map(pos => (
                     <span key={pos} className={`absolute ${pos} w-1.5 h-1.5 rounded-full`} style={{ background: '#3A4553', boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.25)' }} aria-hidden />

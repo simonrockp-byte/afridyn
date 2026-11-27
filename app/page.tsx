@@ -9,13 +9,17 @@ import { Projects, TrustedBy } from '@/components/sections/Projects'
 import { CTA }         from '@/components/sections/CTA'
 import { Contact }     from '@/components/sections/Contact'
 import { RevealObserver } from '@/components/motion/RevealObserver'
+import { Process, KineticBand } from '@/components/sections/Process'
+import { Interactions } from '@/components/fx/Interactions'
 
 export default function Home() {
   return (
     <>
       <Hero />
       <Disciplines />
+      <KineticBand />
       <Services />
+      <Process />
       <About />
       <Compliance />
       <Sectors />
@@ -25,6 +29,8 @@ export default function Home() {
       <CTA />
       <Contact />
       <RevealObserver />
+      <Interactions />
+      <div className="ax-cursor-grid" aria-hidden />
     </>
   )
 }

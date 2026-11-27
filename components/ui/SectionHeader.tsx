@@ -16,7 +16,7 @@ export function SectionHeader({
     <Reveal className={`${center ? 'text-center mx-auto' : ''} max-w-3xl mb-14 md:mb-16`}>
       <div className={`flex items-center gap-4 mb-5 ${center ? 'justify-center' : ''}`}>
         <span className="ax-eyebrow">{eyebrow}</span>
-        <span className="ax-spec text-[10px]" aria-hidden>[{code}]</span>
+        <span className="ax-spec text-[10px]" aria-hidden data-scramble>[{code}]</span>
       </div>
       <h2 id={id} className="ax-h2">
         {title}{accent && <> <span className="ax-accent">{accent}</span></>}

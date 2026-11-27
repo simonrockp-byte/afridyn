@@ -77,7 +77,9 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 pt-6 border-t flex flex-col md:flex-row gap-3 md:items-center md:justify-between" style={{ borderColor: 'var(--ax-line)' }}>
+        <p className="ax-wordmark mt-16 -mb-2" aria-hidden>AFRIDYN</p>
+
+        <div className="mt-6 pt-6 border-t flex flex-col md:flex-row gap-3 md:items-center md:justify-between" style={{ borderColor: 'var(--ax-line)' }}>
           <p className="text-[13px]" style={{ color: 'var(--ax-faint)' }}>
             © {new Date().getFullYear()} <span className="text-white">{COMPANY.name}</span>. All rights reserved.
           </p>

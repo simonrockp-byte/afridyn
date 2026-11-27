@@ -31,7 +31,8 @@ export function Sectors() {
         <ul className="grid gap-4 md:grid-cols-4 md:grid-rows-2">
           {/* Mining — feature tile with the one real statistic */}
           <Reveal as="li" className="md:col-span-2 md:row-span-2">
-            <article className={`${tile} justify-between min-h-[22rem]`} style={{ background: 'radial-gradient(ellipse 80% 60% at 80% 20%, rgba(255,106,26,0.12), transparent 60%), linear-gradient(180deg, rgba(17,24,33,0.9), rgba(11,15,21,0.9))' }}>
+            <article data-tilt className={`${tile} justify-between min-h-[22rem]`} style={{ background: 'radial-gradient(ellipse 80% 60% at 80% 20%, rgba(255,106,26,0.12), transparent 60%), linear-gradient(180deg, rgba(17,24,33,0.9), rgba(11,15,21,0.9))' }}>
+              <span className="ax-glare" aria-hidden />
               <div className="flex items-center justify-between">
                 <Pickaxe size={28} strokeWidth={1.5} style={{ color: 'var(--ax-copper)' }} aria-hidden />
                 <span className="ax-spec text-[10px]">IND-01</span>
@@ -56,7 +57,8 @@ export function Sectors() {
             { Icon: RadioTower, code: 'IND-05', label: 'Telecoms',        desc: 'Optical fibre installation and 24/7 network maintenance.', tag: 'Pan-African' },
           ].map((s, i) => (
             <Reveal key={s.label} as="li" delay={0.05 + i * 0.05}>
-              <article className={tile}>
+              <article data-tilt className={tile}>
+                <span className="ax-glare" aria-hidden />
                 <div className="flex items-center justify-between">
                   <s.Icon size={24} strokeWidth={1.5} style={{ color: 'var(--ax-cyan)' }} aria-hidden />
                   <span className="ax-spec text-[10px]">{s.code}</span>

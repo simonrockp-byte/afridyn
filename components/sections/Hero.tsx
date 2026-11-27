@@ -36,6 +36,7 @@ function Telemetry() {
         <div className="flex items-center gap-2.5 px-4 md:px-6 py-3 border-r shrink-0 bg-[#07090D]" style={{ borderColor: 'var(--ax-line)' }}>
           <span className="ax-led" aria-hidden />
           <span className="ax-spec" style={{ color: 'var(--ax-green)' }}>Systems online</span>
+          <span className="ax-spec hidden sm:inline tabular-nums" style={{ color: 'var(--ax-text)' }}>LSK <span data-clock suppressHydrationWarning>--:--:--</span> CAT</span>
         </div>
         <div className="ax-ticker-wrap relative flex-1 overflow-hidden py-3" role="marquee" aria-label="Company registration and service facts">
           <div className="ax-ticker">
@@ -53,6 +54,11 @@ export function Hero() {
     <section id="home" className="relative overflow-hidden" style={{ background: 'var(--ax-ink)' }} aria-labelledby="hero-title">
       <div className="relative min-h-[100svh] flex flex-col">
         <HeroBackdrop />
+        <div className="ax-scan" aria-hidden />
+        <div className="ax-hud ax-hud-tl hidden md:block" aria-hidden><span>15.39°S 28.32°E</span></div>
+        <div className="ax-hud ax-hud-tr hidden md:block" aria-hidden><span>GRID REF · LUSAKA HQ</span></div>
+        <div className="ax-hud ax-hud-bl hidden md:block" aria-hidden><span>ELEV 1,279 M</span></div>
+        <div className="ax-hud ax-hud-br hidden md:block" aria-hidden><span>CAT · UTC+2</span></div>
 
         {/* legibility scrims (static) */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden
@@ -64,7 +70,7 @@ export function Hero() {
           <div className="max-w-[44rem]">
             <p className="ax-spec mb-6 flex items-center gap-3">
               <span className="inline-block w-2 h-2 border rotate-45" style={{ borderColor: 'var(--ax-copper)' }} aria-hidden />
-              SYS-00 / Afridyn Engineering Limited — Lusaka, ZM
+              <span data-scramble>SYS-00 / Afridyn Engineering Limited — Lusaka, ZM</span>
             </p>
 
             <h1
@@ -82,10 +88,10 @@ export function Hero() {
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row gap-3">
-              <a href="#contact" className="ax-btn ax-btn-copper">
+              <a href="#contact" data-magnetic className="ax-btn ax-btn-copper">
                 Get a Quote <ArrowRight size={16} strokeWidth={2.25} aria-hidden />
               </a>
-              <a href="#services" className="ax-btn ax-btn-ghost">
+              <a href="#services" data-magnetic className="ax-btn ax-btn-ghost">
                 Explore Services <ArrowDownRight size={16} strokeWidth={2} aria-hidden />
               </a>
             </div>

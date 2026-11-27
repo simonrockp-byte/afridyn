@@ -651,4 +651,101 @@ select.ax-field option { background: #0A0E13; color: var(--ax-text); }
 .svc-tab[aria-selected="true"] .svc-code, .svc-tab[aria-selected="true"] .svc-arrow { color: var(--ax-copper); }
 .svc-tab[aria-selected="true"] .svc-arrow { transform: translateX(2px); }
 .svc-tab:hover { background: rgba(255,255,255,0.03); }
+
+/* ═════════ FX LAYER (see components/fx/Interactions.tsx) ═════════ */
+
+/* Cursor-following copper grid highlight (desktop, motion allowed) */
+.ax-cursor-grid { display: none; }
+.has-pointer-fx .ax-cursor-grid {
+  display: block; position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,106,26,0.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,106,26,0.22) 1px, transparent 1px);
+  background-size: 24px 24px;
+  -webkit-mask-image: radial-gradient(180px circle at var(--mx, -999px) var(--my, -999px), #000 0%, transparent 70%);
+          mask-image: radial-gradient(180px circle at var(--mx, -999px) var(--my, -999px), #000 0%, transparent 70%);
+  mix-blend-mode: screen;
+}
+
+/* 3D tilt cards with pointer glare */
+[data-tilt] { transition: transform .5s cubic-bezier(.2,.8,.2,1); transform-style: preserve-3d; }
+[data-tilt].is-tilting { transition: transform .08s linear; }
+.ax-glare {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s;
+  background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 50%), rgba(255,138,74,0.16), transparent 45%);
+}
+[data-tilt].is-tilting .ax-glare { opacity: 1; }
+
+/* Magnetic buttons */
+[data-magnetic] { transition: transform .35s cubic-bezier(.2,.8,.2,1), background .2s, color .2s, border-color .2s, box-shadow .2s; }
+
+/* Hero HUD corners + scan line */
+.ax-hud { position: absolute; pointer-events: none; z-index: 5; }
+.ax-hud::before {
+  content: ''; position: absolute; width: 22px; height: 22px; border-color: rgba(255,106,26,0.7); border-style: solid;
+}
+.ax-hud-tl { top: 92px; left: 16px; }  .ax-hud-tl::before { top: 0; left: 0; border-width: 1px 0 0 1px; }
+.ax-hud-tr { top: 92px; right: 16px; } .ax-hud-tr::before { top: 0; right: 0; border-width: 1px 1px 0 0; }
+.ax-hud-bl { bottom: 64px; left: 16px; } .ax-hud-bl::before { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
+.ax-hud-br { bottom: 64px; right: 16px; } .ax-hud-br::before { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
+.ax-hud span { position: absolute; white-space: nowrap; font-family: var(--font-mono), monospace; font-size: 10px; letter-spacing: .18em; color: var(--ax-faint); }
+.ax-hud-tl span { top: 6px; left: 30px; } .ax-hud-tr span { top: 6px; right: 30px; }
+.ax-hud-bl span { bottom: 6px; left: 30px; } .ax-hud-br span { bottom: 6px; right: 30px; }
+@media (min-width: 768px) {
+  .ax-hud-tl, .ax-hud-bl { left: 28px; } .ax-hud-tr, .ax-hud-br { right: 28px; }
+}
+
+.ax-scan { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 4; }
+.ax-scan::before {
+  content: ''; position: absolute; left: 0; right: 0; height: 140px; top: -140px;
+  background: linear-gradient(180deg, transparent, rgba(34,211,238,0.06) 70%, rgba(34,211,238,0.35) 99%, transparent);
+  animation: axScan 7s cubic-bezier(.45,0,.55,1) 1.5s infinite;
+}
+@keyframes axScan { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(calc(100svh + 140px)); opacity: 1; } 71%, 100% { transform: translateY(calc(100svh + 140px)); opacity: 0; } }
+
+/* Kinetic outlined band */
+.ax-kinetic { overflow: hidden; border-block: 1px solid var(--ax-line); padding-block: clamp(1.5rem, 4vw, 3rem); background: var(--ax-ink); }
+.ax-kinetic-row { display: flex; width: max-content; gap: 0; }
+.ax-kinetic-row > span {
+  font-family: var(--font-display), sans-serif; font-weight: 700; line-height: 1;
+  font-size: clamp(3rem, 10vw, 9rem); letter-spacing: -0.04em; text-transform: uppercase;
+  color: transparent; -webkit-text-stroke: 1px rgba(163,175,191,0.45);
+  padding-right: 0.5em; white-space: nowrap; transition: color .3s, -webkit-text-stroke-color .3s;
+}
+.ax-kinetic-row > span em { font-style: normal; color: var(--ax-copper); -webkit-text-stroke: 0; font-size: .35em; vertical-align: middle; margin-left: .5em; }
+.ax-kinetic-row > span:hover { color: rgba(255,106,26,0.9); -webkit-text-stroke-color: transparent; }
+.ax-kinetic-a { animation: axTicker 50s linear infinite; }
+.ax-kinetic-b { animation: axTickerRev 60s linear infinite; margin-top: .15em; }
+.ax-kinetic-b > span { -webkit-text-stroke-color: rgba(34,211,238,0.45); }
+.ax-kinetic:hover .ax-kinetic-row { animation-play-state: paused; }
+@keyframes axTickerRev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
+/* Process: scroll-driven drawing line (progressive enhancement) */
+.ax-process-line { transform-origin: left center; }
+.ax-process-vline { transform-origin: top center; }
+@supports (animation-timeline: view()) {
+  .ax-process-line  { animation: axGrowX linear both; animation-timeline: view(); animation-range: entry 30% cover 55%; }
+  .ax-process-vline { animation: axGrowY linear both; animation-timeline: view(); animation-range: entry 10% cover 70%; }
+  .ax-step { animation: axStepIn linear both; animation-timeline: view(); animation-range: entry 10% entry 90%; }
+  .ax-step-node { animation: axNode linear both; animation-timeline: view(); animation-range: entry 40% cover 50%; }
+}
+@keyframes axGrowX { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes axGrowY { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes axStepIn { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@keyframes axNode { from { background: var(--ax-ink); box-shadow: none; } to { background: var(--ax-copper); box-shadow: 0 0 0 6px rgba(255,106,26,0.15), 0 0 24px rgba(255,106,26,0.6); } }
+
+/* Footer monumental wordmark */
+.ax-wordmark {
+  font-family: var(--font-display), sans-serif; font-weight: 700; line-height: .78; letter-spacing: -0.06em;
+  font-size: clamp(5rem, 24vw, 22rem); text-align: center; user-select: none;
+  color: transparent; -webkit-text-stroke: 1px rgba(255,106,26,0.35);
+  background: linear-gradient(180deg, rgba(255,106,26,0.14), transparent 75%);
+  -webkit-background-clip: text; background-clip: text;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ax-scan::before, .ax-kinetic-row { animation: none !important; }
+  .ax-process-line, .ax-process-vline, .ax-step, .ax-step-node { animation: none !important; }
+  [data-tilt], [data-magnetic] { transition: none; }
+}
 }
