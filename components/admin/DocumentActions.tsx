@@ -53,7 +53,12 @@ export function DocumentActions(p: Props) {
       }
     })
 
-  const waText = `${meta.title} ${p.number} from Afridyn Engineering Limited${meta.showPrices && p.balance ? ` (${formatZMW(p.balance)} due)` : ''}: ${p.shareUrl}`
+  const amountNote =
+    p.type === 'invoice' ? (p.balance ? ` (${formatZMW(p.balance)} due)` : ' (paid)')
+      : p.type === 'quotation' || p.type === 'proforma' ? ` (total ${formatZMW(p.balance)})`
+        : p.type === 'receipt' ? ` (${formatZMW(p.balance)} received)`
+          : ''
+  const waText = `${meta.title} ${p.number} from Afridyn Engineering Limited${amountNote}: ${p.shareUrl}`
   const waPhone = p.clientPhone?.replace(/[^\d]/g, '')
 
   async function sharePdfNow(mode: 'share' | 'download') {
