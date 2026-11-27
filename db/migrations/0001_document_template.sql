@@ -1,0 +1,1 @@
+ALTER TABLE "settings" ADD COLUMN "document_template" text DEFAULT 'executive' NOT NULL;

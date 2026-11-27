@@ -60,7 +60,7 @@ export default async function DocumentsPage({ searchParams }: { searchParams: Pr
             </thead>
             <tbody>
               {docs.map((d) => (
-                <tr key={d.id} className="border-b hover:bg-white/[0.02]" style={{ borderColor: 'var(--ax-line)' }}>
+                <tr key={d.id} className="border-b hover:bg-[color:var(--ax-hover)]" style={{ borderColor: 'var(--ax-line)' }}>
                   <td className="px-4 py-3"><Link href={`/admin/documents/${d.id}`} className="text-white font-mono text-[13px] hover:underline underline-offset-4">{d.number}</Link></td>
                   <td className="px-4 py-3 ax-spec text-[10px]">{DOC_META[d.type].title}</td>
                   <td className="px-4 py-3 max-w-[260px] truncate">{d.clientSnapshot.name}</td>

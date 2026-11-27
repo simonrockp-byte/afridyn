@@ -22,7 +22,7 @@ export function Logo({ size = 'md' }: { size?: 'md' | 'lg' }) {
         </span>
         <span
           className="font-mono font-semibold uppercase mt-1"
-          style={{ fontSize: size === 'lg' ? 10.5 : 9, letterSpacing: '0.28em', color: '#8BCB4F' }}
+          style={{ fontSize: size === 'lg' ? 10.5 : 9, letterSpacing: '0.28em', color: 'var(--logo-green, #8BCB4F)' }}
         >
           Engineering Limited
         </span>

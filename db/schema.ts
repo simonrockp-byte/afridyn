@@ -359,6 +359,8 @@ export const settings = pgTable('settings', {
   invoiceDueDays: integer('invoice_due_days').notNull().default(30),
   taxMode: taxModeEnum('tax_mode').notNull().default('TOT'),
   vatRate: real('vat_rate').notNull().default(0.16),
+  // PDF / preview design: executive | industrial | minimal
+  documentTemplate: text('document_template').notNull().default('executive'),
   ...syncColumns,
 })
 

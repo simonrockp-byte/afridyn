@@ -63,7 +63,7 @@ export function UsersPanel({ users }: { users: U[] }) {
           <div className="md:col-span-2 flex items-center gap-4">
             <button className="ax-btn ax-btn-copper disabled:opacity-60" disabled={pending}><UserPlus size={16} aria-hidden /> {pending ? 'Adding…' : 'Add user'}</button>
             {state?.ok && <p role="status" className="text-[14px]" style={{ color: 'var(--ax-green)' }}>User added. If you added an owner, test mode is now closed — sign in with that account.</p>}
-            {state?.error && <p role="alert" className="text-[14px]" style={{ color: '#FFB27A' }}>{state.error}</p>}
+            {state?.error && <p role="alert" className="text-[14px]" style={{ color: 'var(--ax-error)' }}>{state.error}</p>}
           </div>
         </form>
       </details>

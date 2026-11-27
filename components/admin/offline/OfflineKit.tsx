@@ -78,12 +78,12 @@ export function ConnectionBar() {
     <div role="status" className="border-b px-4 md:px-8 py-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-[13px]"
       style={{ borderColor: 'var(--ax-line)', background: online ? 'rgba(34,211,238,0.07)' : 'rgba(251,191,36,0.1)' }}>
       {!online && (
-        <span className="inline-flex items-center gap-2" style={{ color: '#FCD34D' }}>
+        <span className="inline-flex items-center gap-2" style={{ color: 'var(--ax-warn)' }}>
           <CloudOff size={15} aria-hidden /> Offline — showing saved copies. New documents are kept on this device and sync when you&apos;re back online.
         </span>
       )}
       {pending > 0 && <span style={{ color: 'var(--ax-text)' }}>{pending} waiting to sync</span>}
-      {failed > 0 && <a href="/admin#outbox" className="inline-flex items-center gap-1.5 underline underline-offset-4" style={{ color: '#FFB27A' }}><AlertTriangle size={14} aria-hidden /> {failed} need attention</a>}
+      {failed > 0 && <a href="/admin#outbox" className="inline-flex items-center gap-1.5 underline underline-offset-4" style={{ color: 'var(--ax-error)' }}><AlertTriangle size={14} aria-hidden /> {failed} need attention</a>}
       {note && <span className="inline-flex items-center gap-1.5" style={{ color: 'var(--ax-green)' }}><CheckCircle2 size={14} aria-hidden /> {note}</span>}
       {online && pending > 0 && (
         <button type="button" onClick={runSync} disabled={busy} className="ml-auto inline-flex items-center gap-1.5 ax-spec text-[10px] hover:text-white disabled:opacity-60">
@@ -112,13 +112,13 @@ export function OutboxList() {
             <span className="text-[12px]" style={{ color: 'var(--ax-faint)' }}>{new Date(i.createdAt).toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })}</span>
             {i.error ? (
               <>
-                <span className="text-[13px] basis-full" style={{ color: '#FFB27A' }}>Not saved: {i.error}</span>
+                <span className="text-[13px] basis-full" style={{ color: 'var(--ax-error)' }}>Not saved: {i.error}</span>
                 <button type="button" className="ax-btn ax-btn-ghost !min-h-[36px] !px-3" onClick={async () => { await putItem({ ...i, error: undefined }); syncOutbox() }}>
                   <RefreshCw size={13} aria-hidden /> Retry
                 </button>
               </>
             ) : (
-              <span className="ax-spec text-[10px]" style={{ color: '#FCD34D' }}>Waiting</span>
+              <span className="ax-spec text-[10px]" style={{ color: 'var(--ax-warn)' }}>Waiting</span>
             )}
             <button type="button" className="ax-btn ax-btn-ghost !min-h-[36px] !px-3" onClick={() => { if (confirm('Discard this unsynced document? It will be lost.')) removeItem(i.localId) }}>
               <Trash2 size={13} aria-hidden /> Discard

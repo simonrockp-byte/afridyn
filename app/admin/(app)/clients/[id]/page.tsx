@@ -91,7 +91,7 @@ export default async function ClientDetail({ params }: { params: Promise<{ id: s
             <ul>
               {documents.map((d) => (
                 <li key={d.id} className="border-b last:border-b-0" style={{ borderColor: 'var(--ax-line)' }}>
-                  <Link href={`/admin/documents/${d.id}`} className="flex items-center gap-3 py-3 hover:bg-white/[0.02]">
+                  <Link href={`/admin/documents/${d.id}`} className="flex items-center gap-3 py-3 hover:bg-[color:var(--ax-hover)]">
                     <span className="font-mono text-[12px] text-white w-[140px] shrink-0">{d.number}</span>
                     <span className="hidden sm:block ax-spec text-[10px] flex-1">{DOC_META[d.type].title}</span>
                     <span className="hidden md:block text-[13px] w-[96px]" style={{ color: 'var(--ax-dim)' }}>{formatDate(d.issueDate)}</span>

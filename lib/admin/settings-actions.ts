@@ -40,10 +40,11 @@ export async function saveSettings(_prev: unknown, formData: FormData): Promise<
     quoteValidityDays: int(formData.get('quoteValidityDays'), 1, 365, 30),
     invoiceDueDays: int(formData.get('invoiceDueDays'), 0, 365, 30),
     taxMode: (formData.get('taxMode') === 'VAT16' ? 'VAT16' : 'TOT') as 'TOT' | 'VAT16',
+    documentTemplate: ['executive', 'industrial', 'minimal'].includes(String(formData.get('documentTemplate'))) ? String(formData.get('documentTemplate')) : 'executive',
   }
   const db = getDb()
   await db.insert(settings).values({ id: 1, ...values }).onConflictDoUpdate({ target: settings.id, set: { ...values, updatedAt: new Date(), version: sql`${settings.version} + 1` } })
-  await db.insert(auditLog).values({ userId: user.id, deviceId: user.deviceId, action: 'update', entity: 'settings', details: { taxMode: values.taxMode } })
+  await db.insert(auditLog).values({ userId: user.id, deviceId: user.deviceId, action: 'update', entity: 'settings', details: { taxMode: values.taxMode, documentTemplate: values.documentTemplate } })
   revalidatePath('/admin', 'layout')
   return { ok: true }
 }

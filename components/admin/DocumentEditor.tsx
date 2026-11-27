@@ -101,7 +101,7 @@ export function DocumentEditor({
   if (queued) {
     return (
       <div className="ax-panel ax-brackets p-7 max-w-xl" role="status">
-        <CloudOff size={26} style={{ color: '#FCD34D' }} aria-hidden />
+        <CloudOff size={26} style={{ color: 'var(--ax-warn)' }} aria-hidden />
         <h2 className="font-display text-2xl font-semibold text-white mt-4">Saved on this device</h2>
         <p className="mt-3 text-[15px] leading-relaxed" style={{ color: 'var(--ax-dim)' }}>
           You&apos;re offline, so this {meta.title.toLowerCase()} is stored on this phone. It will sync automatically when the
@@ -217,7 +217,7 @@ export function DocumentEditor({
         </div>
       </section>
 
-      {error && <p role="alert" className="px-4 py-3 border text-[14px]" style={{ borderColor: 'rgba(255,106,26,0.5)', color: '#FFB27A' }}>{error}</p>}
+      {error && <p role="alert" className="px-4 py-3 border text-[14px]" style={{ borderColor: 'rgba(255,106,26,0.5)', color: 'var(--ax-error)' }}>{error}</p>}
 
       <div className="flex flex-wrap gap-3">
         <button type="button" onClick={save} disabled={pending} className="ax-btn ax-btn-copper disabled:opacity-60">

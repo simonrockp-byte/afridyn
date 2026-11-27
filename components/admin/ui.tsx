@@ -16,19 +16,19 @@ export function PageHeader({ code, title, lead, actions }: { code: string; title
 }
 
 const STATUS_COLOURS: Record<DocStatus, string> = {
-  draft: '#A3AFBF',
-  sent: '#22D3EE',
-  accepted: '#34D399',
-  partially_paid: '#FBBF24',
-  paid: '#34D399',
-  delivered: '#34D399',
-  void: '#F87171',
+  draft: 'var(--st-draft)',
+  sent: 'var(--st-sent)',
+  accepted: 'var(--st-ok)',
+  partially_paid: 'var(--st-part)',
+  paid: 'var(--st-ok)',
+  delivered: 'var(--st-ok)',
+  void: 'var(--st-void)',
 }
 
 export function StatusBadge({ status }: { status: DocStatus }) {
   const c = STATUS_COLOURS[status]
   return (
-    <span className="inline-flex items-center gap-1.5 px-2 py-0.5 border font-mono text-[10.5px] uppercase tracking-[0.12em] whitespace-nowrap" style={{ borderColor: `${c}66`, color: c }}>
+    <span className="inline-flex items-center gap-1.5 px-2 py-0.5 border font-mono text-[10.5px] uppercase tracking-[0.12em] whitespace-nowrap" style={{ borderColor: `color-mix(in srgb, ${c} 45%, transparent)`, color: c }}>
       <span className="w-1.5 h-1.5 rounded-full" style={{ background: c }} aria-hidden />
       {STATUS_LABELS[status]}
     </span>

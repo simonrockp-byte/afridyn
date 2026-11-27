@@ -103,7 +103,7 @@ export default async function ReportsPage({ searchParams }: { searchParams: Prom
                           {r.invoices.map((i) => <Link key={i.id} href={`/admin/documents/${i.id}`} className="mr-2 hover:text-white">{i.number}</Link>)}
                         </p>
                       </td>
-                      {r.buckets.map((v, i) => <td key={i} className="px-3 py-2.5 text-right" style={{ color: v ? (i >= 3 ? '#F87171' : i >= 1 ? '#FBBF24' : 'var(--ax-text)') : 'var(--ax-faint)' }}>{v ? formatZMW(v) : '—'}</td>)}
+                      {r.buckets.map((v, i) => <td key={i} className="px-3 py-2.5 text-right" style={{ color: v ? (i >= 3 ? 'var(--st-void)' : i >= 1 ? 'var(--st-part)' : 'var(--ax-text)') : 'var(--ax-faint)' }}>{v ? formatZMW(v) : '—'}</td>)}
                       <td className="px-3 py-2.5 text-right"><Money ngwee={r.total} strong /></td>
                     </tr>
                   ))}

@@ -64,7 +64,7 @@ export function LoginForm({ next }: { next: string }) {
         <input id="password" name="password" type="password" autoComplete="current-password" required className="ax-field" />
       </div>
       {error && (
-        <p role="alert" className="text-[14px] px-3 py-2 border" style={{ borderColor: 'rgba(255,106,26,0.5)', color: '#FFB27A' }}>{error}</p>
+        <p role="alert" className="text-[14px] px-3 py-2 border" style={{ borderColor: 'rgba(255,106,26,0.5)', color: 'var(--ax-error)' }}>{error}</p>
       )}
       <button type="submit" disabled={busy} className="ax-btn ax-btn-copper w-full disabled:opacity-60">
         <LogIn size={16} aria-hidden /> {busy ? 'Signing in…' : 'Sign in'}

@@ -41,7 +41,7 @@ export function AdminNav({ orientation }: { orientation: 'vertical' | 'horizonta
               href={i.href}
               aria-current={active(i.href) ? 'page' : undefined}
               className="flex items-center gap-3 px-3 py-2.5 text-[14px] border-l-2 transition-colors"
-              style={{ borderColor: active(i.href) ? 'var(--ax-copper)' : 'transparent', color: active(i.href) ? '#fff' : 'var(--ax-dim)', background: active(i.href) ? 'rgba(255,106,26,0.08)' : 'transparent' }}
+              style={{ borderColor: active(i.href) ? 'var(--ax-copper)' : 'transparent', color: active(i.href) ? 'var(--ax-text)' : 'var(--ax-dim)', background: active(i.href) ? 'rgba(255,106,26,0.08)' : 'transparent' }}
             >
               <i.icon size={17} strokeWidth={1.7} aria-hidden />
               {i.label}

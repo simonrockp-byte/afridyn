@@ -15,7 +15,7 @@ export default function OfflinePage() {
       <div className="max-w-xl mx-auto">
         <div className="mb-8"><Logo /></div>
         <div className="ax-panel ax-brackets p-7">
-          <CloudOff size={28} style={{ color: '#FCD34D' }} aria-hidden />
+          <CloudOff size={28} style={{ color: 'var(--ax-warn)' }} aria-hidden />
           <h1 className="font-display text-2xl font-semibold text-white mt-4">You&apos;re offline</h1>
           <p className="mt-3 text-[15px] leading-relaxed" style={{ color: 'var(--ax-dim)' }}>
             This page hasn&apos;t been opened on this device yet, so there&apos;s no saved copy. Pages you&apos;ve opened before — the dashboard,

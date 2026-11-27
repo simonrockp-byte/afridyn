@@ -17,7 +17,7 @@ export default async function PublicDocument({ params }: { params: Promise<{ tok
   const canAccept = b.doc.type === 'quotation' && b.doc.status === 'sent'
 
   return (
-    <main className="min-h-[100svh] px-4 py-8 md:py-12" style={{ background: 'var(--ax-ink)' }}>
+    <main className="ax-admin min-h-[100svh] px-4 py-8 md:py-12" data-theme="light" style={{ background: '#EEF1F5' }}>
       <div className="max-w-4xl mx-auto">
         <PublicDocActions token={token} view={view} canAccept={canAccept} accepted={b.doc.status === 'accepted'} />
         <DocPaper view={view} />

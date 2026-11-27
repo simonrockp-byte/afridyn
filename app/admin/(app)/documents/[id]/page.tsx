@@ -30,7 +30,7 @@ export default async function DocumentPage({ params }: { params: Promise<{ id: s
         actions={<StatusBadge status={doc.status} />}
       />
       {doc.status === 'void' && doc.voidReason && (
-        <p className="mb-4 px-4 py-3 border text-[14px]" style={{ borderColor: 'rgba(248,113,113,0.5)', color: '#FCA5A5' }}>Voided: {doc.voidReason}</p>
+        <p className="mb-4 px-4 py-3 border text-[14px]" style={{ borderColor: 'var(--ax-danger)', color: 'var(--ax-danger)' }}>Voided: {doc.voidReason}</p>
       )}
 
       <div className="grid xl:grid-cols-[minmax(0,1fr)_320px] gap-5 items-start">

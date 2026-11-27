@@ -31,7 +31,7 @@ export default async function ClientsPage({ searchParams }: { searchParams: Prom
             </thead>
             <tbody>
               {rows.map((c) => (
-                <tr key={c.id} className="border-b hover:bg-white/[0.02]" style={{ borderColor: 'var(--ax-line)' }}>
+                <tr key={c.id} className="border-b hover:bg-[color:var(--ax-hover)]" style={{ borderColor: 'var(--ax-line)' }}>
                   <td className="px-4 py-3"><Link href={`/admin/clients/${c.id}`} className="text-white hover:underline underline-offset-4">{c.name}</Link></td>
                   <td className="px-4 py-3" style={{ color: 'var(--ax-dim)' }}>{c.contactPerson ?? '—'}</td>
                   <td className="px-4 py-3 font-mono text-[13px]" style={{ color: 'var(--ax-dim)' }}>{c.phone ?? '—'}</td>

@@ -41,7 +41,7 @@ export function TestModeButton({ next }: { next: string }) {
       <button type="button" onClick={enter} disabled={busy} className="ax-btn ax-btn-copper w-full disabled:opacity-60">
         <FlaskConical size={16} aria-hidden /> {busy ? 'Opening…' : 'Enter test mode'}
       </button>
-      {error && <p role="alert" className="mt-3 text-[14px]" style={{ color: '#FFB27A' }}>{error}</p>}
+      {error && <p role="alert" className="mt-3 text-[14px]" style={{ color: 'var(--ax-error)' }}>{error}</p>}
     </div>
   )
 }

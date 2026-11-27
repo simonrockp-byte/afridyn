@@ -36,7 +36,7 @@ export default async function Dashboard() {
       <ul className="grid grid-cols-2 xl:grid-cols-4 gap-3 mb-8">
         {tiles.map((t) => (
           <li key={t.label}>
-            <Link href={t.href} className="ax-panel block p-5 hover:bg-[#111821] transition-colors">
+            <Link href={t.href} className="ax-panel block p-5 hover:bg-[color:var(--ax-hover)] transition-colors">
               <p className="ax-spec text-[10px]">{t.label}</p>
               <p className="mt-2 text-xl md:text-2xl font-display">{t.value}</p>
             </Link>
@@ -53,7 +53,7 @@ export default async function Dashboard() {
           <ul className="divide-y" style={{ borderColor: 'var(--ax-line)' }}>
             {s.recent.map((d) => (
               <li key={d.id} className="border-[color:var(--ax-line)]">
-                <Link href={`/admin/documents/${d.id}`} className="flex items-center gap-4 py-3 hover:bg-white/[0.02]">
+                <Link href={`/admin/documents/${d.id}`} className="flex items-center gap-4 py-3 hover:bg-[color:var(--ax-hover)]">
                   <span className="font-mono text-[12px] text-white w-[150px] shrink-0">{d.number}</span>
                   <span className="hidden sm:block ax-spec text-[10px] w-[120px] shrink-0">{DOC_META[d.type].title}</span>
                   <span className="flex-1 min-w-0 truncate text-[14px]">{d.clientSnapshot.name}</span>

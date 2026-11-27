@@ -2,14 +2,14 @@
 import { useState, useTransition } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Pencil, Send, CheckCircle2, ArrowRightLeft, Wallet, Truck, Ban, Trash2, Share2, Download, Link2, MessageCircle } from 'lucide-react'
+import { Pencil, Send, CheckCircle2, ArrowRightLeft, Wallet, Truck, Ban, Trash2, Share2, Download, Link2, MessageCircle, Eye } from 'lucide-react'
 import {
   acceptQuotation, convertDocument, deleteDraft, issueDocument, markDelivered, recordPayment, setCreditReason, voidDocument,
 } from '@/lib/admin/actions'
 import { CONVERT_TARGETS, DOC_META, PAYMENT_METHODS, todayInLusaka, type DocStatus, type DocType, type PaymentMethod } from '@/lib/admin/documents'
 import { formatZMW, parseKwachaInput, toKwacha } from '@/lib/admin/money'
 import type { DocView } from '@/lib/admin/doc-view'
-import { buildPdfBlob, downloadBlob, pdfFilename, sharePdf } from '@/lib/admin/pdf/share'
+import { buildPdfBlob, downloadBlob, openBlob, pdfFilename, sharePdf } from '@/lib/admin/pdf/share'
 
 type Props = {
   id: string
@@ -61,7 +61,7 @@ export function DocumentActions(p: Props) {
   const waText = `${meta.title} ${p.number} from Afridyn Engineering Limited${amountNote}: ${p.shareUrl}`
   const waPhone = p.clientPhone?.replace(/[^\d]/g, '')
 
-  async function sharePdfNow(mode: 'share' | 'download') {
+  async function sharePdfNow(mode: 'share' | 'download' | 'preview') {
     setPdfBusy(true)
     setErr(null)
     try {
@@ -73,7 +73,8 @@ export function DocumentActions(p: Props) {
           downloadBlob(blob, name)
           setMsg('This browser can’t share files directly, so the PDF was downloaded. Attach it in WhatsApp, or send the link.')
         }
-      } else downloadBlob(blob, name)
+      } else if (mode === 'preview') openBlob(blob)
+      else downloadBlob(blob, name)
     } catch {
       setErr('Could not build the PDF. Try again.')
     } finally {
@@ -113,7 +114,7 @@ export function DocumentActions(p: Props) {
           </button>
         )}
         {msg && <p role="status" className="text-[13px] pt-1" style={{ color: 'var(--ax-green)' }}>{msg}</p>}
-        {err && <p role="alert" className="text-[13px] pt-1" style={{ color: '#FFB27A' }}>{err}</p>}
+        {err && <p role="alert" className="text-[13px] pt-1" style={{ color: 'var(--ax-error)' }}>{err}</p>}
       </section>
 
       {/* Share */}
@@ -121,6 +122,7 @@ export function DocumentActions(p: Props) {
         <h2 className="ax-spec mb-2" style={{ color: 'var(--ax-text)' }}>Send</h2>
         <button className={`${btn} ax-btn-copper`} disabled={pdfBusy} onClick={() => sharePdfNow('share')}><Share2 size={15} aria-hidden /> {pdfBusy ? 'Building PDF…' : 'Share PDF (WhatsApp…)'}</button>
         <button className={`${btn} ax-btn-ghost`} disabled={pdfBusy} onClick={() => sharePdfNow('download')}><Download size={15} aria-hidden /> Download PDF</button>
+        <button className={`${btn} ax-btn-ghost`} disabled={pdfBusy} onClick={() => sharePdfNow('preview')}><Eye size={15} aria-hidden /> Preview PDF</button>
         {!draft && (
           <>
             <a className={`${btn} ax-btn-ghost`} href={`https://wa.me/${waPhone ?? ''}?text=${encodeURIComponent(waText)}`} target="_blank" rel="noopener noreferrer">
@@ -193,12 +195,12 @@ function VoidForm({ id, type, pending, run }: { id: string; type: DocType; pendi
   const [reason, setReason] = useState('')
   if (!open) return <button className={`${btn} ax-btn-ghost`} onClick={() => setOpen(true)}><Ban size={15} aria-hidden /> Void…</button>
   return (
-    <form className="border p-3 space-y-3" style={{ borderColor: 'rgba(248,113,113,0.5)' }} onSubmit={(e) => { e.preventDefault(); run(() => voidDocument(id, reason), 'Voided.') }}>
+    <form className="border p-3 space-y-3" style={{ borderColor: 'var(--ax-danger)' }} onSubmit={(e) => { e.preventDefault(); run(() => voidDocument(id, reason), 'Voided.') }}>
       <p className="text-[13px]" style={{ color: 'var(--ax-dim)' }}>
         Voiding keeps the record but marks it VOID.{type === 'receipt' ? ' The payment it confirms is reversed and the invoice balance goes back up.' : ''}
       </p>
       <div><label className="ax-label" htmlFor="v-r">Reason</label><input id="v-r" required className="ax-field" value={reason} onChange={(e) => setReason(e.target.value)} /></div>
-      <div className="flex gap-2"><button className="ax-btn !min-h-[42px]" style={{ background: '#F87171', color: '#0A0C10' }} disabled={pending}>Void document</button><button type="button" className="ax-btn ax-btn-ghost !min-h-[42px]" onClick={() => setOpen(false)}>Cancel</button></div>
+      <div className="flex gap-2"><button className="ax-btn !min-h-[42px]" style={{ background: 'var(--ax-danger)', color: 'var(--ax-on-danger)' }} disabled={pending}>Void document</button><button type="button" className="ax-btn ax-btn-ghost !min-h-[42px]" onClick={() => setOpen(false)}>Cancel</button></div>
     </form>
   )
 }

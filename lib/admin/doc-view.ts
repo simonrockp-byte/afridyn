@@ -1,5 +1,8 @@
 import { DOC_META, paymentMethodLabel, type DocStatus, type DocType } from './documents'
 import { lineTotal } from './money'
+import { kwachaInWords } from './words'
+import { SITE_URL } from '@/lib/site'
+import type { TemplateId } from './pdf/templates'
 import type { ClientSnapshot, DocumentRow, PaymentRow, SettingsRow, SiteSnapshot } from '@/db/schema'
 
 // Everything a printed document shows, computed once and used by both the
@@ -15,6 +18,7 @@ export type Business = {
   zppa: string
   bank: string
   momo: string
+  template: TemplateId
 }
 
 export type DocView = {
@@ -37,6 +41,10 @@ export type DocView = {
   showPaymentDetails: boolean
   signatures: [string, string]
   watermark: string | null
+  /** Main amount written out, printed under the total. */
+  amountInWords: string | null
+  /** Public link encoded in the QR code. */
+  shareUrl: string | null
 }
 
 export function businessFrom(s: SettingsRow | null | undefined): Business {
@@ -50,6 +58,7 @@ export function businessFrom(s: SettingsRow | null | undefined): Business {
     zppa: s?.zppaNumber || '137269',
     bank: s?.bankDetails || '',
     momo: s?.mobileMoneyDetails || '',
+    template: (['executive', 'industrial', 'minimal'].includes(s?.documentTemplate ?? '') ? s!.documentTemplate : 'executive') as TemplateId,
   }
 }
 
@@ -158,6 +167,14 @@ export function buildDocView(args: {
     terms,
     showPaymentDetails: (doc.type === 'invoice' || doc.type === 'proforma' || doc.type === 'quotation') && Boolean(business.bank || business.momo),
     signatures,
-    watermark: doc.status === 'void' ? 'VOID' : doc.status === 'draft' ? 'DRAFT' : doc.type === 'receipt' ? 'PAID' : null,
+    watermark:
+      doc.status === 'void' ? 'VOID'
+      : doc.status === 'draft' ? 'DRAFT'
+      : doc.type === 'receipt' || (doc.type === 'invoice' && doc.status === 'paid') ? 'PAID'
+      : doc.type === 'quotation' && doc.status === 'accepted' ? 'ACCEPTED'
+      : doc.type === 'delivery_note' && doc.status === 'delivered' ? 'DELIVERED'
+      : null,
+    amountInWords: doc.type !== 'delivery_note' && doc.total > 0 ? kwachaInWords(doc.total) : null,
+    shareUrl: doc.shareToken ? `${SITE_URL}/d/${doc.shareToken}` : null,
   }
 }

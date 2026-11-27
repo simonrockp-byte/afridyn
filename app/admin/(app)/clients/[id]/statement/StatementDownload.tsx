@@ -2,11 +2,11 @@
 import { useState } from 'react'
 import { Download, Share2 } from 'lucide-react'
 import type { StatementView } from '@/lib/admin/pdf/statement-pdf'
-import { downloadBlob, sharePdf } from '@/lib/admin/pdf/share'
+import { downloadBlob, pdfAssets, sharePdf } from '@/lib/admin/pdf/share'
 
 async function build(view: StatementView): Promise<Blob> {
-  const [{ pdf }, { StatementPdf }] = await Promise.all([import('@react-pdf/renderer'), import('@/lib/admin/pdf/statement-pdf')])
-  return pdf(<StatementPdf view={view} logoUrl={`${window.location.origin}/images/logo-mark.png`} />).toBlob()
+  const [{ pdf }, { StatementPdf }, assets] = await Promise.all([import('@react-pdf/renderer'), import('@/lib/admin/pdf/statement-pdf'), pdfAssets()])
+  return pdf(<StatementPdf view={view} assets={assets} />).toBlob()
 }
 
 export function StatementDownload({ view }: { view: StatementView }) {
