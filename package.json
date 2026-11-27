@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && serwist build serwist.config.mjs",
     "start": "next start",
     "lint": "eslint",
-    "vercel-build": "node scripts/migrate.mjs && next build",
+    "vercel-build": "node scripts/migrate.mjs && next build && serwist build serwist.config.mjs",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "node scripts/migrate.mjs",
     "typecheck": "tsc --noEmit"
@@ -17,6 +17,7 @@
     "@react-three/drei": "^10.0.0",
     "@react-three/fiber": "^9.0.0",
     "@react-three/postprocessing": "^3.2.2",
+    "@serwist/next": "^9.6.0",
     "aos": "^2.3.4",
     "bcryptjs": "^3.0.3",
     "clsx": "^2.1.1",
@@ -29,11 +30,13 @@
     "react-dom": "19.2.4",
     "resend": "^6.12.2",
     "server-only": "^0.0.1",
+    "serwist": "^9.6.0",
     "sharp": "^0.34.5",
     "three": "^0.174.0",
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@serwist/cli": "^9.6.0",
     "@tailwindcss/postcss": "^4.2.4",
     "@types/aos": "^3.0.7",
     "@types/node": "^20",

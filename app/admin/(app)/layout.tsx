@@ -4,6 +4,7 @@ import { getSessionUser } from '@/lib/auth/server'
 import { OPEN_MODE_EMAIL } from '@/lib/auth/open-mode'
 import { AdminNav } from './AdminNav'
 import { SignOutButton } from './SignOutButton'
+import { ConnectionBar, RegisterServiceWorker } from '@/components/admin/offline/OfflineKit'
 
 export const dynamic = 'force-dynamic'
 
@@ -32,6 +33,8 @@ export default async function AdminAppLayout({ children }: { children: React.Rea
             <strong className="text-white">Open test mode</strong> — anyone with the link can use this admin. Don&apos;t enter real client data yet.
           </div>
         )}
+        <ConnectionBar />
+        <RegisterServiceWorker />
         <main className="px-4 md:px-8 xl:px-12 py-8 md:py-10 max-w-[1400px]">{children}</main>
       </div>
 

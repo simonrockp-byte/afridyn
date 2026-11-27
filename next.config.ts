@@ -45,6 +45,14 @@ const nextConfig: NextConfig = {
         headers: securityHeaders,
       },
       {
+        // The service worker must always be re-checked so updates roll out.
+        source: '/sw.js',
+        headers: [
+          { key: 'Cache-Control', value: 'no-cache, no-store, must-revalidate' },
+          { key: 'Content-Type', value: 'application/javascript; charset=utf-8' },
+        ],
+      },
+      {
         // Internal admin UI (demo data, no auth yet) — keep it out of search results.
         source: '/admin/:path*',
         headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],

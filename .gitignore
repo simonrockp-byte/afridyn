@@ -40,3 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 !.env.example
+
+# Service worker is generated at build time (serwist build)
+public/sw.js
+public/sw.js.map

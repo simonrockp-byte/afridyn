@@ -4,6 +4,7 @@ import { FilePlus2, Search } from 'lucide-react'
 import { listDocuments } from '@/lib/admin/data'
 import { DOC_META, DOC_TYPES, STATUS_LABELS, type DocStatus, type DocType } from '@/lib/admin/documents'
 import { PageHeader, StatusBadge, Money, Empty, LinkButton, formatDate } from '@/components/admin/ui'
+import { OutboxList } from '@/components/admin/offline/OfflineKit'
 
 export const metadata: Metadata = { title: 'Documents' }
 
@@ -19,6 +20,8 @@ export default async function DocumentsPage({ searchParams }: { searchParams: Pr
     <>
       <PageHeader code="DOC-00" title="Documents" lead="Quotations, proformas, invoices, receipts, delivery notes and credit notes."
         actions={<LinkButton href={`/admin/documents/new?type=${newType}`} variant="copper"><FilePlus2 size={15} aria-hidden /> New {DOC_META[newType].title.toLowerCase()}</LinkButton>} />
+
+      <OutboxList />
 
       <nav aria-label="Document types" className="flex gap-1 overflow-x-auto pb-2 mb-4 border-b" style={{ borderColor: 'var(--ax-line)' }}>
         {tabs.map((t) => {

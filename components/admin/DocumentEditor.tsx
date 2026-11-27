@@ -2,11 +2,12 @@
 import { useMemo, useState, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { Plus, Trash2, Save } from 'lucide-react'
+import { Plus, Trash2, Save, CloudOff } from 'lucide-react'
 import { saveDocument, type DocInput } from '@/lib/admin/actions'
 import { DOC_META, computeTotals, type DocType } from '@/lib/admin/documents'
 import { formatZMW, lineTotal, parseKwachaInput, toKwacha } from '@/lib/admin/money'
 import type { LineItem } from '@/db/schema'
+import { enqueueDocument, isNetworkError } from '@/lib/admin/outbox'
 
 type EditableType = 'quotation' | 'proforma' | 'invoice' | 'delivery_note' | 'credit_note'
 type Row = LineItem & { priceText: string }
@@ -54,6 +55,7 @@ export function DocumentEditor({
   const [terms, setTerms] = useState(init.terms ?? '')
   const [error, setError] = useState<string | null>(null)
   const [pending, start] = useTransition()
+  const [queued, setQueued] = useState(false)
 
   const clientSites = sites.filter((s) => s.clientId === clientId)
   const discount = parseKwachaInput(discountText) ?? 0
@@ -77,11 +79,40 @@ export function DocumentEditor({
       notes: notes || null,
       terms: terms || null,
     }
+    const clientName = clients.find((c) => c.id === clientId)?.name ?? 'client'
+    const keepOffline = async () => {
+      await enqueueDocument(input, `${meta.title}${init.number ? ` ${init.number}` : ''} · ${clientName}`)
+      setQueued(true)
+    }
     start(async () => {
-      const res = await saveDocument(input)
-      if ('error' in res) setError(res.error)
-      else router.push(`/admin/documents/${res.id}`)
+      // No signal: keep it on this device; it syncs when the connection returns.
+      if (!navigator.onLine) return keepOffline()
+      try {
+        const res = await saveDocument(input)
+        if ('error' in res) setError(res.error)
+        else router.push(`/admin/documents/${res.id}`)
+      } catch (e) {
+        if (isNetworkError(e)) await keepOffline()
+        else setError('Could not save. Try again.')
+      }
     })
+  }
+
+  if (queued) {
+    return (
+      <div className="ax-panel ax-brackets p-7 max-w-xl" role="status">
+        <CloudOff size={26} style={{ color: '#FCD34D' }} aria-hidden />
+        <h2 className="font-display text-2xl font-semibold text-white mt-4">Saved on this device</h2>
+        <p className="mt-3 text-[15px] leading-relaxed" style={{ color: 'var(--ax-dim)' }}>
+          You&apos;re offline, so this {meta.title.toLowerCase()} is stored on this phone. It will sync automatically when the
+          connection returns, and gets its official number then. Keep the app open or reopen it once you have signal.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-2">
+          <a href={`/admin/documents/new?type=${init.type}`} className="ax-btn ax-btn-copper">Create another</a>
+          <a href="/admin" className="ax-btn ax-btn-ghost">Dashboard</a>
+        </div>
+      </div>
+    )
   }
 
   return (

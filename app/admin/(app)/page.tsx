@@ -4,6 +4,7 @@ import { FilePlus2, UserPlus, Truck, Receipt } from 'lucide-react'
 import { dashboardStats } from '@/lib/admin/data'
 import { DOC_META } from '@/lib/admin/documents'
 import { PageHeader, Panel, StatusBadge, Money, Empty, LinkButton, formatDate } from '@/components/admin/ui'
+import { OutboxList } from '@/components/admin/offline/OfflineKit'
 
 export const metadata: Metadata = { title: 'Dashboard' }
 
@@ -29,6 +30,8 @@ export default async function Dashboard() {
           </>
         }
       />
+
+      <OutboxList />
 
       <ul className="grid grid-cols-2 xl:grid-cols-4 gap-3 mb-8">
         {tiles.map((t) => (

@@ -8,7 +8,8 @@ import { SESSION_COOKIE, verifySessionToken } from '@/lib/auth/token'
  */
 export async function proxy(request: NextRequest) {
   const { pathname, search } = request.nextUrl
-  if (pathname === '/admin/login') return NextResponse.next()
+  // Login and the offline fallback (precached by the service worker) are public.
+  if (pathname === '/admin/login' || pathname === '/admin/offline') return NextResponse.next()
 
   const claims = await verifySessionToken(request.cookies.get(SESSION_COOKIE)?.value)
   if (claims) return NextResponse.next()

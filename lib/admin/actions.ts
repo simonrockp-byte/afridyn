@@ -107,6 +107,8 @@ const lineSchema = z.object({
 
 const docSchema = z.object({
   id: z.string().uuid().optional(),
+  /** Offline outbox: the id to create the document with, so a retried sync is idempotent. */
+  createId: z.string().uuid().optional(),
   type: z.enum(['quotation', 'proforma', 'invoice', 'delivery_note', 'credit_note']),
   clientId: z.string().uuid(),
   siteId: z.string().uuid().nullable().optional(),
@@ -164,11 +166,15 @@ export async function saveDocument(input: DocInput): Promise<{ id: string } | { 
     return { id: d.id }
   }
 
+  if (d.createId) {
+    const [already] = await db.select({ id: documents.id }).from(documents).where(eq(documents.id, d.createId)).limit(1)
+    if (already) return { id: already.id } // retried sync of an offline draft — already saved
+  }
   const year = Number(d.issueDate.slice(0, 4))
   const number = await allocateNumber(db, user.deviceId, meta.series, year)
   const [row] = await db
     .insert(documents)
-    .values({ ...values, type: d.type, number, status: 'draft', shareToken: newShareToken(), createdBy: user.id, deviceId: user.deviceId })
+    .values({ ...(d.createId ? { id: d.createId } : {}), ...values, type: d.type, number, status: 'draft', shareToken: newShareToken(), createdBy: user.id, deviceId: user.deviceId })
     .returning({ id: documents.id })
   await audit(user.id, user.deviceId, 'create', 'document', row.id, { type: d.type, number })
   touchAdmin()
