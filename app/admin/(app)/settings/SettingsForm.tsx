@@ -29,7 +29,7 @@ function T({ label, name, value, placeholder, rows = 4, hint }: { label: string;
 function Thumb({ t }: { t: Template }) {
   const bar = (w: string, c: string, h = 3) => <div style={{ width: w, height: h, background: c, borderRadius: 1 }} />
   return (
-    <div className="aspect-[1/1.25] w-full bg-white rounded-md ring-1 ring-black/10 overflow-hidden flex flex-col" aria-hidden>
+    <div className="aspect-[1/1.3] w-full max-w-[200px] mx-auto bg-white rounded-md ring-1 ring-black/10 overflow-hidden flex flex-col" aria-hidden>
       {t.header === 'dark' ? (
         <>
           <div className="flex justify-between items-center px-2.5 py-2" style={{ background: t.primary }}>{bar('38%', '#fff', 4)}{bar('22%', t.accent, 5)}</div>

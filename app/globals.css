@@ -796,7 +796,9 @@ select.ax-field option { background: #0A0E13; color: var(--ax-text); }
   --st-part: #B45309;
   --st-void: #B91C1C;
 }
-.ax-admin[data-theme='light'] .text-white { color: var(--ax-text); }
+/* This block sits in @layer components, so beating the .text-white utility needs !important. */
+.ax-admin[data-theme='light'] .text-white:not(.ax-btn-copper, .ax-btn-copper *, .ax-keep-white, .ax-keep-white *) { color: var(--ax-text) !important; }
+.ax-admin[data-theme='light'] .hover\:text-white:hover { color: var(--ax-copper) !important; }
 .ax-admin[data-theme='light'] .ax-panel {
   background: #FFFFFF;
   border-color: var(--ax-line);
