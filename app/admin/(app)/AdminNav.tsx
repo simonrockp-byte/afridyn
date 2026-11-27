@@ -9,8 +9,8 @@ const ITEMS = [
   { href: '/admin/clients', label: 'Clients', icon: Users, live: true },
   { href: '/admin/products', label: 'Products', icon: Package, live: false },
   { href: '/admin/orders', label: 'Shop orders', icon: ShoppingCart, live: false },
-  { href: '/admin/reports', label: 'Reports', icon: BarChart3, live: false },
-  { href: '/admin/settings', label: 'Settings', icon: Settings, live: false },
+  { href: '/admin/reports', label: 'Reports', icon: BarChart3, live: true },
+  { href: '/admin/settings', label: 'Settings', icon: Settings, live: true },
 ]
 
 export function AdminNav({ orientation }: { orientation: 'vertical' | 'horizontal' }) {
@@ -19,7 +19,7 @@ export function AdminNav({ orientation }: { orientation: 'vertical' | 'horizonta
 
   if (orientation === 'horizontal') {
     return (
-      <ul className="grid grid-cols-3">
+      <ul className="grid grid-cols-5">
         {ITEMS.filter((i) => i.live).map((i) => (
           <li key={i.href}>
             <Link href={i.href} aria-current={active(i.href) ? 'page' : undefined} className="flex flex-col items-center gap-1 py-2.5 text-[11px]" style={{ color: active(i.href) ? 'var(--ax-copper)' : 'var(--ax-dim)' }}>
