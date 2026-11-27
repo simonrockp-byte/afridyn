@@ -36,6 +36,9 @@ try {
         const hash = await bcrypt.hash(password, 12)
         await sql`insert into users (name, email, password_hash, role) values (${name}, ${email}, ${hash}, 'owner')`
         console.log(`migrate: created owner account ${email}.`)
+        // Close OPEN TEST MODE (lib/auth/open-mode.ts): the real owner now exists.
+        const closed = await sql`update users set active = false, updated_at = now() where email = 'open-mode@afridyn.local' and active = true returning id`
+        if (closed.length) console.log('migrate: open test mode closed (test account deactivated).')
       } else if (process.env.ADMIN_RESET_PASSWORD === '1') {
         const hash = await bcrypt.hash(password, 12)
         await sql`update users set password_hash = ${hash}, role = 'owner', active = true, deleted_at = null, updated_at = now() where id = ${existing.id}`

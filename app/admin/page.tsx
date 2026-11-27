@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import { FileText, FileCheck2, Receipt, Truck, FileMinus, ScrollText, Users, Package, ShoppingCart, BarChart3, Settings } from 'lucide-react'
 import { Logo } from '@/components/brand/Logo'
 import { getSessionUser } from '@/lib/auth/server'
+import { OPEN_MODE_EMAIL } from '@/lib/auth/open-mode'
 import { SignOutButton } from './SignOutButton'
 
 export const metadata: Metadata = { title: 'Dashboard' }
@@ -42,6 +43,13 @@ export default async function AdminHome() {
           </div>
         </div>
       </header>
+
+      {user.email === OPEN_MODE_EMAIL && (
+        <div role="status" className="border-b px-5 py-3 text-center text-[14px]" style={{ borderColor: 'rgba(255,106,26,0.4)', background: 'rgba(255,106,26,0.1)', color: '#FFC9A3' }}>
+          <strong className="text-white">Open test mode.</strong> Anyone with the link can use this admin — don&apos;t enter real client data.
+          Add <code>ADMIN_EMAIL</code> and <code>ADMIN_PASSWORD</code> in Vercel and redeploy to lock it.
+        </div>
+      )}
 
       <main className="container py-10 md:py-14">
         <p className="ax-eyebrow">Admin console</p>
