@@ -44,7 +44,7 @@ export default function SettingsPage() {
       <Section title="Contact Details" icon={Phone}>
         <div className="grid sm:grid-cols-2 gap-4">
           <Field label="WhatsApp Number" value="+260 977 244 549" type="tel" />
-          <Field label="Office Phone"    value="+260 969 628 707" type="tel" />
+          <Field label="Office Phone"    value="+260 977 244 549" type="tel" />
         </div>
         <Field label="Email Address" value="info@afridyn.world" type="email" />
         <Field label="Physical Address" value="31 Salama Park, Lusaka, Zambia" />
