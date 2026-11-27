@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { ImageIcon } from 'lucide-react'
 import { Reveal } from '@/components/motion/Reveal'
 import { SectionHeader } from '@/components/ui/SectionHeader'
@@ -10,11 +11,17 @@ import { SectionHeader } from '@/components/ui/SectionHeader'
  *  - result: measurable outcome (uptime, time saved, km of fibre, etc.)
  * Nothing here is invented — slots render as clearly-marked placeholders until filled.
  */
-type Project = { image?: string; client?: string; scope?: string; result?: string; discipline: string }
+type Project = {
+  /** Real site photo once supplied. */
+  image?: string
+  /** Stand-in photo from the company pitch deck — always labelled "Illustrative" on the page. */
+  illustrative?: string
+  client?: string; scope?: string; result?: string; discipline: string
+}
 const PROJECTS: Project[] = [
-  { discipline: 'Mechanical / Mining' },
-  { discipline: 'Electrical / Energy' },
-  { discipline: 'Fibre Optics / Telecoms' },
+  { discipline: 'Mechanical / Mining',     illustrative: '/images/projects/mechanical.jpg' },
+  { discipline: 'Electrical / Energy',     illustrative: '/images/projects/electrical.jpg' },
+  { discipline: 'Fibre Optics / Telecoms', illustrative: '/images/projects/fibre-it.jpg' },
 ]
 
 function Slot({ label }: { label: string }) {
@@ -36,13 +43,31 @@ export function Projects() {
         <ul className="grid md:grid-cols-3 gap-4">
           {PROJECTS.map((p, i) => (
             <Reveal key={i} as="li" delay={i * 0.06}>
-              <article className="ax-panel h-full border-dashed" aria-label={`Case study slot ${i + 1} (to be added)`}>
-                <div className="aspect-[16/10] grid place-items-center border-b border-dashed ax-grid" style={{ borderColor: 'var(--ax-line-2)' }}>
-                  <div className="flex flex-col items-center gap-2">
-                    <ImageIcon size={26} strokeWidth={1.3} style={{ color: 'var(--ax-faint)' }} aria-hidden />
-                    <Slot label="Site photo" />
+              <article className="group ax-panel h-full border-dashed overflow-hidden" aria-label={`Case study slot ${i + 1} (to be added)`}>
+                {p.image || p.illustrative ? (
+                  <div className="relative aspect-[16/10] overflow-hidden border-b" style={{ borderColor: 'var(--ax-line-2)' }}>
+                    <Image
+                      src={(p.image ?? p.illustrative)!}
+                      alt={p.image ? `${p.discipline} project by Afridyn Engineering` : ''}
+                      fill
+                      sizes="(min-width: 768px) 33vw, 100vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0" style={{ background: 'linear-gradient(0deg, rgba(7,9,13,0.75), transparent 55%)' }} aria-hidden />
+                    {!p.image && (
+                      <span className="absolute left-3 top-3 font-mono text-[10px] uppercase tracking-[0.14em] px-2 py-1 bg-[#07090D]/85 border" style={{ borderColor: 'var(--ax-line-2)', color: 'var(--ax-text)' }}>
+                        Illustrative image
+                      </span>
+                    )}
                   </div>
-                </div>
+                ) : (
+                  <div className="aspect-[16/10] grid place-items-center border-b border-dashed ax-grid" style={{ borderColor: 'var(--ax-line-2)' }}>
+                    <div className="flex flex-col items-center gap-2">
+                      <ImageIcon size={26} strokeWidth={1.3} style={{ color: 'var(--ax-faint)' }} aria-hidden />
+                      <Slot label="Site photo" />
+                    </div>
+                  </div>
+                )}
                 <dl className="p-6 space-y-3 text-[14px]">
                   <div className="flex justify-between gap-3"><dt className="ax-spec text-[10px]">PRJ-0{i + 1}</dt><dd className="ax-spec text-[10px]" style={{ color: 'var(--ax-copper)' }}>{p.discipline}</dd></div>
                   <div><dt className="ax-spec text-[10px]">Client</dt><dd className="mt-1">{p.client ?? <Slot label="Client" />}</dd></div>
