@@ -219,7 +219,7 @@ export default function ShopPage() {
 
       {/* ── Hero Banner ── */}
       <section
-        className="relative pt-[72px] overflow-hidden"
+        className="relative pt-[76px] overflow-hidden"
         style={{
           background: 'linear-gradient(135deg, #0F2F5E 0%, #1B4E9B 55%, #2A6DD9 100%)',
         }}
@@ -301,7 +301,7 @@ export default function ShopPage() {
       </section>
 
       {/* ── Category Filters + Cart ── */}
-      <section className="sticky top-[72px] z-30 bg-white/95 border-b border-[var(--border)]"
+      <section className="sticky top-[76px] z-30 bg-white/95 border-b border-[var(--border)]"
         style={{ backdropFilter: 'blur(16px)' }}>
         <div className="container py-3 flex items-center justify-between gap-4 flex-wrap">
           <div className="flex items-center gap-2 flex-wrap">

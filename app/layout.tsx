@@ -1,22 +1,22 @@
-import type { Metadata } from 'next'
-import { Inter, Outfit, JetBrains_Mono } from 'next/font/google'
+import type { Metadata, Viewport } from 'next'
+import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { SiteShell } from '@/components/SiteShell'
 import { ClientProviders } from '@/components/ClientProviders'
 import { ScrollProgressBar } from '@/components/ScrollProgressBar'
-import { SITE_URL } from '@/lib/site'
+import { SITE_URL, COMPANY, SERVICE_NAMES } from '@/lib/site'
 
 const inter = Inter({
   subsets:  ['latin'],
-  weight:   ['300', '400', '500', '600', '700', '800'],
+  weight:   ['400', '500', '600', '700'],
   variable: '--font-inter',
   display:  'swap',
 })
 
-const outfit = Outfit({
+const spaceGrotesk = Space_Grotesk({
   subsets:  ['latin'],
-  weight:   ['600', '700', '800', '900'],
-  variable: '--font-outfit',
+  weight:   ['500', '600', '700'],
+  variable: '--font-display',
   display:  'swap',
 })
 
@@ -27,67 +27,145 @@ const jetbrainsMono = JetBrains_Mono({
   display:  'swap',
 })
 
+const TITLE = 'Afridyn Engineering Limited | Engineering Services in Lusaka, Zambia'
+const DESCRIPTION =
+  'Afridyn Engineering Limited, Lusaka: mechanical & electrical spares, maintenance, engineering consultation, IT equipment, optical fibre installation, technical outsourcing, logistics and clearing & forwarding for mining, energy and industry across Zambia and Sub-Saharan Africa. ZPPA registered supplier.'
+
+export const viewport: Viewport = {
+  themeColor: '#07090D',
+  colorScheme: 'dark',
+}
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   alternates: { canonical: '/' },
   title: {
-    default:  'Afridyn Engineering Limited | Engineering Excellence Across Africa',
+    default:  TITLE,
     template: '%s | Afridyn Engineering',
   },
-  description:
-    'Professional engineering and technical services for industrial, mining, construction, and infrastructure sectors across Sub-Saharan Africa. Mechanical, electrical, IT, optical fibre solutions and maintenance services. ZPPA approved.',
+  description: DESCRIPTION,
+  applicationName: COMPANY.name,
   keywords: [
+    'Afridyn',
+    'Afridyn Engineering',
+    'Afridyn Engineering Limited',
+    'engineering company Lusaka',
     'engineering services Zambia',
-    'mechanical engineering Africa',
+    'mining spares Zambia',
+    'mechanical and electrical spares Zambia',
+    'industrial maintenance Zambia',
     'electrical maintenance Lusaka',
-    'mining equipment supply Zambia',
-    'industrial engineering',
-    'infrastructure support Africa',
-    'technical services Lusaka',
-    'engineering consultation',
     'fibre optic installation Zambia',
-    'logistics consultancy Africa',
-    'ZPPA approved supplier',
+    'fusion splicing OTDR testing Zambia',
     'IT equipment supply Zambia',
+    'technical outsourcing Zambia',
+    'clearing and forwarding Zambia',
+    'logistics consultancy Africa',
+    'ZPPA registered supplier',
+    'Copperbelt engineering services',
   ],
-  authors:  [{ name: 'Afridyn Engineering Limited' }],
+  authors:  [{ name: COMPANY.name, url: SITE_URL }],
+  creator:  COMPANY.name,
+  publisher: COMPANY.name,
+  category: 'Engineering',
   openGraph: {
     type:        'website',
     locale:      'en_ZM',
     url:         SITE_URL,
-    title:       'Afridyn Engineering Limited | Engineering Excellence Across Africa',
-    description: 'Professional engineering services for industrial, mining, and infrastructure sectors across Africa.',
-    siteName:    'Afridyn Engineering Limited',
-    images: [
-      {
-        url:    '/images/og-image.png',
-        width:  1200,
-        height: 630,
-        alt:    'Afridyn Engineering Limited',
-      },
-    ],
+    title:       TITLE,
+    description: 'Mechanical, electrical, IT and fibre optic engineering for mining, energy and industry across Zambia and Sub-Saharan Africa.',
+    siteName:    COMPANY.name,
   },
   twitter: {
     card:        'summary_large_image',
-    title:       'Afridyn Engineering Limited',
-    description: 'Engineering Excellence Across Africa',
-    images:      ['/images/og-image.png'],
+    title:       COMPANY.name,
+    description: 'Engineering services for mining, energy and industry — Lusaka, Zambia.',
   },
   robots: {
     index:     true,
     follow:    true,
-    googleBot: { index: true, follow: true },
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 },
   },
+  // TODO(owner): paste the Google Search Console HTML-tag token here if you verify with a meta tag
+  // verification: { google: '...' },
+}
+
+/** Organization + LocalBusiness structured data (only verified facts). */
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id':   `${SITE_URL}/#organization`,
+      name:    COMPANY.name,
+      alternateName: ['Afridyn', COMPANY.shortName],
+      url:     SITE_URL,
+      logo:    `${SITE_URL}/images/logo-mark.png`,
+      email:   COMPANY.email,
+      telephone: COMPANY.phoneE164,
+      identifier: [
+        { '@type': 'PropertyValue', propertyID: 'PACRA', value: COMPANY.pacra },
+        { '@type': 'PropertyValue', propertyID: 'TPIN',  value: COMPANY.tpin },
+        { '@type': 'PropertyValue', propertyID: 'ZPPA',  value: COMPANY.zppa },
+      ],
+      // TODO(owner): add your Google Business Profile, LinkedIn and Facebook URLs once they exist
+      // sameAs: ['https://www.linkedin.com/company/...', 'https://maps.google.com/?cid=...'],
+    },
+    {
+      '@type': 'LocalBusiness',
+      '@id':   `${SITE_URL}/#localbusiness`,
+      name:    COMPANY.name,
+      url:     SITE_URL,
+      image:   `${SITE_URL}/opengraph-image`,
+      logo:    `${SITE_URL}/images/logo-mark.png`,
+      telephone: COMPANY.phoneE164,
+      email:   COMPANY.email,
+      parentOrganization: { '@id': `${SITE_URL}/#organization` },
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress:   COMPANY.street,
+        addressLocality: COMPANY.city,
+        addressCountry:  COMPANY.countryCode,
+      },
+      areaServed: [
+        { '@type': 'Country', name: 'Zambia' },
+        { '@type': 'Place',   name: 'Sub-Saharan Africa' },
+      ],
+      knowsAbout: [...SERVICE_NAMES],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Engineering services',
+        itemListElement: SERVICE_NAMES.map(s => ({
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name: s, areaServed: 'Zambia' },
+        })),
+      },
+      // TODO(owner): add geo (exact office coordinates) and openingHoursSpecification once confirmed
+    },
+    {
+      '@type': 'WebSite',
+      '@id':   `${SITE_URL}/#website`,
+      url:     SITE_URL,
+      name:    COMPANY.name,
+      publisher: { '@id': `${SITE_URL}/#organization` },
+      inLanguage: 'en-ZM',
+    },
+  ],
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en-ZM"
-      className={`${inter.variable} ${outfit.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
     >
       <body>
+        <a href="#main" className="ax-skip">Skip to content</a>
         <div id="scroll-bar" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
+        />
         <ClientProviders>
           <SiteShell>{children}</SiteShell>
         </ClientProviders>

@@ -1,19 +1,18 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Menu, X, ShoppingBag } from 'lucide-react'
-import { motion } from 'framer-motion'
-import Image from 'next/image'
+import { Menu, X, ShoppingBag, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
-import { scrollTo } from '@/lib/scroll'
+import { usePathname } from 'next/navigation'
+import { Logo } from '@/components/brand/Logo'
 
 const navLinks = [
-  { label: 'Services',  href: 'services' },
-  { label: 'About',     href: 'about' },
-  { label: 'Sectors',   href: 'sectors' },
-  { label: 'Why Us',    href: 'why-us' },
-  { label: 'Contact',   href: 'contact' },
+  { label: 'Services', id: 'services' },
+  { label: 'About',    id: 'about' },
+  { label: 'Sectors',  id: 'sectors' },
+  { label: 'Why Us',   id: 'why-us' },
+  { label: 'Projects', id: 'projects' },
+  { label: 'Contact',  id: 'contact' },
 ]
 
 export function Navigation() {
@@ -21,11 +20,13 @@ export function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [active, setActive]     = useState('')
   const pathname = usePathname()
-  const router   = useRouter()
+  const isHome   = pathname === '/'
   const isShop   = pathname === '/shop'
+  const href = (id: string) => (isHome ? `#${id}` : `/#${id}`)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -36,174 +37,119 @@ export function Navigation() {
     return () => window.removeEventListener('resize', onResize)
   }, [])
 
-  /* Track which section is in view */
   useEffect(() => {
-    const ids = navLinks.map(l => l.href)
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => { if (entry.isIntersecting) setActive(entry.target.id) })
-      },
-      { threshold: 0.35, rootMargin: '-72px 0px 0px 0px' },
-    )
-    ids.forEach(id => {
-      const el = document.getElementById(id)
-      if (el) observer.observe(el)
-    })
-    return () => observer.disconnect()
-  }, [])
+    if (!menuOpen) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setMenuOpen(false) }
+    window.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => { window.removeEventListener('keydown', onKey); document.body.style.overflow = '' }
+  }, [menuOpen])
 
-  const goto = (id: string) => {
-    setMenuOpen(false)
-    setActive(id)
-    if (isShop) {
-      router.push(`/#${id}`)
-      return
-    }
-    scrollTo(id)
-  }
+  /* Track which section is in view (home only) */
+  useEffect(() => {
+    if (!isHome) return
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id) }),
+      { rootMargin: '-45% 0px -50% 0px' },
+    )
+    navLinks.forEach(l => { const el = document.getElementById(l.id); if (el) observer.observe(el) })
+    return () => observer.disconnect()
+  }, [isHome])
+
+  const solid = scrolled || menuOpen
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 h-[72px] flex items-center ${
-        scrolled ? 'bg-white/95 shadow-[0_2px_24px_rgba(26,58,107,0.10)]' : 'bg-transparent'
-      }`}
-      style={{ backdropFilter: scrolled ? 'blur(20px)' : 'none' }}
+      className="fixed top-0 left-0 right-0 z-50 h-[76px] flex items-center transition-[background,border-color,backdrop-filter] duration-300 border-b"
+      style={{
+        background:     solid ? 'rgba(7,9,13,0.92)' : 'rgba(7,9,13,0.35)',
+        borderColor:    solid ? 'var(--ax-line)' : 'transparent',
+        backdropFilter: 'blur(14px) saturate(140%)',
+        WebkitBackdropFilter: 'blur(14px) saturate(140%)',
+      }}
     >
-      {/* Animated brand-colour bottom border when scrolled */}
-      <div
-        className={`absolute bottom-0 left-0 right-0 h-[2px] transition-opacity duration-500 ${
-          scrolled ? 'opacity-100' : 'opacity-0'
-        }`}
-        style={{
-          background: 'linear-gradient(90deg, transparent, #1B4E9B 35%, #6AAB2E 65%, transparent)',
-        }}
-      />
+      <div className="container w-full flex items-center justify-between gap-6">
+        <Link href="/" aria-label="Afridyn Engineering Limited — home" className="shrink-0 rounded-sm">
+          <Logo />
+        </Link>
 
-      <div className="container w-full h-full relative z-10">
-        <div className="grid grid-cols-[auto_1fr_auto] lg:grid-cols-3 items-center w-full h-full">
-
-          {/* Left: Logo */}
-          <div className="flex justify-start">
-            <button
-              onClick={() => goto('home')}
-              className="flex items-center group"
-              aria-label="Afridyn Engineering — home"
-            >
-              <Image
-                src="/images/final_logo.png"
-                alt="Afridyn Engineering | Technology"
-                width={160}
-                height={48}
-                className="object-contain h-10 w-auto transition-all duration-300 group-hover:opacity-90"
-                priority
-              />
-            </button>
-          </div>
-
-          {/* Center: Desktop Nav */}
-          <div className="hidden lg:flex justify-center">
-            <nav className="flex items-center gap-1" aria-label="Primary navigation">
-              {navLinks.map(link => (
-                <button
-                  key={link.href}
-                  onClick={() => goto(link.href)}
-                  className={`relative px-5 py-2.5 text-[13px] font-semibold tracking-[0.04em] transition-all rounded-full
-                    ${active === link.href
-                      ? 'text-white'
-                      : scrolled
-                        ? 'text-[#3D5275] hover:text-[#1A3A6B]'
-                        : 'text-white/80 hover:text-white'
-                    }`}
-                >
-                  {active === link.href && (
-                    <motion.div
-                      layoutId="active-nav-pill"
-                      className="absolute inset-0 rounded-full"
-                      style={{
-                        background: 'linear-gradient(135deg, #1B4E9B, #2A6DD9)',
-                        boxShadow: '0 4px 14px rgba(27, 78, 155, 0.35)',
-                      }}
-                      transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-                    />
-                  )}
-                  <span className="relative z-10">{link.label}</span>
-                </button>
-              ))}
-            </nav>
-          </div>
-
-          {/* Right: CTA / Mobile Toggle */}
-          <div className="flex justify-end items-center gap-3">
-            <Link
-              href="/shop"
-              className={`hidden lg:flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-semibold transition-all border ${
-                isShop
-                  ? 'bg-[#1B4E9B] text-white border-[#1B4E9B]'
-                  : scrolled
-                    ? 'text-[#1B4E9B] border-[#1B4E9B]/30 hover:bg-[#1B4E9B]/5'
-                    : 'text-white border-white/30 hover:bg-white/10'
-              }`}
-            >
-              <ShoppingBag size={14} />
-              Shop
-            </Link>
-            <div className="relative group hidden lg:block">
-              <div className="absolute -inset-[2px] rounded-xl blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-500 bg-gradient-to-r from-[#4E8020] to-[#6AAB2E]" />
-              <button
-                onClick={() => goto('contact')}
-                className="relative btn btn-cta btn-sm px-7 py-3 text-[14px]"
+        <nav className="hidden lg:flex items-center gap-1" aria-label="Primary">
+          {navLinks.map(link => {
+            const on = isHome && active === link.id
+            return (
+              <a
+                key={link.id}
+                href={href(link.id)}
+                aria-current={on ? 'true' : undefined}
+                className="relative px-3.5 py-2 font-mono text-[12px] uppercase tracking-[0.14em] transition-colors"
+                style={{ color: on ? '#fff' : 'var(--ax-dim)' }}
               >
-                Get a Quote
-              </button>
-            </div>
+                {link.label}
+                <span
+                  className="absolute left-3.5 right-3.5 -bottom-0.5 h-px transition-transform origin-left"
+                  style={{ background: 'var(--ax-copper)', transform: `scaleX(${on ? 1 : 0})` }}
+                  aria-hidden
+                />
+              </a>
+            )
+          })}
+        </nav>
 
-            <button
-              className={`lg:hidden p-2 rounded-lg transition-all hover:bg-[#1A3A6B]/5 ${
-                scrolled ? 'text-[#1A3A6B]' : 'text-white'
-              }`}
-              onClick={() => setMenuOpen(v => !v)}
-              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            >
-              {menuOpen ? <X size={26} /> : <Menu size={26} />}
-            </button>
-          </div>
+        <div className="flex items-center gap-2.5">
+          <Link
+            href="/shop"
+            aria-current={isShop ? 'page' : undefined}
+            className="hidden md:inline-flex ax-btn ax-btn-ghost !min-h-[42px] !px-4"
+          >
+            <ShoppingBag size={15} aria-hidden /> Shop
+          </Link>
+          <a href={href('contact')} className="hidden sm:inline-flex ax-btn ax-btn-copper !min-h-[42px] !px-5">
+            Get a Quote
+          </a>
+          <button
+            className="lg:hidden inline-flex items-center justify-center w-11 h-11 text-white border"
+            style={{ borderColor: 'var(--ax-line-2)' }}
+            onClick={() => setMenuOpen(v => !v)}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          >
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       <div
-        className={`lg:hidden fixed inset-0 top-[72px] z-40 bg-white transition-all duration-400 overflow-y-auto
-          ${menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+        id="mobile-menu"
+        hidden={!menuOpen}
+        className="lg:hidden fixed inset-0 top-[76px] z-40 overflow-y-auto ax-grid"
+        style={{ background: 'var(--ax-ink)' }}
       >
-        {/* Top accent bar */}
-        <div className="h-[3px] w-full bg-gradient-to-r from-[#1B4E9B] via-[#6AAB2E] to-[#1B4E9B]" />
-        <div className="container py-8 flex flex-col gap-1">
+        <div className="container py-6 flex flex-col">
           {navLinks.map((link, i) => (
-            <button
-              key={link.href}
-              onClick={() => goto(link.href)}
-              className="text-left text-xl font-display font-bold text-[#3D5275] hover:text-[#1A3A6B] py-4 px-2 border-b border-slate-100 transition-colors"
-              style={{ transitionDelay: `${i * 40}ms` }}
+            <a
+              key={link.id}
+              href={href(link.id)}
+              onClick={() => setMenuOpen(false)}
+              className="flex items-center justify-between py-5 border-b font-display text-2xl font-semibold text-white"
+              style={{ borderColor: 'var(--ax-line)' }}
             >
-              {link.label}
-            </button>
+              <span><span className="font-mono text-xs mr-4" style={{ color: 'var(--ax-copper)' }}>0{i + 1}</span>{link.label}</span>
+              <ArrowRight size={18} style={{ color: 'var(--ax-dim)' }} aria-hidden />
+            </a>
           ))}
           <Link
             href="/shop"
             onClick={() => setMenuOpen(false)}
-            className="flex items-center gap-2 text-xl font-display font-bold text-[#1B4E9B] py-4 px-2 border-b border-slate-100"
+            className="flex items-center gap-3 py-5 border-b font-display text-2xl font-semibold text-white"
+            style={{ borderColor: 'var(--ax-line)' }}
           >
-            <ShoppingBag size={20} />
-            Shop
+            <ShoppingBag size={20} aria-hidden /> Shop
           </Link>
-          <div className="pt-8">
-            <button
-              onClick={() => goto('contact')}
-              className="btn btn-cta btn-lg w-full justify-center"
-            >
-              Request a Quote
-            </button>
-          </div>
+          <a href={href('contact')} onClick={() => setMenuOpen(false)} className="ax-btn ax-btn-copper w-full mt-8">
+            Request a Quote
+          </a>
         </div>
       </div>
     </header>

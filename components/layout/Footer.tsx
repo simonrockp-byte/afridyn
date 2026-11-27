@@ -1,302 +1,91 @@
 'use client'
-import { Phone, Mail, MapPin } from 'lucide-react'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import { useRef } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
-import { usePathname, useRouter } from 'next/navigation'
-import { scrollTo } from '@/lib/scroll'
-import { CONTACT_INFO } from '@/lib/contact-info'
+import { usePathname } from 'next/navigation'
+import { MapPin, Phone, Mail } from 'lucide-react'
+import { Logo } from '@/components/brand/Logo'
+import { COMPANY, SERVICE_NAMES } from '@/lib/site'
 
-import { FooterCircuit } from '@/components/FooterCircuit'
-
-const services = [
-  'Mechanical & Electrical Spares',
-  'Maintenance Services',
-  'Engineering Consultation',
-  'IT Equipment Supply',
-  'Optical Fibre Installation',
+const company = [
+  { label: 'About',            id: 'about' },
+  { label: 'Sectors',          id: 'sectors' },
+  { label: 'Why Afridyn',      id: 'why-us' },
+  { label: 'Projects',         id: 'projects' },
+  { label: 'Request a quote',  id: 'contact' },
 ]
-
-const companyLinks: [string, string][] = [
-  ['home',    'Home'],
-  ['about',   'About Us'],
-  ['why-us',  'Why Afridyn'],
-  ['sectors', 'Sectors'],
-  ['contact', 'Contact'],
-]
-
-// Shop is a real route, not an anchor — handled separately below
 
 export function Footer() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const pathname     = usePathname()
-  const router       = useRouter()
-
-  const goto = (id: string) => {
-    if (pathname !== '/') {
-      router.push(`/#${id}`)
-      return
-    }
-    scrollTo(id)
-  }
-
-  const mouseX  = useMotionValue(0)
-  const mouseY  = useMotionValue(0)
-  const springX = useSpring(mouseX, { stiffness: 80, damping: 25 })
-  const springY = useSpring(mouseY, { stiffness: 80, damping: 25 })
-
-  const orbX  = useTransform(springX, [-500, 500], [-14, 14])
-  const orbY  = useTransform(springY, [-500, 500], [-10, 10])
-  const orbX2 = useTransform(orbX, v => -v * 0.7)
-  const orbY2 = useTransform(orbY, v => -v * 0.7)
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return
-    const rect = containerRef.current.getBoundingClientRect()
-    mouseX.set(e.clientX - (rect.left + rect.width  / 2))
-    mouseY.set(e.clientY - (rect.top  + rect.height / 2))
-  }
-  const handleMouseLeave = () => { mouseX.set(0); mouseY.set(0) }
+  const isHome = usePathname() === '/'
+  const href = (id: string) => (isHome ? `#${id}` : `/#${id}`)
 
   return (
-    <footer
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="relative overflow-hidden pt-20 pb-10 md:pt-24 md:pb-12"
-      style={{ background: '#060E1E' }}
-    >
-      {/* â”€â”€ Three.js circuit animation â”€â”€ */}
-      <FooterCircuit />
+    <footer className="relative overflow-hidden border-t" style={{ background: '#05070A', borderColor: 'var(--ax-line)' }}>
+      <div className="absolute inset-0 ax-grid opacity-60 pointer-events-none" aria-hidden />
+      <div className="ax-ticks absolute top-0 inset-x-0" aria-hidden />
 
-      {/* â”€â”€ Parallax glow orbs (mouse-reactive) â”€â”€ */}
-      <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
-        <motion.div
-          className="absolute top-[-15%] left-[-8%] w-[55%] h-[55%] rounded-full blur-[130px]"
-          style={{
-            x: orbX,
-            y: orbY,
-            background: 'radial-gradient(circle, rgba(27,78,155,0.32) 0%, transparent 70%)',
-          }}
-        />
-        <motion.div
-          className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[120px]"
-          style={{
-            x: orbX2,
-            y: orbY2,
-            background: 'radial-gradient(circle, rgba(106,171,46,0.22) 0%, transparent 70%)',
-          }}
-        />
-        {/* Static center glow */}
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] rounded-full blur-[160px] pointer-events-none"
-          style={{ background: 'radial-gradient(circle, rgba(27,78,155,0.10) 0%, transparent 70%)' }}
-        />
-      </div>
-
-      {/* â”€â”€ Blueprint grid overlay â”€â”€ */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          zIndex: 1,
-          backgroundImage:
-            'linear-gradient(rgba(27,78,155,0.06) 1px, transparent 1px),' +
-            'linear-gradient(90deg, rgba(27,78,155,0.06) 1px, transparent 1px)',
-          backgroundSize: '56px 56px',
-        }}
-      />
-
-      {/* â”€â”€ Top gradient border â”€â”€ */}
-      <div
-        className="absolute top-0 left-0 right-0 h-[2px]"
-        style={{
-          background: 'linear-gradient(90deg, transparent, #1B4E9B 35%, #6AAB2E 65%, transparent)',
-          zIndex: 2,
-        }}
-      />
-
-      {/* â”€â”€ Content â”€â”€ */}
-      <div className="container relative" style={{ zIndex: 10 }}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-16 md:mb-20 text-center md:text-left"
-        >
-          {/* ── Brand ── */}
-          <div className="flex flex-col items-center md:items-start">
-            <motion.div whileHover={{ scale: 1.03 }} className="mb-7">
-              <Image
-                src="/images/final_logo.png"
-                alt="Afridyn Engineering | Technology"
-                width={180}
-                height={54}
-                className="object-contain brightness-0 invert"
-              />
-            </motion.div>
-
-            <p className="text-sm leading-relaxed text-white/55 max-w-xs mb-8 mx-auto md:mx-0">
-              World-class engineering solutions, technical procurement, and
-              infrastructure services across Sub-Saharan Africa.
+      <div className="container relative pt-16 md:pt-20 pb-10">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.2fr]">
+          <div>
+            <Logo size="lg" />
+            <p className="mt-6 max-w-sm text-[14.5px] leading-relaxed" style={{ color: 'var(--ax-dim)' }}>
+              Integrated mechanical, electrical, IT and fibre optic engineering for mining,
+              energy and industry across Zambia and Sub-Saharan Africa.
             </p>
-
-            <div className="flex items-center gap-2 justify-center md:justify-start">
-              {['PACRA', 'ZPPA', 'TPIN'].map(tag => (
-                <motion.span
-                  key={tag}
-                  whileHover={{ y: -2, scale: 1.05 }}
-                  className="px-3 py-1.5 rounded-full text-[11px] font-mono font-bold tracking-wider"
-                  style={{
-                    border:     '1px solid rgba(106,171,46,0.25)',
-                    background: 'rgba(106,171,46,0.08)',
-                    color:      '#82C93A',
-                  }}
-                >
-                  {tag}
-                </motion.span>
+            <dl className="mt-6 max-w-sm border divide-y" style={{ borderColor: 'var(--ax-line)' }}>
+              {[['PACRA', COMPANY.pacra], ['ZPPA', COMPANY.zppa], ['TPIN', COMPANY.tpin]].map(([k, v]) => (
+                <div key={k} className="flex items-center justify-between gap-4 px-3 py-2 border-[color:var(--ax-line)]">
+                  <dt className="ax-spec text-[10px]" style={{ color: 'var(--ax-copper)' }}>{k}</dt>
+                  <dd className="font-mono text-[13px] text-white tabular-nums">{v}</dd>
+                </div>
               ))}
-            </div>
+            </dl>
           </div>
 
-          {/* ── Expertise ── */}
-          <div className="space-y-5">
-            <h4 className="text-white/40 font-display font-bold text-[11px] tracking-[0.28em] uppercase flex items-center justify-center md:justify-start gap-3">
-              <span className="w-8 h-px bg-[#6AAB2E] hidden md:block opacity-60" />
-              Expertise
-            </h4>
-            <ul className="space-y-3">
-              {services.map((s, idx) => (
+          <nav aria-labelledby="ft-services">
+            <h2 id="ft-services" className="ax-spec" style={{ color: 'var(--ax-text)' }}>Services</h2>
+            <ul className="mt-5 space-y-2.5">
+              {SERVICE_NAMES.map(s => (
                 <li key={s}>
-                  <motion.button
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.06 }}
-                    onClick={() => scrollTo('services')}
-                    className="text-[14px] text-white/50 hover:text-white transition-all duration-300 group flex items-center justify-center md:justify-start gap-3 hover:translate-x-1"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#6AAB2E] scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
-                    {s}
-                  </motion.button>
+                  <a href={href('services')} className="text-[14px] hover:text-white transition-colors" style={{ color: 'var(--ax-dim)' }}>{s}</a>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          {/* ── Company ── */}
-          <div className="space-y-5">
-            <h4 className="text-white/40 font-display font-bold text-[11px] tracking-[0.28em] uppercase flex items-center justify-center md:justify-start gap-3">
-              <span className="w-8 h-px bg-[#1B4E9B] hidden md:block opacity-60" />
-              Company
-            </h4>
-            <ul className="space-y-3">
-              {companyLinks.map(([id, label], idx) => (
-                <li key={id}>
-                  <motion.button
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.06 }}
-                    onClick={() => scrollTo(id)}
-                    className="text-[14px] text-white/50 hover:text-white transition-all duration-300 group flex items-center justify-center md:justify-start gap-3 hover:translate-x-1"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#2A6DD9] scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
-                    {label}
-                  </motion.button>
+          <nav aria-labelledby="ft-company">
+            <h2 id="ft-company" className="ax-spec" style={{ color: 'var(--ax-text)' }}>Company</h2>
+            <ul className="mt-5 space-y-2.5">
+              {company.map(l => (
+                <li key={l.id}>
+                  <a href={href(l.id)} className="text-[14px] hover:text-white transition-colors" style={{ color: 'var(--ax-dim)' }}>{l.label}</a>
                 </li>
               ))}
-              <li>
-                <Link
-                  href="/shop"
-                  className="text-[14px] text-white/50 hover:text-white transition-all duration-300 group flex items-center justify-center md:justify-start gap-3 hover:translate-x-1"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#6AAB2E] scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
-                  Shop
-                </Link>
-              </li>
+              <li><Link href="/shop" className="text-[14px] hover:text-white transition-colors" style={{ color: 'var(--ax-dim)' }}>Industrial supplies shop</Link></li>
             </ul>
-          </div>
+          </nav>
 
-          {/* ── Contact ── */}
-          <div className="space-y-5">
-            <h4 className="text-white/40 font-display font-bold text-[11px] tracking-[0.28em] uppercase flex items-center justify-center md:justify-start gap-3">
-              <span className="w-8 h-px bg-[#6AAB2E] hidden md:block opacity-60" />
-              Contact
-            </h4>
-            <div className="space-y-5">
-              {[
-                { Icon: MapPin, text: CONTACT_INFO.address,   color: '#2A6DD9' },
-                { Icon: Phone,  text: CONTACT_INFO.phones[0], color: '#6AAB2E' },
-                { Icon: Mail,   text: CONTACT_INFO.email,     color: '#2A6DD9' },
-              ].map(({ Icon, text, color }, idx) => (
-                <motion.div
-                  key={text}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="flex flex-col md:flex-row items-center md:items-start gap-3 group"
-                >
-                  <div
-                    className="p-2.5 rounded-xl border shrink-0 transition-all duration-300 group-hover:scale-110"
-                    style={{
-                      background:  `${color}15`,
-                      borderColor: `${color}30`,
-                      color,
-                    }}
-                  >
-                    <Icon size={15} strokeWidth={1.8} />
-                  </div>
-                  <span className="text-[13px] leading-relaxed text-white/50 group-hover:text-white/90 transition-colors duration-300 text-center md:text-left">
-                    {text}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
+          <div>
+            <h2 className="ax-spec" style={{ color: 'var(--ax-text)' }}>Head office</h2>
+            <address className="not-italic mt-5 space-y-4 text-[14.5px]">
+              <p className="flex gap-3"><MapPin size={16} className="mt-0.5 shrink-0" style={{ color: 'var(--ax-copper)' }} aria-hidden />
+                <span className="text-white">{COMPANY.street}<br />{COMPANY.city}, {COMPANY.country}</span></p>
+              <p className="flex gap-3"><Phone size={16} className="mt-0.5 shrink-0" style={{ color: 'var(--ax-copper)' }} aria-hidden />
+                <a href={`tel:${COMPANY.phoneE164}`} className="text-white hover:underline underline-offset-4">{COMPANY.phone}</a></p>
+              <p className="flex gap-3"><Mail size={16} className="mt-0.5 shrink-0" style={{ color: 'var(--ax-copper)' }} aria-hidden />
+                <a href={`mailto:${COMPANY.email}`} className="text-white hover:underline underline-offset-4 break-all">{COMPANY.email}</a></p>
+            </address>
+            <p className="mt-6 inline-flex items-center gap-2.5 ax-spec text-[10px]" style={{ color: 'var(--ax-green)' }}>
+              <span className="ax-led" aria-hidden /> 24/7 support line
+            </p>
           </div>
-        </motion.div>
+        </div>
 
-        {/* â”€â”€ Bottom bar â”€â”€ */}
-        <div
-          className="pt-8 md:pt-10 border-t flex flex-col lg:flex-row items-center justify-between gap-6 md:gap-8"
-          style={{ borderColor: 'rgba(255,255,255,0.07)' }}
-        >
-          <p className="text-[12px] font-medium tracking-wide text-white/30 text-center lg:text-left">
-            © {new Date().getFullYear()}{' '}
-            <span className="text-white/70 font-semibold">Afridyn Engineering Limited</span>.{' '}
-            All rights reserved.
+        <div className="mt-14 pt-6 border-t flex flex-col md:flex-row gap-3 md:items-center md:justify-between" style={{ borderColor: 'var(--ax-line)' }}>
+          <p className="text-[13px]" style={{ color: 'var(--ax-faint)' }}>
+            © {new Date().getFullYear()} <span className="text-white">{COMPANY.name}</span>. All rights reserved.
           </p>
-
-          <div className="flex flex-wrap justify-center items-center gap-6 text-[11px] font-mono tracking-[0.3em] uppercase">
-            <div className="flex items-center gap-2">
-              <span className="text-white/25">PACRA</span>
-              <span className="text-[#2A6DD9] font-bold">120261040695</span>
-            </div>
-            <div className="w-px h-4 hidden sm:block" style={{ background: 'rgba(255,255,255,0.1)' }} />
-            <div className="flex items-center gap-2">
-              <span className="text-white/25">ZPPA</span>
-              <span className="text-[#2A6DD9] font-bold">137269</span>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <div
-              className="flex items-center gap-2 px-3 py-1.5 rounded-full border"
-              style={{
-                background:   'rgba(106,171,46,0.08)',
-                borderColor:  'rgba(106,171,46,0.25)',
-              }}
-            >
-              <div className="w-1.5 h-1.5 rounded-full bg-[#6AAB2E] animate-pulse" />
-              <span className="text-[9px] font-bold text-[#82C93A] uppercase tracking-widest">
-                Network Live
-              </span>
-            </div>
-          </div>
+          <p className="ax-spec text-[10px]">DWG-AFR-001 · Rev {new Date().getFullYear()} · Lusaka, ZM</p>
         </div>
       </div>
     </footer>
   )
 }
-
-

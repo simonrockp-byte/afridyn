@@ -12,7 +12,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Navigation />
-      <main>{children}</main>
+      <main id="main">{children}</main>
       <Footer />
     </>
   )

@@ -1,159 +1,82 @@
-'use client'
-import { motion } from 'framer-motion'
-import Image from 'next/image'
+import { Pickaxe, Factory, Zap, Server, RadioTower } from 'lucide-react'
+import { Reveal, Counter } from '@/components/motion/Reveal'
+import { SectionHeader } from '@/components/ui/SectionHeader'
 
-const sectors = [
-  {
-    img:   '/images/assets/industry-mining-afridyn.png',
-    label: 'Mining',
-    color: '#1B4E9B',
-    desc:  'Maintenance, spares & workforce for major African mining operations.',
-    stat:  '60% of our work',
-  },
-  {
-    img:   '/images/assets/industry-manufacturing-afridyn.png',
-    label: 'Manufacturing',
-    color: '#6AAB2E',
-    desc:  'Operational efficiency and spare parts for production facilities.',
-    stat:  'Multi-sector',
-  },
-  {
-    img:   '/images/assets/industry-energy-afridyn.png',
-    label: 'Energy',
-    color: '#1B4E9B',
-    desc:  'Engineering solutions for power generation and distribution.',
-    stat:  'Infrastructure',
-  },
-  {
-    img:   '/images/assets/service-icon-it-afridyn.png',
-    label: 'Commercial / IT',
-    color: '#6AAB2E',
-    desc:  'IT equipment and technical outsourcing for growing businesses.',
-    stat:  'Enterprise grade',
-  },
-  {
-    img:   '/images/assets/service-icon-fiber-afridyn.png',
-    label: 'Telecoms',
-    color: '#1B4E9B',
-    desc:  'Optical fibre installation and 24/7 network maintenance.',
-    stat:  'Pan-African',
-  },
+const industries = [
+  'Mining & Mineral Processing',
+  'Manufacturing & Industrial',
+  'Energy, Power & Water',
+  'Telecommunications',
+  'Infrastructure & Construction',
+  'Supply Chain & Commerce',
+  'Public Sector & Government',
 ]
+
+const tile = 'ax-panel ax-brackets p-6 md:p-7 flex flex-col h-full transition-colors duration-300 hover:bg-[#111821]'
 
 export function Sectors() {
   return (
-    <section
-      id="sectors"
-      className="section relative overflow-hidden"
-      style={{ background: '#F8FAFC' }}
-    >
-      {/* Decorative Orbs */}
-      <div className="absolute top-[30%] right-[-10%] w-[600px] h-[600px] rounded-full pointer-events-none opacity-[0.12] blur-[100px]" style={{ background: 'radial-gradient(circle, #1B4E9B 0%, transparent 70%)' }} />
-      <div className="absolute bottom-[20%] left-[-5%] w-[500px] h-[500px] rounded-full pointer-events-none opacity-[0.12] blur-[100px]" style={{ background: 'radial-gradient(circle, #6AAB2E 0%, transparent 70%)' }} />
+    <section id="sectors" className="section relative" aria-labelledby="sectors-title" style={{ background: 'var(--ax-ink-2)' }}>
+      <div className="absolute inset-0 ax-grid opacity-40 pointer-events-none" aria-hidden />
+      <div className="container relative">
+        <SectionHeader
+          id="sectors-title"
+          code="IND-00"
+          eyebrow="Industries we serve"
+          title="Driving growth in"
+          accent="critical sectors."
+        />
 
-      {/* Subtle grid */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.025]"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(26,58,107,0.15) 1px, transparent 1px),' +
-            'linear-gradient(90deg, rgba(26,58,107,0.15) 1px, transparent 1px)',
-          backgroundSize: '48px 48px',
-        }}
-      />
-
-      <div className="container relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="text-center mb-24"
-        >
-          <div className="section-label justify-center mb-5">
-            Industries We Serve
-          </div>
-          <h2
-            className="font-display font-black text-slate-900"
-            style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', letterSpacing: '-0.04em' }}
-          >
-            Driving Growth in<br />
-            <span className="text-gradient-dual">Critical Sectors</span>
-          </h2>
-        </motion.div>
-
-        {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8">
-          {sectors.map((s, i) => (
-            <motion.div
-              key={s.label}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ delay: i * 0.04, duration: 0.55, ease: 'easeOut' }}
-              whileHover={{ y: -8 }}
-              className="group cursor-default relative rounded-[2rem] overflow-hidden p-8 flex flex-col items-center text-center gap-6 transition-all duration-500"
-              style={{
-                background: 'rgba(255, 255, 255, 0.4)',
-                backdropFilter: 'blur(20px)',
-                border: '1px solid rgba(255, 255, 255, 0.6)',
-                boxShadow: '0 8px 32px rgba(15, 23, 42, 0.05)',
-              }}
-            >
-              {/* Hover glow */}
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-700"
-                style={{ background: `radial-gradient(circle at center, ${s.color}, transparent 80%)` }}
-              />
-
-              {/* Icon container */}
-              <div 
-                className="relative w-20 h-20 rounded-2xl flex items-center justify-center p-3 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3"
-                style={{ 
-                  background: `${s.color}10`,
-                  border: `1px solid ${s.color}20`,
-                  boxShadow: `0 10px 25px ${s.color}15`
-                }}
-              >
-                <Image
-                  src={s.img}
-                  alt={s.label}
-                  width={80}
-                  height={80}
-                  className="object-contain"
-                  style={{ filter: `drop-shadow(0 5px 15px ${s.color}30)` }}
-                />
+        <ul className="grid gap-4 md:grid-cols-4 md:grid-rows-2">
+          {/* Mining — feature tile with the one real statistic */}
+          <Reveal as="li" className="md:col-span-2 md:row-span-2">
+            <article className={`${tile} justify-between min-h-[22rem]`} style={{ background: 'radial-gradient(ellipse 80% 60% at 80% 20%, rgba(255,106,26,0.12), transparent 60%), linear-gradient(180deg, rgba(17,24,33,0.9), rgba(11,15,21,0.9))' }}>
+              <div className="flex items-center justify-between">
+                <Pickaxe size={28} strokeWidth={1.5} style={{ color: 'var(--ax-copper)' }} aria-hidden />
+                <span className="ax-spec text-[10px]">IND-01</span>
               </div>
-
-              <div className="relative z-10 space-y-3">
-                <h4 className="font-display font-black text-[18px] text-slate-900 tracking-tight leading-tight">{s.label}</h4>
-                <p className="text-[13px] leading-relaxed text-slate-500 group-hover:text-slate-900 transition-colors duration-300 font-medium">{s.desc}</p>
+              <div>
+                <p className="font-display font-bold leading-none text-white" style={{ fontSize: 'clamp(4.5rem, 10vw, 8rem)', letterSpacing: '-0.05em' }}>
+                  <Counter to={60} suffix="%" />
+                </p>
+                <p className="ax-spec mt-2" style={{ color: 'var(--ax-copper)' }}>of our work is in mining</p>
+                <h3 className="mt-6 font-display text-3xl font-semibold text-white">Mining</h3>
+                <p className="mt-2 max-w-md text-[15px] leading-relaxed" style={{ color: 'var(--ax-dim)' }}>
+                  Maintenance, spares &amp; workforce for major African mining operations.
+                </p>
               </div>
+            </article>
+          </Reveal>
 
-              {/* Stat pill */}
-              <span
-                className="relative z-10 text-[10px] font-mono font-bold uppercase tracking-[0.2em] px-4 py-1.5 rounded-full transition-all duration-300 group-hover:bg-opacity-100 group-hover:border-slate-300"
-                style={{
-                  background: 'rgba(255, 255, 255, 0.8)',
-                  color: s.color,
-                  border: '1px solid rgba(15, 23, 42, 0.08)',
-                }}
-              >
-                {s.stat}
-              </span>
-
-              {/* Bottom accent glow */}
-              <div
-                className="absolute bottom-0 left-0 right-0 h-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{ background: `linear-gradient(90deg, transparent, ${s.color}, transparent)` }}
-              />
-            </motion.div>
+          {[
+            { Icon: Factory,    code: 'IND-02', label: 'Manufacturing',   desc: 'Operational efficiency and spare parts for production facilities.', tag: 'Multi-sector' },
+            { Icon: Zap,        code: 'IND-03', label: 'Energy',          desc: 'Engineering solutions for power generation and distribution.', tag: 'Infrastructure' },
+            { Icon: Server,     code: 'IND-04', label: 'Commercial / IT', desc: 'IT equipment and technical outsourcing for growing businesses.', tag: 'Enterprise grade' },
+            { Icon: RadioTower, code: 'IND-05', label: 'Telecoms',        desc: 'Optical fibre installation and 24/7 network maintenance.', tag: 'Pan-African' },
+          ].map((s, i) => (
+            <Reveal key={s.label} as="li" delay={0.05 + i * 0.05}>
+              <article className={tile}>
+                <div className="flex items-center justify-between">
+                  <s.Icon size={24} strokeWidth={1.5} style={{ color: 'var(--ax-cyan)' }} aria-hidden />
+                  <span className="ax-spec text-[10px]">{s.code}</span>
+                </div>
+                <h3 className="mt-8 font-display text-xl font-semibold text-white">{s.label}</h3>
+                <p className="mt-2 text-[14.5px] leading-relaxed" style={{ color: 'var(--ax-dim)' }}>{s.desc}</p>
+                <span className="mt-auto pt-5 ax-spec text-[10px]" style={{ color: 'var(--ax-text)' }}>{s.tag}</span>
+              </article>
+            </Reveal>
           ))}
-        </div>
+        </ul>
+
+        <Reveal className="mt-10 flex flex-col md:flex-row md:items-center gap-5 border-t pt-8 border-[color:var(--ax-line)]">
+          <h3 className="ax-spec shrink-0" style={{ color: 'var(--ax-text)' }}>Industry coverage</h3>
+          <ul className="flex flex-wrap gap-2">
+            {industries.map(v => (
+              <li key={v} className="text-[13.5px] px-3 py-1.5 border" style={{ borderColor: 'var(--ax-line-2)', color: 'var(--ax-dim)' }}>{v}</li>
+            ))}
+          </ul>
+        </Reveal>
       </div>
     </section>
   )
 }
-
-
