@@ -1,20 +1,14 @@
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next'
+import { SITE_URL, PUBLIC_ROUTES } from '@/lib/site'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://afridynengineering.com'
+  const lastModified = new Date()
 
-  return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/shop`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-  ]
+  return PUBLIC_ROUTES.map(({ path, changeFrequency, priority }) => ({
+    // Home is the bare origin; other pages have no trailing slash.
+    url: path === '/' ? SITE_URL : `${SITE_URL}${path}`,
+    lastModified,
+    changeFrequency,
+    priority,
+  }))
 }

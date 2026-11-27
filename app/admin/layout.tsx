@@ -76,7 +76,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             style={{ background: 'linear-gradient(135deg,#1B4E9B,#6AAB2E)' }}>A</div>
           <div className="min-w-0">
             <p className="text-[12px] font-semibold text-white/80 truncate">Admin</p>
-            <p className="text-[10px] text-white/25 truncate">afridynengineering.com</p>
+            <p className="text-[10px] text-white/25 truncate">afridyn.world</p>
           </div>
         </div>
         <button className="flex items-center gap-3 w-full px-4 py-2.5 rounded-xl text-[12px] font-semibold

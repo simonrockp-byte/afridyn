@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     'industrial tools online shop',
     'Ingco tools Africa',
   ],
+  alternates: { canonical: '/shop' },
   openGraph: {
     title: 'Industrial Supplies & Equipment | Afridyn Engineering Shop',
     description:

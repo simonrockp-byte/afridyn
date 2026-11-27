@@ -4,6 +4,7 @@ import './globals.css'
 import { SiteShell } from '@/components/SiteShell'
 import { ClientProviders } from '@/components/ClientProviders'
 import { ScrollProgressBar } from '@/components/ScrollProgressBar'
+import { SITE_URL } from '@/lib/site'
 
 const inter = Inter({
   subsets:  ['latin'],
@@ -27,7 +28,8 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://afridynengineering.com'),
+  metadataBase: new URL(SITE_URL),
+  alternates: { canonical: '/' },
   title: {
     default:  'Afridyn Engineering Limited | Engineering Excellence Across Africa',
     template: '%s | Afridyn Engineering',
@@ -52,7 +54,7 @@ export const metadata: Metadata = {
   openGraph: {
     type:        'website',
     locale:      'en_ZM',
-    url:         'https://afridynengineering.com',
+    url:         SITE_URL,
     title:       'Afridyn Engineering Limited | Engineering Excellence Across Africa',
     description: 'Professional engineering services for industrial, mining, and infrastructure sectors across Africa.',
     siteName:    'Afridyn Engineering Limited',

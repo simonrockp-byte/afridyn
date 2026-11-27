@@ -46,7 +46,7 @@ export default function SettingsPage() {
           <Field label="WhatsApp Number" value="+260 977 244 549" type="tel" />
           <Field label="Office Phone"    value="+260 969 628 707" type="tel" />
         </div>
-        <Field label="Email Address" value="info@afridynengineering.com" type="email" />
+        <Field label="Email Address" value="info@afridyn.world" type="email" />
         <Field label="Physical Address" value="31 Salama Park, Lusaka, Zambia" />
       </Section>
 
@@ -67,7 +67,7 @@ export default function SettingsPage() {
       </Section>
 
       <Section title="Security" icon={Shield}>
-        <Field label="Admin Email"    value="admin@afridynengineering.com" type="email" />
+        <Field label="Admin Email"    value="admin@afridyn.world" type="email" />
         <Field label="New Password"   value=""    type="password" placeholder="Leave blank to keep current" />
         <Field label="Confirm Password" value="" type="password" placeholder="Repeat new password" />
       </Section>
