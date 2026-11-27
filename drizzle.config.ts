@@ -1,0 +1,14 @@
+import { config } from 'dotenv'
+import { defineConfig } from 'drizzle-kit'
+
+// drizzle-kit runs outside Next.js, so it doesn't load .env.local by itself.
+config({ path: '.env.local', quiet: true })
+
+export default defineConfig({
+  schema: './db/schema.ts',
+  out: './db/migrations',
+  dialect: 'postgresql',
+  dbCredentials: { url: process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL || '' },
+  strict: true,
+  verbose: true,
+})

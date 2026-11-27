@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 import { SiteShell } from '@/components/SiteShell'
 import { Footer } from '@/components/layout/Footer'
@@ -7,23 +7,25 @@ import { ClientProviders } from '@/components/ClientProviders'
 import { ScrollProgressBar } from '@/components/ScrollProgressBar'
 import { SITE_URL, COMPANY, SERVICE_NAMES } from '@/lib/site'
 
-const inter = Inter({
-  subsets:  ['latin'],
-  weight:   ['400', '500', '600', '700'],
+// Self-hosted variable fonts (latin subset, SIL OFL) in app/fonts. Builds no longer
+// fetch from Google Fonts at build time, which intermittently failed Vercel builds.
+const inter = localFont({
+  src:      './fonts/inter-latin-wght.woff2',
+  weight:   '100 900',
   variable: '--font-inter',
   display:  'swap',
 })
 
-const spaceGrotesk = Space_Grotesk({
-  subsets:  ['latin'],
-  weight:   ['500', '600', '700'],
+const spaceGrotesk = localFont({
+  src:      './fonts/space-grotesk-latin-wght.woff2',
+  weight:   '300 700',
   variable: '--font-display',
   display:  'swap',
 })
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets:  ['latin'],
-  weight:   ['400', '500', '600'],
+const jetbrainsMono = localFont({
+  src:      './fonts/jetbrains-mono-latin-wght.woff2',
+  weight:   '100 800',
   variable: '--font-mono',
   display:  'swap',
   preload:  false, // small labels only — keep it off the critical path
