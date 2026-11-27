@@ -4,7 +4,7 @@ import { Phone, Mail, MapPin, CheckCircle, Clock } from 'lucide-react'
 import { CONTACT_INFO } from '@/lib/contact-info'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { Reveal } from '@/components/motion/Reveal'
-import { SERVICE_EVENT } from '@/components/sections/Services'
+import { SERVICE_EVENT } from '@/lib/events'
 
 const WHATSAPP_NUMBER = '260977244549' // +260 977 244 549
 

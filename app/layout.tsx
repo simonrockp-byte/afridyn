@@ -26,6 +26,7 @@ const jetbrainsMono = JetBrains_Mono({
   weight:   ['400', '500', '600'],
   variable: '--font-mono',
   display:  'swap',
+  preload:  false, // small labels only — keep it off the critical path
 })
 
 const TITLE = 'Afridyn Engineering Limited | Engineering Services in Lusaka, Zambia'

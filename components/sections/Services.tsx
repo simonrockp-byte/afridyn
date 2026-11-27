@@ -1,10 +1,7 @@
-'use client'
-import { useRef, useState } from 'react'
 import Image from 'next/image'
 import { ArrowRight, Check } from 'lucide-react'
 import { SectionHeader } from '@/components/ui/SectionHeader'
-
-export const SERVICE_EVENT = 'afridyn:select-service'
+import { ServiceTabs } from '@/components/sections/ServiceTabs'
 
 const services = [
   {
@@ -82,21 +79,6 @@ const services = [
 ]
 
 export function Services() {
-  const [active, setActive] = useState(0)
-  const tabs = useRef<(HTMLButtonElement | null)[]>([])
-
-  const onKey = (e: React.KeyboardEvent, i: number) => {
-    const n = services.length
-    const next =
-      e.key === 'ArrowDown' || e.key === 'ArrowRight' ? (i + 1) % n :
-      e.key === 'ArrowUp'   || e.key === 'ArrowLeft'  ? (i - 1 + n) % n :
-      e.key === 'Home' ? 0 : e.key === 'End' ? n - 1 : -1
-    if (next < 0) return
-    e.preventDefault()
-    setActive(next)
-    tabs.current[next]?.focus()
-  }
-
   return (
     <section id="services" className="section relative" aria-labelledby="services-title" style={{ background: 'var(--ax-ink-2)' }}>
       <div className="absolute inset-0 ax-grid opacity-40 pointer-events-none" aria-hidden />
@@ -110,48 +92,34 @@ export function Services() {
           lead="Eight service lines covering supply, maintenance, advisory, people and logistics. Select a service to see the scope."
         />
 
-        <div className="grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-4 lg:gap-6 items-start">
-          {/* Tab list */}
+        {/* Server-rendered; <ServiceTabs> only wires up clicks/keys, so this markup isn't hydrated. */}
+        <div id="svc" className="grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-4 lg:gap-6 items-start">
           <div role="tablist" aria-label="Services" aria-orientation="vertical" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 border" style={{ borderColor: 'var(--ax-line)' }}>
-            {services.map((s, i) => {
-              const on = i === active
-              return (
-                <button
-                  key={s.title}
-                  ref={el => { tabs.current[i] = el }}
-                  role="tab"
-                  id={`svc-tab-${i}`}
-                  aria-selected={on}
-                  aria-controls={`svc-panel-${i}`}
-                  tabIndex={on ? 0 : -1}
-                  onClick={() => {
-                    setActive(i)
-                    if (window.innerWidth < 1024) {
-                      requestAnimationFrame(() => document.getElementById(`svc-panel-${i}`)?.scrollIntoView({ block: 'start' }))
-                    }
-                  }}
-                  onKeyDown={e => onKey(e, i)}
-                  className="relative text-left flex items-center gap-4 px-5 py-4 border-b transition-colors"
-                  style={{
-                    borderColor: 'var(--ax-line)',
-                    background: on ? 'rgba(255,106,26,0.08)' : 'transparent',
-                  }}
-                >
-                  <span className="absolute left-0 top-0 bottom-0 w-[2px] transition-opacity" style={{ background: 'var(--ax-copper)', opacity: on ? 1 : 0 }} aria-hidden />
-                  <span className="font-mono text-[11px] tracking-[0.14em] w-14 shrink-0" style={{ color: on ? 'var(--ax-copper)' : 'var(--ax-faint)' }}>
-                    SVC-{String(i + 1).padStart(2, '0')}
-                  </span>
-                  <span className="flex-1 min-w-0">
-                    <span className="block font-display font-semibold text-[16px] text-white lg:truncate">{s.title}</span>
-                    <span className="hidden sm:block text-[13px] truncate" style={{ color: 'var(--ax-dim)' }}>{s.short}</span>
-                  </span>
-                  <ArrowRight size={16} aria-hidden className="shrink-0 transition-transform" style={{ color: on ? 'var(--ax-copper)' : 'var(--ax-faint)', transform: on ? 'translateX(2px)' : 'none' }} />
-                </button>
-              )
-            })}
+            {services.map((s, i) => (
+              <button
+                key={s.title}
+                type="button"
+                role="tab"
+                id={`svc-tab-${i}`}
+                aria-selected={i === 0}
+                aria-controls={`svc-panel-${i}`}
+                tabIndex={i === 0 ? 0 : -1}
+                className="svc-tab relative text-left flex items-center gap-4 px-5 py-4 border-b transition-colors"
+                style={{ borderColor: 'var(--ax-line)' }}
+              >
+                <span className="svc-bar absolute left-0 top-0 bottom-0 w-[2px] transition-opacity" style={{ background: 'var(--ax-copper)' }} aria-hidden />
+                <span className="svc-code font-mono text-[11px] tracking-[0.14em] w-14 shrink-0">
+                  SVC-{String(i + 1).padStart(2, '0')}
+                </span>
+                <span className="flex-1 min-w-0">
+                  <span className="block font-display font-semibold text-[16px] text-white lg:truncate">{s.title}</span>
+                  <span className="hidden sm:block text-[13px] truncate" style={{ color: 'var(--ax-dim)' }}>{s.short}</span>
+                </span>
+                <ArrowRight size={16} aria-hidden className="svc-arrow shrink-0 transition-transform" />
+              </button>
+            ))}
           </div>
 
-          {/* Panels (all in DOM for indexing; inactive ones hidden) */}
           <div className="lg:sticky lg:top-24">
             {services.map((s, i) => (
               <div
@@ -159,7 +127,7 @@ export function Services() {
                 role="tabpanel"
                 id={`svc-panel-${i}`}
                 aria-labelledby={`svc-tab-${i}`}
-                hidden={i !== active}
+                hidden={i !== 0}
                 tabIndex={0}
                 className="ax-panel ax-brackets"
               >
@@ -192,11 +160,7 @@ export function Services() {
                       </li>
                     ))}
                   </ul>
-                  <a
-                    href="#contact"
-                    onClick={() => window.dispatchEvent(new CustomEvent(SERVICE_EVENT, { detail: s.form }))}
-                    className="ax-btn ax-btn-copper mt-8"
-                  >
+                  <a href="#contact" data-service={s.form} className="ax-btn ax-btn-copper mt-8">
                     Request Consultation <ArrowRight size={16} aria-hidden />
                   </a>
                 </div>
@@ -204,6 +168,7 @@ export function Services() {
             ))}
           </div>
         </div>
+        <ServiceTabs />
       </div>
     </section>
   )
