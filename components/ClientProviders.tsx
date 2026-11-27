@@ -1,7 +1,6 @@
 'use client'
-import { MotionConfig } from 'framer-motion'
 
-/** reducedMotion="user": framer-motion drops transform/scale animations when the OS asks for reduced motion. */
+/** Kept as a seam for future app-wide providers. (framer-motion is no longer loaded app-wide.) */
 export function ClientProviders({ children }: { children: React.ReactNode }) {
-  return <MotionConfig reducedMotion="user">{children}</MotionConfig>
+  return <>{children}</>
 }

@@ -1,6 +1,4 @@
-'use client'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { MapPin, Phone, Mail } from 'lucide-react'
 import { Logo } from '@/components/brand/Logo'
 import { COMPANY, SERVICE_NAMES } from '@/lib/site'
@@ -14,8 +12,8 @@ const company = [
 ]
 
 export function Footer() {
-  const isHome = usePathname() === '/'
-  const href = (id: string) => (isHome ? `#${id}` : `/#${id}`)
+  // `/#id` works everywhere: on the home page the browser just scrolls to the section.
+  const href = (id: string) => `/#${id}`
 
   return (
     <footer className="relative overflow-hidden border-t" style={{ background: '#05070A', borderColor: 'var(--ax-line)' }}>

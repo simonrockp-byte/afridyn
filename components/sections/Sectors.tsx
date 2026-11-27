@@ -1,5 +1,6 @@
 import { Pickaxe, Factory, Zap, Server, RadioTower } from 'lucide-react'
-import { Reveal, Counter } from '@/components/motion/Reveal'
+import { Reveal } from '@/components/motion/Reveal'
+import { Counter } from '@/components/motion/Counter'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 
 const industries = [

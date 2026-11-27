@@ -31,7 +31,7 @@ function Telemetry() {
     </ul>
   )
   return (
-    <div className="relative z-10 border-y bg-[#07090D]/85 backdrop-blur-sm" style={{ borderColor: 'var(--ax-line)' }}>
+    <div className="relative z-10 border-y bg-[#07090D]/90" style={{ borderColor: 'var(--ax-line)' }}>
       <div className="flex items-stretch">
         <div className="flex items-center gap-2.5 px-4 md:px-6 py-3 border-r shrink-0 bg-[#07090D]" style={{ borderColor: 'var(--ax-line)' }}>
           <span className="ax-led" aria-hidden />

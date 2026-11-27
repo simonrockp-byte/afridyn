@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { SiteShell } from '@/components/SiteShell'
+import { Footer } from '@/components/layout/Footer'
 import { ClientProviders } from '@/components/ClientProviders'
 import { ScrollProgressBar } from '@/components/ScrollProgressBar'
 import { SITE_URL, COMPANY, SERVICE_NAMES } from '@/lib/site'
@@ -157,9 +158,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en-ZM"
+      suppressHydrationWarning
       className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
     >
       <body>
+        {/* flag JS so scroll-reveal styles only hide content when JS can reveal it */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
         <a href="#main" className="ax-skip">Skip to content</a>
         <div id="scroll-bar" />
         <script
@@ -167,7 +171,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
         />
         <ClientProviders>
-          <SiteShell>{children}</SiteShell>
+          <SiteShell footer={<Footer />}>{children}</SiteShell>
         </ClientProviders>
         <ScrollProgressBar />
       </body>

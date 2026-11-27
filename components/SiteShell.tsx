@@ -1,9 +1,9 @@
 'use client'
 import { usePathname } from 'next/navigation'
 import { Navigation } from '@/components/layout/Navigation'
-import { Footer }     from '@/components/layout/Footer'
 
-export function SiteShell({ children }: { children: React.ReactNode }) {
+/** Footer is passed in from the (server) root layout so it renders without hydration cost. */
+export function SiteShell({ children, footer }: { children: React.ReactNode; footer: React.ReactNode }) {
   const pathname = usePathname()
   const isAdmin  = pathname.startsWith('/admin')
 
@@ -13,7 +13,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
     <>
       <Navigation />
       <main id="main">{children}</main>
-      <Footer />
+      {footer}
     </>
   )
 }

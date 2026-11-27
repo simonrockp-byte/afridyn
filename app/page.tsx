@@ -8,6 +8,7 @@ import { WhyUs }       from '@/components/sections/WhyUs'
 import { Projects, TrustedBy } from '@/components/sections/Projects'
 import { CTA }         from '@/components/sections/CTA'
 import { Contact }     from '@/components/sections/Contact'
+import { RevealObserver } from '@/components/motion/RevealObserver'
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
       <TrustedBy />
       <CTA />
       <Contact />
+      <RevealObserver />
     </>
   )
 }
